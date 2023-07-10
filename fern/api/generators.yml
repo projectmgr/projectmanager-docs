@@ -2,7 +2,7 @@
 groups:
   publish:
     generators:
-    - name: "fernapi/fern-typescript-sdk"
+    - name: "fernapi/fern-typescript-node-sdk"
       version: "0.7.1"
       output:
         package-name: "@fern-api/project-manager"
