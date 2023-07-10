@@ -1,0 +1,14 @@
+---
+groups:
+  publish:
+    generators:
+    - name: "fernapi/fern-typescript-sdk"
+      version: "0.7.1"
+      output:
+        package-name: "@fern-api/project-manager"
+        token: "${NPM_TOKEN}"
+        location: "npm"
+      config:
+        namespaceExport: "ProjectManager"
+      github:
+        repository: "fern-projectmanager/project-manager-node"
