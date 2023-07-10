@@ -11,4 +11,4 @@ groups:
       config:
         namespaceExport: "ProjectManager"
       github:
-        repository: "fern-projectmanager/project-manager-node"
+        repository: "fern-projectmanager/projectmanager-node"
