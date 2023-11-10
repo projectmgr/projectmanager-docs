@@ -18,7 +18,7 @@ Whenever you want to find a specific record in the ProjectManager system, you ca
 - Search for tasks more recent than a specific time using an `$filter={field-name} gt {date}` statement, like `$filter=createDate gt 2023-03-01`
 - Search for a resource with a comment in its "notes" field using an `$filter=substringof({field-name}, '{substring}')` statement, like `$filter=substringof(notes, 'test')`.
 
-There are lots of comparators and functions within OData filtering that you may want to learn.
+## Comparators and Functions within OData filtering 
 
 | Name                 | Example                          |
 |----------------------|----------------------------------|
@@ -32,13 +32,13 @@ There are lots of comparators and functions within OData filtering that you may 
 | Starts With          | `startswith({field}, {value})`   |
 | Ends With            | `endswith({field}, {value})`     |
 
+### Filtering tips
+
 When specifying values in your query, keep in mind these things:
 
 - Numeric values are presented as-is, for example `count eq 7`
 - String values are enclosed in single quotes, for example `name eq 'Bob Smith'`
 - Date values are always written in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format, also known as YYYY-MM-DD. For example, `createDate gt 2023-01-01`
-
-Got questions about OData queries? Visit our [ProjectManager developer discussion boards](https://developer.projectmanager.com/discuss) and compare notes with other developers!
 
 ## Pagination using OData
 
