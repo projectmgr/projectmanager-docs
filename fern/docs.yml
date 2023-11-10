@@ -45,4 +45,4 @@ logo:
   light: ./docs/assets/projectmanager_logo_black.png
   height: 30
 
-favicon: projectmanager_favicon.png
+favicon: ./docs/assets/projectmanager_favicon.png
