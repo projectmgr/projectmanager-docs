@@ -10,8 +10,15 @@ navigation:
         path: ./docs/pages/overview.mdx
       - page: Authentication
         path: ./docs/pages/authentication.mdx
+      - page: Querying with OData
+        path: ./docs/pages/querying.mdx
       - page: Software Developement Kits
         path: ./docs/pages/sdks.mdx
+      - page: FAQ
+        path: ./docs/pages/faq.mdx     
+      - page: Terms of use
+        path: ./docs/pages/terms.mdx           
+      
   - api: API Reference
     api-name: api
     snippets:
@@ -31,9 +38,11 @@ navbar-links:
 colors:
   accentPrimary:
     dark: "#b3f606"
-    light: "#456003"
+    light: "#608502"
 
 logo:
   dark: ./docs/assets/projectmanager_logo_white.png
   light: ./docs/assets/projectmanager_logo_black.png
   height: 30
+
+favicon: projectmanager_favicon.png
