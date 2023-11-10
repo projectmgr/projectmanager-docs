@@ -7847,23 +7847,9 @@
       "AstroError": {
         "type": "object",
         "properties": {
-          "technicalError": {
-            "type": "string",
-            "description": "A technical description of the error that occurred.  Not suitable for\r\ndisplay to end users.",
-            "nullable": true,
-            "readOnly": true
-          },
-          "additionalErrors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "If additional errors beyond the main error in `Message` occurred, they will be\r\nlisted here as individual messages.",
-            "nullable": true
-          },
           "message": {
             "type": "string",
-            "description": "A description of the error that occurred.  If your application has a user\r\ninterface, show this message to explain what went wrong.",
+            "description": "A description of the error that occurred.",
             "nullable": true
           }
         },
