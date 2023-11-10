@@ -31,9 +31,9 @@ navbar-links:
 colors:
   accentPrimary:
     dark: "#b3f606"
-    light: "#b3f606"
+    light: "#456003"
 
 logo:
   dark: ./docs/assets/projectmanager_logo_white.png
   light: ./docs/assets/projectmanager_logo_black.png
-  height: 50
+  height: 30
