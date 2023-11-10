@@ -2,7 +2,8 @@
 
 Tagging a release on this repository will update the:
 
-  - [TypeScript SDK](https://github.com/fern-projectmanager/project-manager-node)
+- [TypeScript SDK](https://github.com/fern-projectmanager/project-manager-node)
+- [Docs](https://project-manager.docs.buildwithfern.com)
 
 ## What is in this repository?
 

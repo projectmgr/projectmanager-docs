@@ -1,0 +1,39 @@
+instances:
+  - url: project-manager.docs.buildwithfern.com
+
+title: Project Manager | Docs
+
+navigation:
+  - section: Getting started
+    contents: 
+      - page: Overview
+        path: ./docs/pages/overview.mdx
+      - page: Authentication
+        path: ./docs/pages/authentication.mdx
+      - page: Software Developement Kits
+        path: ./docs/pages/sdks.mdx
+  - api: API Reference
+    api-name: api
+    snippets:
+      python: fern-projectmanager   
+
+navbar-links: 
+  - type: secondary
+    text: Support
+    url: "mailto:support@projectmanager.com"
+  - type: secondary 
+    text: Contract sales
+    url: https://www.projectmanager.com/support/contact-sales
+  - type: primary
+    text: Start free trial
+    url: https://www.projectmanager.com/freetrial?edition=d
+
+colors:
+  accentPrimary:
+    dark: "#b3f606"
+    light: "#b3f606"
+
+logo:
+  dark: ./docs/assets/projectmanager_logo_white.png
+  light: ./docs/assets/projectmanager_logo_black.png
+  height: 50
