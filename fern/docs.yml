@@ -12,8 +12,6 @@ navigation:
         path: ./docs/pages/authentication.mdx
       - page: Querying with OData
         path: ./docs/pages/querying.mdx
-      - page: Software Developement Kits
-        path: ./docs/pages/sdks.mdx
       - page: FAQ
         path: ./docs/pages/faq.mdx     
       - page: Terms of use
