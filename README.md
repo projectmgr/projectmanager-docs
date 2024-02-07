@@ -1,17 +1,15 @@
 # Project Manager API
 
-Tagging a release on this repository will update the:
+Merging a PR will update:
 
-- [TypeScript SDK](https://github.com/fern-projectmanager/project-manager-node)
-- [Python SDK](https://github.com/fern-projectmanager/project-manager-python)
 - [API Docs](https://project-manager.docs.buildwithfern.com)
 
 ## What is in this repository?
 
 This repository contains
 
-- Project Manager's OpenAPI spec which lives in the [openapi](./fern/api/openapi/) folder
-- Generators (see [generators.yml](./fern/api/generators.yml))
+- Project Manager's OpenAPI spec which lives in the [openapi](./fern/openapi/) folder
+- the 
 
 To make sure that the OpenAPI is valid, you can use the Fern CLI.
 
