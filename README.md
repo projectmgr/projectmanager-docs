@@ -9,7 +9,7 @@ Merging a PR will update:
 This repository contains
 
 - Project Manager's OpenAPI spec which lives in the [openapi](./fern/openapi/) folder
-- the 
+- The guides written in Markdown
 
 To make sure that the OpenAPI is valid, you can use the Fern CLI.
 
