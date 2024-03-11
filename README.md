@@ -1,31 +1,32 @@
-# Project Manager API
+# ProjectManager API Documentation
 
-Merging a PR will update:
+This repo contains the configuration files for the ProjectManager's API documentation. 
+The documentation is built using Fern. 
 
-- [API Docs](https://project-manager.docs.buildwithfern.com)
+Click [here](https://project-manager.docs.buildwithfern.com/) to see the generated website. 
 
-## What is in this repository?
+## What does this repo contain?
 
-This repository contains
+- [OpenAPI Specs](./fern/openapi)
+- [Docs Configuration](./fern/docs.yml)
+- [GitHub Workflows](./.github/workflows)
 
-- Project Manager's OpenAPI spec which lives in the [openapi](./fern/openapi/) folder
-- The guides written in Markdown
+## How to update documentation?
 
-To make sure that the OpenAPI is valid, you can use the Fern CLI.
+To update your documentation, run 
 
-```bash
-npm install -g fern-api
-fern check
+```sh
+# npm install -g fern-api 
+fern generate --docs
 ```
 
-## What are generators?
-
-Generators read in your API Definition and output artifacts (e.g. TypeScript SDK) and are tracked in [generators.yml](./fern/api/generators.yml).
-
-To trigger the generators run:
-
-```bash
-fern generate
-
-fern generate --group publish --version <version>
+To preview your documentation, run 
+```sh
+# npm install -g fern-api
+fern generate --docs --preview
 ```
+
+The repository contains GitHub workflows that will automatically run 
+these commands for you. For example, when you make a PR a preview link 
+will be auto-generated and when you merge to main the docs site
+will update. 
