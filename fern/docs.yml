@@ -1,5 +1,6 @@
 instances:
   - url: project-manager.docs.buildwithfern.com
+    custom-domain: docs-beta.projectmanager.com
 
 title: Project Manager | Docs
 
