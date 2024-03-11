@@ -23,11 +23,12 @@ navigation:
       python: fern-projectmanager   
 
 navbar-links: 
-  - type: secondary
-    text: Support
-    url: "mailto:support@projectmanager.com"
+  # Ted will fix with a proper link eventually
+  # - type: secondary
+  #   text: Support
+  #   url: "mailto:support@projectmanager.com"
   - type: secondary 
-    text: Contract sales
+    text: Contact sales
     url: https://www.projectmanager.com/support/contact-sales
   - type: primary
     text: Start free trial
