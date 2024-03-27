@@ -25,7 +25,7 @@ navigation:
       - page: Legacy API v1
         path: ./docs/pages/legacy.mdx
       - page: API v3
-        path: ./docs/pages/v3.mdx
+        path: ./docs/pages/apiv3.mdx
   - api: API Reference
     api-name: api
     snippets:
