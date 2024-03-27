@@ -15,13 +15,17 @@ navigation:
         path: ./docs/pages/odata.mdx
       - page: Software Development Kits
         path: ./docs/pages/sdks.mdx
-      - page: Older APIs
-        path: ./docs/pages/legacy.mdx
       - page: FAQ
         path: ./docs/pages/faq.mdx     
       - page: Terms of use
         path: ./docs/pages/terms.mdx           
       
+  - section: Older APIs
+    contents:
+      - page: Legacy API v1
+        path: ./docs/pages/legacy.mdx
+      - page: API v3
+        path: ./docs/pages/v3.mdx
   - api: API Reference
     api-name: api
     snippets:
