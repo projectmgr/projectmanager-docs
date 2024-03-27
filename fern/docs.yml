@@ -12,7 +12,9 @@ navigation:
       - page: Authentication
         path: ./docs/pages/authentication.mdx
       - page: Querying with OData
-        path: ./docs/pages/querying.mdx
+        path: ./docs/pages/odata.mdx
+      - page: Software Development Kits
+        path: ./docs/pages/sdks.mdx
       - page: FAQ
         path: ./docs/pages/faq.mdx     
       - page: Terms of use
@@ -24,10 +26,9 @@ navigation:
       python: fern-projectmanager   
 
 navbar-links: 
-  # Ted will fix with a proper link eventually
-  # - type: secondary
-  #   text: Support
-  #   url: "mailto:support@projectmanager.com"
+  - type: secondary
+    text: Support
+    url: https://github.com/projectmgr/projectmanager-docs/issues
   - type: secondary 
     text: Contact sales
     url: https://www.projectmanager.com/support/contact-sales

@@ -11,15 +11,23 @@ Authorization: Bearer <token>
 To create an API key to begin using the ProjectManager v4 API, follow these steps:
 
 1. Log onto your ProjectManager workspace. Note that each API key is tied to a workspace.
-2. Click on your name in the bottom left hand corner of the screen, then select "Account". If you cannot see this option, check with your account representative to verify that you have been granted access to the REST API v4. ![Account](https://files.readme.io/0a37a73-image.png)
+2. Click on your name in the bottom left hand corner of the screen, then select "Account". If you cannot see this option, check with your account representative to verify that you have been granted access to the REST API v4. 
 
-3. On the "Account" popup, select the "API" tab on the left hand side. ![API](https://files.readme.io/ab2bcfd-image.png)
+![Click on your name, then the account menu](/docs/assets/account-menu.png)
 
-4. Select the API V4 section and click "Create API Key". ![API Key](https://files.readme.io/f55034b-image.png)
+3. On the "Account" popup, select the "API" tab on the left hand side. 
+
+![Select the API tab in the account dialog](/docs/assets/account-dialog.png)
+
+4. Select the API V4 section and click "Create API Key". 
+
+![Click Create API Key, then type in the key name](/docs/assets/create-api-key-dialog.png)
 
 5. Give your API key a name that you can use to remember it. When you click "Generate Tokens", you MUST copy and save your API key. Once generated, the API key can never be viewed again.
 
-6. We recommend rotating your API keys regularly to ensure that none are leaked or accidentally shared outside your organization. You can use the API key screen to maintain and revoke old tokens and create new ones. ![Revoke](https://files.readme.io/5f30720-image.png)
+6. We recommend rotating your API keys regularly to ensure that none are leaked or accidentally shared outside your organization. You can use the API key screen to maintain and revoke old tokens and create new ones. 
+
+![Revoke API key](/docs/assets/revoke-api-key.png)
 
 ## Using the SDK to authenticate
 
@@ -29,8 +37,8 @@ If you use a ProjectManager SDK, provide your token credentials using the `WithB
     <CodeBlock title="C#">
     ```csharp
     return ProjectManagerClient
-    .WithCustomEnvironment(env)
-    .WithBearerToken(apiKey);
+        .WithCustomEnvironment(env)
+        .WithBearerToken(apiKey);
     ```
     </CodeBlock>
     <CodeBlock title="Python">
@@ -40,18 +48,11 @@ If you use a ProjectManager SDK, provide your token credentials using the `WithB
     client = client.with_bearer_token(api_key)
     ```
     </CodeBlock>
-    <CodeBlock title="Go">
-    ```go
-    client := NewProjectManagerClient()
-    client.WithCustomEnvironment(env)
-    client.WithBearerToken(apiKey)
-    ```
-    </CodeBlock>
     <CodeBlock title="Java">
     ```java
     ProjectManagerClient client = new ProjectManagerClient()
-    .withCustomEnvironment(env)
-    .withBearerToken(apiKey);
+        .withCustomEnvironment(env)
+        .withBearerToken(apiKey);
     ```
     </CodeBlock>
 </CodeBlocks>
