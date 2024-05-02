@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "107.0.3416.0"
+    "version": "108.0.3459.0"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -21605,7 +21605,7 @@
           },
           "authScheme": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Authenication scheme",
             "nullable": true
           }
@@ -23918,7 +23918,7 @@
           },
           "fields": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Obsolete - use FieldValues instead",
             "nullable": true,
             "deprecated": true
@@ -25758,7 +25758,7 @@
           },
           "data": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "If the API call succeeded, this will contain the results.",
             "nullable": true
           }
@@ -26674,7 +26674,7 @@
           },
           "metadata": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Customer or system metadata",
             "nullable": true
           }
@@ -26729,7 +26729,7 @@
         "properties": {
           "data": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Customer or system metadata",
             "nullable": true
           }
