@@ -6,11 +6,11 @@ REST API v4 is the newest iteration of our application programming interface for
 
 Your team can get started with the ProjectManager API right away - here's how.
 
-1. All ProjectManager.com accounts have access to the API. [Create a free trial now!](https://developer.projectmanager.com/reference/www.projectmanager.com/freetrial?edition=d)
+1. All ProjectManager.com workspaces have access to the API. If you don't have a workspace, [create a free trial now!](https://www.projectmanager.com/freetrial?edition=d)
 
-2. Once you have signed up for an account, [create an API key](https://developer.projectmanager.com/reference/api-keys) within ProjectManager. Remember to save your API key in your company's secure credential storage system!
+2. Once you have signed up for an account, any users with the `Admin` or `Global Admin` roles within your workspace can [create an API key](https://developer.projectmanager.com/reference/api-keys) within ProjectManager. Remember to save your API key in your company's secure credential storage system!
 
-3. Download the appropriate software development kit for your favorite programming language, or take a look at our example programs.
+3. Download the appropriate software development kit for your favorite programming language, or [visit our API page](https://api.projectmanager.com) to look at our Swagger/OpenAPI definitions.
 
 | Language            | Program                                                                                    | Notes                                    |
 | --------------- | ----------------------------------------------------------------------------------------|---------------------------------------|
@@ -18,9 +18,11 @@ Your team can get started with the ProjectManager API right away - here's how.
 | Python     | [Python Task List](https://github.com/projectmgr/projectmanager-sdk-examples/blob/main/python/python_task_list.py) | A basic program in Python that demonstrates connecting and retrieving tasks. `Run with python .\python_task_list.py`       |
 | Jupyter     | [Jupyter Task DataFrame](https://github.com/projectmgr/projectmanager-sdk-examples/blob/main/jupyter/TaskDataFrame.ipynb)                                                          | A simple Jupyter notebook that retrieves tasks and displays them in a dataframe. Open in Visual Studio Code    |
 | TypeScript       | [TypeScript Task List](https://github.com/projectmgr/projectmanager-sdk-examples/blob/main/typescript/src/index.ts)                                                              | A basic program in TypeScript that demonstrates connecting and retrieving tasks. `Run with npm start`      |
-| Supabase     | [Java Task List](https://github.com/projectmgr/projectmanager-sdk-examples/blob/main/java/src/main/java/com/example/ExampleApp.java)                                                                      | A simple Java console application that demonstrates connecting and retrieving tasks. `Run with mvn exec:java -D"exec.mainClass=com.example.ExampleApp"`    |
+| Java     | [Java Task List](https://github.com/projectmgr/projectmanager-sdk-examples/blob/main/java/src/main/java/com/example/ExampleApp.java)                                                                      | A simple Java console application that demonstrates connecting and retrieving tasks. `Run with mvn exec:java -D"exec.mainClass=com.example.ExampleApp"`    |
 
 ## Using the API
+
+All API calls to ProjectManager.com use the URL `https://api.projectmanager.com/` regardless of your workspace's custom URL.  You must use a bearer token to contact the API.
 
 The ProjectManager.com API allows you to synchronize data from other systems to your project files and data. 
 
