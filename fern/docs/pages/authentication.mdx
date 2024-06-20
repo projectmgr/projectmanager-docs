@@ -1,5 +1,11 @@
 The ProjectManager REST API v4 uses API keys generated from within the ProjectManager application.
 
+## Contacting the API
+
+The ProjectManager API is available at https://api.projectmanager.com.  This web page shows the current version number of the API and allows you to review the latest Swagger/OpenAPI files.
+
+You can either use OAuth tokens (for interactive applications) or API keys (for unattended applications) to contact the ProjectManager API.  All `Admin` and `Global Admin` level users within your workspace are permitted to create API keys.  Users with more limited roles will not be able to create API keys.
+
 Credentials are sent to the API using the Authorization header as follows:
 
 ```bash
