@@ -13943,7 +13943,21 @@
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://app.projectmanager.com/authorize",
+            "tokenUrl": "https://app.projectmanager.com/oauth/token",
+            "scopes": {
+              "read:all": "Access the API read operations",
+              "write:all": "Access the API write operations"
+            }
+          }
+        }
+      }
+    }
   },
   "security": [
     {
