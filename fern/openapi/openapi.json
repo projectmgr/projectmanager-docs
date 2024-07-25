@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "ProjectManager.com, Inc API",
+    "title": "ProjectManager API",
     "description": "",
     "contact": {
       "name": "ProjectManager.com, Inc",
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "112.0.3856.0"
+    "version": "114.0.4169"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -1691,6 +1691,290 @@
         }
       }
     },
+    "/api/data/notifications": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Retrieve Notifications",
+        "description": "Retrieve the most recent notifications for the current user, along with the amount of notifications.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.\r\n            \r\nThis API retrieves 500 notifications at a time.  To fetch more than 500 notifications, repeat this API call\r\nusing the parameter `lastId` of the oldest notification from each batch to fetch the next 500 notifications.",
+        "parameters": [
+          {
+            "name": "lastId",
+            "in": "query",
+            "description": "To continue loading more notifications in a series of requests, provide the ID of the oldest notification from\r\nthe currently loaded batch as the `lastId` parameter",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationResponseDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/notifications/count": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Notification Count",
+        "description": "Retrieve the total count of pending notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationTotalCountDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/notifications/unreadcount": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Unread Notification Count",
+        "description": "Retrieve the count of unread notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationUnreadCountDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/notifications/deleteall": {
+      "delete": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Delete All Notifications",
+        "description": "Delete all pending notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/notifications/{id}/markread": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Mark Notification Read",
+        "description": "Marks a pending notification as read.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationTimestampDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/notifications/markallread": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Read All Notifications",
+        "description": "Marks all pending notification for the current user as read.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationTimestampDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/notifications/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Delete Notification",
+        "description": "Deletes a pending notification that is no longer wanted.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/notifications/{id}/markunread": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Mark Notification Unread",
+        "description": "Marks a pending notification as unread.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/data/non-project-tasks/{taskId}/files": {
       "post": {
         "tags": [
@@ -3360,6 +3644,52 @@
         }
       }
     },
+    "/api/data/resources/bulk": {
+      "post": {
+        "tags": [
+          "Resource"
+        ],
+        "summary": "Create Many Resources",
+        "description": "Create new Resources within your Workspace.\r\n            \r\nA Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user.",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The details for the new Resources to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ResourcesCreateDto"
+                  }
+                ],
+                "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourcesDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/data/resources/skills": {
       "get": {
         "tags": [
@@ -3777,6 +4107,58 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResourceTeamDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/projects/{projectId}/risks/export": {
+      "post": {
+        "tags": [
+          "Risk"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RiskExportSettingsDto"
+                  }
+                ],
+                "description": "Export Settings for Risk Export"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportDtoAstroResult"
                 }
               }
             }
@@ -6422,7 +6804,7 @@
           },
           "authScheme": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Authenication scheme",
             "nullable": true
           }
@@ -7250,6 +7632,61 @@
         "additionalProperties": false,
         "description": "A reaction to a specific comment within a discussion thread."
       },
+      "ExportDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of the export",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an export queue object. Use this ID to check the status of the export."
+      },
+      "ExportDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExportDto"
+              }
+            ],
+            "description": "Represents an export queue object. Use this ID to check the status of the export.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "FileDto": {
         "type": "object",
         "properties": {
@@ -8052,6 +8489,373 @@
         "additionalProperties": false,
         "description": "When uploading a list of names to an API, this data structure represents an\r\nindividual name within the list."
       },
+      "NotificationDataDto": {
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "string",
+            "description": "Set if the notification is related to a task",
+            "format": "uuid",
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Set if the notification is related to a project",
+            "format": "uuid",
+            "nullable": true
+          },
+          "taskShortId": {
+            "type": "string",
+            "description": "set if the notification is related to a task",
+            "nullable": true
+          },
+          "projectShortId": {
+            "type": "string",
+            "description": "set if the notification is related to a project",
+            "nullable": true
+          },
+          "projectName": {
+            "type": "string",
+            "description": "Name of the project the notification is related to",
+            "nullable": true
+          },
+          "taskName": {
+            "type": "string",
+            "nullable": true
+          },
+          "senderFirstName": {
+            "type": "string",
+            "description": "Firstname of the person initiating the notification",
+            "nullable": true
+          },
+          "assigneeId": {
+            "type": "string",
+            "description": "Assignee for the notification",
+            "format": "uuid",
+            "nullable": true
+          },
+          "view": {
+            "type": "string",
+            "description": "View",
+            "nullable": true
+          },
+          "shareId": {
+            "type": "string",
+            "description": "Id for the shared item",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Name of the file",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains the optional data associated with the notifcation."
+      },
+      "NotificationDto": {
+        "type": "object",
+        "properties": {
+          "notificationId": {
+            "type": "string",
+            "description": "The unique identifier of this notification",
+            "format": "uuid"
+          },
+          "businessId": {
+            "type": "string",
+            "description": "The unique identifier of the workspace for this notification",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "description": "The unique identifier of the recipient of this notification",
+            "format": "uuid"
+          },
+          "senderId": {
+            "type": "string",
+            "description": "The unique identifier of the sender of this notification",
+            "format": "uuid"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationDto"
+            },
+            "description": "If you received multiple notifications from the same user in a short period of time, they will be\r\ngrouped together.  For example, if you receive multiple notifications about users joining the same\r\nproject, they will be grouped together in the Children element.",
+            "nullable": true
+          },
+          "notificationType": {
+            "type": "string",
+            "description": "A friendly category or type for this notification",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "description": "Timestamp when the notification was sent",
+            "format": "date-time"
+          },
+          "subject": {
+            "type": "string",
+            "description": "User readable subject line for the notification",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "User readable message content for the notification",
+            "nullable": true
+          },
+          "readDate": {
+            "type": "string",
+            "description": "Timestamp when the notification was acknowledged as read",
+            "format": "date-time",
+            "nullable": true
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationDataDto"
+              }
+            ],
+            "description": "A string containing JSON-encoded extra data for the notification",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
+      },
+      "NotificationResponseDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationDto"
+            },
+            "description": "The most recent notifications pending for the current user.  If no notifications are pending for the current\r\nuser, this will be an empty array.  If there are more than 1,000 notifications this list may be truncated to\r\nonly the 1,000 most recent notifications.",
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of pending notifications for the current user, including both read and unread.",
+            "format": "int32"
+          },
+          "unreadCount": {
+            "type": "integer",
+            "description": "The number of unread notifications for the current user.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
+      },
+      "NotificationResponseDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationResponseDto"
+              }
+            ],
+            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "NotificationTimestampDto": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "The timestamp of the notification action",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
+      },
+      "NotificationTimestampDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationTimestampDto"
+              }
+            ],
+            "description": "A notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "NotificationTotalCountDto": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of notifications pending for the current user.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
+      },
+      "NotificationTotalCountDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationTotalCountDto"
+              }
+            ],
+            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "NotificationUnreadCountDto": {
+        "type": "object",
+        "properties": {
+          "unreadCount": {
+            "type": "integer",
+            "description": "The number of unread notifications for the current user.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
+      },
+      "NotificationUnreadCountDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationUnreadCountDto"
+              }
+            ],
+            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "PermissionOptionsDto": {
         "type": "object",
         "properties": {
@@ -8584,7 +9388,7 @@
           },
           "fields": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Obsolete - use FieldValues instead",
             "nullable": true,
             "deprecated": true
@@ -9705,6 +10509,11 @@
           "value": {
             "type": "string",
             "nullable": true
+          },
+          "restoreVersion": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -10120,6 +10929,26 @@
           "isActive": {
             "type": "boolean",
             "description": "True if this Resource is currently active and valid.  If this value is false,\r\nthis Resource is considered to be deactivated and not available for further use.\r\n            \r\nFor personnel Resources, setting this value to False will make this user unable\r\nto access this Workspace."
+          },
+          "createdDate": {
+            "type": "string",
+            "description": "The date this resource was created",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Set to a unique identifier of the user who created this Resource.",
+            "format": "uuid"
+          },
+          "modifiedDate": {
+            "type": "string",
+            "description": "The date this resource was last modified",
+            "format": "date-time"
+          },
+          "modifiedBy": {
+            "type": "string",
+            "description": "Set to a unique identifier of the user who last modified this Resource.",
+            "format": "uuid"
           }
         },
         "additionalProperties": false,
@@ -10551,10 +11380,159 @@
             },
             "description": "The list of ResourceSkills possessed by this Resource.",
             "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Active/Inactive the Resource.",
+            "nullable": true
+          },
+          "approverId": {
+            "type": "string",
+            "description": "The Approver Id associated with this Resource.\r\n            \r\nApplies to personnel Resources only.",
+            "format": "uuid",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
+      },
+      "ResourcesCreateDto": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceCreateDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
+      },
+      "ResourcesDto": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceDto"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserError"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
+      },
+      "ResourcesDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourcesDto"
+              }
+            ],
+            "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "RiskExportSettingsDto": {
+        "required": [
+          "columns"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "the name used by the export",
+            "nullable": true
+          },
+          "format": {
+            "enum": [
+              "csv",
+              "excel"
+            ],
+            "type": "string",
+            "description": "Format to export to, currently csv and excel are supported \r\n \r\n Valid options are: \n * csv \n * excel",
+            "nullable": true
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of column names to export"
+          },
+          "orderBy": {
+            "enum": [
+              "name",
+              "createDate",
+              "assignees",
+              "dueDate",
+              "impact",
+              "level",
+              "likelihood",
+              "openClosed",
+              "priority",
+              "response",
+              "tags",
+              "description",
+              "resolution"
+            ],
+            "type": "string",
+            "description": "Which column should be used to order the data \r\n \r\n Valid options are: \n * name \n * createDate \n * assignees \n * dueDate \n * impact \n * level \n * likelihood \n * openClosed \n * priority \n * response \n * tags \n * description \n * resolution",
+            "nullable": true
+          },
+          "orderDirection": {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "type": "string",
+            "description": "Specifies the direction of the order. Valid values are \"asc\" and \"desc\" \r\n \r\n Valid options are: \n * asc \n * desc",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Export Settings for Risk Export"
       },
       "State": {
         "enum": [
@@ -10599,7 +11577,7 @@
           },
           "data": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "If the API call succeeded, this will contain the results.",
             "nullable": true
           }
@@ -11515,7 +12493,7 @@
           },
           "metadata": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Customer or system metadata",
             "nullable": true
           }
@@ -11570,7 +12548,7 @@
         "properties": {
           "data": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Customer or system metadata",
             "nullable": true
           }
@@ -11958,6 +12936,12 @@
           "actualStartDate": {
             "type": "string",
             "description": "If set, this is the actual date when work began on the Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualFinishDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work was completed on the Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
             "format": "date",
             "nullable": true
           },
@@ -12653,6 +13637,20 @@
         "additionalProperties": false,
         "description": "A model that contains a new value to be set for a TaskField."
       },
+      "UserError": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserRoleDto": {
         "type": "object",
         "properties": {
@@ -12965,8 +13963,15 @@
     {
       "oauth2": [
         "read:all",
-        "write:all"
+        "write:all",
+        "web",
+        "mobile"
       ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://api.projectmanager.com"
     }
   ]
 }
