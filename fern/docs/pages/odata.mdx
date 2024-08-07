@@ -28,9 +28,14 @@ Whenever you want to find a specific record in the ProjectManager system, you ca
 | Less Than            | `{field} lt {value}`             |
 | Less Than Or Equal   | `{field} le {value}`             |
 | Not Equal            | `{field} ne {value}`             |
-| Contains             | `substringof({field}, {value})`  |
+| Contains             | `contains({field}, {value})`     |
 | Starts With          | `startswith({field}, {value})`   |
 | Ends With            | `endswith({field}, {value})`     |
+
+You can combine multiple comparisons using parenthesis and `AND` / `OR` clauses.  Some examples:
+
+* Find all tasks within a project that are complete: `(projectId eq 8aff412f-f072-479a-837e-eb0d96c6904a AND percentComplete eq 100)`
+* Find all tasks with the word 'wash' in their name that have not yet been started: `(contains(name, 'wash') AND percentComplete eq 0)`
 
 ### Filtering tips
 
@@ -38,6 +43,7 @@ When specifying values in your query, keep in mind these things:
 
 - Numeric values are presented as-is, for example `count eq 7`
 - String values are enclosed in single quotes, for example `name eq 'Bob Smith'`
+- GUID values are written without single quotes as if they are numbers, for example `projectId eq 8aff412f-f072-479a-837e-eb0d96c6904a`
 - Date values are always written in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format, also known as YYYY-MM-DD. For example, `createDate gt 2023-01-01`
 
 ## Pagination using OData
