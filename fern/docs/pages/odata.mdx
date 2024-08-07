@@ -50,11 +50,11 @@ When specifying values in your query, keep in mind these things:
 
 The standard for OData pagination uses the concept of **top** and **skip**. Here's how it works.
 
-1. The server begins to produce a list of all records matching your $filter statement in the order specified by the $orderby parameter.
+1. The server begins to produce a list of all records matching your `$filter` statement in the order specified by the `$orderby` parameter.
 
-2. The server will omit the number of records specified by the $skip parameter, if it is present.
+2. The server will omit the number of records specified by the `$skip` parameter, if it is present.
 
-3. If there are still more records remaining after the $skip parameter has been exhausted, the server will begin delivering records up until the $top value is reached.
+3. If there are still more records remaining after the `$skip` parameter has been exhausted, the server will begin delivering records up until the `$top` value is reached.
 
 This allows you to paginate records easily. If you want to retrieve the top 50 records in a table, you specify `$top=50`. To retrieve the second page of results, specify `$skip=50` and `$top=50`.
 
