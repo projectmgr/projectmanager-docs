@@ -16,7 +16,7 @@ Whenever you want to find a specific record in the ProjectManager system, you ca
 
 - Search for projects with a specific where a field value matches using an `$filter={field-name} eq {value}` statement, like `$filter=shortCode eq MyNewProject`
 - Search for tasks more recent than a specific time using an `$filter={field-name} gt {date}` statement, like `$filter=createDate gt 2023-03-01`
-- Search for a resource with a comment in its "notes" field using an `$filter=substringof({field-name}, '{substring}')` statement, like `$filter=substringof(notes, 'test')`.
+- Search for a resource with a comment in its "notes" field using an `$filter=contains({field-name}, '{substring}')` statement, like `$filter=contains(notes, 'test')`.
 
 ## Comparators and Functions within OData filtering 
 
@@ -28,9 +28,14 @@ Whenever you want to find a specific record in the ProjectManager system, you ca
 | Less Than            | `{field} lt {value}`             |
 | Less Than Or Equal   | `{field} le {value}`             |
 | Not Equal            | `{field} ne {value}`             |
-| Contains             | `substringof({field}, {value})`  |
+| Contains             | `contains({field}, {value})`     |
 | Starts With          | `startswith({field}, {value})`   |
 | Ends With            | `endswith({field}, {value})`     |
+
+You can combine multiple comparisons using parenthesis and `AND` / `OR` clauses.  Some examples:
+
+* Find all tasks within a project that are complete: `(projectId eq 8aff412f-f072-479a-837e-eb0d96c6904a AND percentComplete eq 100)`
+* Find all tasks with the word 'wash' in their name that have not yet been started: `(contains(name, 'wash') AND percentComplete eq 0)`
 
 ### Filtering tips
 
@@ -38,17 +43,18 @@ When specifying values in your query, keep in mind these things:
 
 - Numeric values are presented as-is, for example `count eq 7`
 - String values are enclosed in single quotes, for example `name eq 'Bob Smith'`
+- GUID values are written without single quotes as if they are numbers, for example `projectId eq 8aff412f-f072-479a-837e-eb0d96c6904a`
 - Date values are always written in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format, also known as YYYY-MM-DD. For example, `createDate gt 2023-01-01`
 
 ## Pagination using OData
 
 The standard for OData pagination uses the concept of **top** and **skip**. Here's how it works.
 
-1. The server begins to produce a list of all records matching your $filter statement in the order specified by the $orderby parameter.
+1. The server begins to produce a list of all records matching your `$filter` statement in the order specified by the `$orderby` parameter.
 
-2. The server will omit the number of records specified by the $skip parameter, if it is present.
+2. The server will omit the number of records specified by the `$skip` parameter, if it is present.
 
-3. If there are still more records remaining after the $skip parameter has been exhausted, the server will begin delivering records up until the $top value is reached.
+3. If there are still more records remaining after the `$skip` parameter has been exhausted, the server will begin delivering records up until the `$top` value is reached.
 
 This allows you to paginate records easily. If you want to retrieve the top 50 records in a table, you specify `$top=50`. To retrieve the second page of results, specify `$skip=50` and `$top=50`.
 
