@@ -16,7 +16,7 @@ Whenever you want to find a specific record in the ProjectManager system, you ca
 
 - Search for projects with a specific where a field value matches using an `$filter={field-name} eq {value}` statement, like `$filter=shortCode eq MyNewProject`
 - Search for tasks more recent than a specific time using an `$filter={field-name} gt {date}` statement, like `$filter=createDate gt 2023-03-01`
-- Search for a resource with a comment in its "notes" field using an `$filter=substringof({field-name}, '{substring}')` statement, like `$filter=substringof(notes, 'test')`.
+- Search for a resource with a comment in its "notes" field using an `$filter=contains({field-name}, '{substring}')` statement, like `$filter=contains(notes, 'test')`.
 
 ## Comparators and Functions within OData filtering 
 
