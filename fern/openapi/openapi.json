@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "114.0.4169"
+    "version": "115.0.4328"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -4162,6 +4162,39 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "error": {
+                      "message": "Input Validation Failed",
+                      "validationErrors": {
+                        "format": [
+                          "format must be one of the following: Csv, excel"
+                        ],
+                        "timeZoneOffset": [
+                          "'timeZoneOffset' must be between {From} and {To}. You entered {PropertyValue}."
+                        ],
+                        "columns": [
+                          "'columns' must not be empty.",
+                          "'columns' must not be empty.",
+                          "The specified condition was not met for 'columns'."
+                        ],
+                        "orderBy": [
+                          "orderBy must be one of the following: name, createDate, assignees, dueDate, impact, level, likelihood, openClosed, priority, response, tags, description, resolution"
+                        ],
+                        "orderDirection": [
+                          "orderDirection must be one of the following: asc, desc"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -7687,6 +7720,85 @@
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
+      "ExportDueDateFilterDto": {
+        "type": "object",
+        "properties": {
+          "includeNoDueDate": {
+            "type": "boolean",
+            "description": "Include items without a due date",
+            "nullable": true
+          },
+          "includeOverdue": {
+            "type": "boolean",
+            "description": "Include items with a due date in the past",
+            "nullable": true
+          },
+          "includeToday": {
+            "type": "boolean",
+            "description": "Include items with a due date of today",
+            "nullable": true
+          },
+          "includeThisWeek": {
+            "type": "boolean",
+            "description": "Include items due within the current week",
+            "nullable": true
+          },
+          "includeNextWeek": {
+            "type": "boolean",
+            "description": "Include items due within the next week",
+            "nullable": true
+          },
+          "includeLater": {
+            "type": "boolean",
+            "description": "Include items due later",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Due Date Filter Settings"
+      },
+      "ExportPriorityFilterDto": {
+        "type": "object",
+        "properties": {
+          "isNone": {
+            "type": "boolean",
+            "description": "Include items with no priority",
+            "nullable": true
+          },
+          "isVeryLow": {
+            "type": "boolean",
+            "description": "Include items with very low priority",
+            "nullable": true
+          },
+          "isLow": {
+            "type": "boolean",
+            "description": "Include items with low priority",
+            "nullable": true
+          },
+          "isMedium": {
+            "type": "boolean",
+            "description": "Include items with medium priority",
+            "nullable": true
+          },
+          "isHigh": {
+            "type": "boolean",
+            "description": "Include items with high priority",
+            "nullable": true
+          },
+          "isVeryHigh": {
+            "type": "boolean",
+            "description": "Include items with very high priority",
+            "nullable": true
+          },
+          "isCritical": {
+            "type": "boolean",
+            "description": "Include items with critical priority",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Priority filter settings"
+      },
       "FileDto": {
         "type": "object",
         "properties": {
@@ -8556,19 +8668,9 @@
       "NotificationDto": {
         "type": "object",
         "properties": {
-          "notificationId": {
+          "id": {
             "type": "string",
             "description": "The unique identifier of this notification",
-            "format": "uuid"
-          },
-          "businessId": {
-            "type": "string",
-            "description": "The unique identifier of the workspace for this notification",
-            "format": "uuid"
-          },
-          "userId": {
-            "type": "string",
-            "description": "The unique identifier of the recipient of this notification",
             "format": "uuid"
           },
           "senderId": {
@@ -11399,6 +11501,15 @@
       "ResourcesCreateDto": {
         "type": "object",
         "properties": {
+          "projectIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "When creating a user they will also be added to the projectIds specified. If null or empty the user will be invited but no access will be given to any projects.",
+            "nullable": true
+          },
           "users": {
             "type": "array",
             "items": {
@@ -11474,6 +11585,23 @@
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
+      "RiskExportProgressFilterDto": {
+        "type": "object",
+        "properties": {
+          "isOpen": {
+            "type": "boolean",
+            "description": "Include risks that are open",
+            "nullable": true
+          },
+          "isClosed": {
+            "type": "boolean",
+            "description": "Include risks that are closed",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Risk Progress Filter Settings"
+      },
       "RiskExportSettingsDto": {
         "required": [
           "columns"
@@ -11487,11 +11615,11 @@
           },
           "format": {
             "enum": [
-              "csv",
+              "Csv",
               "excel"
             ],
             "type": "string",
-            "description": "Format to export to, currently csv and excel are supported \r\n \r\n Valid options are: \n * csv \n * excel",
+            "description": "Format to export to, currently csv and excel are supported \r\n \r\n Valid options are: \n * Csv \n * excel",
             "nullable": true
           },
           "columns": {
@@ -11528,6 +11656,56 @@
             ],
             "type": "string",
             "description": "Specifies the direction of the order. Valid values are \"asc\" and \"desc\" \r\n \r\n Valid options are: \n * asc \n * desc",
+            "nullable": true
+          },
+          "timeZoneOffset": {
+            "type": "integer",
+            "description": "Timezone offset in minutes",
+            "format": "int32"
+          },
+          "dueDateFilter": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExportDueDateFilterDto"
+              }
+            ],
+            "description": "Specify the due date filter for the export. If left null, no due date filter will be applied",
+            "nullable": true
+          },
+          "priorityFilter": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExportPriorityFilterDto"
+              }
+            ],
+            "description": "Specify the priority filter for the export. If left null, no priority filter will be applied",
+            "nullable": true
+          },
+          "progressFilter": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RiskExportProgressFilterDto"
+              }
+            ],
+            "description": "Specify the progress filter for the export. If left null, no progress filter will be applied",
+            "nullable": true
+          },
+          "assignees": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "A list of resourceIds to filter the risks by assignees. If left null or empty this will be ignored",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "A list of tagIds to filter the risks by tags. If left null or empty this will be ignored",
             "nullable": true
           }
         },
@@ -12027,7 +12205,12 @@
           },
           "color": {
             "type": "string",
-            "description": "Task Color as set in the Gantt",
+            "description": "The hexadecimal RRGGBB Task Color as set in the Gantt.  This value is read-only; to set this value,\r\nchange the `Theme` field.",
+            "nullable": true
+          },
+          "theme": {
+            "type": "string",
+            "description": "Color theme definition for this Task.\r\n            \r\neg. Blue, Brown, DarkBlue, DarkGrey, Gold, Green, Grey, LightBrown, LightGreen,\r\nLightGrey, LightPurple, LightYellow, Magenta, Mauve, Navy, Orange, Purple, Red.",
             "nullable": true
           },
           "actualCost": {
