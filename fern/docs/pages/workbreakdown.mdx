@@ -1,0 +1,108 @@
+ProjectManager.com uses the Work Breakdown Structure (WBS) to identify and organize tasks within a project.  The WBS concept is similar to an outline, and you can sort your tasks according to the outline dictated by the Work Breakdown Structure to view them in the same hierarchy.
+
+Here's how it works:
+* When you create a task in a project, it receives both a globally unique identifier as well as a WBS number.
+* Every task in a project has a WBS number; the first one is numbered starting with 1.
+* When you make a task a child of another task, you start a new indentation level in the WBS, for example, 1.1.
+* As you organize, sort, and order your project, each task's WBS number will be updated to indicate its position in the hierarchy.  
+* A task's unique ID number will not change.
+
+## Sorting outline numbers
+
+A WBS number is an outline-style number with multiple segments, for example, `5.13.27`.  Each time you indent a task underneath another one, you will add a new segment to the WBS.
+
+Tasks within the WBS are sorted by segment, similar to how [semantic versioning numbers](https://semver.org/) are sorted.  This means that `1.10` will be after `1.9`, and `10.1` will be before `10.2` and after `9.9`.
+
+To sort tasks via their Work Breakdown Structure numbers, use the following pseudocode:
+
+```
+int Compare(TaskDto? t1, TaskDto? t2)
+{
+    // Sanity checks for null
+    if (t1 == null || t2 == null)
+    {
+        if (t1 == null && t2 != null)
+        {
+            return 1;
+        }
+
+        if (t1 != null && t2 == null)
+        {
+            return -1;
+        }
+        
+        return 0;
+    }
+
+    try
+    {
+        var t1OutlineNumberArray = t1.Wbs.Trim().Split('.');
+        var t2OutlineNumberArray = t2.Wbs.Trim().Split('.');
+
+        for (int i = 0; i < t1OutlineNumberArray.Length; i++)
+        {
+            if (i >= t2OutlineNumberArray.Length)
+            {
+                return 1; // In this situation = 2.1 > 2 return 1
+            }
+            if (int.TryParse(t1OutlineNumberArray[i], out int t1Number) && int.TryParse(t2OutlineNumberArray[i], out int t2Number))
+            {
+                if (t1Number == t2Number)
+                {
+                    continue; // Continue the compare on the next item, e.g 1.1 and 1.2.3 are the same in the first comparison.
+                }
+                if (t1Number > t2Number)
+                {
+                    return 1; // Return 1 if t1 > t2 on the same position like '3'.1 > '1'.1
+                }
+                if (t1Number < t2Number)
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        // t1 length > t2 length e.g. 1.1.5 > 1.1, retrun 1. note it passes the compare above so the position can compare will be the same.
+        if (t1OutlineNumberArray.Length > t2OutlineNumberArray.Length)
+        {
+            return 1;
+        }
+        // e.g. 2.2 < 2.2.15, return -1;
+        if (t1OutlineNumberArray.Length < t2OutlineNumberArray.Length)
+        {
+            return -1;
+        }
+
+        // If we cannot get answer from above, use index.
+        if (t1.Id.HasValue && t2.Id.HasValue)
+        {
+            return t1.Id.Value.CompareTo(t2.Id.Value);
+        }
+    }
+    catch
+    {
+        if (t1.Id.HasValue && t2.Id.HasValue)
+        {
+            return t1.Id.Value.CompareTo(t2.Id.Value);
+        }
+    }
+    return 0;
+}
+```
+
+## Sorting using the SDKs
+
+If you use one of the [ProjectManager SDKs](https://developer.projectmanager.com/getting-started/software-development-kits), you can use the built-in sorting functionality of the SDK.  Here's how to sort in the supported languages:
+
+### DotNet / C#
+
+The built-in comparison class WbsSortHelper allows you to sort `List<TaskDto>` objects directly:
+
+```csharp
+var list = await client.Task.QueryTasks(...);
+list.Sort(new WbsSortHelper());
+```
