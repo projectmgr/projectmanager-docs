@@ -13,6 +13,8 @@ navigation:
         path: ./docs/pages/authentication.mdx
       - page: Querying with OData
         path: ./docs/pages/odata.mdx
+      - page: Work Breakdown Structure
+        path: ./docs/pages/workbreakdown.mdx
       - page: Software Development Kits
         path: ./docs/pages/sdks.mdx
       - page: FAQ
