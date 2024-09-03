@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "115.0.4328"
+    "version": "117.0.4438"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -3683,6 +3683,47 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResourcesDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/resources/{resourceId}/resendinvite": {
+      "get": {
+        "tags": [
+          "Resource"
+        ],
+        "summary": "Resend Invite Email",
+        "description": "Resend Invite Email to a Resource within your Workspace.\r\n            \r\nWhen you create a Resource that is a person, ProjectManager sends that person an email inviting them to join\r\nyour Workspace.  If that email is accidentally deleted or sent to a spam folder, you can request this email\r\nbe sent again using this API.",
+        "parameters": [
+          {
+            "name": "resourceId",
+            "in": "path",
+            "description": "The unique identifier of the Resource to send an invitation email",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
                 }
               }
             }
@@ -10904,6 +10945,11 @@
             "description": "The list of ResourceSkills possessed by this Resource.",
             "nullable": true
           },
+          "colorName": {
+            "type": "string",
+            "description": "Collaboration Color for this resource.\r\n            \r\neg. teal, cyan, lightblue, blurple, purple, pink, orange, gray",
+            "nullable": true
+          },
           "country": {
             "type": "string",
             "description": "Deprecated - this property is no longer being used.  Please pass in Country data on\r\nthe CountryCode property.\r\n            \r\nA text field indicating the country in which this Resource is located.  This value\r\nis not constrained to the list of known ISO 3166 country names or codes.",
@@ -11051,6 +11097,16 @@
             "type": "string",
             "description": "Set to a unique identifier of the user who last modified this Resource.",
             "format": "uuid"
+          },
+          "colorName": {
+            "type": "string",
+            "description": "Collaboration Color for this resource.\r\n            \r\neg. teal, cyan, lightblue, blurple, purple, pink, orange, gray",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "description": "Read only Hex code of the ColorName",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -11492,6 +11548,11 @@
             "type": "string",
             "description": "The Approver Id associated with this Resource.\r\n            \r\nApplies to personnel Resources only.",
             "format": "uuid",
+            "nullable": true
+          },
+          "colorName": {
+            "type": "string",
+            "description": "Collaboration Color for this resource.\r\n            \r\neg. teal, cyan, lightblue, blurple, purple, pink, orange, gray",
             "nullable": true
           }
         },
@@ -12196,7 +12257,8 @@
           "priorityId": {
             "type": "integer",
             "description": "Return the priority of a task",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "wbs": {
             "type": "string",
@@ -12745,7 +12807,8 @@
           "id": {
             "type": "integer",
             "description": "The unique identifier of this TaskPriority.",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -13329,26 +13392,41 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "TimesheetId",
+            "description": "A unique identifier of a timesheet data entry",
+            "format": "uuid"
+          },
+          "resourceId": {
+            "type": "string",
+            "description": "The unique identifier of the resource who is preparing this Timesheet.  You can filter on this value to measure\r\nthe total work performed by this specific Resource.",
+            "format": "uuid"
+          },
+          "taskId": {
+            "type": "string",
+            "description": "The unique identifier of the task worked on for this Timesheet.  You can filter on this value to measure the\r\ntotal work performed against a specific Task.",
+            "format": "uuid"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "The unique identifier of the project worked on for this Timesheet.  You can filter on this value to measure the\r\ntotal work performed against a specific Project.",
             "format": "uuid"
           },
           "date": {
             "type": "string",
-            "description": "Date of time entry",
+            "description": "The date of this time entry record.  You can filter on this value to obtain Timesheet data for a specific date\r\nrange.",
             "format": "date-time"
           },
           "notes": {
             "type": "string",
-            "description": "Notes",
+            "description": "Notes associated with this Timesheet, if any",
             "nullable": true
           },
           "approved": {
             "type": "boolean",
-            "description": "Shows if timesheet approved"
+            "description": "True if this Timesheet was approved by a person with the role of a Timesheet approver"
           },
           "hours": {
             "type": "number",
-            "description": "Total Hours",
+            "description": "Total Hours spent on this Task by this Resource on this specific Date",
             "format": "double"
           },
           "modifiedDate": {
@@ -13402,7 +13480,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Created Time entry response data"
+        "description": "A Timesheet entry is a single record that contains information about time spent by a person on a task.  Each\r\nTimesheet entry object contains information about one task/day/person combination.  A fully completed Timesheet\r\nwill often contain multiple records for the same date range which must be combined to produce a finished\r\nTimesheet."
       },
       "TimesheetDtoListAstroResult": {
         "type": "object",
@@ -13672,7 +13750,8 @@
           "priorityId": {
             "type": "integer",
             "description": "Return the priority of a task",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "wbs": {
             "type": "string",
@@ -13830,6 +13909,13 @@
           "reason": {
             "type": "string",
             "nullable": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -14146,9 +14232,7 @@
     {
       "oauth2": [
         "read:all",
-        "write:all",
-        "web",
-        "mobile"
+        "write:all"
       ]
     }
   ],
