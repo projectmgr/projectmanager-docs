@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "117.0.4438"
+    "version": "119.0.4625"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -251,6 +251,7 @@
           {
             "name": "projectId",
             "in": "path",
+            "description": "The unique identifier of the Project for which you want to retrieve changesets",
             "required": true,
             "schema": {
               "type": "string",
@@ -260,6 +261,7 @@
           {
             "name": "version",
             "in": "query",
+            "description": "The version of the Project for which you want to retrieve changesets",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -268,6 +270,7 @@
           {
             "name": "page",
             "in": "query",
+            "description": "For pagination, the number of the page to retrieve",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -277,6 +280,7 @@
           {
             "name": "take",
             "in": "query",
+            "description": "For pagination, the size of the page",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1835,6 +1839,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier of the notification to mark read",
             "required": true,
             "schema": {
               "type": "string",
@@ -1906,6 +1911,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier of the notification to mark read",
             "required": true,
             "schema": {
               "type": "string",
@@ -1946,6 +1952,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier of the notification to mark read",
             "required": true,
             "schema": {
               "type": "string",
@@ -3255,12 +3262,13 @@
         "tags": [
           "ProjectVersion"
         ],
-        "summary": "Retrieve project's version",
+        "summary": "Retrieve Project Versions",
         "description": "Returns projects versions including version, user who made changes",
         "parameters": [
           {
             "name": "projectId",
             "in": "path",
+            "description": "The unique identifier of the Project",
             "required": true,
             "schema": {
               "type": "string",
@@ -3295,8 +3303,8 @@
         "tags": [
           "ProjectVersion"
         ],
-        "summary": "Retrieve project's data in MS Project xml format",
-        "description": "Exports and returns project version into MS Project xml",
+        "summary": "Download MSProject Xml",
+        "description": "Exports and returns project version as an MS Project XML attachment",
         "parameters": [
           {
             "name": "projectChangeId",
@@ -3337,10 +3345,13 @@
         "tags": [
           "ProjectVersion"
         ],
+        "summary": "Restore Project Version",
+        "description": "Restores a Project to the state it was in at a specific Version in time.\r\n            \r\nIf successful, all changes made to the Project since this Version will be undone and the Project will\r\nreturn to its former state.",
         "parameters": [
           {
             "name": "projectId",
             "in": "path",
+            "description": "The unique identifier of the Project to restore",
             "required": true,
             "schema": {
               "type": "string",
@@ -3350,6 +3361,7 @@
           {
             "name": "version",
             "in": "path",
+            "description": "The version number to restore to",
             "required": true,
             "schema": {
               "type": "integer",
@@ -3384,10 +3396,13 @@
         "tags": [
           "ProjectVersion"
         ],
+        "summary": "Copy Project Version",
+        "description": "Create a Copy of a Project as of a specific Version, optionally moving it to a new Timezone.",
         "parameters": [
           {
             "name": "projectId",
             "in": "path",
+            "description": "The unique identifier of the Project to copy",
             "required": true,
             "schema": {
               "type": "string",
@@ -3397,6 +3412,7 @@
           {
             "name": "version",
             "in": "path",
+            "description": "The version number of the Project to copy",
             "required": true,
             "schema": {
               "type": "integer",
@@ -3406,6 +3422,7 @@
           {
             "name": "timezoneOffset",
             "in": "query",
+            "description": "If specified, sets the default timezone of the newly copied Project to this\r\n            specified timezone",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -3671,7 +3688,7 @@
                     "$ref": "#/components/schemas/ResourcesCreateDto"
                   }
                 ],
-                "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
+                "description": "The ResourcesCreate object allows you to create multiple Users with a single API call.\r\nIn ProjectManager.com, a User is a special class of Resource.\r\n            \r\nA Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
               }
             }
           }
@@ -4160,10 +4177,13 @@
         "tags": [
           "Risk"
         ],
+        "summary": "Create Risk Export",
+        "description": "Initiates a new Export action for Risks.\r\n            \r\nReturns the identifier of this Risk Export.",
         "parameters": [
           {
             "name": "projectId",
             "in": "path",
+            "description": "The unique identifier of the Project for which to export Risks",
             "required": true,
             "schema": {
               "type": "string",
@@ -4180,6 +4200,7 @@
           }
         ],
         "requestBody": {
+          "description": "The settings to use for this export action",
           "content": {
             "application/json": {
               "schema": {
@@ -5797,6 +5818,7 @@
           "TaskMetadata"
         ],
         "summary": "Get task metadata",
+        "description": "Retrieves extra metadata about a Task",
         "parameters": [
           {
             "name": "taskId",
@@ -5845,7 +5867,8 @@
         "tags": [
           "TaskMetadata"
         ],
-        "summary": "Get tasks by project ID and foreign key ID",
+        "summary": "Task Metadata Search",
+        "description": "Get tasks by project ID and foreign key ID",
         "parameters": [
           {
             "name": "foreignKey",
@@ -7679,11 +7702,12 @@
           },
           "url": {
             "type": "string",
-            "description": "The url of the file which can be used for downloading",
+            "description": "The url of the DownloadFile API to retrieve this file",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "The DiscussionCommentFile represents a file that has been attached to a discussion\r\nand is available for download."
       },
       "DiscussionEmoji": {
         "type": "object",
@@ -8674,6 +8698,7 @@
           },
           "taskName": {
             "type": "string",
+            "description": "Name of the task this notification is related to",
             "nullable": true
           },
           "senderFirstName": {
@@ -9979,7 +10004,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "The ProjectFile represents an attached file that is connected to a Project\r\nand can be retrieved for download."
       },
       "ProjectFileFolderDto": {
         "type": "object",
@@ -10017,7 +10043,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents information about a Task that is relevant to a ProjectFile"
       },
       "ProjectFolderDto": {
         "type": "object",
@@ -10639,27 +10666,33 @@
         "properties": {
           "type": {
             "type": "string",
+            "description": "The type of change made",
             "nullable": true
           },
           "method": {
             "type": "string",
+            "description": "The method used to make the change",
             "nullable": true
           },
           "property": {
             "type": "string",
+            "description": "The property that was changed, if any",
             "nullable": true
           },
           "value": {
             "type": "string",
+            "description": "The new value of the property, or null if the property was cleared",
             "nullable": true
           },
           "restoreVersion": {
             "type": "integer",
+            "description": "The prior version number to restore to",
             "format": "int32",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "A ProjectVersionChangeData is information about a change made to a Project that took\r\nit from one Version to another.  The information in this object can help track the\r\ndetails of changes made by the user."
       },
       "ProjectVersionDto": {
         "type": "object",
@@ -10720,7 +10753,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "A ProjectVersion is a snapshot of a Project at a specific moment in time.  Information on\r\nthe ProjectVersion record keeps track of the unique identity of this version, plus the name\r\nand details of the user who created this version, and the changes that were made."
       },
       "ProjectVersionDtoListAstroResult": {
         "type": "object",
@@ -11568,7 +11602,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "When creating a user they will also be added to the projectIds specified. If null or empty the user will be invited but no access will be given to any projects.",
+            "description": "When creating a user they will also be added to the projectIds specified. If null or empty the user will be\r\ninvited but no access will be given to any projects.",
             "nullable": true
           },
           "users": {
@@ -11576,11 +11610,12 @@
             "items": {
               "$ref": "#/components/schemas/ResourceCreateDto"
             },
+            "description": "A list of Users to create",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
+        "description": "The ResourcesCreate object allows you to create multiple Users with a single API call.\r\nIn ProjectManager.com, a User is a special class of Resource.\r\n            \r\nA Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
       },
       "ResourcesDto": {
         "type": "object",
@@ -11590,6 +11625,7 @@
             "items": {
               "$ref": "#/components/schemas/ResourceDto"
             },
+            "description": "The list of the Resources created by this API call.",
             "nullable": true
           },
           "errors": {
@@ -11597,11 +11633,12 @@
             "items": {
               "$ref": "#/components/schemas/UserError"
             },
+            "description": "The list of errors that occurred for Resources that could not be created.",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
+        "description": "The Resources object represents the results of a bulk Resource creation API call.\r\n            \r\nA Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
       },
       "ResourcesDtoAstroResult": {
         "type": "object",
@@ -11639,7 +11676,7 @@
                 "$ref": "#/components/schemas/ResourcesDto"
               }
             ],
-            "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user.",
+            "description": "The Resources object represents the results of a bulk Resource creation API call.\r\n            \r\nA Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user.",
             "nullable": true
           }
         },
@@ -12253,6 +12290,14 @@
           "isSummary": {
             "type": "boolean",
             "description": "True if this Task is the parent of multiple Tasks underneath it.  A parent Task\r\nis a \"rolled-up\" view of multiple children that allows you to view a section of\r\nwork at a glance.\r\n            \r\nYou can create a summary Task in the Gantt chart view of the application by\r\nadding child tasks underneath a parent Task."
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "Unlocked tasks can be adjusted by changes to their dependencies, resource leveling, or other factors.\r\n            \r\nAll tasks are unlocked by default.\r\n            \r\nIf a task is set to `IsLocked` = `true`, the dates and assigned resources are locked for this task and will not\r\nbe automatically changed by any process."
+          },
+          "isMilestone": {
+            "type": "boolean",
+            "description": "True if this task is a milestone.  Milestones represent a specific point in time for the project.  When a\r\nmilestone is locked, it represents a fixed time within the project that can be used to relate to other tasks."
           },
           "priorityId": {
             "type": "integer",
@@ -13543,7 +13588,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents information about a file attached to a Timesheet."
       },
       "TimesheetResourceDto": {
         "type": "object",
@@ -13904,10 +13950,12 @@
         "properties": {
           "email": {
             "type": "string",
+            "description": "The email of the Resource that could not be created",
             "nullable": true
           },
           "reason": {
             "type": "string",
+            "description": "A description of the reason this Resource could not be created",
             "nullable": true
           },
           "statusCode": {
@@ -13915,10 +13963,12 @@
               {
                 "$ref": "#/components/schemas/HttpStatusCode"
               }
-            ]
+            ],
+            "description": "A status code explaining the category of reason this Resource could not be created"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents an individual error for a specific Resource that could not be created in the context\r\nof a bulk Resource creation API call."
       },
       "UserRoleDto": {
         "type": "object",
@@ -13999,13 +14049,14 @@
           },
           "customerId": {
             "type": "string",
-            "description": "TODO - What is this value?",
+            "description": "This value is marked obsolete as it is no longer used.",
             "format": "uuid",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "isOwner": {
             "type": "boolean",
-            "description": "This value is set to true if the user who retrieves this Workspace object via an API call is \r\nthe owner of this Workspace."
+            "description": "This value is set to true if the user who retrieves this Workspace object via an API call is\r\nthe owner of this Workspace."
           },
           "organizationId": {
             "type": "string",
