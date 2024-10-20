@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "119.0.4625"
+    "version": "120.0.4689"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -6676,8 +6676,7 @@
         "properties": {
           "tokenName": {
             "type": "string",
-            "description": "Name of token",
-            "nullable": true
+            "description": "Name of token"
           }
         },
         "additionalProperties": false,
@@ -6703,13 +6702,11 @@
           },
           "apiKey": {
             "type": "string",
-            "description": "Bearer Key",
-            "nullable": true
+            "description": "Bearer Key"
           },
           "name": {
             "type": "string",
-            "description": "Name of token",
-            "nullable": true
+            "description": "Name of token"
           }
         },
         "additionalProperties": false,
@@ -6751,8 +6748,7 @@
                 "$ref": "#/components/schemas/ApiKeyDto"
               }
             ],
-            "description": "Represents api access key entity",
-            "nullable": true
+            "description": "Represents api access key entity"
           }
         },
         "additionalProperties": false,
@@ -6793,8 +6789,7 @@
             "items": {
               "$ref": "#/components/schemas/ApiKeyDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -7044,8 +7039,7 @@
             "items": {
               "$ref": "#/components/schemas/ChangeSetDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -7104,8 +7098,7 @@
                 "$ref": "#/components/schemas/ChangeSetStatusDto"
               }
             ],
-            "description": "Returns the id of a specific ChangeSet",
-            "nullable": true
+            "description": "Returns the id of a specific ChangeSet"
           }
         },
         "additionalProperties": false,
@@ -7146,8 +7139,7 @@
             "items": {
               "$ref": "#/components/schemas/ChangeSetStatusDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -7213,8 +7205,7 @@
                 "$ref": "#/components/schemas/ConnectionSchemaDto"
               }
             ],
-            "description": "This class contains the URL or AuthScheme to use to authenticate with the Integration Provider.",
-            "nullable": true
+            "description": "This class contains the URL or AuthScheme to use to authenticate with the Integration Provider."
           }
         },
         "additionalProperties": false,
@@ -7240,8 +7231,7 @@
           },
           "countryName": {
             "type": "string",
-            "description": "The Country Name the holiday is associated to",
-            "nullable": true
+            "description": "The Country Name the holiday is associated to"
           }
         },
         "additionalProperties": false,
@@ -7282,8 +7272,7 @@
             "items": {
               "$ref": "#/components/schemas/CountryHolidayDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -7324,13 +7313,11 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the TaskField",
-            "nullable": true
+            "description": "The name of the TaskField"
           },
           "type": {
             "type": "string",
-            "description": "The type of this TaskField.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Checkbox\r\n* Currency\r\n* DropdownSingle\r\n* DropdownMulti",
-            "nullable": true
+            "description": "The type of this TaskField.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Checkbox\r\n* Currency\r\n* DropdownSingle\r\n* DropdownMulti"
           },
           "options": {
             "type": "array",
@@ -7366,8 +7353,7 @@
           },
           "type": {
             "type": "string",
-            "description": "Either custom or one of DashboardType enum",
-            "nullable": true
+            "description": "Either custom or one of DashboardType enum"
           },
           "reactGridLayout": {
             "allOf": [
@@ -7397,8 +7383,7 @@
           },
           "type": {
             "type": "string",
-            "description": "Either custom or one of DashboardType enum",
-            "nullable": true
+            "description": "Either custom or one of DashboardType enum"
           },
           "reactGridLayout": {
             "allOf": [
@@ -7449,8 +7434,7 @@
                 "$ref": "#/components/schemas/DashboardSettingDto"
               }
             ],
-            "description": "The Dashboards API is intended for use by ProjectManager",
-            "nullable": true
+            "description": "The Dashboards API is intended for use by ProjectManager"
           }
         },
         "additionalProperties": false,
@@ -7468,8 +7452,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "The URL to use to authenticate with the Integration Provider.",
-            "nullable": true
+            "description": "The URL to use to authenticate with the Integration Provider."
           }
         },
         "additionalProperties": false,
@@ -7511,8 +7494,7 @@
                 "$ref": "#/components/schemas/DirectLinkDto"
               }
             ],
-            "description": "This class contains the URL to use to authenticate with the Integration Provider.",
-            "nullable": true
+            "description": "This class contains the URL to use to authenticate with the Integration Provider."
           }
         },
         "additionalProperties": false,
@@ -7523,8 +7505,7 @@
         "properties": {
           "text": {
             "type": "string",
-            "description": "The text of the comment to add to the discussion, in Markdown format.\r\n            \r\nDiscussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges.",
-            "nullable": true
+            "description": "The text of the comment to add to the discussion, in Markdown format.\r\n            \r\nDiscussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges."
           }
         },
         "additionalProperties": false,
@@ -7578,8 +7559,7 @@
                 "$ref": "#/components/schemas/DiscussionCommentCreateResponseDto"
               }
             ],
-            "description": "Tasks can have discussions attached to them.  These discussions can include text with simple\r\nformatting.  Discussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges.",
-            "nullable": true
+            "description": "Tasks can have discussions attached to them.  These discussions can include text with simple\r\nformatting.  Discussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges."
           }
         },
         "additionalProperties": false,
@@ -7680,8 +7660,7 @@
             "items": {
               "$ref": "#/components/schemas/DiscussionCommentDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -7697,13 +7676,11 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the file",
-            "nullable": true
+            "description": "The name of the file"
           },
           "url": {
             "type": "string",
-            "description": "The url of the DownloadFile API to retrieve this file",
-            "nullable": true
+            "description": "The url of the DownloadFile API to retrieve this file"
           }
         },
         "additionalProperties": false,
@@ -7714,8 +7691,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the emoji",
-            "nullable": true
+            "description": "The name of the emoji"
           },
           "userIds": {
             "type": "array",
@@ -7723,8 +7699,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "The list of user IDs of the users who tagged these emoji",
-            "nullable": true
+            "description": "The list of user IDs of the users who tagged these emoji"
           }
         },
         "additionalProperties": false,
@@ -7778,8 +7753,7 @@
                 "$ref": "#/components/schemas/ExportDto"
               }
             ],
-            "description": "Represents an export queue object. Use this ID to check the status of the export.",
-            "nullable": true
+            "description": "Represents an export queue object. Use this ID to check the status of the export."
           }
         },
         "additionalProperties": false,
@@ -7901,13 +7875,11 @@
           },
           "fileType": {
             "type": "string",
-            "description": "The type of the file",
-            "nullable": true
+            "description": "The type of the file"
           },
           "fileTypeLabel": {
             "type": "string",
-            "description": "A user friendly label for the file type",
-            "nullable": true
+            "description": "A user friendly label for the file type"
           },
           "size": {
             "type": "integer",
@@ -7916,8 +7888,7 @@
           },
           "downloadPath": {
             "type": "string",
-            "description": "Path to download the file",
-            "nullable": true
+            "description": "Path to download the file"
           },
           "deleted": {
             "type": "boolean",
@@ -7925,13 +7896,11 @@
           },
           "type": {
             "type": "string",
-            "description": "Defines the object type the file belongs to.",
-            "nullable": true
+            "description": "Defines the object type the file belongs to."
           },
           "name": {
             "type": "string",
-            "description": "The name of the file",
-            "nullable": true
+            "description": "The name of the file"
           },
           "entityOwnerId": {
             "type": "string",
@@ -7978,8 +7947,7 @@
                 "$ref": "#/components/schemas/FileDto"
               }
             ],
-            "description": "Represents a file in project manager",
-            "nullable": true
+            "description": "Represents a file in project manager"
           }
         },
         "additionalProperties": false,
@@ -8037,8 +8005,7 @@
             "items": {
               "$ref": "#/components/schemas/GlobalHolidayDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -8130,13 +8097,11 @@
         "properties": {
           "masterConnection": {
             "type": "string",
-            "description": "Master Connection for provider",
-            "nullable": true
+            "description": "Master Connection for provider"
           },
           "userConnection": {
             "type": "string",
-            "description": "UserConnection for Provider.",
-            "nullable": true
+            "description": "UserConnection for Provider."
           },
           "masterConnectionSchema": {
             "type": "object",
@@ -8160,21 +8125,18 @@
           },
           "name": {
             "type": "string",
-            "description": "A friendly name for this Integration Category.",
-            "nullable": true
+            "description": "A friendly name for this Integration Category."
           },
           "shortId": {
             "type": "string",
-            "description": "A short identifier that uniquely identifies this Integration Category.",
-            "nullable": true
+            "description": "A short identifier that uniquely identifies this Integration Category."
           },
           "integrationShortIds": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "A list of short identifiers for Integrations available within this Integration Category.",
-            "nullable": true
+            "description": "A list of short identifiers for Integrations available within this Integration Category."
           }
         },
         "additionalProperties": false,
@@ -8215,8 +8177,7 @@
             "items": {
               "$ref": "#/components/schemas/IntegrationCategoryDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -8227,13 +8188,11 @@
         "properties": {
           "value": {
             "type": "string",
-            "description": "The value of the property",
-            "nullable": true
+            "description": "The value of the property"
           },
           "type": {
             "type": "string",
-            "description": "The type of the property",
-            "nullable": true
+            "description": "The type of the property"
           },
           "sendToClient": {
             "type": "boolean",
@@ -8253,42 +8212,36 @@
           },
           "name": {
             "type": "string",
-            "description": "The friendly name of this Integration",
-            "nullable": true
+            "description": "The friendly name of this Integration"
           },
           "description": {
             "type": "string",
-            "description": "A description of this Integration that can be shared with users",
-            "nullable": true
+            "description": "A description of this Integration that can be shared with users"
           },
           "shortId": {
             "type": "string",
-            "description": "A short ID that uniquely identifies this Integration",
-            "nullable": true
+            "description": "A short ID that uniquely identifies this Integration"
           },
           "isMultiInstance": {
             "type": "boolean",
             "description": "True if this Integration allows multiple Instances.\r\n            \r\nAn example of a multi-Instance Integration is one that can be connected to many\r\ndifferent folders or channels within a remote application."
           },
           "config": {
-            "description": "Extra configuration metadata for this Instance.",
-            "nullable": true
+            "description": "Extra configuration metadata for this Instance."
           },
           "licenseSkus": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "The list of SKUS for this Integration.",
-            "nullable": true
+            "description": "The list of SKUS for this Integration."
           },
           "instances": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/IntegrationInstanceDto"
             },
-            "description": "For multi-Instance Integrations, this contains the list of IntegrationInstances.",
-            "nullable": true
+            "description": "For multi-Instance Integrations, this contains the list of IntegrationInstances."
           },
           "enabled": {
             "type": "boolean",
@@ -8346,8 +8299,7 @@
                 "$ref": "#/components/schemas/IntegrationDto"
               }
             ],
-            "description": "The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
-            "nullable": true
+            "description": "The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API."
           }
         },
         "additionalProperties": false,
@@ -8388,8 +8340,7 @@
             "items": {
               "$ref": "#/components/schemas/IntegrationDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -8405,8 +8356,7 @@
           },
           "integrationShortId": {
             "type": "string",
-            "description": "A short ID that uniquely identifies this IntegrationInstance",
-            "nullable": true
+            "description": "A short ID that uniquely identifies this IntegrationInstance"
           },
           "enabledBy": {
             "type": "string",
@@ -8430,13 +8380,11 @@
           },
           "providerItemId": {
             "type": "string",
-            "description": "The identifier in the integration provider, could be a reference to a file, task, project.",
-            "nullable": true
+            "description": "The identifier in the integration provider, could be a reference to a file, task, project."
           },
           "providerItemName": {
             "type": "string",
-            "description": "The name of the item in the integration provider.",
-            "nullable": true
+            "description": "The name of the item in the integration provider."
           }
         },
         "additionalProperties": false,
@@ -8452,39 +8400,33 @@
           },
           "name": {
             "type": "string",
-            "description": "The friendly name of this Provider.",
-            "nullable": true
+            "description": "The friendly name of this Provider."
           },
           "shortId": {
             "type": "string",
-            "description": "A short ID that uniquely identifies this Provider.",
-            "nullable": true
+            "description": "A short ID that uniquely identifies this Provider."
           },
           "summary": {
             "type": "string",
-            "description": "A short summary of this Provider and their service.",
-            "nullable": true
+            "description": "A short summary of this Provider and their service."
           },
           "description": {
             "type": "string",
-            "description": "A longer description of this Provider and their service.",
-            "nullable": true
+            "description": "A longer description of this Provider and their service."
           },
           "licenseSkus": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "A list of available license SKUs for this Provider.",
-            "nullable": true
+            "description": "A list of available license SKUs for this Provider."
           },
           "categoryShortIds": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "A list of category IDs that this Provider exists within.",
-            "nullable": true
+            "description": "A list of category IDs that this Provider exists within."
           },
           "activated": {
             "type": "boolean",
@@ -8499,8 +8441,7 @@
             "items": {
               "$ref": "#/components/schemas/IntegrationDto"
             },
-            "description": "The list of available Integrations for this Provider.",
-            "nullable": true
+            "description": "The list of available Integrations for this Provider."
           },
           "authSetup": {
             "allOf": [
@@ -8508,8 +8449,7 @@
                 "$ref": "#/components/schemas/IntegrationAuthSetupDto"
               }
             ],
-            "description": "The list of available AuthSetup for this Provider.",
-            "nullable": true
+            "description": "The list of available AuthSetup for this Provider."
           },
           "createInWorkato": {
             "type": "boolean",
@@ -8554,8 +8494,7 @@
             "items": {
               "$ref": "#/components/schemas/IntegrationProviderDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -8571,13 +8510,11 @@
           },
           "licenseSku": {
             "type": "string",
-            "description": "The SKU code of this License, used for billing purposes.",
-            "nullable": true
+            "description": "The SKU code of this License, used for billing purposes."
           },
           "bundleSku": {
             "type": "string",
-            "description": "The SKU code of the bundle of this License, used for billing purposes.",
-            "nullable": true
+            "description": "The SKU code of the bundle of this License, used for billing purposes."
           },
           "optional": {
             "type": "boolean",
@@ -8622,8 +8559,7 @@
             "items": {
               "$ref": "#/components/schemas/LicenseDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -8754,8 +8690,7 @@
           },
           "notificationType": {
             "type": "string",
-            "description": "A friendly category or type for this notification",
-            "nullable": true
+            "description": "A friendly category or type for this notification"
           },
           "createDate": {
             "type": "string",
@@ -8764,13 +8699,11 @@
           },
           "subject": {
             "type": "string",
-            "description": "User readable subject line for the notification",
-            "nullable": true
+            "description": "User readable subject line for the notification"
           },
           "message": {
             "type": "string",
-            "description": "User readable message content for the notification",
-            "nullable": true
+            "description": "User readable message content for the notification"
           },
           "readDate": {
             "type": "string",
@@ -8784,8 +8717,7 @@
                 "$ref": "#/components/schemas/NotificationDataDto"
               }
             ],
-            "description": "A string containing JSON-encoded extra data for the notification",
-            "nullable": true
+            "description": "A string containing JSON-encoded extra data for the notification"
           }
         },
         "additionalProperties": false,
@@ -8799,8 +8731,7 @@
             "items": {
               "$ref": "#/components/schemas/NotificationDto"
             },
-            "description": "The most recent notifications pending for the current user.  If no notifications are pending for the current\r\nuser, this will be an empty array.  If there are more than 1,000 notifications this list may be truncated to\r\nonly the 1,000 most recent notifications.",
-            "nullable": true
+            "description": "The most recent notifications pending for the current user.  If no notifications are pending for the current\r\nuser, this will be an empty array.  If there are more than 1,000 notifications this list may be truncated to\r\nonly the 1,000 most recent notifications."
           },
           "totalCount": {
             "type": "integer",
@@ -8852,8 +8783,7 @@
                 "$ref": "#/components/schemas/NotificationResponseDto"
               }
             ],
-            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
-            "nullable": true
+            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
           }
         },
         "additionalProperties": false,
@@ -8907,8 +8837,7 @@
                 "$ref": "#/components/schemas/NotificationTimestampDto"
               }
             ],
-            "description": "A notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
-            "nullable": true
+            "description": "A notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
           }
         },
         "additionalProperties": false,
@@ -8962,8 +8891,7 @@
                 "$ref": "#/components/schemas/NotificationTotalCountDto"
               }
             ],
-            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
-            "nullable": true
+            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
           }
         },
         "additionalProperties": false,
@@ -9017,8 +8945,7 @@
                 "$ref": "#/components/schemas/NotificationUnreadCountDto"
               }
             ],
-            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically.",
-            "nullable": true
+            "description": "Information about notifications for the current user.\r\n            \r\nA notification represents a message sent to a user to inform them of relevant actions or events within their\r\nworkspace. Notifications are ephemeral and may be deleted when they are no longer needed.  When a user has more\r\nthan 1,000 pending notifications some old notifications will be deleted automatically."
           }
         },
         "additionalProperties": false,
@@ -9112,8 +9039,7 @@
                 "$ref": "#/components/schemas/ProjectChangeStatusDto"
               }
             ],
-            "description": "A ProjectChange is an individual edit that has been made to a project.  Since multiple users\r\ncan edit a project at the same time, individual ProjectChanges are applied in a sequential\r\nfashion. If a ProjectChange causes a conflict or cannot be applied, it will be rejected.\r\nYou can examine a ProjectChange to determine its conflict resolution status.",
-            "nullable": true
+            "description": "A ProjectChange is an individual edit that has been made to a project.  Since multiple users\r\ncan edit a project at the same time, individual ProjectChanges are applied in a sequential\r\nfashion. If a ProjectChange causes a conflict or cannot be applied, it will be rejected.\r\nYou can examine a ProjectChange to determine its conflict resolution status."
           }
         },
         "additionalProperties": false,
@@ -9129,8 +9055,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ChargeCode",
-            "nullable": true
+            "description": "The name of this ChargeCode"
           }
         },
         "additionalProperties": false,
@@ -9171,8 +9096,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectChargeCodeDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -9207,8 +9131,7 @@
           },
           "permission": {
             "type": "string",
-            "description": "Member's role in the project",
-            "nullable": true
+            "description": "Member's role in the project"
           }
         },
         "additionalProperties": false,
@@ -9219,8 +9142,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the Project.",
-            "nullable": true
+            "description": "The name of the Project."
           },
           "description": {
             "type": "string",
@@ -9332,8 +9254,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ProjectCustomer",
-            "nullable": true
+            "description": "The name of this ProjectCustomer"
           }
         },
         "additionalProperties": false,
@@ -9374,8 +9295,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectCustomerDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -9391,8 +9311,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the Project.",
-            "nullable": true
+            "description": "The name of the Project."
           },
           "description": {
             "type": "string",
@@ -9401,13 +9320,11 @@
           },
           "shortCode": {
             "type": "string",
-            "description": "A shortened name that will be used when reporting on Projects.  This short\r\nname can be edited in the Project Settings page within the application\r\nand can be any text you wish.",
-            "nullable": true
+            "description": "A shortened name that will be used when reporting on Projects.  This short\r\nname can be edited in the Project Settings page within the application\r\nand can be any text you wish."
           },
           "shortId": {
             "type": "string",
-            "description": "A short identifier that uniquely identifies this Project within your Workspace\r\nusing a single letter followed by a number.  This code can be used for APIs\r\nthat accept Project unique identifiers.\r\n            \r\nYou can observe the short ID within the application by observing the URL of\r\nthe page you visit when you click on this project.  The page's URL will appear\r\nin the form `https://pm.app.projectmanager.com/project/board/D16` - in this\r\nexample, the `ShortId` is `D16`.\r\n            \r\nThis code is automatically assigned for you and cannot be changed.",
-            "nullable": true
+            "description": "A short identifier that uniquely identifies this Project within your Workspace\r\nusing a single letter followed by a number.  This code can be used for APIs\r\nthat accept Project unique identifiers.\r\n            \r\nYou can observe the short ID within the application by observing the URL of\r\nthe page you visit when you click on this project.  The page's URL will appear\r\nin the form `https://pm.app.projectmanager.com/project/board/D16` - in this\r\nexample, the `ShortId` is `D16`.\r\n            \r\nThis code is automatically assigned for you and cannot be changed."
           },
           "folder": {
             "allOf": [
@@ -9424,8 +9341,7 @@
                 "$ref": "#/components/schemas/ProjectStatusDto"
               }
             ],
-            "description": "The ProjectStatus chosen for this Project.",
-            "nullable": true
+            "description": "The ProjectStatus chosen for this Project."
           },
           "startDate": {
             "type": "string",
@@ -9475,8 +9391,7 @@
                 "$ref": "#/components/schemas/ProjectPriorityDto"
               }
             ],
-            "description": "The ProjectPriority level of this Project, if defined.",
-            "nullable": true
+            "description": "The ProjectPriority level of this Project, if defined."
           },
           "chargeCode": {
             "allOf": [
@@ -9623,8 +9538,7 @@
                 "$ref": "#/components/schemas/ProjectDto"
               }
             ],
-            "description": "A Project is a collection of Tasks that contributes towards a goal.  Within a Project, Tasks\r\nrepresent individual items of work that team members must complete.  The sum total of Tasks\r\nwithin a Project represents the work to be completed for that Project.",
-            "nullable": true
+            "description": "A Project is a collection of Tasks that contributes towards a goal.  Within a Project, Tasks\r\nrepresent individual items of work that team members must complete.  The sum total of Tasks\r\nwithin a Project represents the work to be completed for that Project."
           }
         },
         "additionalProperties": false,
@@ -9665,8 +9579,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -9725,18 +9638,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this Field",
-            "nullable": true
+            "description": "The name of this Field"
           },
           "type": {
             "type": "string",
-            "description": "The type of the Field.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Currency\r\n* Dropdown\r\n            \r\nAttempting to create a field with any Type other than these will\r\nreturn an error.\r\n            \r\nFor Dropdown Field, specify the list of choices in the `Options`\r\nfield.",
-            "nullable": true
+            "description": "The type of the Field.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Currency\r\n* Dropdown\r\n            \r\nAttempting to create a field with any Type other than these will\r\nreturn an error.\r\n            \r\nFor Dropdown Field, specify the list of choices in the `Options`\r\nfield."
           },
           "entityType": {
             "type": "string",
-            "description": "The entity type of the Field, either `projects` or `tasks`.",
-            "nullable": true
+            "description": "The entity type of the Field, either `projects` or `tasks`."
           },
           "options": {
             "type": "array",
@@ -9791,8 +9701,7 @@
                 "$ref": "#/components/schemas/ProjectFieldDto"
               }
             ],
-            "description": "Represents either a ProjectField or a TaskField, depending on the value of the\r\n`EntityType` for this object.\r\n            \r\nA ProjectField is a custom field defined within your Workspace.  You can define ProjectFields\r\nfor any integration purpose that is important to your business.  Each ProjectField has a data\r\ntype as well as options in how it is handled.  ProjectFields can be edited for each Project\r\nwithin your Workspace.\r\n            \r\nA TaskField is a custom field defined within your Workspace for a specific Project.  You can\r\ndefine TaskFields for any integration purpose that is important to your business.  Each\r\nTaskField has a data type as well as options in how it is handled.  TaskFields can be edited\r\nfor each Task inside this Project.",
-            "nullable": true
+            "description": "Represents either a ProjectField or a TaskField, depending on the value of the\r\n`EntityType` for this object.\r\n            \r\nA ProjectField is a custom field defined within your Workspace.  You can define ProjectFields\r\nfor any integration purpose that is important to your business.  Each ProjectField has a data\r\ntype as well as options in how it is handled.  ProjectFields can be edited for each Project\r\nwithin your Workspace.\r\n            \r\nA TaskField is a custom field defined within your Workspace for a specific Project.  You can\r\ndefine TaskFields for any integration purpose that is important to your business.  Each\r\nTaskField has a data type as well as options in how it is handled.  TaskFields can be edited\r\nfor each Task inside this Project."
           }
         },
         "additionalProperties": false,
@@ -9833,8 +9742,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectFieldDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -9855,18 +9763,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this Project Field.",
-            "nullable": true
+            "description": "The name of this Project Field."
           },
           "type": {
             "type": "string",
-            "description": "The type of this Project Field.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Checkbox\r\n* Currency\r\n* Dropdown",
-            "nullable": true
+            "description": "The type of this Project Field.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Checkbox\r\n* Currency\r\n* Dropdown"
           },
           "value": {
             "type": "string",
-            "description": "The value currently set for this Project Field Value.",
-            "nullable": true
+            "description": "The value currently set for this Project Field Value."
           },
           "createdDate": {
             "type": "string",
@@ -9918,8 +9823,7 @@
                 "$ref": "#/components/schemas/ProjectFieldValueDto"
               }
             ],
-            "description": "A model that contains the value for a ProjectField.",
-            "nullable": true
+            "description": "A model that contains the value for a ProjectField."
           }
         },
         "additionalProperties": false,
@@ -9960,8 +9864,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectFieldValueDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -9977,13 +9880,11 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the file",
-            "nullable": true
+            "description": "The name of the file"
           },
           "url": {
             "type": "string",
-            "description": "The url of the file which can be used for downloading",
-            "nullable": true
+            "description": "The url of the file which can be used for downloading"
           },
           "task": {
             "allOf": [
@@ -10017,8 +9918,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this Folder.",
-            "nullable": true
+            "description": "The name of this Folder."
           }
         },
         "additionalProperties": false,
@@ -10039,8 +9939,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The common name of this Task.",
-            "nullable": true
+            "description": "The common name of this Task."
           }
         },
         "additionalProperties": false,
@@ -10056,8 +9955,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ProjectFolder.",
-            "nullable": true
+            "description": "The name of this ProjectFolder."
           }
         },
         "additionalProperties": false,
@@ -10098,8 +9996,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectFolderDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -10115,13 +10012,11 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ProjectManager",
-            "nullable": true
+            "description": "The name of this ProjectManager"
           },
           "initials": {
             "type": "string",
-            "description": "Manager initials",
-            "nullable": true
+            "description": "Manager initials"
           },
           "avatarUrl": {
             "type": "string",
@@ -10142,13 +10037,11 @@
           },
           "initials": {
             "type": "string",
-            "description": "the initials of the user",
-            "nullable": true
+            "description": "the initials of the user"
           },
           "name": {
             "type": "string",
-            "description": "The display name of the user",
-            "nullable": true
+            "description": "The display name of the user"
           },
           "avatarUrl": {
             "type": "string",
@@ -10168,8 +10061,7 @@
           },
           "color": {
             "type": "string",
-            "description": "The color for their avatar",
-            "nullable": true
+            "description": "The color for their avatar"
           },
           "permissionOptions": {
             "allOf": [
@@ -10220,8 +10112,7 @@
                 "$ref": "#/components/schemas/ProjectMemberDto"
               }
             ],
-            "description": "A ProjectMember is a user who can collaborate on a Project.  You can control\r\npermissions for what each ProjectMember can do and how they can interact with\r\nthe Project using this model.",
-            "nullable": true
+            "description": "A ProjectMember is a user who can collaborate on a Project.  You can control\r\npermissions for what each ProjectMember can do and how they can interact with\r\nthe Project using this model."
           }
         },
         "additionalProperties": false,
@@ -10262,8 +10153,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectMemberDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -10303,8 +10193,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ProjectPriority.",
-            "nullable": true
+            "description": "The name of this ProjectPriority."
           }
         },
         "additionalProperties": false,
@@ -10345,8 +10234,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectPriorityDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -10362,8 +10250,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ProjectStatus.",
-            "nullable": true
+            "description": "The name of this ProjectStatus."
           },
           "isDeleted": {
             "type": "boolean",
@@ -10408,8 +10295,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectStatusDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -10425,8 +10311,7 @@
           },
           "name": {
             "type": "string",
-            "description": "A friendly name for this ProjectTemplate Category.",
-            "nullable": true
+            "description": "A friendly name for this ProjectTemplate Category."
           },
           "order": {
             "type": "integer",
@@ -10438,8 +10323,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectTemplateDto"
             },
-            "description": "A list of templates in this category",
-            "nullable": true
+            "description": "A list of templates in this category"
           }
         },
         "additionalProperties": false,
@@ -10480,8 +10364,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectTemplateCategoryDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -10497,28 +10380,23 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ProjectTemplate.\r\n            \r\nName can de used as a unique text reference for Project Templates.",
-            "nullable": true
+            "description": "The name of this ProjectTemplate.\r\n            \r\nName can de used as a unique text reference for Project Templates."
           },
           "title": {
             "type": "string",
-            "description": "The title of this ProjectTemplate.\r\n            \r\nTitle can be used as a description text for Project Templates.",
-            "nullable": true
+            "description": "The title of this ProjectTemplate.\r\n            \r\nTitle can be used as a description text for Project Templates."
           },
           "description": {
             "type": "string",
-            "description": "The full text description of this ProjectTemplate.",
-            "nullable": true
+            "description": "The full text description of this ProjectTemplate."
           },
           "icon": {
             "type": "string",
-            "description": "The icon path for this ProjectTemplate.",
-            "nullable": true
+            "description": "The icon path for this ProjectTemplate."
           },
           "previewImage": {
             "type": "string",
-            "description": "The preview image path for this ProjectTemplate.",
-            "nullable": true
+            "description": "The preview image path for this ProjectTemplate."
           },
           "order": {
             "type": "integer",
@@ -10531,8 +10409,7 @@
           },
           "defaultView": {
             "type": "string",
-            "description": "The web default view of the template.",
-            "nullable": true
+            "description": "The web default view of the template."
           }
         },
         "additionalProperties": false,
@@ -10573,8 +10450,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectTemplateDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -10666,13 +10542,11 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "The type of change made",
-            "nullable": true
+            "description": "The type of change made"
           },
           "method": {
             "type": "string",
-            "description": "The method used to make the change",
-            "nullable": true
+            "description": "The method used to make the change"
           },
           "property": {
             "type": "string",
@@ -10709,13 +10583,11 @@
           },
           "initials": {
             "type": "string",
-            "description": "the initials of the user",
-            "nullable": true
+            "description": "the initials of the user"
           },
           "name": {
             "type": "string",
-            "description": "The display name of the user",
-            "nullable": true
+            "description": "The display name of the user"
           },
           "avatarUrl": {
             "type": "string",
@@ -10724,8 +10596,7 @@
           },
           "color": {
             "type": "string",
-            "description": "The color for their avatar",
-            "nullable": true
+            "description": "The color for their avatar"
           },
           "createDate": {
             "type": "string",
@@ -10749,8 +10620,7 @@
                 "$ref": "#/components/schemas/ProjectVersionChangeDataDto"
               }
             ],
-            "description": "Subset of the changes related to this ProjectVersion",
-            "nullable": true
+            "description": "Subset of the changes related to this ProjectVersion"
           }
         },
         "additionalProperties": false,
@@ -10791,8 +10661,7 @@
             "items": {
               "$ref": "#/components/schemas/ProjectVersionDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -10870,8 +10739,7 @@
           },
           "i": {
             "type": "string",
-            "description": "ID",
-            "nullable": true
+            "description": "ID"
           },
           "moved": {
             "type": "boolean",
@@ -10895,8 +10763,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ResourceApprover",
-            "nullable": true
+            "description": "The name of this ResourceApprover"
           }
         },
         "additionalProperties": false,
@@ -11026,6 +10893,10 @@
             "description": "The unique identifier of this Resource.",
             "format": "uuid"
           },
+          "initials": {
+            "type": "string",
+            "description": "The resource initials."
+          },
           "firstName": {
             "type": "string",
             "description": "The first name of the person Resource.\r\n            \r\nApplies to personnel Resources only.",
@@ -11086,16 +10957,14 @@
             "items": {
               "$ref": "#/components/schemas/ResourceTeamDto"
             },
-            "description": "The list of ResourceTeams to which this Resource belongs.",
-            "nullable": true
+            "description": "The list of ResourceTeams to which this Resource belongs."
           },
           "skills": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ResourceSkillDto"
             },
-            "description": "The list of ResourceSkills possessed by this Resource.",
-            "nullable": true
+            "description": "The list of ResourceSkills possessed by this Resource."
           },
           "onlineDateTime": {
             "type": "string",
@@ -11115,22 +10984,26 @@
           "createdDate": {
             "type": "string",
             "description": "The date this resource was created",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "createdBy": {
             "type": "string",
             "description": "Set to a unique identifier of the user who created this Resource.",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
           },
           "modifiedDate": {
             "type": "string",
             "description": "The date this resource was last modified",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "modifiedBy": {
             "type": "string",
             "description": "Set to a unique identifier of the user who last modified this Resource.",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
           },
           "colorName": {
             "type": "string",
@@ -11140,6 +11013,11 @@
           "color": {
             "type": "string",
             "description": "Read only Hex code of the ColorName",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "description": "The resources avatar url, if any.",
             "nullable": true
           }
         },
@@ -11182,8 +11060,7 @@
                 "$ref": "#/components/schemas/ResourceDto"
               }
             ],
-            "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user.",
-            "nullable": true
+            "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
           }
         },
         "additionalProperties": false,
@@ -11224,8 +11101,7 @@
             "items": {
               "$ref": "#/components/schemas/ResourceDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -11288,8 +11164,7 @@
             "items": {
               "$ref": "#/components/schemas/ResourceHolidayDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -11305,8 +11180,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ResourceSkill",
-            "nullable": true
+            "description": "The name of this ResourceSkill"
           }
         },
         "additionalProperties": false,
@@ -11348,8 +11222,7 @@
                 "$ref": "#/components/schemas/ResourceSkillDto"
               }
             ],
-            "description": "A ResourceSkill is a capability possessed by this Resource that can be used to\r\ndetermine appropriate assignments.  Some Resources may have ResourceSkills that\r\nare in high demand and some Tasks may have a requirement for Resources with particular\r\nResourceSkills.",
-            "nullable": true
+            "description": "A ResourceSkill is a capability possessed by this Resource that can be used to\r\ndetermine appropriate assignments.  Some Resources may have ResourceSkills that\r\nare in high demand and some Tasks may have a requirement for Resources with particular\r\nResourceSkills."
           }
         },
         "additionalProperties": false,
@@ -11390,8 +11263,7 @@
             "items": {
               "$ref": "#/components/schemas/ResourceSkillDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -11407,8 +11279,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this ResourceTeam",
-            "nullable": true
+            "description": "The name of this ResourceTeam"
           }
         },
         "additionalProperties": false,
@@ -11450,8 +11321,7 @@
                 "$ref": "#/components/schemas/ResourceTeamDto"
               }
             ],
-            "description": "A ResourceTeam is a group of Resources that can be referred to as a group.  You can use a\r\nResourceTeam as a shortcut to quickly assign or allocate multiple Resources quickly.",
-            "nullable": true
+            "description": "A ResourceTeam is a group of Resources that can be referred to as a group.  You can use a\r\nResourceTeam as a shortcut to quickly assign or allocate multiple Resources quickly."
           }
         },
         "additionalProperties": false,
@@ -11492,8 +11362,7 @@
             "items": {
               "$ref": "#/components/schemas/ResourceTeamDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -11610,8 +11479,7 @@
             "items": {
               "$ref": "#/components/schemas/ResourceCreateDto"
             },
-            "description": "A list of Users to create",
-            "nullable": true
+            "description": "A list of Users to create"
           }
         },
         "additionalProperties": false,
@@ -11625,8 +11493,7 @@
             "items": {
               "$ref": "#/components/schemas/ResourceDto"
             },
-            "description": "The list of the Resources created by this API call.",
-            "nullable": true
+            "description": "The list of the Resources created by this API call."
           },
           "errors": {
             "type": "array",
@@ -11676,8 +11543,7 @@
                 "$ref": "#/components/schemas/ResourcesDto"
               }
             ],
-            "description": "The Resources object represents the results of a bulk Resource creation API call.\r\n            \r\nA Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user.",
-            "nullable": true
+            "description": "The Resources object represents the results of a bulk Resource creation API call.\r\n            \r\nA Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
           }
         },
         "additionalProperties": false,
@@ -11717,8 +11583,7 @@
               "excel"
             ],
             "type": "string",
-            "description": "Format to export to, currently csv and excel are supported \r\n \r\n Valid options are: \n * Csv \n * excel",
-            "nullable": true
+            "description": "Format to export to, currently csv and excel are supported \r\n \r\n Valid options are: \n * Csv \n * excel"
           },
           "columns": {
             "type": "array",
@@ -11744,8 +11609,7 @@
               "resolution"
             ],
             "type": "string",
-            "description": "Which column should be used to order the data \r\n \r\n Valid options are: \n * name \n * createDate \n * assignees \n * dueDate \n * impact \n * level \n * likelihood \n * openClosed \n * priority \n * response \n * tags \n * description \n * resolution",
-            "nullable": true
+            "description": "Which column should be used to order the data \r\n \r\n Valid options are: \n * name \n * createDate \n * assignees \n * dueDate \n * impact \n * level \n * likelihood \n * openClosed \n * priority \n * response \n * tags \n * description \n * resolution"
           },
           "orderDirection": {
             "enum": [
@@ -11753,8 +11617,7 @@
               "desc"
             ],
             "type": "string",
-            "description": "Specifies the direction of the order. Valid values are \"asc\" and \"desc\" \r\n \r\n Valid options are: \n * asc \n * desc",
-            "nullable": true
+            "description": "Specifies the direction of the order. Valid values are \"asc\" and \"desc\" \r\n \r\n Valid options are: \n * asc \n * desc"
           },
           "timeZoneOffset": {
             "type": "integer",
@@ -11854,8 +11717,7 @@
           "data": {
             "type": "object",
             "additionalProperties": {},
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -11874,8 +11736,7 @@
           },
           "color": {
             "type": "string",
-            "description": "The color that will be used to represent this Tag visually.  This color\r\nis automatically chosen by the application when a user creates a Tag.\r\n            \r\nYou can choose specify any color that can be represented using HTML RGB\r\nsyntax such as `#0088FF`, in the format `RRGGBB`.  You may not use names\r\nfor colors.",
-            "nullable": true
+            "description": "The color that will be used to represent this Tag visually.  This color\r\nis automatically chosen by the application when a user creates a Tag.\r\n            \r\nYou can choose specify any color that can be represented using HTML RGB\r\nsyntax such as `#0088FF`, in the format `RRGGBB`.  You may not use names\r\nfor colors."
           }
         },
         "additionalProperties": false,
@@ -11891,13 +11752,11 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this Tag.",
-            "nullable": true
+            "description": "The name of this Tag."
           },
           "color": {
             "type": "string",
-            "description": "The color that will be used to represent this Tag visually.  This color\r\nis automatically chosen by the application when a user creates a Tag.\r\n            \r\nYou can choose specify any color that can be represented using HTML RGB\r\nsyntax such as `#0088FF`, in the format `RRGGBB`.  You may not use names\r\nfor colors.",
-            "nullable": true
+            "description": "The color that will be used to represent this Tag visually.  This color\r\nis automatically chosen by the application when a user creates a Tag.\r\n            \r\nYou can choose specify any color that can be represented using HTML RGB\r\nsyntax such as `#0088FF`, in the format `RRGGBB`.  You may not use names\r\nfor colors."
           }
         },
         "additionalProperties": false,
@@ -11939,8 +11798,7 @@
                 "$ref": "#/components/schemas/TagDto"
               }
             ],
-            "description": "A Tag is a named categorization you can use to distinguish objects from each other.\r\nTags each have a unique identifier, a name, and a color.",
-            "nullable": true
+            "description": "A Tag is a named categorization you can use to distinguish objects from each other.\r\nTags each have a unique identifier, a name, and a color."
           }
         },
         "additionalProperties": false,
@@ -11981,8 +11839,7 @@
             "items": {
               "$ref": "#/components/schemas/TagDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -11993,8 +11850,7 @@
         "properties": {
           "color": {
             "type": "string",
-            "description": "The color that will be used to represent this Tag visually.  This color\r\nis automatically chosen by the application when a user creates a Tag.\r\n            \r\nYou can choose specify any color that can be represented using HTML RGB\r\nsyntax such as `#0088FF`, in the format `RRGGBB`.  You may not use names\r\nfor colors.",
-            "nullable": true
+            "description": "The color that will be used to represent this Tag visually.  This color\r\nis automatically chosen by the application when a user creates a Tag.\r\n            \r\nYou can choose specify any color that can be represented using HTML RGB\r\nsyntax such as `#0088FF`, in the format `RRGGBB`.  You may not use names\r\nfor colors."
           }
         },
         "additionalProperties": false,
@@ -12010,8 +11866,7 @@
           },
           "initials": {
             "type": "string",
-            "description": "A shortened set of initials to use when representing this TaskAssignee visually\r\nin small areas.  The initials may be used in small icons or other overlays.",
-            "nullable": true
+            "description": "A shortened set of initials to use when representing this TaskAssignee visually\r\nin small areas.  The initials may be used in small icons or other overlays."
           },
           "name": {
             "type": "string",
@@ -12187,8 +12042,7 @@
                 "$ref": "#/components/schemas/TaskProjectDto"
               }
             ],
-            "description": "The Project to which this Task belongs.",
-            "nullable": true
+            "description": "The Project to which this Task belongs."
           },
           "tags": {
             "type": "array",
@@ -12226,8 +12080,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The common name of this Task.",
-            "nullable": true
+            "description": "The common name of this Task."
           },
           "description": {
             "type": "string",
@@ -12240,8 +12093,7 @@
                 "$ref": "#/components/schemas/TaskStatusDto"
               }
             ],
-            "description": "The TaskStatus assigned to this Task.",
-            "nullable": true
+            "description": "The TaskStatus assigned to this Task."
           },
           "plannedStartDate": {
             "type": "string",
@@ -12421,8 +12273,7 @@
                 "$ref": "#/components/schemas/TaskDto"
               }
             ],
-            "description": "A Task is an individual element of work that must be performed to complete a Project.  A\r\nTask can have one or more Resources assigned to it.  Tasks can be linked to other Tasks to\r\nindicate whether they have a dependency or a connection.",
-            "nullable": true
+            "description": "A Task is an individual element of work that must be performed to complete a Project.  A\r\nTask can have one or more Resources assigned to it.  Tasks can be linked to other Tasks to\r\nindicate whether they have a dependency or a connection."
           }
         },
         "additionalProperties": false,
@@ -12463,8 +12314,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -12480,21 +12330,18 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this TaskField",
-            "nullable": true
+            "description": "The name of this TaskField"
           },
           "type": {
             "type": "string",
-            "description": "The type of this TaskField.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Checkbox\r\n* Currency\r\n* Dropdown\r\n            \r\nAttempting to create a field with any Type other than these will\r\nreturn an error.\r\n            \r\nFor Dropdown TaskFields, specify the list of choices in the `Options`\r\nfield.",
-            "nullable": true
+            "description": "The type of this TaskField.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Checkbox\r\n* Currency\r\n* Dropdown\r\n            \r\nAttempting to create a field with any Type other than these will\r\nreturn an error.\r\n            \r\nFor Dropdown TaskFields, specify the list of choices in the `Options`\r\nfield."
           },
           "options": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "A list of options for use of this TaskField.  This is only valid if\r\nthe `Type` value is set to `Dropdown`.\r\n            \r\nWhen a custom TaskField of type `DropDown` is shown to a user in the\r\napplication, they will be able to choose one of the `Options` in this\r\nlist.",
-            "nullable": true
+            "description": "A list of options for use of this TaskField.  This is only valid if\r\nthe `Type` value is set to `Dropdown`.\r\n            \r\nWhen a custom TaskField of type `DropDown` is shown to a user in the\r\napplication, they will be able to choose one of the `Options` in this\r\nlist."
           },
           "shortId": {
             "type": "string",
@@ -12507,8 +12354,7 @@
                 "$ref": "#/components/schemas/TaskFieldProjectDto"
               }
             ],
-            "description": "The Project to which this TaskField belongs.",
-            "nullable": true
+            "description": "The Project to which this TaskField belongs."
           },
           "createdDate": {
             "type": "string",
@@ -12559,8 +12405,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskFieldDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -12576,13 +12421,11 @@
           },
           "shortId": {
             "type": "string",
-            "description": "The ShortId of this Project.",
-            "nullable": true
+            "description": "The ShortId of this Project."
           },
           "name": {
             "type": "string",
-            "description": "The common name of this Project.",
-            "nullable": true
+            "description": "The common name of this Project."
           }
         },
         "additionalProperties": false,
@@ -12603,18 +12446,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this Project Field.",
-            "nullable": true
+            "description": "The name of this Project Field."
           },
           "type": {
             "type": "string",
-            "description": "The type of this TaskField.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Checkbox\r\n* Currency\r\n* Dropdown",
-            "nullable": true
+            "description": "The type of this TaskField.  Valid types are the following:\r\n* Text\r\n* Number\r\n* Date\r\n* Checkbox\r\n* Currency\r\n* Dropdown"
           },
           "value": {
             "type": "string",
-            "description": "The value currently set for this TaskFieldValue.",
-            "nullable": true
+            "description": "The value currently set for this TaskFieldValue."
           },
           "createdDate": {
             "type": "string",
@@ -12632,8 +12472,7 @@
                 "$ref": "#/components/schemas/TaskFieldValueTaskDto"
               }
             ],
-            "description": "The Task to which this Value belongs.",
-            "nullable": true
+            "description": "The Task to which this Value belongs."
           }
         },
         "additionalProperties": false,
@@ -12675,8 +12514,7 @@
                 "$ref": "#/components/schemas/TaskFieldValueDto"
               }
             ],
-            "description": "A model that contains the value for a TaskField.",
-            "nullable": true
+            "description": "A model that contains the value for a TaskField."
           }
         },
         "additionalProperties": false,
@@ -12717,8 +12555,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskFieldValueDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -12734,13 +12571,11 @@
           },
           "shortId": {
             "type": "string",
-            "description": "The unique Short Id of this Task.",
-            "nullable": true
+            "description": "The unique Short Id of this Task."
           },
           "name": {
             "type": "string",
-            "description": "The common name of this Task.",
-            "nullable": true
+            "description": "The common name of this Task."
           }
         },
         "additionalProperties": false,
@@ -12756,13 +12591,11 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the file",
-            "nullable": true
+            "description": "The name of the file"
           },
           "url": {
             "type": "string",
-            "description": "The url of the file which can be used for downloading",
-            "nullable": true
+            "description": "The url of the file which can be used for downloading"
           }
         },
         "additionalProperties": false,
@@ -12784,8 +12617,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {},
-            "description": "Customer or system metadata",
-            "nullable": true
+            "description": "Customer or system metadata"
           }
         },
         "additionalProperties": false,
@@ -12826,8 +12658,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskMetadataSearchDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -12839,8 +12670,7 @@
           "data": {
             "type": "object",
             "additionalProperties": {},
-            "description": "Customer or system metadata",
-            "nullable": true
+            "description": "Customer or system metadata"
           }
         },
         "additionalProperties": false,
@@ -12857,8 +12687,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this TaskPriority.",
-            "nullable": true
+            "description": "The name of this TaskPriority."
           }
         },
         "additionalProperties": false,
@@ -12899,8 +12728,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskPriorityDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -12916,13 +12744,11 @@
           },
           "shortId": {
             "type": "string",
-            "description": "The ShortId of this Project.",
-            "nullable": true
+            "description": "The ShortId of this Project."
           },
           "name": {
             "type": "string",
-            "description": "The common name of this Project.",
-            "nullable": true
+            "description": "The common name of this Project."
           }
         },
         "additionalProperties": false,
@@ -13027,8 +12853,7 @@
                 "$ref": "#/components/schemas/TaskStatusDto"
               }
             ],
-            "description": "A TaskStatus is a named status level used by your business to determine how to measure the\r\nprogress of Tasks.  You can define your own named status levels that are appropriate for\r\nyour business and determine which status levels are considered done.",
-            "nullable": true
+            "description": "A TaskStatus is a named status level used by your business to determine how to measure the\r\nprogress of Tasks.  You can define your own named status levels that are appropriate for\r\nyour business and determine which status levels are considered done."
           }
         },
         "additionalProperties": false,
@@ -13069,8 +12894,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskStatusDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -13110,13 +12934,11 @@
           },
           "name": {
             "type": "string",
-            "description": "The common name of this TaskTag.",
-            "nullable": true
+            "description": "The common name of this TaskTag."
           },
           "color": {
             "type": "string",
-            "description": "The color that will be used to represent this Tag visually.  This color\r\nis automatically chosen by the application when a user creates a Tag.\r\n            \r\nYou can choose specify any color that can be represented using HTML RGB\r\nsyntax such as `#0088FF`, in the format `RRGGBB`.  You may not use names\r\nfor colors.",
-            "nullable": true
+            "description": "The color that will be used to represent this Tag visually.  This color\r\nis automatically chosen by the application when a user creates a Tag.\r\n            \r\nYou can choose specify any color that can be represented using HTML RGB\r\nsyntax such as `#0088FF`, in the format `RRGGBB`.  You may not use names\r\nfor colors."
           }
         },
         "additionalProperties": false,
@@ -13132,8 +12954,7 @@
           },
           "text": {
             "type": "string",
-            "description": "The full description of this TaskTodo.",
-            "nullable": true
+            "description": "The full description of this TaskTodo."
           },
           "complete": {
             "type": "boolean",
@@ -13262,8 +13083,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the Project.",
-            "nullable": true
+            "description": "The name of the Project."
           },
           "description": {
             "type": "string",
@@ -13272,13 +13092,11 @@
           },
           "shortCode": {
             "type": "string",
-            "description": "A shortened name that will be used when reporting on Projects.  This short\r\nname can be edited in the Project Settings page within the application\r\nand can be any text you wish.",
-            "nullable": true
+            "description": "A shortened name that will be used when reporting on Projects.  This short\r\nname can be edited in the Project Settings page within the application\r\nand can be any text you wish."
           },
           "shortId": {
             "type": "string",
-            "description": "A short identifier that uniquely identifies this Project within your Workspace\r\nusing a single letter followed by a number.  This code can be used for APIs\r\nthat accept Project unique identifiers.\r\n            \r\nYou can observe the short ID within the application by observing the URL of\r\nthe page you visit when you click on this project.  The page's URL will appear\r\nin the form `https://pm.app.projectmanager.com/project/board/D16` - in this\r\nexample, the `ShortId` is `D16`.\r\n            \r\nThis code is automatically assigned for you and cannot be changed.",
-            "nullable": true
+            "description": "A short identifier that uniquely identifies this Project within your Workspace\r\nusing a single letter followed by a number.  This code can be used for APIs\r\nthat accept Project unique identifiers.\r\n            \r\nYou can observe the short ID within the application by observing the URL of\r\nthe page you visit when you click on this project.  The page's URL will appear\r\nin the form `https://pm.app.projectmanager.com/project/board/D16` - in this\r\nexample, the `ShortId` is `D16`.\r\n            \r\nThis code is automatically assigned for you and cannot be changed."
           },
           "startDate": {
             "type": "string",
@@ -13343,8 +13161,7 @@
           },
           "name": {
             "type": "string",
-            "description": "admin task name",
-            "nullable": true
+            "description": "admin task name"
           }
         },
         "additionalProperties": false,
@@ -13385,8 +13202,7 @@
             "items": {
               "$ref": "#/components/schemas/TimesheetAdminTypeDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -13562,8 +13378,7 @@
             "items": {
               "$ref": "#/components/schemas/TimesheetDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -13579,13 +13394,11 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the file",
-            "nullable": true
+            "description": "The name of the file"
           },
           "url": {
             "type": "string",
-            "description": "The url of the file which can be used for downloading",
-            "nullable": true
+            "description": "The url of the file which can be used for downloading"
           }
         },
         "additionalProperties": false,
@@ -13601,18 +13414,15 @@
           },
           "firstName": {
             "type": "string",
-            "description": "The first name of the person Resource.\r\n            \r\nApplies to personnel Resources only.",
-            "nullable": true
+            "description": "The first name of the person Resource.\r\n            \r\nApplies to personnel Resources only."
           },
           "lastName": {
             "type": "string",
-            "description": "The last name of the person Resource.\r\n            \r\nApplies to personnel Resources only.",
-            "nullable": true
+            "description": "The last name of the person Resource.\r\n            \r\nApplies to personnel Resources only."
           },
           "email": {
             "type": "string",
-            "description": "The email address of this Resource.",
-            "nullable": true
+            "description": "The email address of this Resource."
           },
           "hourlyRate": {
             "type": "number",
@@ -13715,8 +13525,7 @@
                 "$ref": "#/components/schemas/TimesheetResponseDto"
               }
             ],
-            "description": "Time entry representation",
-            "nullable": true
+            "description": "Time entry representation"
           }
         },
         "additionalProperties": false,
@@ -13737,18 +13546,15 @@
           },
           "shortId": {
             "type": "string",
-            "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace.",
-            "nullable": true
+            "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace."
           },
           "name": {
             "type": "string",
-            "description": "The common name of this Task.",
-            "nullable": true
+            "description": "The common name of this Task."
           },
           "description": {
             "type": "string",
-            "description": "A description of the work to be performed in this Task.",
-            "nullable": true
+            "description": "A description of the work to be performed in this Task."
           },
           "plannedStartDate": {
             "type": "string",
@@ -13872,8 +13678,7 @@
         "properties": {
           "value": {
             "type": "string",
-            "description": "The new value to be set for this ProjectField.",
-            "nullable": true
+            "description": "The new value to be set for this ProjectField."
           }
         },
         "additionalProperties": false,
@@ -13884,8 +13689,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The new name for the File.",
-            "nullable": true
+            "description": "The new name for the File."
           },
           "taskId": {
             "type": "string",
@@ -13938,8 +13742,7 @@
         "properties": {
           "value": {
             "type": "string",
-            "description": "The new value to be set for this TaskField.",
-            "nullable": true
+            "description": "The new value to be set for this TaskField."
           }
         },
         "additionalProperties": false,
@@ -13950,13 +13753,11 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "The email of the Resource that could not be created",
-            "nullable": true
+            "description": "The email of the Resource that could not be created"
           },
           "reason": {
             "type": "string",
-            "description": "A description of the reason this Resource could not be created",
-            "nullable": true
+            "description": "A description of the reason this Resource could not be created"
           },
           "statusCode": {
             "allOf": [
@@ -13980,8 +13781,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The friendly name of this UserRole.",
-            "nullable": true
+            "description": "The friendly name of this UserRole."
           }
         },
         "additionalProperties": false,
@@ -14022,8 +13822,7 @@
             "items": {
               "$ref": "#/components/schemas/UserRoleDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -14039,13 +13838,11 @@
           },
           "company": {
             "type": "string",
-            "description": "The name of this Workspace.",
-            "nullable": true
+            "description": "The name of this Workspace."
           },
           "customProductDomain": {
             "type": "string",
-            "description": "The unique DNS domain of this Workspace.",
-            "nullable": true
+            "description": "The unique DNS domain of this Workspace."
           },
           "customerId": {
             "type": "string",
@@ -14060,18 +13857,15 @@
           },
           "organizationId": {
             "type": "string",
-            "description": "The organization code used for authentication systems for this Workspace.",
-            "nullable": true
+            "description": "The organization code used for authentication systems for this Workspace."
           },
           "color": {
             "type": "string",
-            "description": "The RGB color in the format `#RRGGBB` for this Workspace.",
-            "nullable": true
+            "description": "The RGB color in the format `#RRGGBB` for this Workspace."
           },
           "roleName": {
             "type": "string",
-            "description": "The role of the current user within this Workspace.",
-            "nullable": true
+            "description": "The role of the current user within this Workspace."
           },
           "registerDate": {
             "type": "string",
@@ -14132,8 +13926,7 @@
             "items": {
               "$ref": "#/components/schemas/WorkSpaceDto"
             },
-            "description": "If the API call succeeded, this will contain the results.",
-            "nullable": true
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -14156,13 +13949,11 @@
         "properties": {
           "project": {
             "type": "string",
-            "description": "The name of the project for this link.",
-            "nullable": true
+            "description": "The name of the project for this link."
           },
           "workSpaceApi": {
             "type": "string",
-            "description": "This is the link to the api for this business.  Some endpoints may need this value.",
-            "nullable": true
+            "description": "This is the link to the api for this business.  Some endpoints may need this value."
           }
         },
         "additionalProperties": false,
@@ -14177,13 +13968,11 @@
                 "$ref": "#/components/schemas/WorkSpaceLinksDto"
               }
             ],
-            "description": "A collection of shortcut links for the currently logged in Workspace.",
-            "nullable": true
+            "description": "A collection of shortcut links for the currently logged in Workspace."
           },
           "emailAddress": {
             "type": "string",
-            "description": "The email address of the currently logged in user.",
-            "nullable": true
+            "description": "The email address of the currently logged in user."
           },
           "id": {
             "type": "string",
@@ -14192,18 +13981,15 @@
           },
           "fullName": {
             "type": "string",
-            "description": "The full name of the currently logged in user.",
-            "nullable": true
+            "description": "The full name of the currently logged in user."
           },
           "workSpaceName": {
             "type": "string",
-            "description": "The name of the Workspace that the current user has logged onto.  For most companies, the workspace\r\nname will be the name of the business.",
-            "nullable": true
+            "description": "The name of the Workspace that the current user has logged onto.  For most companies, the workspace\r\nname will be the name of the business."
           },
           "roleName": {
             "type": "string",
-            "description": "The user's role within the current Workspace.",
-            "nullable": true
+            "description": "The user's role within the current Workspace."
           },
           "isGlobalAdmin": {
             "type": "boolean",
@@ -14255,8 +14041,7 @@
                 "$ref": "#/components/schemas/WorkSpaceUserInfoDto"
               }
             ],
-            "description": "Information about a currently logged in user.\r\n            \r\nYou can call the RetrieveMe API to gather information about the current user.",
-            "nullable": true
+            "description": "Information about a currently logged in user.\r\n            \r\nYou can call the RetrieveMe API to gather information about the current user."
           }
         },
         "additionalProperties": false,
