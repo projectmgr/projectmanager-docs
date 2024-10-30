@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "120.0.4689"
+    "version": "121.0.4887"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -489,6 +489,127 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DiscussionCommentCreateResponseDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/comments/{commentId}/like": {
+      "post": {
+        "tags": [
+          "Discussion"
+        ],
+        "summary": "Like a comment",
+        "description": "Puts a thumbsup on a comment",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "the id of the comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Discussion"
+        ],
+        "summary": "Removes a thumbsup from a comment",
+        "description": "Unlike a comment that was previously liked",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "the id of the comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/comments/{commentId}": {
+      "delete": {
+        "tags": [
+          "Discussion"
+        ],
+        "summary": "Remove a comment",
+        "description": "Removes a comment by it's id",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "Remove a comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
                 }
               }
             }
@@ -1710,6 +1831,35 @@
             "schema": {
               "type": "string",
               "format": "uuid"
+            }
+          },
+          {
+            "name": "senderId",
+            "in": "query",
+            "description": "Filter the notifications to only those sent by the user with the specified ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "notificationTypes",
+            "in": "query",
+            "description": "Specifies the types of notifications to return.  If not provided, all notifications will be returned.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "asFlatList",
+            "in": "query",
+            "description": "If set to true all notifications will be returned as a flat list, otherwise they will be grouped by parent in the same manner as displayed in the UI.",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           },
           {
@@ -6271,6 +6421,196 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ChangeSetStatusDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/tasks/{taskId}/todos": {
+      "get": {
+        "tags": [
+          "TaskTodo"
+        ],
+        "summary": "Get todos for a task",
+        "description": "Retrieve a list of todos for a task",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "the id of the task",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTodoDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TaskTodo"
+        ],
+        "summary": "Create a todo for a task",
+        "description": "Create a todo for a task",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "the id of the task",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the data for creating a todo",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskTodoCreateDto"
+                  }
+                ],
+                "description": "The properties for creating a TaskTodo."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTodoDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/tasks/todos/{todoId}": {
+      "put": {
+        "tags": [
+          "TaskTodo"
+        ],
+        "summary": "Update a todo",
+        "description": "Update a todo for a task",
+        "parameters": [
+          {
+            "name": "todoId",
+            "in": "path",
+            "description": "the id of the task",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the data for updating a todo",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskTodoUpdateDto"
+                  }
+                ],
+                "description": "The properties for updating a task dto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTodoDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TaskTodo"
+        ],
+        "summary": "Delete a todo",
+        "description": "Remove a todo",
+        "parameters": [
+          {
+            "name": "todoId",
+            "in": "path",
+            "description": "the id of the todo",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
                 }
               }
             }
@@ -10938,6 +11278,11 @@
             "description": "A text field indicating the country in which this Resource is located.  This value\r\nis not constrained to the list of known ISO 3166 country names or codes.",
             "nullable": true
           },
+          "countryName": {
+            "type": "string",
+            "description": "Returns the name of the country",
+            "nullable": true
+          },
           "notes": {
             "type": "string",
             "description": "Free-form text notes about this Resource.  You may use this field to store extra\r\ninformation about the Resource.",
@@ -12023,6 +12368,16 @@
             "type": "string",
             "description": "Color theme definition for this task.\r\n            \r\neg. Blue, Brown, DarkBlue, DarkGrey, Gold, Green, Grey, LightBrown, LightGreen,\r\nLightGrey, LightPurple, LightYellow, Magenta, Mauve, Navy, Orange, Purple, Red.",
             "nullable": true
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "Unlocked tasks can be adjusted by changes to their dependencies, resource leveling, or other factors.\r\n            \r\nAll tasks are unlocked by default.\r\n            \r\nIf a task is set to `IsLocked` = `true`, the dates and assigned resources are locked for this task and will not\r\nbe automatically changed by any process.",
+            "nullable": true
+          },
+          "isMilestone": {
+            "type": "boolean",
+            "description": "True if this task is a milestone.  Milestones represent a specific point in time for the project.  When a\r\nmilestone is locked, it represents a fixed time within the project that can be used to relate to other tasks.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -12944,6 +13299,21 @@
         "additionalProperties": false,
         "description": "A TaskTag is a connection between a Task and a Tag.  Each Task can have zero, one or many\r\nTaskTags associated with it.  TaskTags can be assigned and removed from the Task to help you\r\nclassify your Tasks and prioritize work."
       },
+      "TaskTodoCreateDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The full description of this TaskTodo."
+          },
+          "complete": {
+            "type": "boolean",
+            "description": "True if this TaskTodo is complete."
+          }
+        },
+        "additionalProperties": false,
+        "description": "The properties for creating a TaskTodo."
+      },
       "TaskTodoDto": {
         "type": "object",
         "properties": {
@@ -12973,6 +13343,106 @@
         },
         "additionalProperties": false,
         "description": "A TaskTodo is a sub-task that represents a unit of work on the Task.  You can use\r\nTaskTodo to represent individual items for a larger piece of work."
+      },
+      "TaskTodoDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TaskTodoDto"
+              }
+            ],
+            "description": "A TaskTodo is a sub-task that represents a unit of work on the Task.  You can use\r\nTaskTodo to represent individual items for a larger piece of work."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "TaskTodoDtoListAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTodoDto"
+            },
+            "description": "If the API call succeeded, this will contain the results."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "TaskTodoUpdateDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The full description of this TaskTodo.",
+            "nullable": true
+          },
+          "complete": {
+            "type": "boolean",
+            "description": "True if this TaskTodo is complete.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The properties for updating a task dto"
       },
       "TaskUpdateDto": {
         "type": "object",
@@ -13067,6 +13537,16 @@
           "theme": {
             "type": "string",
             "description": "Color theme definition for this task.\r\n            \r\neg. Blue, Brown, DarkBlue, DarkGrey, Gold, Green, Grey, LightBrown, LightGreen,\r\nLightGrey, LightPurple, LightYellow, Magenta, Mauve, Navy, Orange, Purple, Red.",
+            "nullable": true
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "Unlocked tasks can be adjusted by changes to their dependencies, resource leveling, or other factors.\r\n            \r\nAll tasks are unlocked by default.\r\n            \r\nIf a task is set to `IsLocked` = `true`, the dates and assigned resources are locked for this task and will not\r\nbe automatically changed by any process.",
+            "nullable": true
+          },
+          "isMilestone": {
+            "type": "boolean",
+            "description": "True if this task is a milestone.  Milestones represent a specific point in time for the project.  When a\r\nmilestone is locked, it represents a fixed time within the project that can be used to relate to other tasks.",
             "nullable": true
           }
         },
@@ -13218,8 +13698,13 @@
           },
           "hours": {
             "type": "number",
-            "description": "Reported hours",
+            "description": "Reported hours. If minutes is specified this property is ignored",
             "format": "double"
+          },
+          "minutes": {
+            "type": "integer",
+            "description": "Specify the time in minutes. This overrides the Hours property.",
+            "format": "int32"
           },
           "taskId": {
             "type": "string",
@@ -13289,6 +13774,11 @@
             "type": "number",
             "description": "Total Hours spent on this Task by this Resource on this specific Date",
             "format": "double"
+          },
+          "minutes": {
+            "type": "integer",
+            "description": "Total minutes spent on this Task by this Resource on this specific Date",
+            "format": "int32"
           },
           "modifiedDate": {
             "type": "string",
@@ -13484,6 +13974,11 @@
             "type": "number",
             "description": "Total Hours",
             "format": "double"
+          },
+          "minutes": {
+            "type": "integer",
+            "description": "Total Minutes",
+            "format": "int32"
           }
         },
         "additionalProperties": false,
@@ -13660,8 +14155,14 @@
         "properties": {
           "hours": {
             "type": "number",
-            "description": "Reported hours",
+            "description": "Reported hours. If minutes is specified this property is ignored",
             "format": "double",
+            "nullable": true
+          },
+          "minutes": {
+            "type": "integer",
+            "description": "Specify the time in minutes. This overrides the Hours property.",
+            "format": "int32",
             "nullable": true
           },
           "notes": {
