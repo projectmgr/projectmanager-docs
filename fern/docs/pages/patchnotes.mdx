@@ -1,0 +1,29 @@
+# 2024-11-18 - Patch notes for 122.0.214
+
+These patch notes summarize the changes from version 121.0.4887.
+
+Added 3 new APIs:
+* ProjectCustomer.CreateProjectCustomer (POST /api/data/projects/customers)
+* ProjectCustomer.UpdateProjectCustomer (PUT /api/data/projects/customers/{customerId})
+* ProjectCustomer.DeleteProjectCustomer (DELETE /api/data/projects/customers/{customerId})
+
+
+# 2024-10-20 - Patch notes for 120.0.4689
+
+These patch notes summarize the changes from version 117.0.4438.
+
+Added 5 new APIs:
+* ProjectVersion.RetrieveProjectVersions (GET /api/data/projects/{projectId}/versions)
+* ProjectVersion.DownloadMSProjectXml (GET /api/data/projects/{projectChangeId}/version/download)
+* ProjectVersion.RestoreProjectVersion (POST /api/data/projects/{projectId}/version/{version}/restore)
+* ProjectVersion.CopyProjectVersion (POST /api/data/projects/{projectId}/version/{version}/copy)
+* Risk.CreateRiskExport (POST /api/data/projects/{projectId}/risks/export)
+
+Renamed 1 old APIs:
+* Renamed 'TaskMetadata.GetTasksByProjectIDAndForeignKeyID' to 'TaskMetadata.TaskMetadataSearch'
+
+Changes to data models:
+* ResourceDto: Added new field `initials`
+* ResourceDto: Added new field `avatarUrl`
+* TaskDto: Added new field `isLocked`
+* TaskDto: Added new field `isMilestone`

@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "121.0.4887"
+    "version": "122.0.214"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -2504,6 +2504,183 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProjectCustomerDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProjectCustomer"
+        ],
+        "summary": "Create Project Customer",
+        "description": "Create a project customer",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The data to create the customer",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProjectCustomerCreateDto"
+                  }
+                ],
+                "description": "A ProjectCustomer is a code used to identify costs within your Projects.  Each\r\nProjectCustomer has a name and a unique identifier.  ChargeCodes are defined per\r\nWorkspace and are shared among Projects."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectCustomerDtoAstroResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "error": {
+                      "message": "Input Validation Failed",
+                      "validationErrors": {
+                        "name": [
+                          "'name' must not be empty."
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/projects/customers/{customerId}": {
+      "put": {
+        "tags": [
+          "ProjectCustomer"
+        ],
+        "summary": "Update Project Customer",
+        "description": "Updates a project customer",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "The id of the customer to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The data to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProjectCustomerCreateDto"
+                  }
+                ],
+                "description": "A ProjectCustomer is a code used to identify costs within your Projects.  Each\r\nProjectCustomer has a name and a unique identifier.  ChargeCodes are defined per\r\nWorkspace and are shared among Projects."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectCustomerDtoAstroResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "error": {
+                      "message": "Input Validation Failed",
+                      "validationErrors": {
+                        "name": [
+                          "'name' must not be empty."
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProjectCustomer"
+        ],
+        "summary": "Delete Project Customer",
+        "description": "Delete a project customer. They will also be removed from any projects they were assigned too.",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "The id of the customer to remove",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
                 }
               }
             }
@@ -9584,6 +9761,20 @@
         "additionalProperties": false,
         "description": "A Project is a collection of Tasks that contributes towards a goal.  Within a Project, Tasks\r\nrepresent individual items of work that team members must complete.  The sum total of Tasks\r\nwithin a Project represents the work to be completed for that Project.\r\n            \r\nFields that cannot be selected during a CreateProject API call are not visible on this\r\ndata model."
       },
+      "ProjectCustomerCreateDto": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of this ProjectCustomer"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A ProjectCustomer is a code used to identify costs within your Projects.  Each\r\nProjectCustomer has a name and a unique identifier.  ChargeCodes are defined per\r\nWorkspace and are shared among Projects."
+      },
       "ProjectCustomerDto": {
         "type": "object",
         "properties": {
@@ -9599,6 +9790,48 @@
         },
         "additionalProperties": false,
         "description": "A ProjectCustomer is a code used to identify costs within your Projects.  Each\r\nProjectCustomer has a name and a unique identifier.  ChargeCodes are defined per\r\nWorkspace and are shared among Projects."
+      },
+      "ProjectCustomerDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProjectCustomerDto"
+              }
+            ],
+            "description": "A ProjectCustomer is a code used to identify costs within your Projects.  Each\r\nProjectCustomer has a name and a unique identifier.  ChargeCodes are defined per\r\nWorkspace and are shared among Projects."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
       "ProjectCustomerDtoListAstroResult": {
         "type": "object",
@@ -10823,7 +11056,7 @@
           },
           "customerId": {
             "type": "string",
-            "description": "To assign this Project to a ProjectCustomer, set this to the unique identifier of the\r\nProjectCustomer.",
+            "description": "To assign this Project to a ProjectCustomer, set this to the unique identifier of the\r\nProjectCustomer.\r\n            \r\nIf set to an empty guid the Project will be unassigned from the current ProjectCustomer.",
             "format": "uuid",
             "nullable": true
           },
