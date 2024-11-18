@@ -17,6 +17,8 @@ navigation:
         path: ./docs/pages/workbreakdown.mdx
       - page: Software Development Kits
         path: ./docs/pages/sdks.mdx
+      - page: API Patch Notes
+        path: ./docs/pages/patchnotes.mdx
       - page: FAQ
         path: ./docs/pages/faq.mdx     
       - page: Terms of use
