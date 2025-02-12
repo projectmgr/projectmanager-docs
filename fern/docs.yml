@@ -30,6 +30,7 @@ navigation:
         path: ./docs/pages/apiv3.mdx
   - api: API Reference
     api-name: api
+    paginated: true
     snippets:
       python: fern-projectmanager   
 
