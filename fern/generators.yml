@@ -1,3 +1,2 @@
 api:
-  specs:
-    - openapi: openapi\openapi.json
+  path: openapi\openapi.json
