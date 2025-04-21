@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "122.0.214"
+    "version": "130.1.162"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -240,51 +240,52 @@
         }
       }
     },
-    "/api/data/projects/{projectId}/changesets": {
+    "/api/data/countries": {
       "get": {
         "tags": [
-          "Changeset"
+          "Country"
         ],
-        "summary": "Retrieve Changesets by project ID",
-        "description": "Retrieve Changesets by Project ID",
+        "summary": "Retrieves a list of all countries.",
+        "description": "This method returns a list of all countries available in the system.\r\n\r\nEach country includes its unique identifier (ISO2 code) and name.",
         "parameters": [
           {
-            "name": "projectId",
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/countries/{isoCode}/states": {
+      "get": {
+        "tags": [
+          "Country"
+        ],
+        "summary": "Retrieves a list of states for a given country ISO code.",
+        "description": "This method returns a list of all states for the specified country.\r\n\r\nEach state includes its unique identifier, state code, and name.",
+        "parameters": [
+          {
+            "name": "isoCode",
             "in": "path",
-            "description": "The unique identifier of the Project for which you want to retrieve changesets",
+            "description": "The ISO code of the country.",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "version",
-            "in": "query",
-            "description": "The version of the Project for which you want to retrieve changesets",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "For pagination, the number of the page to retrieve",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
-          },
-          {
-            "name": "take",
-            "in": "query",
-            "description": "For pagination, the size of the page",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10
+              "type": "string"
             }
           },
           {
@@ -302,13 +303,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ChangeSetDtoListAstroResult"
+                  "$ref": "#/components/schemas/StateDtoListAstroResult"
                 }
               }
             }
           }
-        },
-        "deprecated": true
+        }
       }
     },
     "/api/data/dashboards/settings/{type}": {
@@ -615,103 +615,6 @@
             }
           }
         }
-      }
-    },
-    "/api/data/tasks/{taskId}/discussions": {
-      "get": {
-        "tags": [
-          "Discussion"
-        ],
-        "summary": "Retrieve Task Comments",
-        "description": "Retrieve all comments written about a task",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "The unique ID number of the task to retrieve comments",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DiscussionCommentDtoListAstroResult"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      },
-      "post": {
-        "tags": [
-          "Discussion"
-        ],
-        "summary": "Create Task Comments",
-        "description": "Adds a Markdown-formatted comment to a task.\r\n            \r\nTasks can have discussions attached to them.  These discussions can include text with simple\r\nformatting.  Discussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges.",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "The unique ID number of the task being commented upon",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The Markdown-formatted text of the comment",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/DiscussionCommentCreateDto"
-                  }
-                ],
-                "description": "Tasks can have discussions attached to them.  These discussions can include text with simple\r\nformatting.  Discussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges."
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DiscussionCommentCreateResponseDtoAstroResult"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
       }
     },
     "/api/data/files/{documentId}/download": {
@@ -1816,6 +1719,57 @@
         }
       }
     },
+    "/api/data/me/avatar": {
+      "post": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Update My Avatar",
+        "description": "Updates the logged in user avatar",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/data/notifications": {
       "get": {
         "tags": [
@@ -2132,6 +2086,186 @@
         }
       }
     },
+    "/api/data/non-project-tasks/{nptId}": {
+      "get": {
+        "tags": [
+          "Npt"
+        ],
+        "summary": "Get Npt",
+        "description": "Gets a Npt",
+        "parameters": [
+          {
+            "name": "nptId",
+            "in": "path",
+            "description": "the id of the npt",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NptDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Npt"
+        ],
+        "summary": "Update Npt",
+        "description": "Update a Npt",
+        "parameters": [
+          {
+            "name": "nptId",
+            "in": "path",
+            "description": "the id of the npt",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the fields to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/NptUpdateDto"
+                  }
+                ],
+                "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNPT's are a lightweight version of a project task."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NptDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Npt"
+        ],
+        "summary": "Remove Npt",
+        "description": "Remove Npt",
+        "parameters": [
+          {
+            "name": "nptId",
+            "in": "path",
+            "description": "the id of the npt to remove",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/non-project-tasks": {
+      "post": {
+        "tags": [
+          "Npt"
+        ],
+        "summary": "Create Npt",
+        "description": "Creates a new Npt",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The data used to create the Npt",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/NptCreateDto"
+                  }
+                ],
+                "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNpt's are a lightweight version of a project task."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NptDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/data/non-project-tasks/{taskId}/files": {
       "post": {
         "tags": [
@@ -2186,6 +2320,37 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/FileDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/non-project-tasks/statuses": {
+      "get": {
+        "tags": [
+          "NptStatus"
+        ],
+        "summary": "Get Npt Task Statuses",
+        "description": "Get a list of task statuses that can be used by npt tasks.",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NptStatusDtoListAstroResult"
                 }
               }
             }
@@ -3157,7 +3322,7 @@
           "ProjectMembers"
         ],
         "summary": "Retrieve New Project Members",
-        "description": "Returns a list of users that can be added as members of a new project, as well as their available project security roles. \r\n\r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to \r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
+        "description": "Returns a list of users that can be added as members of a new project, as well as their available project security roles.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -3188,7 +3353,7 @@
           "ProjectMembers"
         ],
         "summary": "Retrieve Project Members",
-        "description": "Returns a list of users that are currently members of a specified project, as well as their current project security roles and available project security roles. \r\nOptionally include users who are not currently members of the project, but who are available to be added.\r\n\r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to \r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
+        "description": "Returns a list of users that are currently members of a specified project, as well as their current project security roles and available project security roles.\r\nOptionally include users who are not currently members of the project, but who are available to be added.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "projectId",
@@ -3238,7 +3403,7 @@
           "ProjectMembers"
         ],
         "summary": "Retrieve User Project Membership",
-        "description": "Returns the project security role in a specified project for a current project member.\r\n\r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to \r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
+        "description": "Returns the project security role in a specified project for a current project member.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "projectId",
@@ -3287,7 +3452,7 @@
           "ProjectMembers"
         ],
         "summary": "Create User Project Membership",
-        "description": "Creates a membership for a user in a specified project, and assigns the user the appropriate project access based on the specified project security role.\r\n\r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to \r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
+        "description": "Creates a membership for a user in a specified project, and assigns the user the appropriate project access based on the specified project security role.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "projectId",
@@ -3351,7 +3516,7 @@
           "ProjectMembers"
         ],
         "summary": "Update User Project Membership",
-        "description": "Updates the project access for a current member of a specified project by giving the user a new project security role.\r\n\r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to \r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
+        "description": "Updates the project access for a current member of a specified project by giving the user a new project security role.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "projectId",
@@ -3415,7 +3580,7 @@
           "ProjectMembers"
         ],
         "summary": "Remove User Project Membership",
-        "description": "Removes a current project member from a specified project. This removes the user's access to that project.\r\n\r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to \r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
+        "description": "Removes a current project member from a specified project. This removes the user's access to that project.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "projectId",
@@ -3710,7 +3875,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AstroResult"
+                  "$ref": "#/components/schemas/ProjectRestoreProjectDtoAstroResult"
                 }
               }
             }
@@ -3770,7 +3935,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AstroResult"
+                  "$ref": "#/components/schemas/ProjectRestoreProjectDtoAstroResult"
                 }
               }
             }
@@ -4581,6 +4746,67 @@
                       }
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/risks/{riskId}/files": {
+      "post": {
+        "tags": [
+          "RiskFile"
+        ],
+        "summary": "Upload Risk File",
+        "description": "Uploads a file to a risk.\r\n            \r\nProjectManager allows you to store Files connected to other elements of your Workspace\r\nsuch as a Project, a Task, or Home.  Files are maintained separately based on the location\r\nwhere the file was stored.\r\n            \r\nWhen you upload a File, please allow a few moments for the File to be processed and verified.\r\nProjectManager may reject File uploads that contain problems such as malware. Once a File has\r\ncompleted the upload the process, you may retrieve it using the DownloadFile API.\r\n            \r\nThis API returns a JSON response indicating success or failure.",
+        "parameters": [
+          {
+            "name": "riskId",
+            "in": "path",
+            "description": "The reference to the risk",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDtoAstroResult"
                 }
               }
             }
@@ -5847,165 +6073,6 @@
         }
       }
     },
-    "/api/data/tasks/{taskId}/fields/{fieldId}": {
-      "get": {
-        "tags": [
-          "TaskField"
-        ],
-        "summary": "Retrieve Task Field Value",
-        "description": "This endpoint has been replace with `tasks/{taskId}/fields/{fieldId}/values`",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "The unique identifier of the Task of the value to retrieve",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "fieldId",
-            "in": "path",
-            "description": "The unique identifier of the TaskField of the value to retrieve",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TaskFieldValueDtoAstroResult"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      },
-      "put": {
-        "tags": [
-          "TaskField"
-        ],
-        "summary": "Update Task Field Value",
-        "description": "This endpoint has been replace with `tasks/{taskId}/fields/{fieldId}/values`",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "The unique identifier of the Task whose value you wish to update",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "fieldId",
-            "in": "path",
-            "description": "The unique identifier of the TaskField whose value you wish to update",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The new value for this TaskField for this Task",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/UpdateTaskFieldValueDto"
-                  }
-                ],
-                "description": "A model that contains a new value to be set for a TaskField."
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ChangeSetStatusDtoAstroResult"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      }
-    },
-    "/api/data/tasks/{taskId}/fields": {
-      "get": {
-        "tags": [
-          "TaskField"
-        ],
-        "summary": "Retrieve All Task Field Values",
-        "description": "This endpoint has been replace with `tasks/{taskId}/fields/{fieldId}/values`",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "The unique identifier of the Task for which we want TaskField values",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TaskFieldValueDtoListAstroResult"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      }
-    },
     "/api/data/tasks/{taskId}/files": {
       "post": {
         "tags": [
@@ -6610,7 +6677,7 @@
         "tags": [
           "TaskTodo"
         ],
-        "summary": "Get todos for a task",
+        "summary": "Get Todos",
         "description": "Retrieve a list of todos for a task",
         "parameters": [
           {
@@ -6649,7 +6716,7 @@
         "tags": [
           "TaskTodo"
         ],
-        "summary": "Create a todo for a task",
+        "summary": "Create Todo",
         "description": "Create a todo for a task",
         "parameters": [
           {
@@ -6705,7 +6772,7 @@
         "tags": [
           "TaskTodo"
         ],
-        "summary": "Update a todo",
+        "summary": "Update Todo",
         "description": "Update a todo for a task",
         "parameters": [
           {
@@ -6759,7 +6826,7 @@
         "tags": [
           "TaskTodo"
         ],
-        "summary": "Delete a todo",
+        "summary": "Delete Todo",
         "description": "Remove a todo",
         "parameters": [
           {
@@ -7129,61 +7196,6 @@
           }
         }
       }
-    },
-    "/api/data/workspaces/{organizationId}/join": {
-      "post": {
-        "tags": [
-          "WorkSpace"
-        ],
-        "summary": "Invite to Workspace",
-        "description": "Invite a specific user to join a Workspace to which the current user has administrator rights.\r\n            \r\nA single User may have access to multiple Workspaces, although they can only be logged on\r\nto one Workspace at a time.  This API lists all Workspaces to which the currently logged on\r\nuser is entitled to access.  To determine which Workspace a user is currently logged on\r\nuse the `/api/data/me` endpoint.\r\n            \r\nThis API allows you to invite a specific  an invitation to join a specific Workspace.",
-        "parameters": [
-          {
-            "name": "organizationId",
-            "in": "path",
-            "description": "The unique identifier of the Organization that you are inviting a User to joi",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Information about the user which will receive the invitation",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/WorkSpaceJoinDto"
-                  }
-                ],
-                "description": "A Workspace represents a single business subscription to the ProjectManager.com service.  You\r\ncan be a member of multiple Workspaces.  Each Workspace is completely separate from all other\r\nWorkspaces and a user cannot log in to multiple Workspaces at the same time."
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -7432,136 +7444,6 @@
         "additionalProperties": false,
         "description": "Set the connection status of an integration"
       },
-      "ChangeSetDto": {
-        "type": "object",
-        "properties": {
-          "projectChangeSetId": {
-            "type": "integer",
-            "description": "Project Changeset ID",
-            "format": "int32"
-          },
-          "id": {
-            "type": "string",
-            "description": "The unique identifier of this Changeset",
-            "format": "uuid"
-          },
-          "projectId": {
-            "type": "string",
-            "description": "Project ID",
-            "format": "uuid"
-          },
-          "version": {
-            "type": "integer",
-            "description": "Task version",
-            "format": "int32",
-            "nullable": true
-          },
-          "createBy": {
-            "type": "string",
-            "description": "Created by GUID",
-            "format": "uuid"
-          },
-          "createDate": {
-            "type": "string",
-            "description": "Created date",
-            "format": "date-time"
-          },
-          "actions": {
-            "type": "string",
-            "description": "Change set action",
-            "nullable": true
-          },
-          "changeSets": {
-            "type": "string",
-            "description": "Change set in json string",
-            "nullable": true
-          },
-          "processDate": {
-            "type": "string",
-            "description": "Processed date",
-            "format": "date-time",
-            "nullable": true
-          },
-          "success": {
-            "type": "boolean",
-            "description": "If process was successful",
-            "nullable": true
-          },
-          "exception": {
-            "type": "string",
-            "description": "Error message",
-            "nullable": true
-          },
-          "clientId": {
-            "type": "string",
-            "description": "UI ID",
-            "format": "uuid",
-            "nullable": true
-          },
-          "jsonData": {
-            "type": "string",
-            "description": "Changeset JSON data",
-            "nullable": true
-          },
-          "isUndo": {
-            "type": "boolean",
-            "description": "Is change set from UNDO"
-          },
-          "state": {
-            "type": "integer",
-            "description": "The state of the changeset",
-            "format": "int32"
-          },
-          "businessId": {
-            "type": "string",
-            "description": "Business ID",
-            "format": "uuid"
-          }
-        },
-        "additionalProperties": false,
-        "description": "The project task change set"
-      },
-      "ChangeSetDtoListAstroResult": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AstroError"
-              }
-            ],
-            "description": "If the API call failed, this will contain information about the error that occurred.",
-            "nullable": true
-          },
-          "success": {
-            "type": "boolean",
-            "description": "True if the API call succeeded; false otherwise.",
-            "readOnly": true
-          },
-          "hasError": {
-            "type": "boolean",
-            "description": "True if the API call failed.",
-            "readOnly": true
-          },
-          "statusCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpStatusCode"
-              }
-            ],
-            "description": "The HTTP code of the response."
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ChangeSetDto"
-            },
-            "description": "If the API call succeeded, this will contain the results."
-          }
-        },
-        "additionalProperties": false,
-        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
-      },
       "ChangeSetStatusDto": {
         "type": "object",
         "properties": {
@@ -7723,6 +7605,62 @@
               }
             ],
             "description": "This class contains the URL or AuthScheme to use to authenticate with the Integration Provider."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "CountryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Gets or sets the unique identifier for the country. This should translate to the ISO2 code\r\nfor that country."
+          },
+          "name": {
+            "type": "string",
+            "description": "Gets or sets the name of the country."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a country with its details."
+      },
+      "CountryDtoListAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryDto"
+            },
+            "description": "If the API call succeeded, this will contain the results."
           }
         },
         "additionalProperties": false,
@@ -9022,8 +8960,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier of this License.",
-            "format": "uuid"
+            "description": "The unique identifier of this License."
           },
           "licenseSku": {
             "type": "string",
@@ -9031,11 +8968,13 @@
           },
           "bundleSku": {
             "type": "string",
-            "description": "The SKU code of the bundle of this License, used for billing purposes."
+            "description": "The SKU code of the bundle of this License, used for billing purposes.",
+            "nullable": true
           },
           "optional": {
             "type": "boolean",
-            "description": "True if this license is optional."
+            "description": "True if this license is optional.\r\n            \r\nThis field will be removed in a future version.",
+            "deprecated": true
           }
         },
         "additionalProperties": false,
@@ -9468,6 +9407,335 @@
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
+      "NptAssigneeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of this Resource",
+            "format": "uuid"
+          },
+          "initials": {
+            "type": "string",
+            "description": "A shortened set of initials to use when representing this NptAssignee visually\r\nin small areas.  The initials may be used in small icons or other overlays."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of this NptAssignee",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "A more complete description of the NptAssignee.",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "True if this NptAssignee is currently active with the Project."
+          },
+          "colorName": {
+            "type": "string",
+            "description": "Collaboration Color for this resource.\r\n            \r\neg. teal, cyan, lightblue, blurple, purple, pink, orange, gray",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The first or given name of this NptAssignee.\r\n            \r\nFor personnel NptAssignees only.",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The last or family name of this NptAssignee.\r\n            \r\nFor personnel NptAssignees only.",
+            "nullable": true
+          },
+          "shortName": {
+            "type": "string",
+            "description": "A shortened version of the name of this NptAssignee.  This is used in areas\r\nwhere the Initials are too short but the full name is too long.",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "description": "A link to an Avatar for this NptAssignee.  Avatars are small images or representations\r\nthat can be used to visually identify this NptAssignee at a glance.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address for the resource. It can be empty if the resource does not have a login.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A NptAssignee is a Resource to whom a Npt is assigned. A single Npt\r\ncan be assigned to multiple NptAssignee."
+      },
+      "NptCreateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The common name of this Task."
+          },
+          "description": {
+            "type": "string",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.\r\n            \r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Board or List view, click on a task to open the task panel, then edit the \"Description\" field.",
+            "nullable": true
+          },
+          "plannedStartDate": {
+            "type": "string",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
+            "format": "date",
+            "nullable": true
+          },
+          "plannedFinishDate": {
+            "type": "string",
+            "description": "The date when work on this Task is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
+            "format": "date",
+            "nullable": true
+          },
+          "assignees": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Specify a list of resources to assign to this NPT",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNpt's are a lightweight version of a project task."
+      },
+      "NptDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the NPT",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "The common name of this Task."
+          },
+          "description": {
+            "type": "string",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.\r\n            \r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Board or List view, click on a task to open the task panel, then edit the \"Description\" field.",
+            "nullable": true
+          },
+          "plannedStartDate": {
+            "type": "string",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
+            "format": "date",
+            "nullable": true
+          },
+          "plannedFinishDate": {
+            "type": "string",
+            "description": "The date when work on this Task is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualEffort": {
+            "type": "integer",
+            "description": "The actual effort (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "priorityId": {
+            "type": "integer",
+            "description": "Return the priority of a task",
+            "format": "int32",
+            "nullable": true
+          },
+          "percentComplete": {
+            "type": "integer",
+            "description": "The numerical percentage, from 0-100, representing the percentage completion\r\nfor this Task.  Any numbers below zero or above 100 will be clamped to the\r\nminimum or maximum value.\r\n            \r\nThis value can be edited manually in the Gantt chart view of the application,\r\nor can be selected on the Task Detail page within the Kanban board.",
+            "format": "int32"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NptStatusDto"
+              }
+            ],
+            "description": "The status assigned to this Npt"
+          },
+          "assignees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NptAssigneeDto"
+            },
+            "description": "The list of resources assigned to this Npt"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNPT's are a lightweight version of a project task."
+      },
+      "NptDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NptDto"
+              }
+            ],
+            "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNPT's are a lightweight version of a project task."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "NptStatusDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of this TaskStatus.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of this TaskStatus.",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "description": "A numerical value that can be used to sort TaskStatus values according to the\r\nneeds of your business.",
+            "format": "int32"
+          },
+          "isDone": {
+            "type": "boolean",
+            "description": "True if a Task in this TaskStatus is considered done."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A TaskStatus is a named status level used by your business to determine how to measure the\r\nprogress of Tasks.  You can define your own named status levels that are appropriate for\r\nyour business and determine which status levels are considered done."
+      },
+      "NptStatusDtoListAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NptStatusDto"
+            },
+            "description": "If the API call succeeded, this will contain the results."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "NptUpdateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The common name of this Task.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.\r\n            \r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Board or List view, click on a task to open the task panel, then edit the \"Description\" field.",
+            "nullable": true
+          },
+          "plannedStartDate": {
+            "type": "string",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
+            "format": "date",
+            "nullable": true
+          },
+          "plannedFinishDate": {
+            "type": "string",
+            "description": "The date when work on this Task is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
+            "format": "date",
+            "nullable": true
+          },
+          "priorityId": {
+            "type": "integer",
+            "description": "Return the priority of a task",
+            "format": "int32",
+            "nullable": true
+          },
+          "percentComplete": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "description": "The numerical percentage, from 0-100, representing the percentage completion\r\nfor this Task.  Any numbers below zero or above 100 will be clamped to the\r\nminimum or maximum value.\r\n            \r\nThis value can be edited manually in the Gantt chart view of the application,\r\nor can be selected on the Task Detail page within the Kanban board.",
+            "format": "int32",
+            "nullable": true
+          },
+          "statusId": {
+            "type": "string",
+            "description": "The status assigned to this Npt",
+            "format": "uuid",
+            "nullable": true
+          },
+          "assignees": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "If specified, replaces the list of resources assigned to this npt.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNPT's are a lightweight version of a project task."
+      },
       "PermissionOptionsDto": {
         "type": "object",
         "properties": {
@@ -9727,10 +9995,6 @@
             "type": "string",
             "description": "Contains an optional status update for Projects that can be used to summarize\r\nthe status of multiple Projects at a glance.\r\n            \r\nYou can edit the StatusUpdate field on the Portfolio page of the application.",
             "nullable": true
-          },
-          "template": {
-            "type": "boolean",
-            "description": "True if this Project is a template that will be reused as a framework\r\nfor future Projects.\r\n            \r\nYou can save a Project as a template and reuse it in the future for creating\r\nadditional Projects.  If this Project is a template, set this to `true` and this\r\ntemplate will be available to choose from when creating a new Project within the\r\napplication."
           },
           "templateId": {
             "type": "string",
@@ -10813,6 +11077,60 @@
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
+      "ProjectRestoreProjectDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the Project.  This value is set by the system and cannot\r\nbe set with a CreateProject or changed with an UpdateProject call.",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "This is the projectId being restored to"
+      },
+      "ProjectRestoreProjectDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProjectRestoreProjectDto"
+              }
+            ],
+            "description": "This is the projectId being restored to"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "ProjectStatusDto": {
         "type": "object",
         "properties": {
@@ -11104,6 +11422,11 @@
           "favorite": {
             "type": "boolean",
             "description": "Mark this project as favorite for the logged in user.",
+            "nullable": true
+          },
+          "template": {
+            "type": "boolean",
+            "description": "True if this Project is a template that will be reused as a framework\r\nfor future Projects.\r\n            \r\nYou can save a Project as a template and reuse it in the future for creating\r\nadditional Projects.  If this Project is a template, set this to `true` and this\r\ntemplate will be available to choose from when creating a new Project within the\r\napplication.",
             "nullable": true
           }
         },
@@ -12262,6 +12585,67 @@
         "type": "string",
         "description": "The state of the ProjectChange"
       },
+      "StateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Gets or sets the unique identifier for the state.",
+            "format": "int32"
+          },
+          "stateCode": {
+            "type": "string",
+            "description": "Gets or sets the code of the state."
+          },
+          "name": {
+            "type": "string",
+            "description": "Gets or sets the name of the state."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a state with its details."
+      },
+      "StateDtoListAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StateDto"
+            },
+            "description": "If the API call succeeded, this will contain the results."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "StringObjectDictionaryAstroResult": {
         "type": "object",
         "properties": {
@@ -12672,7 +13056,7 @@
           },
           "description": {
             "type": "string",
-            "description": "A description of the work to be performed in this Task.",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.  \r\n\r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Gantt view, select a task and click the \"Add Note\" button.\r\n* When in the Board view, click on a task to open the task panel, then edit the \"Description\" field.",
             "nullable": true
           },
           "status": {
@@ -13992,7 +14376,7 @@
           "date": {
             "type": "string",
             "description": "The date of this time entry record.  You can filter on this value to obtain Timesheet data for a specific date\r\nrange.",
-            "format": "date-time"
+            "format": "date"
           },
           "notes": {
             "type": "string",
@@ -14287,25 +14671,25 @@
           "plannedStartDate": {
             "type": "string",
             "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "plannedFinishDate": {
             "type": "string",
             "description": "The date when work on this Task is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "actualStartDate": {
             "type": "string",
             "description": "If set, this is the actual date when work began on the Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "actualFinishDate": {
             "type": "string",
             "description": "If set, this is the actual date when work was completed on this Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "modifyDate": {
@@ -14442,15 +14826,12 @@
         "description": "Represents an update request for a File within ProjectManager.\r\n            \r\nProjectManager allows you to store Files connected to other elements of your Workspace\r\nsuch as a Project or a Discussion.  When you upload a File, please allow a few moments\r\nfor the File to be processed and verified.  ProjectManager may reject File uploads that\r\ncontain problems such as malware. Once a File has completed the upload the process, you\r\nmay retrieve it using the DownloadFile API."
       },
       "UpdateResourceSkillDto": {
-        "required": [
-          "name"
-        ],
         "type": "object",
         "properties": {
           "name": {
-            "minLength": 1,
             "type": "string",
-            "description": "The name of this Skill."
+            "description": "The name of this Skill, if specified it will be updated",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -14666,18 +15047,6 @@
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
-      "WorkSpaceJoinDto": {
-        "type": "object",
-        "properties": {
-          "businessUserId": {
-            "type": "string",
-            "description": "The unique identifier of the BusinessUser to invite to this Workspace.",
-            "format": "uuid"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A Workspace represents a single business subscription to the ProjectManager.com service.  You\r\ncan be a member of multiple Workspaces.  Each Workspace is completely separate from all other\r\nWorkspaces and a user cannot log in to multiple Workspaces at the same time."
-      },
       "WorkSpaceLinksDto": {
         "type": "object",
         "properties": {
@@ -14692,6 +15061,98 @@
         },
         "additionalProperties": false,
         "description": "A shortcut link within the currently logged in Workspace."
+      },
+      "WorkSpacePermissionsDto": {
+        "type": "object",
+        "properties": {
+          "inviteUser": {
+            "type": "boolean",
+            "description": "True if this user can Add people to the account",
+            "nullable": true
+          },
+          "editAccount": {
+            "type": "boolean",
+            "description": "True if this user can Edit the accounts and billing page",
+            "nullable": true
+          },
+          "editRole": {
+            "type": "boolean",
+            "description": "True if this user can Edit role security settings",
+            "nullable": true
+          },
+          "editAllProjects": {
+            "type": "boolean",
+            "description": "True if this user can Access all account data",
+            "nullable": true
+          },
+          "editCost": {
+            "type": "boolean",
+            "description": "True if this user can See hourly rates, costs and budgets",
+            "nullable": true
+          },
+          "editHoliday": {
+            "type": "boolean",
+            "description": "True if this user can Set team holidays",
+            "nullable": true
+          },
+          "editUserField": {
+            "type": "boolean",
+            "description": "True if this user can Create and edit tags, skills, and teams",
+            "nullable": true
+          },
+          "editAllTimesheets": {
+            "type": "boolean",
+            "description": "True if this user can Edit team timesheets",
+            "nullable": true
+          },
+          "approveTimesheet": {
+            "type": "boolean",
+            "description": "True if this user can Approve timesheets",
+            "nullable": true
+          },
+          "setUpBoardWorkflow": {
+            "type": "boolean",
+            "description": "True if this user can Set up board workflow",
+            "nullable": true
+          },
+          "editProjectField": {
+            "type": "boolean",
+            "description": "True if this user can Edit project and portfolio settings",
+            "nullable": true
+          },
+          "exportProject": {
+            "type": "boolean",
+            "description": "True if this user can Export projects",
+            "nullable": true
+          },
+          "viewUser": {
+            "type": "boolean",
+            "description": "True if this user can Access the Manage Users page",
+            "nullable": true
+          },
+          "editIntegration": {
+            "type": "boolean",
+            "description": "True if this user can Manage Integrations",
+            "nullable": true
+          },
+          "createProject": {
+            "type": "boolean",
+            "description": "True if this user Can create projects and groups",
+            "nullable": true
+          },
+          "editUser": {
+            "type": "boolean",
+            "description": "True if this user can Edit user profiles, roles and emails",
+            "nullable": true
+          },
+          "viewMyBoard": {
+            "type": "boolean",
+            "description": "True if this user can View personal board",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about a currently logged in user.\r\n            \r\nYou can call the RetrieveMe API to gather information about the current user."
       },
       "WorkSpaceUserInfoDto": {
         "type": "object",
@@ -14734,6 +15195,14 @@
             "type": "boolean",
             "description": "True if this user is considered an account administrator of the current Workspace.",
             "nullable": true
+          },
+          "permissions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkSpacePermissionsDto"
+              }
+            ],
+            "description": "Workspace Permissions that the user has within the current Workspace."
           }
         },
         "additionalProperties": false,
