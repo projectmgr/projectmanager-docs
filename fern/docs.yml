@@ -27,10 +27,6 @@ navigation:
       - page: Terms of use
         path: ./docs/pages/terms.mdx           
       
-  - section: Older APIs
-    contents:
-      - page: API v3
-        path: ./docs/pages/apiv3.mdx
   - api: API Reference
     api-name: api
     paginated: true
