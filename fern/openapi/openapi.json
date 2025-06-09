@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "130.1.162"
+    "version": "134.0.125"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -61,7 +61,7 @@
           "ApiKey"
         ],
         "summary": "List Api Keys",
-        "description": "Returns a list of all API keys within the current workspace.\r\n            \r\nAn API key is a credential that you can use to make REST v4 API calls for ProjectManager.com.  When you create\r\na new API key, that API key is only visible in the response JSON for the `CreateApiKey` method.  If you do not\r\npreserve this information, it cannot be recreated.\r\n            \r\nSome best practices for working with API keys:\r\n* An API key is valid for a two year period after it is created.  We encourage you to rotate your API keys\r\nregularly according to your company's security policies.\r\n* You should create separate API keys for each system that works with your API.  If that API key is exposed\r\nor if that program needs to be shut down, you can revoke that one key and reissue it.\r\n* An API key is tied to the workspace that created it. A single API key can only interact with one workspace.",
+        "description": "Returns a list of all API keys within the current workspace.\r\n            \r\nAn API key is a credential that you can use to make REST v4 API calls for ProjectManager.com.  When you create\r\na new API key, that API key is only visible in the response JSON for the `CreateApiKey` method.  If you do not\r\npreserve this information, it cannot be recreated.\r\n            \r\nSome best practices for working with API keys:\r\n* An API key is valid for a two-year period after it is created.  We encourage you to rotate your API keys\r\nregularly according to your company's security policies.\r\n* You should create separate API keys for each system that works with your API.  If that API key is exposed\r\nor if that program needs to be shut down, you can revoke that one key and reissue it.\r\n* An API key is tied to the workspace that created it. A single API key can only interact with one workspace.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -1394,7 +1394,7 @@
           "IntegrationProvider"
         ],
         "summary": "Update Integration Provider",
-        "description": "Allows you to update the auth status of the provider specific connection.\r\n\r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
+        "description": "Allows you to update the auth status of the provider specific connection.\r\n            \r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
         "parameters": [
           {
             "name": "providerId",
@@ -1448,7 +1448,7 @@
           "IntegrationProvider"
         ],
         "summary": "Deactivate Integration Provider",
-        "description": "Allows you to deactivate an integration provider.\r\n\r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
+        "description": "Allows you to deactivate an integration provider.\r\n            \r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
         "parameters": [
           {
             "name": "providerId",
@@ -1489,7 +1489,7 @@
           "IntegrationProvider"
         ],
         "summary": "Create User Integration Provider Connection",
-        "description": "Retrieves user authentication information about a specific IntegrationProvider.\r\n            \r\nThis connection can be used for requests to Providers that require specific user data.\r\n\r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
+        "description": "Retrieves user authentication information about a specific IntegrationProvider.\r\n            \r\nThis connection can be used for requests to Providers that require specific user data.\r\n            \r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
         "parameters": [
           {
             "name": "providerId",
@@ -1528,7 +1528,7 @@
           "IntegrationProvider"
         ],
         "summary": "Update User Integration Provider Connection",
-        "description": "Allows you to update the auth status of the provider specific user connection.\r\n\r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
+        "description": "Allows you to update the auth status of the provider specific user connection.\r\n            \r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
         "parameters": [
           {
             "name": "providerId",
@@ -1582,7 +1582,7 @@
           "IntegrationProvider"
         ],
         "summary": "Disconnect User Integration Provider Connection",
-        "description": "Allows you to disconnect the provider specific user connection.\r\n\r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
+        "description": "Allows you to disconnect the provider specific user connection.\r\n            \r\nAn IntegrationProvider is the name of an external application or service that can be connected to\r\nProjectManager.com.  The Integrations API is intended for use by ProjectManager and its business\r\ndevelopment partners.  Please contact ProjectManager's sales team to request use of this API.",
         "parameters": [
           {
             "name": "providerId",
@@ -3353,7 +3353,7 @@
           "ProjectMembers"
         ],
         "summary": "Retrieve Project Members",
-        "description": "Returns a list of users that are currently members of a specified project, as well as their current project security roles and available project security roles.\r\nOptionally include users who are not currently members of the project, but who are available to be added.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
+        "description": "Returns a list of users that are currently members of a specified project, as well as their current project security roles and available project security roles.\r\nOptionally include users who are not currently members of the project, but who can be added.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "projectId",
@@ -3390,6 +3390,60 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProjectMemberDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProjectMembers"
+        ],
+        "summary": "Update A List Of User Project Membership",
+        "description": "Updates the project access for a current member of a specified project\r\nby giving the users a new project security role.\r\n            \r\nA project member is a user who has access to a specific project.\r\nProject members are assigned a project security role, which controls the level of access they have to\r\nthe project.\r\nPossible project security roles include manage, edit, collaborate, creator, and guest.",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "Reference to Project",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The permission to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProjectMembersAccessDto"
+                  }
+                ],
+                "description": "DTO to assign roles to a list of project members"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectMemberDtoAstroResult"
                 }
               }
             }
@@ -3452,7 +3506,7 @@
           "ProjectMembers"
         ],
         "summary": "Create User Project Membership",
-        "description": "Creates a membership for a user in a specified project, and assigns the user the appropriate project access based on the specified project security role.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
+        "description": "Creates a membership for a user in a specified project\r\nand assigns the user the appropriate project access based on the specified project security role.\r\n            \r\nA project member is a user who has access to a specific project.\r\nProject members are assigned a project security role, which controls the level of access they have to\r\nthe project.\r\nPossible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "projectId",
@@ -5088,7 +5142,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TaskDtoAstroResult"
+                  "$ref": "#/components/schemas/TaskDetailsDtoAstroResult"
                 }
               }
             }
@@ -7128,6 +7182,144 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TimesheetAdminTypeDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/timesheets/approvals": {
+      "post": {
+        "tags": [
+          "Timesheet"
+        ],
+        "summary": "Submit Resource TimeSheet For Approval",
+        "description": "Submit a timesheet for approval for a specific resource.",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The timesheet to be submitted for approval",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TimeSheetApprovalDto"
+                  }
+                ],
+                "description": "Represents a timesheet approval request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeSheetApprovalResponseDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/timesheets/approvals/approve": {
+      "post": {
+        "tags": [
+          "Timesheet"
+        ],
+        "summary": "Approve Resource TimeSheet Approval Request",
+        "description": "Approve a timesheet approval request",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The timesheet to approve",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TimeSheetApprovalDto"
+                  }
+                ],
+                "description": "Represents a timesheet approval request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeSheetApprovalResponseDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/timesheets/approvals/reject": {
+      "post": {
+        "tags": [
+          "Timesheet"
+        ],
+        "summary": "Reject Resource TimeSheet Approval Request",
+        "description": "Rejects a specific resource's timesheet approval request for a specific week.",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The data for rejecting the approval request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TimeSheetApprovalRejectDto"
+                  }
+                ],
+                "description": "Data for rejecting a timesheet approval"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeSheetApprovalResponseDtoAstroResult"
                 }
               }
             }
@@ -9736,6 +9928,27 @@
         "additionalProperties": false,
         "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNPT's are a lightweight version of a project task."
       },
+      "PendingTimeSheetApprovalDto": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "description": "The resource whose timesheet is being approved",
+            "format": "uuid"
+          },
+          "date": {
+            "type": "string",
+            "description": "The date of the week to which the timesheet applies",
+            "format": "date-time"
+          },
+          "resourceName": {
+            "type": "string",
+            "description": "The name of the resource"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about a pending timesheet approval"
+      },
       "PermissionOptionsDto": {
         "type": "object",
         "properties": {
@@ -9762,6 +9975,28 @@
         },
         "additionalProperties": false,
         "description": "Specifies the permissions a member can be changed to on a project.\r\nThis objects values can change based on the logged in user and the role they have."
+      },
+      "ProjectAccessEntryDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "The unique identifier of the user to whom the access permissions apply.",
+            "format": "uuid"
+          },
+          "canEdit": {
+            "type": "boolean",
+            "description": "Indicates whether the user has permission to edit the project.",
+            "nullable": true
+          },
+          "canManage": {
+            "type": "boolean",
+            "description": "Indicates whether the user has permission to manage the project (e.g., assign roles, change settings).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the access permissions assigned to a single user within a project."
       },
       "ProjectChangeStatusDto": {
         "type": "object",
@@ -9934,6 +10169,17 @@
             "description": "An optional description of the Project",
             "nullable": true
           },
+          "shortId": {
+            "maxLength": 8,
+            "type": "string",
+            "description": "Specify the shortId for this project. If left blank a shortId will be generated.\r\n            \r\nA short identifier that uniquely identifies this Project within your Workspace\r\nusing a single letter followed by a number.  This code can be used for APIs\r\nthat accept Project unique identifiers.\r\n            \r\nYou can observe the short ID within the application by observing the URL of\r\nthe page you visit when you click on this project.  The page's URL will appear\r\nin the form `https://pm.app.projectmanager.com/project/board/D16` - in this\r\nexample, the `ShortId` is `D16`.\r\n            \r\nThis id can only be set on creation, and can not be updated.",
+            "nullable": true
+          },
+          "shortName": {
+            "type": "string",
+            "description": "An optional project short name. Up to 7 symbols",
+            "nullable": true
+          },
           "folderId": {
             "type": "string",
             "description": "The unique identifier of the folder of this project, or null if not assigned.",
@@ -10013,12 +10259,26 @@
             "description": "True if this Project is marked as favorite for current user",
             "nullable": true
           },
+          "updatePlannedWithActual": {
+            "type": "boolean",
+            "description": "True if allow actual dates to update planned dates",
+            "nullable": true
+          },
           "taskStatusCreate": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TaskStatusCreateDto"
             },
             "description": "Create default task status upfront",
+            "nullable": true
+          },
+          "workingDays": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProjectWorkingDaysDto"
+              }
+            ],
+            "description": "Working days for the project. If not specified, the workspace working days will be used.\r\nThis value can be set when the project is created but may not be updated afterwards.",
             "nullable": true
           }
         },
@@ -10161,7 +10421,7 @@
           },
           "shortId": {
             "type": "string",
-            "description": "A short identifier that uniquely identifies this Project within your Workspace\r\nusing a single letter followed by a number.  This code can be used for APIs\r\nthat accept Project unique identifiers.\r\n            \r\nYou can observe the short ID within the application by observing the URL of\r\nthe page you visit when you click on this project.  The page's URL will appear\r\nin the form `https://pm.app.projectmanager.com/project/board/D16` - in this\r\nexample, the `ShortId` is `D16`.\r\n            \r\nThis code is automatically assigned for you and cannot be changed."
+            "description": "A short identifier that uniquely identifies this Project within your Workspace\r\nusing a single letter followed by a number.  This code can be used for APIs\r\nthat accept Project unique identifiers.\r\n            \r\nYou can observe the short ID within the application by observing the URL of\r\nthe page you visit when you click on this project.  The page's URL will appear\r\nin the form `https://pm.app.projectmanager.com/project/board/D16` - in this\r\nexample, the `ShortId` is `D16`.\r\n            \r\nThis code is assigned on creation and cannot be changed."
           },
           "folder": {
             "allOf": [
@@ -10334,6 +10594,10 @@
             "description": "The percentage of the project tasks completed",
             "format": "int32",
             "nullable": true
+          },
+          "updatePlannedWithActual": {
+            "type": "boolean",
+            "description": "True if allow actual dates to update planned dates"
           }
         },
         "additionalProperties": false,
@@ -11011,6 +11275,20 @@
         "additionalProperties": false,
         "description": "Dto To Describe a ProjectMember Role"
       },
+      "ProjectMembersAccessDto": {
+        "type": "object",
+        "properties": {
+          "projectAccess": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectAccessEntryDto"
+            },
+            "description": "List of project members and their roles"
+          }
+        },
+        "additionalProperties": false,
+        "description": "DTO to assign roles to a list of project members"
+      },
       "ProjectPermission": {
         "enum": [
           "Guest",
@@ -11355,6 +11633,12 @@
             "description": "The name of the Project.",
             "nullable": true
           },
+          "shortName": {
+            "maxLength": 7,
+            "type": "string",
+            "description": "The short name of the Project.",
+            "nullable": true
+          },
           "description": {
             "type": "string",
             "description": "An optional description of the Project",
@@ -11427,6 +11711,16 @@
           "template": {
             "type": "boolean",
             "description": "True if this Project is a template that will be reused as a framework\r\nfor future Projects.\r\n            \r\nYou can save a Project as a template and reuse it in the future for creating\r\nadditional Projects.  If this Project is a template, set this to `true` and this\r\ntemplate will be available to choose from when creating a new Project within the\r\napplication.",
+            "nullable": true
+          },
+          "updatePlannedWithActual": {
+            "type": "boolean",
+            "description": "True if allow actual dates to update planned dates",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "To update the project notes",
             "nullable": true
           }
         },
@@ -11562,6 +11856,41 @@
         },
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
+      "ProjectWorkingDaysDto": {
+        "type": "object",
+        "properties": {
+          "monday": {
+            "type": "boolean",
+            "description": "Set this value to true if Monday is considered a working day for this project."
+          },
+          "tuesday": {
+            "type": "boolean",
+            "description": "Set this value to true if Tuesday is considered a working day for this project."
+          },
+          "wednesday": {
+            "type": "boolean",
+            "description": "Set this value to true if Wednesday is considered a working day for this project."
+          },
+          "thursday": {
+            "type": "boolean",
+            "description": "Set this value to true if Thursday is considered a working day for this project."
+          },
+          "friday": {
+            "type": "boolean",
+            "description": "Set this value to true if Friday is considered a working day for this project."
+          },
+          "saturday": {
+            "type": "boolean",
+            "description": "Set this value to true if Saturday is considered a working day for this project."
+          },
+          "sunday": {
+            "type": "boolean",
+            "description": "Set this value to true if Sunday is considered a working day for this project."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Indicate which days of the week are considered working days for this project.\r\nThis value can be set when the project is created but may not be updated afterwards."
       },
       "ReactGridLayoutDto": {
         "type": "object",
@@ -12082,6 +12411,10 @@
           "name": {
             "type": "string",
             "description": "The name of this ResourceSkill"
+          },
+          "inUse": {
+            "type": "boolean",
+            "description": "Set to true if this ResourceSkill is in use"
           }
         },
         "additionalProperties": false,
@@ -13000,6 +13333,279 @@
         "additionalProperties": false,
         "description": "A Task is an individual element of work that must be performed to complete a Project.  A\r\nTask can have one or more Resources assigned to it.  Tasks can be linked to other Tasks to\r\nindicate whether they have a dependency or a connection."
       },
+      "TaskDetailsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of this Task.",
+            "format": "uuid"
+          },
+          "project": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TaskProjectDto"
+              }
+            ],
+            "description": "The Project to which this Task belongs."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTagDto"
+            },
+            "description": "The TaskTags that apply to this Task.",
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "description": "The unique identifier of the Project to which this Task belongs.",
+            "format": "uuid"
+          },
+          "assignees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskAssigneeDto"
+            },
+            "description": "The list of assignees who are to work on this Task, if any.",
+            "nullable": true
+          },
+          "todos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTodoDto"
+            },
+            "description": "A list of TaskTodo items, which are sub-tasks within this Task.",
+            "nullable": true
+          },
+          "shortId": {
+            "type": "string",
+            "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The common name of this Task."
+          },
+          "description": {
+            "type": "string",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.  \r\n\r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Gantt view, select a task and click the \"Add Note\" button.\r\n* When in the Board view, click on a task to open the task panel, then edit the \"Description\" field.",
+            "nullable": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TaskStatusDto"
+              }
+            ],
+            "description": "The TaskStatus assigned to this Task."
+          },
+          "plannedStartDate": {
+            "type": "string",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date"
+          },
+          "plannedFinishDate": {
+            "type": "string",
+            "description": "The date when work on this Task is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualStartDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work began on the Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualFinishDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work was completed on this Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualEffort": {
+            "type": "integer",
+            "description": "The actual effort (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "actualDuration": {
+            "type": "integer",
+            "description": "The actual duration (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "The timestamp in UTC when this Task was most recently modified.",
+            "format": "date-time"
+          },
+          "createDate": {
+            "type": "string",
+            "description": "The timestamp in UTC when this Task was created.",
+            "format": "date-time"
+          },
+          "percentComplete": {
+            "type": "integer",
+            "description": "The numerical percentage, from 0-100, representing the percentage completion\r\nfor this Task.  Any numbers below zero or above 100 will be clamped to the\r\nminimum or maximum value.\r\n            \r\nThis value can be edited manually in the Gantt chart view of the application,\r\nor can be selected on the Task Detail page within the Kanban board.",
+            "format": "int32"
+          },
+          "isSummary": {
+            "type": "boolean",
+            "description": "True if this Task is the parent of multiple Tasks underneath it.  A parent Task\r\nis a \"rolled-up\" view of multiple children that allows you to view a section of\r\nwork at a glance.\r\n            \r\nYou can create a summary Task in the Gantt chart view of the application by\r\nadding child tasks underneath a parent Task."
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "Unlocked tasks can be adjusted by changes to their dependencies, resource leveling, or other factors.\r\n            \r\nAll tasks are unlocked by default.\r\n            \r\nIf a task is set to `IsLocked` = `true`, the dates and assigned resources are locked for this task and will not\r\nbe automatically changed by any process."
+          },
+          "isMilestone": {
+            "type": "boolean",
+            "description": "True if this task is a milestone.  Milestones represent a specific point in time for the project.  When a\r\nmilestone is locked, it represents a fixed time within the project that can be used to relate to other tasks."
+          },
+          "priorityId": {
+            "type": "integer",
+            "description": "Return the priority of a task",
+            "format": "int32",
+            "nullable": true
+          },
+          "wbs": {
+            "type": "string",
+            "description": "The WBS (Work Breakdown Structure) number for this task within the Gantt chart hierarchy.  See [What\r\nIs a Work Breakdown Structure (WBS)?](https://www.projectmanager.com/guides/work-breakdown-structure)\r\non Project Manager for more information. The WBS number is an outline number in the form `#.#.#.#`\r\nwhich indicates how tasks are organized and sorted.\r\n            \r\nThe WBS value is only available to users at certain edition levels.  This value can only be changed\r\nif you are a Project Editor.",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "description": "The hexadecimal RRGGBB Task Color as set in the Gantt.  This value is read-only; to set this value,\r\nchange the `Theme` field.",
+            "nullable": true
+          },
+          "theme": {
+            "type": "string",
+            "description": "Color theme definition for this Task.\r\n            \r\neg. Blue, Brown, DarkBlue, DarkGrey, Gold, Green, Grey, LightBrown, LightGreen,\r\nLightGrey, LightPurple, LightYellow, Magenta, Mauve, Navy, Orange, Purple, Red.",
+            "nullable": true
+          },
+          "actualCost": {
+            "type": "number",
+            "description": "The actual cost of this Task to date, if known.",
+            "format": "double",
+            "nullable": true
+          },
+          "actualResourceCost": {
+            "type": "number",
+            "description": "The actual resource cost of this Task",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedCost": {
+            "type": "number",
+            "description": "The planned cost for this Task.  Cannot be negative.",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedResourceCost": {
+            "type": "number",
+            "description": "The planned resource cost of this Task",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedDuration": {
+            "type": "integer",
+            "description": "The planned duration (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "plannedEffort": {
+            "type": "integer",
+            "description": "The planned effort (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "index": {
+            "type": "integer",
+            "description": "The one-based index of this Task within its parent project.\r\n\r\nThis value is used to determine the order of tasks and sub-tasks in a project.\r\nFor example, a Task with an Index of 1 is the first Task in the project.",
+            "format": "int32"
+          },
+          "level": {
+            "type": "integer",
+            "description": "The hierarchical level of this Task within the Task structure.\r\n\r\nA Level of 1 indicates that the Task is at the top level (e.g. a root Task),\r\nwhile higher values indicate deeper levels in the hierarchy (e.g. subtasks).",
+            "format": "int32"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskFieldValueDto"
+            },
+            "description": "Obsolete - use FieldValues instead",
+            "nullable": true,
+            "deprecated": true
+          },
+          "fieldValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskFieldValueDto"
+            },
+            "description": "Task fields array with values",
+            "nullable": true
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskFileDto"
+            },
+            "description": "The list of files associated with this Task, if any.\r\n            \r\nThis field will be present when you fetch a single object.\r\nWhen you query for multiple objects, this field is not included in results by default.\r\nTo expand this field, specify the name of this field in the `$expand` parameter.",
+            "nullable": true
+          },
+          "parentTaskId": {
+            "type": "string",
+            "description": "The parent task of this Task.",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Task is an individual element of work that must be performed to complete a Project.  A\r\nTask can have one or more Resources assigned to it.  Tasks can be linked to other Tasks to\r\nindicate whether they have a dependency or a connection."
+      },
+      "TaskDetailsDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TaskDetailsDto"
+              }
+            ],
+            "description": "A Task is an individual element of work that must be performed to complete a Project.  A\r\nTask can have one or more Resources assigned to it.  Tasks can be linked to other Tasks to\r\nindicate whether they have a dependency or a connection."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "TaskDto": {
         "type": "object",
         "properties": {
@@ -13096,6 +13702,12 @@
             "format": "int32",
             "nullable": true
           },
+          "actualDuration": {
+            "type": "integer",
+            "description": "The actual duration (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
           "modifyDate": {
             "type": "string",
             "description": "The timestamp in UTC when this Task was most recently modified.",
@@ -13180,6 +13792,16 @@
             "format": "int32",
             "nullable": true
           },
+          "index": {
+            "type": "integer",
+            "description": "The one-based index of this Task within its parent project.\r\n\r\nThis value is used to determine the order of tasks and sub-tasks in a project.\r\nFor example, a Task with an Index of 1 is the first Task in the project.",
+            "format": "int32"
+          },
+          "level": {
+            "type": "integer",
+            "description": "The hierarchical level of this Task within the Task structure.\r\n\r\nA Level of 1 indicates that the Task is at the top level (e.g. a root Task),\r\nwhile higher values indicate deeper levels in the hierarchy (e.g. subtasks).",
+            "format": "int32"
+          },
           "fields": {
             "type": "array",
             "items": {
@@ -13208,48 +13830,6 @@
         },
         "additionalProperties": false,
         "description": "A Task is an individual element of work that must be performed to complete a Project.  A\r\nTask can have one or more Resources assigned to it.  Tasks can be linked to other Tasks to\r\nindicate whether they have a dependency or a connection."
-      },
-      "TaskDtoAstroResult": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AstroError"
-              }
-            ],
-            "description": "If the API call failed, this will contain information about the error that occurred.",
-            "nullable": true
-          },
-          "success": {
-            "type": "boolean",
-            "description": "True if the API call succeeded; false otherwise.",
-            "readOnly": true
-          },
-          "hasError": {
-            "type": "boolean",
-            "description": "True if the API call failed.",
-            "readOnly": true
-          },
-          "statusCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpStatusCode"
-              }
-            ],
-            "description": "The HTTP code of the response."
-          },
-          "data": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TaskDto"
-              }
-            ],
-            "description": "A Task is an individual element of work that must be performed to complete a Project.  A\r\nTask can have one or more Resources assigned to it.  Tasks can be linked to other Tasks to\r\nindicate whether they have a dependency or a connection."
-          }
-        },
-        "additionalProperties": false,
-        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
       "TaskDtoListAstroResult": {
         "type": "object",
@@ -14170,6 +14750,110 @@
         "additionalProperties": false,
         "description": "A Task is an individual element of work that must be performed to complete a Project.  A\r\nTask can have one or more Resources assigned to it.  Tasks can be linked to other Tasks to\r\nindicate whether they have a dependency or a connection."
       },
+      "TimeSheetApprovalDto": {
+        "required": [
+          "date",
+          "resourceId"
+        ],
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "description": "The resource whose timesheet is being approved",
+            "format": "uuid"
+          },
+          "date": {
+            "type": "string",
+            "description": "The date of the week to which the timesheet applies",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a timesheet approval request"
+      },
+      "TimeSheetApprovalRejectDto": {
+        "required": [
+          "date",
+          "reason",
+          "resourceId"
+        ],
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "description": "The resource whose timesheet is being approved",
+            "format": "uuid"
+          },
+          "date": {
+            "type": "string",
+            "description": "The date of the week to which the timesheet applies",
+            "format": "date-time"
+          },
+          "reason": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The reason why the timesheet approval is being rejected"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Data for rejecting a timesheet approval"
+      },
+      "TimeSheetApprovalResponseDto": {
+        "type": "object",
+        "properties": {
+          "pendingApprovals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PendingTimeSheetApprovalDto"
+            },
+            "description": "A list of pending timesheet approvals"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Holds the list of pending timesheet approvals"
+      },
+      "TimeSheetApprovalResponseDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TimeSheetApprovalResponseDto"
+              }
+            ],
+            "description": "Holds the list of pending timesheet approvals"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "TimeSheetProjectDto": {
         "type": "object",
         "properties": {
@@ -14445,6 +15129,10 @@
             },
             "description": "The list of files associated with this Timesheet, if any.\r\n            \r\nThis field will be present when you fetch a single object.\r\nWhen you query for multiple objects, this field is not included in results by default.\r\nTo expand this field, specify the name of this field in the `$expand` parameter.",
             "nullable": true
+          },
+          "isCopied": {
+            "type": "boolean",
+            "description": "Indicates if the timesheet entry is copied from another week."
           }
         },
         "additionalProperties": false,
@@ -14596,6 +15284,10 @@
             "type": "integer",
             "description": "Total Minutes",
             "format": "int32"
+          },
+          "isCopied": {
+            "type": "boolean",
+            "description": "Is the timesheet entry copied from another week?"
           }
         },
         "additionalProperties": false,
