@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "ProjectManager API",
+    "title": "ProjectManager.com, Inc API",
     "description": "",
     "contact": {
       "name": "ProjectManager.com, Inc",
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "134.0.125"
+    "version": "136.0.106.0"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -2100,8 +2100,7 @@
             "description": "the id of the npt",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           },
           {
@@ -2119,7 +2118,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NptDtoAstroResult"
+                  "$ref": "#/components/schemas/NptDetailsDtoAstroResult"
                 }
               }
             }
@@ -4787,12 +4786,10 @@
                           "'timeZoneOffset' must be between {From} and {To}. You entered {PropertyValue}."
                         ],
                         "columns": [
-                          "'columns' must not be empty.",
-                          "'columns' must not be empty.",
                           "The specified condition was not met for 'columns'."
                         ],
                         "orderBy": [
-                          "orderBy must be one of the following: name, createDate, assignees, dueDate, impact, level, likelihood, openClosed, priority, response, tags, description, resolution"
+                          "orderBy must be one of the following: name, createDate, assignees, dueDate, impact, level, likelihood, openClosed, priority, response, tags, description, resolution, type"
                         ],
                         "orderDirection": [
                           "orderDirection must be one of the following: asc, desc"
@@ -4800,6 +4797,77 @@
                       }
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/risks": {
+      "get": {
+        "tags": [
+          "Risk"
+        ],
+        "summary": "Get risk list",
+        "description": "Retrieve a list of risks that match an [OData formatted query](https://www.odata.org/).",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "The number of records to return",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the given number of records and then returns $top records",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter the expression according to oData queries",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order collection by this field.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Include related data in the response",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskDtoListAstroResult"
                 }
               }
             }
@@ -7538,6 +7606,29 @@
         "additionalProperties": false,
         "description": "An AssigneeUpsert is a create-or-update process that will either create\r\na new assignment of effort to a TaskAssignee or update an existing effort\r\namount for an existing TaskAssignee."
       },
+      "AssignmentDto": {
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "string",
+            "description": "Task or risk the user is assigned to",
+            "format": "uuid"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "The task or risk project Id",
+            "format": "uuid",
+            "nullable": true
+          },
+          "resourceId": {
+            "type": "string",
+            "description": "Resource identifier",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "User assigned to task or risk"
+      },
       "AstroError": {
         "type": "object",
         "properties": {
@@ -7617,7 +7708,7 @@
           },
           "authScheme": {
             "type": "object",
-            "additionalProperties": {},
+            "additionalProperties": { },
             "description": "Authenication scheme",
             "nullable": true
           }
@@ -9696,6 +9787,118 @@
         "additionalProperties": false,
         "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNpt's are a lightweight version of a project task."
       },
+      "NptDetailsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the NPT",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "The common name of this Task."
+          },
+          "description": {
+            "type": "string",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.\r\n            \r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Board or List view, click on a task to open the task panel, then edit the \"Description\" field.",
+            "nullable": true
+          },
+          "plannedStartDate": {
+            "type": "string",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
+            "format": "date",
+            "nullable": true
+          },
+          "plannedFinishDate": {
+            "type": "string",
+            "description": "The date when work on this Task is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualEffort": {
+            "type": "integer",
+            "description": "The actual effort (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "priorityId": {
+            "type": "integer",
+            "description": "Return the priority of a task",
+            "format": "int32",
+            "nullable": true
+          },
+          "percentComplete": {
+            "type": "integer",
+            "description": "The numerical percentage, from 0-100, representing the percentage completion\r\nfor this Task.  Any numbers below zero or above 100 will be clamped to the\r\nminimum or maximum value.\r\n            \r\nThis value can be edited manually in the Gantt chart view of the application,\r\nor can be selected on the Task Detail page within the Kanban board.",
+            "format": "int32"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NptStatusDto"
+              }
+            ],
+            "description": "The status assigned to this Npt"
+          },
+          "assignees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NptAssigneeDto"
+            },
+            "description": "The list of resources assigned to this Npt"
+          },
+          "shortId": {
+            "type": "string",
+            "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNPT's are a lightweight version of a project task."
+      },
+      "NptDetailsDtoAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NptDetailsDto"
+              }
+            ],
+            "description": "A Npt is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nNPT's are a lightweight version of a project task."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "NptDto": {
         "type": "object",
         "properties": {
@@ -9756,6 +9959,11 @@
               "$ref": "#/components/schemas/NptAssigneeDto"
             },
             "description": "The list of resources assigned to this Npt"
+          },
+          "shortId": {
+            "type": "string",
+            "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -10151,7 +10359,8 @@
           },
           "permission": {
             "type": "string",
-            "description": "Member's role in the project"
+            "description": "Member's role in the project, if left empty the default role will be used\r\n            \r\nFor users with Access All Data permission, this will be set to `Manager`.\r\nFor guests, this will be set to `Guest`.\r\nFor all other users, this will be set to `Editor`.\r\n            \r\nValid values are: `Manager`, `Editor`, `Collaborate`, `Guest`.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -10568,7 +10777,7 @@
           },
           "fields": {
             "type": "object",
-            "additionalProperties": {},
+            "additionalProperties": { },
             "description": "Obsolete - use FieldValues instead",
             "nullable": true,
             "deprecated": true
@@ -12783,6 +12992,177 @@
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
+      "RiskDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of this risk.",
+            "format": "uuid"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "The unique identifier of the Project to which this Task belongs.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "The common name of this Task."
+          },
+          "dueDate": {
+            "type": "string",
+            "description": "The date when work on this risk is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.",
+            "format": "date",
+            "nullable": true
+          },
+          "percentComplete": {
+            "type": "integer",
+            "description": "The numerical percentage, from 0-100, representing the percentage completion\r\nfor this risk.  Any numbers below zero or above 100 will be clamped to the\r\nminimum or maximum value.",
+            "format": "int32"
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Indicates the level of importance assigned to a risk, with 500 being standard priority; the higher the number, the higher the priority.",
+            "format": "int32",
+            "nullable": true
+          },
+          "impact": {
+            "type": "integer",
+            "description": "The potential effect of the risk.",
+            "format": "int32",
+            "nullable": true
+          },
+          "likelihood": {
+            "type": "integer",
+            "description": "Probability or chance of the risk occurring.",
+            "format": "int32",
+            "nullable": true
+          },
+          "responseId": {
+            "type": "integer",
+            "description": "The planned or implemented response to address the identified risk.\r\nAvoid, Mitigate, Transfer, Accept",
+            "format": "int32",
+            "nullable": true
+          },
+          "resolution": {
+            "type": "string",
+            "description": "The actions or strategy planned or taken to mitigate or eliminate the risk.",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "Any additional comments, observations, or details related to the risk.",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "description": "The timestamp in UTC when this risk was created.",
+            "format": "date-time"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "The timestamp in UTC when this risk was most recently modified.",
+            "format": "date-time"
+          },
+          "version": {
+            "type": "integer",
+            "description": "The risk version.",
+            "format": "int32"
+          },
+          "shortId": {
+            "type": "string",
+            "description": "A short ID that can be used to refer to this risk. This short ID is\r\nguaranteed to be unique within your Workspace.",
+            "nullable": true
+          },
+          "taskTypeId": {
+            "type": "integer",
+            "description": "Risk has a taskTypeId of 31",
+            "format": "int32"
+          },
+          "assignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignmentDto"
+            },
+            "description": "Users assigned to the risk."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTagDto"
+            },
+            "description": "Tags applied to the risk."
+          },
+          "owner": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TaskOwnerDto"
+              }
+            ],
+            "description": "The user which created the risk."
+          },
+          "filesCount": {
+            "type": "integer",
+            "description": "The number of files attached to the risk.",
+            "format": "int32",
+            "nullable": true
+          },
+          "commentsCount": {
+            "type": "integer",
+            "description": "The number of comments added to the risk.",
+            "format": "int32",
+            "nullable": true
+          },
+          "riskTypeId": {
+            "type": "integer",
+            "description": "The id of the Risk Type\r\nRisk = 1\r\nAssumption = 2\r\nIssue = 3\r\nDependency = 4\r\nChange = 5",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a potential threat or uncertainty that could impact a project, system, or process.\r\nContains information such as its likelihood, impact, response, and resolution details."
+      },
+      "RiskDtoListAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskDto"
+            },
+            "description": "If the API call succeeded, this will contain the results."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "RiskExportProgressFilterDto": {
         "type": "object",
         "properties": {
@@ -12801,9 +13181,6 @@
         "description": "Risk Progress Filter Settings"
       },
       "RiskExportSettingsDto": {
-        "required": [
-          "columns"
-        ],
         "type": "object",
         "properties": {
           "name": {
@@ -12824,7 +13201,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The list of column names to export"
+            "description": "The list of column names to export, if blank all columns will be exported"
           },
           "orderBy": {
             "enum": [
@@ -12840,10 +13217,11 @@
               "response",
               "tags",
               "description",
-              "resolution"
+              "resolution",
+              "type"
             ],
             "type": "string",
-            "description": "Which column should be used to order the data \r\n \r\n Valid options are: \n * name \n * createDate \n * assignees \n * dueDate \n * impact \n * level \n * likelihood \n * openClosed \n * priority \n * response \n * tags \n * description \n * resolution"
+            "description": "Which column should be used to order the data \r\n \r\n Valid options are: \n * name \n * createDate \n * assignees \n * dueDate \n * impact \n * level \n * likelihood \n * openClosed \n * priority \n * response \n * tags \n * description \n * resolution \n * type"
           },
           "orderDirection": {
             "enum": [
@@ -13011,7 +13389,7 @@
           },
           "data": {
             "type": "object",
-            "additionalProperties": {},
+            "additionalProperties": { },
             "description": "If the API call succeeded, this will contain the results."
           }
         },
@@ -14168,7 +14546,7 @@
           },
           "metadata": {
             "type": "object",
-            "additionalProperties": {},
+            "additionalProperties": { },
             "description": "Customer or system metadata"
           }
         },
@@ -14221,12 +14599,57 @@
         "properties": {
           "data": {
             "type": "object",
-            "additionalProperties": {},
+            "additionalProperties": { },
             "description": "Customer or system metadata"
           }
         },
         "additionalProperties": false,
         "description": "Task Metadata DTO"
+      },
+      "TaskOwnerDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of this Resource.",
+            "format": "uuid"
+          },
+          "initials": {
+            "type": "string",
+            "description": "The resource initials."
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The first name of the person Resource.\r\n            \r\nApplies to personnel Resources only.",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The last name of the person Resource.\r\n            \r\nApplies to personnel Resources only.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "If this Resource is a person who can log on to ProjectManager.com, this value should be the email address of the\r\nperson.  If this Resource is not a person, but you wish to receive email alerts for usage of this Resource, you\r\ncan also add an email address here and notifications will be sent when this Resource is used.\r\n            \r\nOtherwise this value should be `null`.",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "True if this Resource is currently active and valid.  If this value is false,\r\nthis Resource is considered to be deactivated and not available for further use.\r\n            \r\nFor personnel Resources, setting this value to False will make this user unable\r\nto access this Workspace."
+          },
+          "color": {
+            "type": "string",
+            "description": "Read only Hex code of the ColorName",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "description": "The resources avatar url, if any.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Resource represents a person, material, or tool that is used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user."
       },
       "TaskPriorityDto": {
         "type": "object",
@@ -14752,15 +15175,15 @@
       },
       "TimeSheetApprovalDto": {
         "required": [
-          "date",
-          "resourceId"
+          "date"
         ],
         "type": "object",
         "properties": {
           "resourceId": {
             "type": "string",
-            "description": "The resource whose timesheet is being approved",
-            "format": "uuid"
+            "description": "The id for the resource, if null it indicates the request is for the current logged-in user",
+            "format": "uuid",
+            "nullable": true
           },
           "date": {
             "type": "string",
@@ -14774,15 +15197,15 @@
       "TimeSheetApprovalRejectDto": {
         "required": [
           "date",
-          "reason",
-          "resourceId"
+          "reason"
         ],
         "type": "object",
         "properties": {
           "resourceId": {
             "type": "string",
-            "description": "The resource whose timesheet is being approved",
-            "format": "uuid"
+            "description": "The id for the resource, if null it indicates the request is for the current logged-in user",
+            "format": "uuid",
+            "nullable": true
           },
           "date": {
             "type": "string",
@@ -14801,6 +15224,11 @@
       "TimeSheetApprovalResponseDto": {
         "type": "object",
         "properties": {
+          "modifiedDate": {
+            "type": "string",
+            "description": "Date and time (in UTC) that this timesheet entry was last modified.",
+            "format": "date-time"
+          },
           "pendingApprovals": {
             "type": "array",
             "items": {
@@ -15000,12 +15428,14 @@
           "hours": {
             "type": "number",
             "description": "Reported hours. If minutes is specified this property is ignored",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "minutes": {
             "type": "integer",
             "description": "Specify the time in minutes. This overrides the Hours property.",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "taskId": {
             "type": "string",
@@ -15199,6 +15629,104 @@
         "additionalProperties": false,
         "description": "Represents information about a file attached to a Timesheet."
       },
+      "TimesheetFileResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the document.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the file (including extension)."
+          },
+          "url": {
+            "type": "string",
+            "description": "The download or access URL for the file."
+          },
+          "fileType": {
+            "type": "string",
+            "description": "The file type or extension (e.g., \"pdf\", \"png\")."
+          },
+          "fileTypeLabel": {
+            "type": "string",
+            "description": "A user-friendly label describing the file type (e.g., \"PDF Document\")."
+          },
+          "date": {
+            "type": "string",
+            "description": "The date and time the file was uploaded or created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the file in bytes.",
+            "format": "int32"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "The ID of the project associated with the file.",
+            "format": "uuid"
+          },
+          "projectType": {
+            "type": "string",
+            "description": "The type of project (e.g., \"project\", \"admin\")."
+          },
+          "taskId": {
+            "type": "string",
+            "description": "The ID of the task this file is associated with, if any.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "newFilename": {
+            "type": "string",
+            "description": "A new file name for the document, if renamed.",
+            "nullable": true
+          },
+          "canRead": {
+            "type": "boolean",
+            "description": "Whether other users can read the document.",
+            "nullable": true
+          },
+          "thumbnailUrl": {
+            "type": "string",
+            "description": "A thumbnail URL for previewing the file (if applicable).",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "An optional external provider ID (e.g., for integrations).",
+            "nullable": true
+          },
+          "canDelete": {
+            "type": "boolean",
+            "description": "Indicates whether the current user has permission to delete the file."
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "Indicates whether the file is locked and cannot be modified."
+          },
+          "type": {
+            "type": "string",
+            "description": "The object type identifier used by the frontend (\"pm.models.Document\")."
+          },
+          "dirty": {
+            "type": "boolean",
+            "description": "Indicates whether the document has unsaved changes (used by frontend only)."
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "Indicates whether the document is marked for deletion (used by frontend only)."
+          },
+          "isNew": {
+            "type": "boolean",
+            "description": "Indicates whether the document is newly added (used by frontend only)."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a document or file attached to a timesheet day entry."
+      },
       "TimesheetResourceDto": {
         "type": "object",
         "properties": {
@@ -15278,16 +15806,30 @@
           "hours": {
             "type": "number",
             "description": "Total Hours",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "minutes": {
             "type": "integer",
             "description": "Total Minutes",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "isCopied": {
             "type": "boolean",
             "description": "Is the timesheet entry copied from another week?"
+          },
+          "lastUpdatedDate": {
+            "type": "string",
+            "description": "Is the last timesheet modified by the user",
+            "format": "date-time"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimesheetFileResponseDto"
+            },
+            "description": "Document Details"
           }
         },
         "additionalProperties": false,
@@ -15477,6 +16019,15 @@
           "notes": {
             "type": "string",
             "description": "Notes",
+            "nullable": true
+          },
+          "documentIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Document Ids",
             "nullable": true
           }
         },
@@ -15965,11 +16516,6 @@
         "read:all",
         "write:all"
       ]
-    }
-  ],
-  "servers": [
-    {
-      "url": "https://api.projectmanager.com"
     }
   ]
 }
