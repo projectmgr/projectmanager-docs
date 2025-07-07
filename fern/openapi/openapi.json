@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "ProjectManager.com, Inc API",
+    "title": "ProjectManager API",
     "description": "",
     "contact": {
-      "name": "ProjectManager.com, Inc",
+      "name": "ProjectManager API",
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "136.0.106.0"
+    "version": "136.0.106"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -16516,6 +16516,11 @@
         "read:all",
         "write:all"
       ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://api.projectmanager.com"
     }
   ]
 }
