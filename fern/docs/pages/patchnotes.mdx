@@ -1,3 +1,99 @@
+# 2025-08-10 - Patch notes for 138.1.170
+These patch notes summarize the changes from version 137.0.201.
+
+Added 16 new APIs:
+* NptDiscussion.RetrieveNptComments (GET /api/data/non-project-tasks/{nptId}/comments)
+* NptDiscussion.CreateNptComments (POST /api/data/non-project-tasks/{nptId}/comments)
+* NptDiscussion.LikeAComment (POST /api/data/non-project-tasks/comments/{commentId}/like)
+* NptDiscussion.RemovesAThumbsupFromAComment (DELETE /api/data/non-project-tasks/comments/{commentId}/like)
+* NptDiscussion.RemoveAComment (DELETE /api/data/non-project-tasks/comments/{commentId})
+* NptFiles.GetNptFiles (GET /api/data/non-project-tasks/{taskId}/files)
+* NptTag.ReplaceTaskTags (POST /api/data/non-project-tasks/{taskId}/tags)
+* NptTag.AddTaskTagToTask (PUT /api/data/non-project-tasks/{taskId}/tags)
+* NptTag.RemoveTaskTagFromTask (DELETE /api/data/non-project-tasks/{taskId}/tags)
+* NptTag.RetrieveTaskTags (GET /api/data/non-project-tasks/{taskId}/tags)
+* NptTodos.GetNptTodos (GET /api/data/non-project-tasks/{nptId}/todos)
+* NptTodos.CreateNptTodo (POST /api/data/non-project-tasks/{nptId}/todos)
+* NptTodos.UpdateANptTodo (PUT /api/data/non-project-tasks/todos/{todoId})
+* NptTodos.RemoveNptTodo (DELETE /api/data/non-project-tasks/todos/{todoId})
+* TaskFile.GetTaskFiles (GET /api/data/tasks/{taskId}/files)
+* TaskTag.RetrieveTaskTags (GET /api/data/tasks/{taskId}/tags)
+
+Renamed 4 old APIs:
+* Renamed 'Discussion.CreateTaskComments' to 'Discussion.CreateTaskComment'
+* Renamed 'Discussion.LikeAComment' to 'Discussion.LikeComment'
+* Renamed 'Discussion.RemovesAThumbsupFromAComment' to 'Discussion.UnlikeComment'
+* Renamed 'Discussion.RemoveAComment' to 'Discussion.RemoveComment'
+
+Changes to data models:
+* ProjectManagerDto: Added new field `color`
+* ResourceCreateDto: Added new field `language`
+* ResourceDto: Added new field `name`
+* ResourceDto: Added new field `language`
+* ResourceUpdateDto: Added new field `language`
+* TaskCreateDto: Added new field `parentId`
+
+# 2025-07-28 - Patch notes for 137.0.201
+These patch notes summarize the changes from version 136.0.106.
+
+Added 1 new APIs:
+* Resource.DeleteResource (DELETE /api/data/resources/{resourceId})
+
+Renamed 1 old APIs:
+* Renamed 'Risk.GetRiskList' to 'Risk.QueryRisks'
+
+# 2025-07-07 - Patch notes for 136.0.106
+These patch notes summarize the changes from version 135.0.134.
+
+Changes to data models:
+* RiskDto: Added new field `riskTypeId`
+* TimeSheetApprovalResponseDto: Added new field `modifiedDate`
+* TimesheetResponseDto: Added new field `documents`
+* TimesheetUpdateRequestDto: Added new field `documentIds`
+
+# 2025-07-02 - Patch notes for 135.0.134 (#75)
+These patch notes summarize the changes from version 134.0.125.
+
+Added 1 new APIs:
+* Risk.GetRiskList (GET /api/data/risks)
+
+Changes to existing APIs:
+* Npt.GetNpt changed [nptId].Value.DataType from string to uuid
+
+Changes to data models:
+* NptDto: Added new field `shortId`
+* TimesheetResponseDto: Added new field `lastUpdatedDate`
+
+# 2025-06-09 - Patch notes for 134.0.125
+These patch notes summarize the changes from version 133.1.136.
+
+Added 3 new APIs:
+* Timesheet.SubmitResourceTimeSheetForApproval (POST /api/data/timesheets/approvals)
+* Timesheet.ApproveResourceTimeSheetApprovalRequest (POST /api/data/timesheets/approvals/approve)
+* Timesheet.RejectResourceTimeSheetApprovalRequest (POST /api/data/timesheets/approvals/reject)
+
+Changes to data models:
+* ProjectCreateDto: Added new field `shortId`
+* TaskDto: Added new field `actualDuration`
+
+# 2025-05-27 - Patch notes for 133.1.136
+These patch notes summarize the changes from version 132.1.183.
+
+Changes to data models:
+* TaskDto: Added new field `index`
+* TaskDto: Added new field `level`
+* TimesheetDto: Added new field `isCopied`
+* TimesheetResponseDto: Added new field `isCopied`
+
+# 2025-05-19 - Patch notes for 132.1.183
+These patch notes summarize the changes from version 131.1.208.
+
+Added 1 new APIs:
+* ProjectMembers.UpdateAListOfUserProjectMembership (PUT /api/data/projects/{projectId}/members)
+
+Changes to data models:
+* ProjectUpdateDto: Added new field `notes`
+
 # 2024-11-18 - Patch notes for 122.0.214
 
 These patch notes summarize the changes from version 121.0.4887.

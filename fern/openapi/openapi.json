@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "136.0.106"
+    "version": "138.1.170"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -445,7 +445,7 @@
         "tags": [
           "Discussion"
         ],
-        "summary": "Create Task Comments",
+        "summary": "Create Task Comment",
         "description": "Adds a Markdown-formatted comment to a task.\r\n            \r\nTasks can have discussions attached to them.  These discussions can include text with simple\r\nformatting.  Discussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges.",
         "parameters": [
           {
@@ -501,7 +501,7 @@
         "tags": [
           "Discussion"
         ],
-        "summary": "Like a comment",
+        "summary": "Like Comment",
         "description": "Puts a thumbsup on a comment",
         "parameters": [
           {
@@ -540,7 +540,7 @@
         "tags": [
           "Discussion"
         ],
-        "summary": "Removes a thumbsup from a comment",
+        "summary": "Unlike Comment",
         "description": "Unlike a comment that was previously liked",
         "parameters": [
           {
@@ -581,7 +581,7 @@
         "tags": [
           "Discussion"
         ],
-        "summary": "Remove a comment",
+        "summary": "Remove Comment",
         "description": "Removes a comment by it's id",
         "parameters": [
           {
@@ -2265,6 +2265,222 @@
         }
       }
     },
+    "/api/data/non-project-tasks/{nptId}/comments": {
+      "get": {
+        "tags": [
+          "NptDiscussion"
+        ],
+        "summary": "Retrieve Npt Comments",
+        "description": "Retrieve all comments written about a Npt",
+        "parameters": [
+          {
+            "name": "nptId",
+            "in": "path",
+            "description": "The unique ID number of the Npt to retrieve comments",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscussionCommentDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "NptDiscussion"
+        ],
+        "summary": "Create Npt Comments",
+        "description": "Adds a Markdown-formatted comment to a Npt.\r\n            \r\nNpts can have discussions attached to them.  These discussions can include text with simple\r\nformatting.  Discussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges.",
+        "parameters": [
+          {
+            "name": "nptId",
+            "in": "path",
+            "description": "The unique ID number of the Npt being commented upon",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The Markdown-formatted text of the comment",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/DiscussionCommentCreateDto"
+                  }
+                ],
+                "description": "Tasks can have discussions attached to them.  These discussions can include text with simple\r\nformatting.  Discussion comments are formatted using [Markdown](https://www.markdownguide.org/)\r\nand users should be aware that HTML embedding is not permitted due to the risk of cross-site\r\nattacks and other embedding challenges."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscussionCommentCreateResponseDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/non-project-tasks/comments/{commentId}/like": {
+      "post": {
+        "tags": [
+          "NptDiscussion"
+        ],
+        "summary": "Like a comment",
+        "description": "Puts a thumbsup on a comment",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "the id of the comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "NptDiscussion"
+        ],
+        "summary": "Removes a thumbsup from a comment",
+        "description": "Unlike a comment that was previously liked",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "the id of the comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/non-project-tasks/comments/{commentId}": {
+      "delete": {
+        "tags": [
+          "NptDiscussion"
+        ],
+        "summary": "Remove a comment",
+        "description": "Removes a comment by it's id",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "Remove a comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/data/non-project-tasks/{taskId}/files": {
       "post": {
         "tags": [
@@ -2324,6 +2540,45 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "NptFiles"
+        ],
+        "summary": "Get Npt Files",
+        "description": "retrieves Npt files",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The reference to the Npt",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskFileDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/data/non-project-tasks/statuses": {
@@ -2350,6 +2605,393 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NptStatusDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/non-project-tasks/{taskId}/tags": {
+      "post": {
+        "tags": [
+          "NptTag"
+        ],
+        "summary": "Replace TaskTags",
+        "description": "Replaces the existing TaskTags on a Task with a newly provided list of TaskTags.\r\n            \r\nA TaskTag is a connection between a Task and a Tag.  Each Task can have zero, one or many\r\nTaskTags associated with it.  TaskTags can be assigned and removed from the Task to help you\r\nclassify your Tasks and prioritize work.",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique identifier of the Task for which we will replace TaskTags",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The replacement list of TaskTags for this Task",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NameDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTagDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "NptTag"
+        ],
+        "summary": "Add TaskTag to Task",
+        "description": "Add one or more new TaskTags to a Task.\r\n            \r\nA TaskTag is a connection between a Task and a Tag.  Each Task can have zero, one or many\r\nTaskTags associated with it.  TaskTags can be assigned and removed from the Task to help you\r\nclassify your Tasks and prioritize work.",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique identifier of the Task for which we will add TaskTags",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The new TaskTags to add to this Task",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NameDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTagDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "NptTag"
+        ],
+        "summary": "Remove TaskTag from Task",
+        "description": "Removes one or more existing TaskTags from a Task.\r\n            \r\nA TaskTag is a connection between a Task and a Tag.  Each Task can have zero, one or many\r\nTaskTags associated with it.  TaskTags can be assigned and removed from the Task to help you\r\nclassify your Tasks and prioritize work.",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique identifier of the Task for which we will remove existing TaskTags",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The TaskTags to remove from this Task",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NameDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "NptTag"
+        ],
+        "summary": "Retrieve TaskTags",
+        "description": "Retrieve the existing TaskTags on a Task\r\n            \r\nA TaskTag is a connection between a Task and a Tag.  Each Task can have zero, one or many\r\nTaskTags associated with it.  TaskTags can be assigned and removed from the Task to help you\r\nclassify your Tasks and prioritize work.",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique identifier of the Task for which we will retrieve TaskTags",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTagDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/non-project-tasks/{nptId}/todos": {
+      "get": {
+        "tags": [
+          "NptTodos"
+        ],
+        "summary": "Get Npt Todos",
+        "description": "Get todos for a npt",
+        "parameters": [
+          {
+            "name": "nptId",
+            "in": "path",
+            "description": "the id of the npt",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTodoDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "NptTodos"
+        ],
+        "summary": "Create Npt Todo",
+        "description": "Creates a new todo and associates it with the npt",
+        "parameters": [
+          {
+            "name": "nptId",
+            "in": "path",
+            "description": "the id of the npt",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The todo to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskTodoCreateDto"
+                  }
+                ],
+                "description": "The properties for creating a TaskTodo."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTodoDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/non-project-tasks/todos/{todoId}": {
+      "put": {
+        "tags": [
+          "NptTodos"
+        ],
+        "summary": "Update A Npt Todo",
+        "description": "Update a Todo",
+        "parameters": [
+          {
+            "name": "todoId",
+            "in": "path",
+            "description": "the id of the todo",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the fields to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskTodoUpdateDto"
+                  }
+                ],
+                "description": "The properties for updating a task dto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTodoDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "NptTodos"
+        ],
+        "summary": "Remove Npt Todo",
+        "description": "Remove Npt Todo",
+        "parameters": [
+          {
+            "name": "todoId",
+            "in": "path",
+            "description": "the id of the todo to remove",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
                 }
               }
             }
@@ -4204,6 +4846,45 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Resource"
+        ],
+        "summary": "Delete Resource",
+        "description": "Deletes an existing Resource based on information you provide.\r\n            \r\nA Resource represents a person, material, or tool used within your Projects.\r\nWhen you attach a Resources to more than one Task, the software will schedule the usage\r\nof your Resource so that it is not allocated to more than one Task at the same time.\r\nThe users in your Workspace are also considered Resources.  To invite a new User to your\r\nWorkspace, create a new Resource for that user.",
+        "parameters": [
+          {
+            "name": "resourceId",
+            "in": "path",
+            "description": "The id of the resource",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/data/resources/bulk": {
@@ -4809,8 +5490,8 @@
         "tags": [
           "Risk"
         ],
-        "summary": "Get risk list",
-        "description": "Retrieve a list of risks that match an [OData formatted query](https://www.odata.org/).",
+        "summary": "Query Risks",
+        "description": "Retrieve a list of risks that match an [OData formatted query](https://www.odata.org/).\r\n            \r\nA Risk represents a tracked item of concern for a project.  Risks may be categorized as Changes, Risks,\r\nAssumptions, Issues, or Dependencies.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -6254,6 +6935,45 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "TaskFile"
+        ],
+        "summary": "Get Task Files",
+        "description": "retrieves task files",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The reference to the task",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskFileDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/data/tasks/{taskId}/metadata": {
@@ -6787,6 +7507,45 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ChangeSetStatusDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "TaskTag"
+        ],
+        "summary": "Retrieve TaskTags",
+        "description": "Retrieve the existing TaskTags on a Task\r\n            \r\nA TaskTag is a connection between a Task and a Tag.  Each Task can have zero, one or many\r\nTaskTags associated with it.  TaskTags can be assigned and removed from the Task to help you\r\nclassify your Tasks and prioritize work.",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique identifier of the Task for which we will retrieve TaskTags",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTagDtoListAstroResult"
                 }
               }
             }
@@ -7708,7 +8467,7 @@
           },
           "authScheme": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Authenication scheme",
             "nullable": true
           }
@@ -10777,7 +11536,7 @@
           },
           "fields": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Obsolete - use FieldValues instead",
             "nullable": true,
             "deprecated": true
@@ -11331,6 +12090,11 @@
           "avatarUrl": {
             "type": "string",
             "description": "Avatar's url",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "description": "Collaboration Color for this resource.\r\n            \r\neg. teal, cyan, lightblue, blurple, purple, pink, orange, gray",
             "nullable": true
           }
         },
@@ -12285,6 +13049,11 @@
             "description": "Collaboration Color for this resource.\r\n            \r\neg. teal, cyan, lightblue, blurple, purple, pink, orange, gray",
             "nullable": true
           },
+          "language": {
+            "type": "string",
+            "description": "Language code for this Resource.",
+            "nullable": true
+          },
           "country": {
             "type": "string",
             "description": "Deprecated - this property is no longer being used.  Please pass in Country data on\r\nthe CountryCode property.\r\n            \r\nA text field indicating the country in which this Resource is located.  This value\r\nis not constrained to the list of known ISO 3166 country names or codes.",
@@ -12330,6 +13099,11 @@
           "initials": {
             "type": "string",
             "description": "The resource initials."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the Resource. Usually this is the same as the FirstName and LastName",
+            "nullable": true
           },
           "firstName": {
             "type": "string",
@@ -12457,6 +13231,11 @@
           "avatarUrl": {
             "type": "string",
             "description": "The resources avatar url, if any.",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "description": "The language preference for this Resource, used for localization and communication.",
             "nullable": true
           }
         },
@@ -12899,6 +13678,11 @@
           "colorName": {
             "type": "string",
             "description": "Collaboration Color for this resource.\r\n            \r\neg. teal, cyan, lightblue, blurple, purple, pink, orange, gray",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "description": "Translation Language for this resource.\r\n            \r\ne.g. en-US, en-GB, fr-FR, es-ES",
             "nullable": true
           }
         },
@@ -13389,7 +14173,7 @@
           },
           "data": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "If the API call succeeded, this will contain the results."
           }
         },
@@ -13705,6 +14489,12 @@
           "isMilestone": {
             "type": "boolean",
             "description": "True if this task is a milestone.  Milestones represent a specific point in time for the project.  When a\r\nmilestone is locked, it represents a fixed time within the project that can be used to relate to other tasks.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "string",
+            "description": "ParentId",
+            "format": "uuid",
             "nullable": true
           }
         },
@@ -14531,6 +15321,47 @@
         "additionalProperties": false,
         "description": "Represents a file associated with a Task in project manager"
       },
+      "TaskFileDtoListAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskFileDto"
+            },
+            "description": "If the API call succeeded, this will contain the results."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
+      },
       "TaskMetadataSearchDto": {
         "type": "object",
         "properties": {
@@ -14546,7 +15377,7 @@
           },
           "metadata": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Customer or system metadata"
           }
         },
@@ -14599,7 +15430,7 @@
         "properties": {
           "data": {
             "type": "object",
-            "additionalProperties": { },
+            "additionalProperties": {},
             "description": "Customer or system metadata"
           }
         },
@@ -14918,6 +15749,47 @@
         },
         "additionalProperties": false,
         "description": "A TaskTag is a connection between a Task and a Tag.  Each Task can have zero, one or many\r\nTaskTags associated with it.  TaskTags can be assigned and removed from the Task to help you\r\nclassify your Tasks and prioritize work."
+      },
+      "TaskTagDtoListAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTagDto"
+            },
+            "description": "If the API call succeeded, this will contain the results."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
       "TaskTodoCreateDto": {
         "type": "object",
