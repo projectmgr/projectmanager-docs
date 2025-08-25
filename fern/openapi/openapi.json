@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "138.1.170"
+    "version": "139.0.157"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -3988,6 +3988,37 @@
         }
       }
     },
+    "/api/data/projects/membership": {
+      "get": {
+        "tags": [
+          "ProjectMembers"
+        ],
+        "summary": "Retrieve Projects the user is a member of",
+        "description": "Returns a list of project permissions the user is a member of",
+        "parameters": [
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectAccessDtoListAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/data/projects/{projectId}/members": {
       "get": {
         "tags": [
@@ -4945,6 +4976,47 @@
             "name": "resourceId",
             "in": "path",
             "description": "The unique identifier of the Resource to send an invitation email",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/resources/{resourceId}/avatar": {
+      "get": {
+        "tags": [
+          "Resource"
+        ],
+        "summary": "Get Resource Avatar",
+        "description": "Get Resource Avatar",
+        "parameters": [
+          {
+            "name": "resourceId",
+            "in": "path",
+            "description": "The id of the resource",
             "required": true,
             "schema": {
               "type": "string",
@@ -7659,7 +7731,7 @@
           {
             "name": "todoId",
             "in": "path",
-            "description": "the id of the task",
+            "description": "the id of the todo",
             "required": true,
             "schema": {
               "type": "string",
@@ -10575,9 +10647,51 @@
             "format": "date",
             "nullable": true
           },
+          "actualStartDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work began on the Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualFinishDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work was completed on this Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
           "actualEffort": {
             "type": "integer",
             "description": "The actual effort (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "actualDuration": {
+            "type": "integer",
+            "description": "The actual duration (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "actualCost": {
+            "type": "number",
+            "description": "The actual cost of this Task to date, if known.",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedCost": {
+            "type": "number",
+            "description": "The planned cost for this Task.  Cannot be negative.",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedDuration": {
+            "type": "integer",
+            "description": "The planned duration (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "plannedEffort": {
+            "type": "integer",
+            "description": "The planned effort (in minutes) for this Task.",
             "format": "int32",
             "nullable": true
           },
@@ -10610,6 +10724,22 @@
           "shortId": {
             "type": "string",
             "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace.",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTagDto"
+            },
+            "description": "The TaskTags that apply to this Task.",
+            "nullable": true
+          },
+          "todos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTodoDto"
+            },
+            "description": "A list of TaskTodo items, which are sub-tasks within this Task.",
             "nullable": true
           }
         },
@@ -10687,9 +10817,51 @@
             "format": "date",
             "nullable": true
           },
+          "actualStartDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work began on the Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualFinishDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work was completed on this Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
           "actualEffort": {
             "type": "integer",
             "description": "The actual effort (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "actualDuration": {
+            "type": "integer",
+            "description": "The actual duration (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "actualCost": {
+            "type": "number",
+            "description": "The actual cost of this Task to date, if known.",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedCost": {
+            "type": "number",
+            "description": "The planned cost for this Task.  Cannot be negative.",
+            "format": "double",
+            "nullable": true
+          },
+          "plannedDuration": {
+            "type": "integer",
+            "description": "The planned duration (in minutes) for this Task.",
+            "format": "int32",
+            "nullable": true
+          },
+          "plannedEffort": {
+            "type": "integer",
+            "description": "The planned effort (in minutes) for this Task.",
             "format": "int32",
             "nullable": true
           },
@@ -10722,6 +10894,22 @@
           "shortId": {
             "type": "string",
             "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace.",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTagDto"
+            },
+            "description": "The TaskTags that apply to this Task.",
+            "nullable": true
+          },
+          "todos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskTodoDto"
+            },
+            "description": "A list of TaskTodo items, which are sub-tasks within this Task.",
             "nullable": true
           }
         },
@@ -10780,8 +10968,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this TaskStatus.",
-            "nullable": true
+            "description": "The name of this TaskStatus."
           },
           "order": {
             "type": "integer",
@@ -10890,6 +11077,33 @@
             },
             "description": "If specified, replaces the list of resources assigned to this npt.",
             "nullable": true
+          },
+          "actualStartDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work began on the Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
+          "actualFinishDate": {
+            "type": "string",
+            "description": "If set, this is the actual date when work was completed on the Task.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\nFor reporting purposes, this date is calculated against the official time zone\r\nof the Workspace.\r\n            \r\nFor example: A Task has a planned completion date of July 5, 2023 in a Workspace\r\nthat has a time zone of US Pacific Time (GMT-7 or GMT-8, depending on daylight\r\nsavings time).  This project is considered overdue on 12:01 AM July 6th 2023 in\r\nUS Pacific time.",
+            "format": "date",
+            "nullable": true
+          },
+          "plannedCost": {
+            "minimum": 0,
+            "type": "number",
+            "description": "The planned cost for this Task.  Cannot be negative.",
+            "format": "double",
+            "default": null,
+            "nullable": true
+          },
+          "actualCost": {
+            "minimum": 0,
+            "type": "number",
+            "description": "If set, this represents the actual tracked cost for this Task.",
+            "format": "double",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -10942,6 +11156,73 @@
         },
         "additionalProperties": false,
         "description": "Specifies the permissions a member can be changed to on a project.\r\nThis objects values can change based on the logged in user and the role they have."
+      },
+      "ProjectAccessDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "The unique identifier of the user of this ProjectMember.",
+            "format": "uuid"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "The unique identifier of the user of this Project.",
+            "format": "uuid"
+          },
+          "role": {
+            "type": "string",
+            "description": "The role of the user in the project",
+            "nullable": true
+          },
+          "hasJoined": {
+            "type": "boolean",
+            "description": "If set to true, the user has joined the project.\r\nIf set to false, the user may still have access due to the access all projects permission.\r\nIn the UI only projects that the user has joined will be shown in the navigation on the left"
+          }
+        },
+        "additionalProperties": false,
+        "description": "ProjectAccessDto"
+      },
+      "ProjectAccessDtoListAstroResult": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AstroError"
+              }
+            ],
+            "description": "If the API call failed, this will contain information about the error that occurred.",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the API call succeeded; false otherwise.",
+            "readOnly": true
+          },
+          "hasError": {
+            "type": "boolean",
+            "description": "True if the API call failed.",
+            "readOnly": true
+          },
+          "statusCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HttpStatusCode"
+              }
+            ],
+            "description": "The HTTP code of the response."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectAccessDto"
+            },
+            "description": "If the API call succeeded, this will contain the results."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
       "ProjectAccessEntryDto": {
         "type": "object",
@@ -11247,6 +11528,11 @@
               }
             ],
             "description": "Working days for the project. If not specified, the workspace working days will be used.\r\nThis value can be set when the project is created but may not be updated afterwards.",
+            "nullable": true
+          },
+          "externalReferenceId": {
+            "type": "string",
+            "description": "An optional external reference identifier for this Project.\r\nThis value can be used to link the Project to records in external systems,\r\nsuch as ERP, CRM, or other integrations.",
             "nullable": true
           }
         },
@@ -11566,6 +11852,11 @@
           "updatePlannedWithActual": {
             "type": "boolean",
             "description": "True if allow actual dates to update planned dates"
+          },
+          "externalReferenceId": {
+            "type": "string",
+            "description": "An optional external reference identifier for this Project.\r\nThis value can be used to link the Project to records in external systems,\r\nsuch as ERP, CRM, or other integrations.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -12085,7 +12376,8 @@
           },
           "initials": {
             "type": "string",
-            "description": "Manager initials"
+            "description": "Manager initials",
+            "nullable": true
           },
           "avatarUrl": {
             "type": "string",
@@ -12694,6 +12986,11 @@
           "notes": {
             "type": "string",
             "description": "To update the project notes",
+            "nullable": true
+          },
+          "externalReferenceId": {
+            "type": "string",
+            "description": "An optional external reference identifier for this Project.\r\nThis value can be used to link the Project to records in external systems,\r\nsuch as ERP, CRM, or other integrations.",
             "nullable": true
           }
         },
@@ -14727,6 +15024,17 @@
             "description": "The parent task of this Task.",
             "format": "uuid",
             "nullable": true
+          },
+          "childTaskCount": {
+            "type": "integer",
+            "description": "The number of child tasks",
+            "format": "int32",
+            "nullable": true
+          },
+          "parentTaskName": {
+            "type": "string",
+            "description": "The name for the parent task of this Task.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -15607,8 +15915,7 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of this TaskStatus.",
-            "nullable": true
+            "description": "The name of this TaskStatus."
           },
           "order": {
             "type": "integer",
@@ -17293,6 +17600,11 @@
             "type": "string",
             "description": "The full name of the currently logged in user."
           },
+          "workSpaceId": {
+            "type": "string",
+            "description": "The id of the workspace the user is currently logged into.",
+            "format": "uuid"
+          },
           "workSpaceName": {
             "type": "string",
             "description": "The name of the Workspace that the current user has logged onto.  For most companies, the workspace\r\nname will be the name of the business."
@@ -17318,6 +17630,26 @@
               }
             ],
             "description": "Workspace Permissions that the user has within the current Workspace."
+          },
+          "workSpaceStatus": {
+            "type": "string",
+            "description": "The current account status of this WorkSpace. This can be one of four statuses:\r\n - Trial\r\n - Active\r\n - Cancelled\r\n - Expired"
+          },
+          "workSpaceIsActive": {
+            "type": "boolean",
+            "description": "This is true if the WorkSpace is in the Active or Trial state."
+          },
+          "workSpaceCountry": {
+            "type": "string",
+            "description": "The name of the country that the current Workspace is located in."
+          },
+          "workSpaceCountryCode": {
+            "type": "string",
+            "description": "Returns the iso country code for the current workspace."
+          },
+          "location": {
+            "type": "string",
+            "description": "The location of the user, which is a combination of city, state (US Only), and country."
           }
         },
         "additionalProperties": false,
