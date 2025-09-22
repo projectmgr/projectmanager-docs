@@ -1,3 +1,20 @@
+# Patch notes for 141.1.156
+
+These patch notes summarize the changes from version 139.0.157.
+
+Added 6 new APIs:
+* Project.RestoreProject (PUT /api/data/projects/{projectId}/restore)
+* TaskRecurrency.CreateWeeklyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/weekly)
+* TaskRecurrency.CreateMonthlyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/monthly)
+* TaskRecurrency.CreateDailyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/daily)
+* TaskRecurrency.CreateYearlyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/yearly)
+* TaskRecurrency.DeleteRecurringTasks (DELETE /api/data/tasks/{taskId}/recurring/{option})
+
+Changes to data models:
+* ProjectCreateDto: Added new field `template`
+
+
+
 # Patch notes for 139.0.157
 
 These patch notes summarize the changes from version 138.1.170.
