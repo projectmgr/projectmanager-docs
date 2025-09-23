@@ -1,4 +1,22 @@
-# 2025-08-22 - Patch notes for 139.0.157
+# Patch notes for 141.1.156
+
+These patch notes summarize the changes from version 139.0.157.
+
+Added 6 new APIs:
+* Project.RestoreProject (PUT /api/data/projects/{projectId}/restore)
+* TaskRecurrency.CreateWeeklyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/weekly)
+* TaskRecurrency.CreateMonthlyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/monthly)
+* TaskRecurrency.CreateDailyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/daily)
+* TaskRecurrency.CreateYearlyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/yearly)
+* TaskRecurrency.DeleteRecurringTasks (DELETE /api/data/tasks/{taskId}/recurring/{option})
+
+Changes to data models:
+* ProjectCreateDto: Added new field `template`
+
+
+
+# Patch notes for 139.0.157
+
 These patch notes summarize the changes from version 138.1.170.
 
 Added 2 new APIs:
@@ -40,7 +58,10 @@ Changes to data models:
 * WorkSpaceUserInfoDto: Added new field `workSpaceCountryCode`
 * WorkSpaceUserInfoDto: Added new field `location`
 
-# 2025-08-10 - Patch notes for 138.1.170
+
+
+# Patch notes for 138.1.170
+
 These patch notes summarize the changes from version 137.0.201.
 
 Added 16 new APIs:
@@ -75,7 +96,10 @@ Changes to data models:
 * ResourceUpdateDto: Added new field `language`
 * TaskCreateDto: Added new field `parentId`
 
-# 2025-07-28 - Patch notes for 137.0.201
+
+
+# Patch notes for 137.0.201
+
 These patch notes summarize the changes from version 136.0.106.
 
 Added 1 new APIs:
@@ -84,29 +108,39 @@ Added 1 new APIs:
 Renamed 1 old APIs:
 * Renamed 'Risk.GetRiskList' to 'Risk.QueryRisks'
 
-# 2025-07-07 - Patch notes for 136.0.106
+
+
+# Patch notes for 136.0.106
+
 These patch notes summarize the changes from version 135.0.134.
 
 Changes to data models:
 * RiskDto: Added new field `riskTypeId`
 * TimeSheetApprovalResponseDto: Added new field `modifiedDate`
+* TimesheetResponseDto: Changed the data type of the field `lastUpdatedDate` from `string` to `date-time`
 * TimesheetResponseDto: Added new field `documents`
 * TimesheetUpdateRequestDto: Added new field `documentIds`
 
-# 2025-07-02 - Patch notes for 135.0.134 (#75)
+
+
+# Patch notes for 135.0.134
+
 These patch notes summarize the changes from version 134.0.125.
 
 Added 1 new APIs:
 * Risk.GetRiskList (GET /api/data/risks)
 
 Changes to existing APIs:
-* Npt.GetNpt changed [nptId].Value.DataType from string to uuid
+* Npt.GetNpt changed the data type of the parameter `nptId` from `uuid` to `string`
 
 Changes to data models:
 * NptDto: Added new field `shortId`
 * TimesheetResponseDto: Added new field `lastUpdatedDate`
 
-# 2025-06-09 - Patch notes for 134.0.125
+
+
+# Patch notes for 134.0.125
+
 These patch notes summarize the changes from version 133.1.136.
 
 Added 3 new APIs:
@@ -118,7 +152,10 @@ Changes to data models:
 * ProjectCreateDto: Added new field `shortId`
 * TaskDto: Added new field `actualDuration`
 
-# 2025-05-27 - Patch notes for 133.1.136
+
+
+# Patch notes for 133.1.136
+
 These patch notes summarize the changes from version 132.1.183.
 
 Changes to data models:
@@ -127,7 +164,10 @@ Changes to data models:
 * TimesheetDto: Added new field `isCopied`
 * TimesheetResponseDto: Added new field `isCopied`
 
-# 2025-05-19 - Patch notes for 132.1.183
+
+
+# Patch notes for 132.1.183
+
 These patch notes summarize the changes from version 131.1.208.
 
 Added 1 new APIs:
@@ -136,7 +176,88 @@ Added 1 new APIs:
 Changes to data models:
 * ProjectUpdateDto: Added new field `notes`
 
-# 2024-11-18 - Patch notes for 122.0.214
+
+
+# Patch notes for 131.1.208
+
+These patch notes summarize the changes from version 130.1.162.
+
+Changes to data models:
+* ProjectCreateDto: Added new field `shortName`
+* ProjectCreateDto: Added new field `updatePlannedWithActual`
+* ProjectCreateDto: Added new field `workingDays`
+* ProjectDto: Added new field `updatePlannedWithActual`
+* ProjectUpdateDto: Added new field `shortName`
+* ProjectUpdateDto: Added new field `updatePlannedWithActual`
+* ResourceSkillDto: Added new field `inUse`
+
+
+
+# Patch notes for 130.1.162
+
+These patch notes summarize the changes from version 129.0.113.
+
+Added 1 new APIs:
+* RiskFile.UploadRiskFile (POST /api/data/risks/{riskId}/files)
+
+Changes to data models:
+* ProjectCreateDto: Removed field `template`
+* ProjectUpdateDto: Added new field `template`
+
+
+
+# Patch notes for 129.0.113
+
+These patch notes summarize the changes from version 127.0.185.
+
+Added 6 new APIs:
+* Me.UpdateMyAvatar (POST /api/data/me/avatar)
+* Npt.GetNpt (GET /api/data/non-project-tasks/{nptId})
+* Npt.UpdateNpt (PUT /api/data/non-project-tasks/{nptId})
+* Npt.RemoveNpt (DELETE /api/data/non-project-tasks/{nptId})
+* Npt.CreateNpt (POST /api/data/non-project-tasks)
+* NptStatus.GetNptTaskStatuses (GET /api/data/non-project-tasks/statuses)
+
+Renamed 4 old APIs:
+* Renamed 'TaskTodo.GetTodosForATask' to 'TaskTodo.GetTodos'
+* Renamed 'TaskTodo.CreateATodoForATask' to 'TaskTodo.CreateTodo'
+* Renamed 'TaskTodo.UpdateATodo' to 'TaskTodo.UpdateTodo'
+* Renamed 'TaskTodo.DeleteATodo' to 'TaskTodo.DeleteTodo'
+
+Changes to data models:
+* TimesheetDto: Changed the data type of the field `date` from `date-time` to `date`
+* TimesheetTaskDto: Changed the data type of the field `plannedStartDate` from `date-time` to `date`
+* TimesheetTaskDto: Changed the data type of the field `plannedFinishDate` from `date-time` to `date`
+* TimesheetTaskDto: Changed the data type of the field `actualStartDate` from `date-time` to `date`
+* TimesheetTaskDto: Changed the data type of the field `actualFinishDate` from `date-time` to `date`
+
+Deprecated 1 old APIs:
+* Changeset.RetrieveChangesetsByProjectID
+
+
+
+# Patch notes for 127.0.185
+
+These patch notes summarize the changes from version 125.1.169.
+
+Changes to data models:
+* LicenseDto: Changed the data type of the field `id` from `uuid` to `string`
+
+Deprecated 1 old APIs:
+* WorkSpace.InviteToWorkspace
+
+
+
+# Patch notes for 125.1.169
+
+These patch notes summarize the changes from version 122.0.214.
+
+Changes to data models:
+* WorkSpaceUserInfoDto: Added new field `permissions`
+
+
+
+# Patch notes for 122.0.214
 
 These patch notes summarize the changes from version 121.0.4887.
 
@@ -146,7 +267,49 @@ Added 3 new APIs:
 * ProjectCustomer.DeleteProjectCustomer (DELETE /api/data/projects/customers/{customerId})
 
 
-# 2024-10-20 - Patch notes for 120.0.4689
+
+# Patch notes for 121.0.4887
+
+These patch notes summarize the changes from version 120.0.4689.
+
+Added 7 new APIs:
+* Discussion.LikeAComment (POST /api/data/comments/{commentId}/like)
+* Discussion.RemovesAThumbsupFromAComment (DELETE /api/data/comments/{commentId}/like)
+* Discussion.RemoveAComment (DELETE /api/data/comments/{commentId})
+* TaskTodo.GetTodosForATask (GET /api/data/tasks/{taskId}/todos)
+* TaskTodo.CreateATodoForATask (POST /api/data/tasks/{taskId}/todos)
+* TaskTodo.UpdateATodo (PUT /api/data/tasks/todos/{todoId})
+* TaskTodo.DeleteATodo (DELETE /api/data/tasks/todos/{todoId})
+
+Changes to existing APIs:
+* Notification.RetrieveNotifications added query parameter `senderId`
+* Notification.RetrieveNotifications added query parameter `notificationTypes`
+* Notification.RetrieveNotifications added query parameter `asFlatList`
+
+Changes to data models:
+* ResourceDto: Added new field `countryName`
+* TaskCreateDto: Added new field `isLocked`
+* TaskCreateDto: Added new field `isMilestone`
+* TaskUpdateDto: Added new field `isLocked`
+* TaskUpdateDto: Added new field `isMilestone`
+* TimesheetCreateRequestDto: Added new field `minutes`
+* TimesheetDto: Added new field `minutes`
+* TimesheetResponseDto: Added new field `minutes`
+* TimesheetUpdateRequestDto: Added new field `minutes`
+
+
+
+# Patch notes for 120.0.4689
+
+These patch notes summarize the changes from version 119.0.4625.
+
+Changes to data models:
+* ResourceDto: Added new field `initials`
+* ResourceDto: Added new field `avatarUrl`
+
+
+
+# Patch notes for 119.0.4625
 
 These patch notes summarize the changes from version 117.0.4438.
 
@@ -161,7 +324,496 @@ Renamed 1 old APIs:
 * Renamed 'TaskMetadata.GetTasksByProjectIDAndForeignKeyID' to 'TaskMetadata.TaskMetadataSearch'
 
 Changes to data models:
-* ResourceDto: Added new field `initials`
-* ResourceDto: Added new field `avatarUrl`
 * TaskDto: Added new field `isLocked`
 * TaskDto: Added new field `isMilestone`
+
+
+
+# Patch notes for 117.0.4438
+
+These patch notes summarize the changes from version 116.0.4391.
+
+Changes to data models:
+* ResourceCreateDto: Added new field `colorName`
+* ResourceDto: Added new field `colorName`
+* ResourceDto: Added new field `color`
+* ResourceUpdateDto: Added new field `colorName`
+
+
+
+# Patch notes for 116.0.4391
+
+These patch notes summarize the changes from version 115.0.4330.
+
+Added 1 new APIs:
+* Resource.ResendInviteEmail (GET /api/data/resources/{resourceId}/resendinvite)
+
+Changes to data models:
+* TimesheetDto: Added new field `resourceId`
+* TimesheetDto: Added new field `taskId`
+* TimesheetDto: Added new field `projectId`
+* UserError: Added new field `statusCode`
+
+
+
+# Patch notes for 115.0.4330
+
+These patch notes summarize the changes from version 114.0.4169.
+
+Changes to data models:
+* NotificationDto: Added new field `id`
+* NotificationDto: Removed field `notificationId`
+* NotificationDto: Removed field `businessId`
+* NotificationDto: Removed field `userId`
+* ResourcesCreateDto: Added new field `projectIds`
+* RiskExportSettingsDto: Added new field `timeZoneOffset`
+* RiskExportSettingsDto: Added new field `dueDateFilter`
+* RiskExportSettingsDto: Added new field `priorityFilter`
+* RiskExportSettingsDto: Added new field `progressFilter`
+* RiskExportSettingsDto: Added new field `assignees`
+* RiskExportSettingsDto: Added new field `tags`
+* TaskDto: Added new field `theme`
+
+
+
+# Patch notes for 114.0.4169
+
+These patch notes summarize the changes from version 112.0.3856.
+
+Added 9 new APIs:
+* Notification.RetrieveNotifications (GET /api/data/notifications)
+* Notification.NotificationCount (GET /api/data/notifications/count)
+* Notification.UnreadNotificationCount (GET /api/data/notifications/unreadcount)
+* Notification.DeleteAllNotifications (DELETE /api/data/notifications/deleteall)
+* Notification.MarkNotificationRead (POST /api/data/notifications/{id}/markread)
+* Notification.ReadAllNotifications (POST /api/data/notifications/markallread)
+* Notification.DeleteNotification (DELETE /api/data/notifications/delete/{id})
+* Notification.MarkNotificationUnread (POST /api/data/notifications/{id}/markunread)
+* Resource.CreateManyResources (POST /api/data/resources/bulk)
+
+Changes to data models:
+* ProjectVersionChangeDataDto: Added new field `restoreVersion`
+* ResourceDto: Added new field `createdDate`
+* ResourceDto: Added new field `createdBy`
+* ResourceDto: Added new field `modifiedDate`
+* ResourceDto: Added new field `modifiedBy`
+* ResourceUpdateDto: Added new field `isActive`
+* ResourceUpdateDto: Added new field `approverId`
+* TaskUpdateDto: Added new field `actualFinishDate`
+
+
+
+# Patch notes for 112.0.3856
+
+These patch notes summarize the changes from version 110.0.3705.
+
+Changes to data models:
+* AstroError: Added new field `validationErrors`
+* IntegrationDto: Added new field `noAdminPermission`
+* ProjectCreateDto: Added new field `taskStatusCreate`
+* ProjectDto: Added new field `percentComplete`
+* TaskStatusCreateDto: Added new field `isDone`
+
+
+
+# Patch notes for 110.0.3705
+
+These patch notes summarize the changes from version 107.0.3368.
+
+Changes to data models:
+* CountryHolidayDto: Added new field `countryName`
+
+
+
+# Patch notes for 107.0.3368
+
+These patch notes summarize the changes from version 104.0.3086.
+
+Changes to data models:
+* TaskDto: Added new field `actualEffort`
+* TaskDto: Added new field `actualResourceCost`
+* TaskDto: Added new field `plannedResourceCost`
+* TimesheetResourceDto: Added new field `hourlyRate`
+* TimesheetTaskDto: Added new field `actualResourceCost`
+* TimesheetTaskDto: Added new field `actualEffort`
+* TimesheetTaskDto: Added new field `plannedResourceCost`
+* TimesheetTaskDto: Added new field `plannedEffort`
+
+Deprecated 1 old APIs:
+* Changeset.RetrieveProjectChangesByProjectID
+
+
+
+# Patch notes for 104.0.3086
+
+These patch notes summarize the changes from version 103.0.3003.
+
+Added 1 new APIs:
+* Changeset.RetrieveProjectChangesByProjectID (GET /api/data/projects/{projectId}/changes)
+
+Renamed 2 old APIs:
+* Renamed 'Changeset.RetrieveChangeset' to 'Changeset.RetrieveChangesetStatus'
+* Renamed 'Changeset.RetrieveCompletedChangeset' to 'Changeset.RetrieveCompletedChangesetStatus'
+
+
+
+# Patch notes for 103.0.3003
+
+These patch notes summarize the changes from version 102.0.2886.
+
+Added 2 new APIs:
+* Changeset.RetrieveChangesetsByProjectID (GET /api/data/projects/{projectId}/changesets)
+* Project.DeleteProject (DELETE /api/data/projects/{projectId})
+
+Changes to data models:
+* ProjectFileDto: Added new field `folder`
+
+
+
+# Patch notes for 102.0.2886
+
+These patch notes summarize the changes from version 99.0.2550.
+
+Added 9 new APIs:
+* File.DeleteFile (DELETE /api/data/files/{fileId})
+* Holiday.QueryResourceHolidays (GET /api/data/holidays/resource)
+* Holiday.QueryCountryHolidays (GET /api/data/holidays/country)
+* Holiday.QueryGlobalHolidays (GET /api/data/holidays/global)
+* IntegrationProvider.DisconnectUserIntegrationProviderConnection (DELETE /api/data/integrations/providers/{providerId}/user-connection)
+* NptFiles.UploadFileToNonProjectTasks (POST /api/data/non-project-tasks/{taskId}/files)
+* TaskMetadata.AddMetadata (PUT /api/data/tasks/{taskId}/metadata)
+* TaskMetadata.GetTaskMetadata (GET /api/data/tasks/{taskId}/metadata)
+* TaskMetadata.GetTasksByProjectIDAndForeignKeyID (GET /api/data/projects/{projectId}/tasks/metadata)
+
+Changes to existing APIs:
+* Project.QueryProjects removed query parameter `$select`
+* Resource.QueryResources removed query parameter `$select`
+* ResourceSkill.RetrieveResourceSkills removed query parameter `$select`
+* ResourceTeam.RetrieveResourceTeams removed query parameter `$select`
+* Tag.QueryTags removed query parameter `$select`
+* Task.QueryTasks removed query parameter `$select`
+* TaskField.QueryTaskFields removed query parameter `$select`
+* TaskField.QueryTaskFieldValues removed query parameter `$select`
+* Timesheet.QueryTimeSheets removed query parameter `$select`
+
+Changes to data models:
+* ProjectDto: Added new field `creationTemplateId`
+* ProjectDto: Added new field `fieldValues`
+* ProjectDto: Added new field `files`
+* TaskAssigneeDto: Added new field `email`
+* TaskAssigneeDto: Added new field `allocatedEffort`
+* TaskDto: Added new field `fieldValues`
+* TaskDto: Added new field `files`
+* TaskFieldValueDto: Added new field `name`
+* TaskFieldValueDto: Added new field `type`
+* TimesheetDto: Added new field `files`
+
+
+
+# Patch notes for 99.0.2550
+
+These patch notes summarize the changes from version 98.0.2363.
+
+Added 2 new APIs:
+* TaskField.QueryTaskFields (GET /api/data/projects/tasks/fields)
+* TaskField.QueryTaskFieldValues (GET /api/data/tasks/fields/values)
+
+Renamed 2 old APIs:
+* Renamed 'ProjectField.UpdateProjectField' to 'ProjectField.UpdateProjectFieldValue'
+* Renamed 'ProjectMembers.RetrieveUserProjectMemberShip' to 'ProjectMembers.RetrieveUserProjectMembership'
+
+Changes to existing APIs:
+* ApiKey.CreateApiKey changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ApiKey.ListApiKeys changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ApiKey.RevokeAllApiKeys changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ApiKey.RevokeAPIKey changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Changeset.RetrieveChangeset changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Changeset.RetrieveCompletedChangeset changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Dashboard.RetrieveDashboardUserSettings changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Dashboard.CreateOrUpdateUserDashboardSettings changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Discussion.RetrieveTaskComments changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Discussion.CreateTaskComments changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* File.DownloadFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* File.DownloadAThumbnailImage changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* File.UpdateFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* HomeFile.UploadHomeFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* HomeFile.UploadHomeFileToFolder changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Integration.RetrieveIntegration changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Integration.EnableIntegration changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Integration.DisableIntegration changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Integration.RetrieveAllIntegrations changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* IntegrationCategory.RetrieveProviderCategories changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* IntegrationProvider.ListProviders changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* IntegrationProvider.ActivateIntegrationProvider changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* IntegrationProvider.UpdateIntegrationProvider changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* IntegrationProvider.DeactivateIntegrationProvider changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* IntegrationProvider.CreateUserIntegrationProviderConnection changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* IntegrationProvider.UpdateUserIntegrationProviderConnection changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* License.RetrieveLicenses changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* License.AddLicense changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Me.RetrieveMe changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Project.QueryProjects changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Project.CreateProject changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Project.RetrieveProject changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Project.UpdateProject changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectChargeCode.RetrieveChargeCodes changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectCustomer.RetrieveProjectCustomers changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectField.RetrieveProjectFields changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectField.CreateProjectField changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectField.DeleteProjectField added path parameter `fieldId`
+* ProjectField.DeleteProjectField changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectField.DeleteProjectField removed body parameter `body`
+* ProjectField.UpdateProjectFieldValue changed the data type of the parameter `fieldId` from `uuid` to `string`
+* ProjectField.UpdateProjectFieldValue changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectField.RetrieveProjectFieldValue changed the data type of the parameter `fieldId` from `uuid` to `string`
+* ProjectField.RetrieveProjectFieldValue changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectField.RetrieveAllProjectFieldValues changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectFile.UploadProjectFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectFile.UploadProjectFileToFolder changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectFolder.RetrieveProjectFolders changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectMembers.RetrieveNewProjectMembers changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectMembers.RetrieveProjectMembers changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectMembers.RetrieveUserProjectMembership changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectMembers.CreateUserProjectMembership changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectMembers.UpdateUserProjectMembership changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectMembers.RemoveUserProjectMembership changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectPriority.RetrieveProjectPriorities changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectStatus.RetrieveProjectStatuses changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectTemplate.RetrieveProjectTemplates changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ProjectTemplate.RetrieveTemplateCategories changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Resource.CreateResource changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Resource.QueryResources changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Resource.UpdateResource changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Resource.RetrieveResource changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ResourceSkill.RetrieveResourceSkills changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ResourceSkill.CreateResourceSkill changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ResourceSkill.UpdateResourceSkill changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ResourceSkill.DeleteResourceSkill changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ResourceTeam.RetrieveResourceTeams changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ResourceTeam.CreateResourceTeam changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ResourceTeam.DeleteResourceTeam changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* ResourceTeam.UpdateResourceTeam changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Tag.QueryTags changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Tag.CreateTag changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Tag.UpdateTag changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.QueryTasks changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.RetrieveTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.UpdateTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.DeleteTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.CreateTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.RetrieveTaskPriorities changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.CreateManyTasks changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.AddParentTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.UpdateParentTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Task.RemoveParentTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskAssignee.ReplaceTaskAssignees changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskAssignee.CreateOrUpdateTaskAssignee changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskAssignee.DeleteTaskAssignees changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskField.RetrieveTaskFields changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskField.CreateTaskField changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskField.DeleteTaskField changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskField.RetrieveAllTaskFieldValues changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskField.RetrieveTaskFieldValue changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskField.UpdateTaskFieldValue changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskFile.UploadTaskFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskStatus.RetrieveTaskStatuses changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskStatus.CreateTaskStatus changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskStatus.UpdateTaskStatus changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskStatus.DeleteTaskStatus changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskTag.ReplaceTaskTags changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskTag.AddTaskTagToTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* TaskTag.RemoveTaskTagFromTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Teams.RetrieveZipFileForTeamsIntegrations changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Timesheet.CreateTimeEntry changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Timesheet.QueryTimeSheets changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Timesheet.DeleteTimeEntry changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Timesheet.UpdateTimeEntry changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* Timesheet.ReturnsActiveAdminTasksThatAreUsedToReportTime changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* UserRole.RetrieveUserRoles changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* WorkSpace.RetrieveWorkspaces changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+* WorkSpace.InviteToWorkspace changed the data type of the parameter `x-integration-name` from `(null)` to `string`
+
+Changes to data models:
+* ConnectionSchemaDto: Added new field `connected`
+* GetProjectFieldsResponseDto: Added new field `shortId`
+* IntegrationDto: Added new field `autoEnabled`
+* IntegrationProviderDto: Added new field `createInWorkato`
+* ProjectFieldsValueResponseDto: Added new field `shortId`
+* ProjectFieldsValueResponseDto: Added new field `createdDate`
+* ProjectFieldsValueResponseDto: Added new field `modifiedDate`
+* TaskDto: Changed the data type of the field `fields` from `TaskFieldDto` to `TaskFieldValueDto`
+* TaskFieldDto: Added new field `id`
+* TaskFieldDto: Added new field `name`
+* TaskFieldDto: Added new field `type`
+* TaskFieldDto: Added new field `options`
+* TaskFieldDto: Added new field `project`
+* TaskFieldDto: Added new field `createdDate`
+* TaskFieldDto: Added new field `modifiedDate`
+* TaskFieldDto: Removed field `value`
+* TimesheetDto: Added new field `adminType`
+* WorkSpaceUserInfoDto: Added new field `roleName`
+* WorkSpaceUserInfoDto: Added new field `isGlobalAdmin`
+* WorkSpaceUserInfoDto: Added new field `isAccountAdministrator`
+
+
+
+# Patch notes for 98.0.2363
+
+These patch notes summarize the changes from version 97.0.2178.
+
+Added 2 new APIs:
+* ProjectField.RetrieveProjectFieldValue (GET /api/data/projects/{projectId}/fields/{fieldId})
+* ProjectField.RetrieveAllProjectFieldValues (GET /api/data/projects/{projectId}/fields)
+
+Changes to existing APIs:
+* ApiKey.CreateApiKey added header parameter `x-integration-name`
+* ApiKey.ListApiKeys added header parameter `x-integration-name`
+* ApiKey.RevokeAllApiKeys added header parameter `x-integration-name`
+* ApiKey.RevokeAPIKey added header parameter `x-integration-name`
+* Changeset.RetrieveChangeset added header parameter `x-integration-name`
+* Changeset.RetrieveCompletedChangeset added header parameter `x-integration-name`
+* Dashboard.RetrieveDashboardUserSettings added header parameter `x-integration-name`
+* Dashboard.CreateOrUpdateUserDashboardSettings added header parameter `x-integration-name`
+* Discussion.RetrieveTaskComments added header parameter `x-integration-name`
+* Discussion.CreateTaskComments added header parameter `x-integration-name`
+* File.DownloadFile added header parameter `x-integration-name`
+* File.DownloadAThumbnailImage added header parameter `x-integration-name`
+* File.UpdateFile added header parameter `x-integration-name`
+* HomeFile.UploadHomeFile added header parameter `x-integration-name`
+* HomeFile.UploadHomeFileToFolder added header parameter `x-integration-name`
+* Integration.RetrieveIntegration added header parameter `x-integration-name`
+* Integration.EnableIntegration added header parameter `x-integration-name`
+* Integration.DisableIntegration added header parameter `x-integration-name`
+* Integration.RetrieveAllIntegrations added header parameter `x-integration-name`
+* IntegrationCategory.RetrieveProviderCategories added header parameter `x-integration-name`
+* IntegrationProvider.ListProviders added header parameter `x-integration-name`
+* IntegrationProvider.ActivateIntegrationProvider added header parameter `x-integration-name`
+* IntegrationProvider.UpdateIntegrationProvider added header parameter `x-integration-name`
+* IntegrationProvider.DeactivateIntegrationProvider added header parameter `x-integration-name`
+* IntegrationProvider.CreateUserIntegrationProviderConnection added header parameter `x-integration-name`
+* IntegrationProvider.UpdateUserIntegrationProviderConnection added header parameter `x-integration-name`
+* License.RetrieveLicenses added header parameter `x-integration-name`
+* License.AddLicense added header parameter `x-integration-name`
+* Me.RetrieveMe added header parameter `x-integration-name`
+* Project.QueryProjects added header parameter `x-integration-name`
+* Project.CreateProject added header parameter `x-integration-name`
+* Project.RetrieveProject added header parameter `x-integration-name`
+* Project.UpdateProject added header parameter `x-integration-name`
+* ProjectChargeCode.RetrieveChargeCodes added header parameter `x-integration-name`
+* ProjectCustomer.RetrieveProjectCustomers added header parameter `x-integration-name`
+* ProjectField.RetrieveProjectFields added header parameter `x-integration-name`
+* ProjectField.CreateProjectField added header parameter `x-integration-name`
+* ProjectField.DeleteProjectField added header parameter `x-integration-name`
+* ProjectField.UpdateProjectField added header parameter `x-integration-name`
+* ProjectFile.UploadProjectFile added header parameter `x-integration-name`
+* ProjectFile.UploadProjectFileToFolder added header parameter `x-integration-name`
+* ProjectFolder.RetrieveProjectFolders added header parameter `x-integration-name`
+* ProjectMembers.RetrieveNewProjectMembers added header parameter `x-integration-name`
+* ProjectMembers.RetrieveProjectMembers added header parameter `x-integration-name`
+* ProjectMembers.RetrieveUserProjectMemberShip added header parameter `x-integration-name`
+* ProjectMembers.CreateUserProjectMembership added header parameter `x-integration-name`
+* ProjectMembers.UpdateUserProjectMembership added header parameter `x-integration-name`
+* ProjectMembers.RemoveUserProjectMembership added header parameter `x-integration-name`
+* ProjectPriority.RetrieveProjectPriorities added header parameter `x-integration-name`
+* ProjectStatus.RetrieveProjectStatuses added header parameter `x-integration-name`
+* ProjectTemplate.RetrieveProjectTemplates added header parameter `x-integration-name`
+* ProjectTemplate.RetrieveTemplateCategories added header parameter `x-integration-name`
+* Resource.CreateResource added header parameter `x-integration-name`
+* Resource.QueryResources added header parameter `x-integration-name`
+* Resource.UpdateResource added header parameter `x-integration-name`
+* Resource.RetrieveResource added header parameter `x-integration-name`
+* ResourceSkill.RetrieveResourceSkills added header parameter `x-integration-name`
+* ResourceSkill.CreateResourceSkill added header parameter `x-integration-name`
+* ResourceSkill.UpdateResourceSkill added header parameter `x-integration-name`
+* ResourceSkill.DeleteResourceSkill added header parameter `x-integration-name`
+* ResourceTeam.RetrieveResourceTeams added header parameter `x-integration-name`
+* ResourceTeam.CreateResourceTeam added header parameter `x-integration-name`
+* ResourceTeam.DeleteResourceTeam added header parameter `x-integration-name`
+* ResourceTeam.UpdateResourceTeam added header parameter `x-integration-name`
+* Tag.QueryTags added header parameter `x-integration-name`
+* Tag.CreateTag added header parameter `x-integration-name`
+* Tag.UpdateTag added header parameter `x-integration-name`
+* Task.QueryTasks added header parameter `x-integration-name`
+* Task.RetrieveTask added header parameter `x-integration-name`
+* Task.UpdateTask added header parameter `x-integration-name`
+* Task.DeleteTask added header parameter `x-integration-name`
+* Task.CreateTask added header parameter `x-integration-name`
+* Task.RetrieveTaskPriorities added header parameter `x-integration-name`
+* Task.CreateManyTasks added header parameter `x-integration-name`
+* Task.AddParentTask added header parameter `x-integration-name`
+* Task.UpdateParentTask added header parameter `x-integration-name`
+* Task.RemoveParentTask added header parameter `x-integration-name`
+* TaskAssignee.ReplaceTaskAssignees added header parameter `x-integration-name`
+* TaskAssignee.CreateOrUpdateTaskAssignee added header parameter `x-integration-name`
+* TaskAssignee.DeleteTaskAssignees added header parameter `x-integration-name`
+* TaskField.RetrieveTaskFields added header parameter `x-integration-name`
+* TaskField.CreateTaskField added header parameter `x-integration-name`
+* TaskField.DeleteTaskField added header parameter `x-integration-name`
+* TaskField.RetrieveTaskFieldValue added header parameter `x-integration-name`
+* TaskField.UpdateTaskFieldValue added header parameter `x-integration-name`
+* TaskField.RetrieveAllTaskFieldValues added header parameter `x-integration-name`
+* TaskFile.UploadTaskFile added header parameter `x-integration-name`
+* TaskStatus.RetrieveTaskStatuses added header parameter `x-integration-name`
+* TaskStatus.CreateTaskStatus added header parameter `x-integration-name`
+* TaskStatus.UpdateTaskStatus added header parameter `x-integration-name`
+* TaskStatus.DeleteTaskStatus added header parameter `x-integration-name`
+* TaskTag.ReplaceTaskTags added header parameter `x-integration-name`
+* TaskTag.AddTaskTagToTask added header parameter `x-integration-name`
+* TaskTag.RemoveTaskTagFromTask added header parameter `x-integration-name`
+* Teams.RetrieveZipFileForTeamsIntegrations added header parameter `x-integration-name`
+* Timesheet.CreateTimeEntry added header parameter `x-integration-name`
+* Timesheet.QueryTimeSheets added header parameter `x-integration-name`
+* Timesheet.DeleteTimeEntry added header parameter `x-integration-name`
+* Timesheet.UpdateTimeEntry added header parameter `x-integration-name`
+* Timesheet.ReturnsActiveAdminTasksThatAreUsedToReportTime added header parameter `x-integration-name`
+* UserRole.RetrieveUserRoles added header parameter `x-integration-name`
+* WorkSpace.RetrieveWorkspaces added header parameter `x-integration-name`
+* WorkSpace.InviteToWorkspace added header parameter `x-integration-name`
+
+Changes to data models:
+* CreateProjectFieldDto: Added new field `shortId`
+* CreateTaskFieldRequestDto: Added new field `shortId`
+* IntegrationInstanceDto: Added new field `projectId`
+* IntegrationInstanceDto: Added new field `providerItemId`
+* IntegrationInstanceDto: Added new field `providerItemName`
+* IntegrationInstanceDto: Removed field `config`
+* IntegrationProviderDto: Added new field `authSetup`
+* ProjectDto: Changed the data type of the field `startDate` from `date-time` to `date`
+* ProjectDto: Changed the data type of the field `endDate` from `date-time` to `date`
+* ProjectDto: Changed the data type of the field `plannedStartDate` from `date-time` to `date`
+* ProjectDto: Changed the data type of the field `plannedFinishDate` from `date-time` to `date`
+* ProjectDto: Changed the data type of the field `actualStartDate` from `date-time` to `date`
+* ProjectDto: Changed the data type of the field `actualFinishDate` from `date-time` to `date`
+* ProjectDto: Added new field `fields`
+* TaskDetailsDto: Added new field `fields`
+* TaskDto: Added new field `fields`
+* TimesheetDto: Added new field `modifiedDate`
+
+Deprecated 2 old APIs:
+* Integration.AddIntegrationInstance
+* Integration.RemoveIntegrationInstance
+
+
+
+# Patch notes for 97.0.2178
+
+These patch notes summarize the changes from version 96.0.2123.
+
+Added 3 new APIs:
+* Task.AddParentTask (POST /api/data/tasks/{taskId}/parent/{parentTaskId})
+* Task.UpdateParentTask (PUT /api/data/tasks/{taskId}/parent/{parentTaskId})
+* Task.RemoveParentTask (DELETE /api/data/tasks/{taskId}/parent)
+
+Changes to data models:
+* ProjectDto: Added new field `plannedStartDate`
+* ProjectDto: Added new field `plannedFinishDate`
+* ProjectDto: Added new field `actualStartDate`
+* ProjectDto: Added new field `actualFinishDate`
+* TaskDto: Added new field `tags`
+* TaskDto: Added new field `todos`
+* TaskDto: Added new field `status`
+* TaskDto: Added new field `plannedDuration`
+* TaskDto: Added new field `plannedEffort`
+
+
+
