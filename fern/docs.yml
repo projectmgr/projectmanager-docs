@@ -2,9 +2,6 @@ instances:
   - url: project-manager.docs.buildwithfern.com
     custom-domain: developer.projectmanager.com
 
-experimental: 
-  openapi-parser-v3: true
-
 title: Project Manager | Docs
 
 navigation:
@@ -28,8 +25,6 @@ navigation:
         path: ./docs/pages/terms.mdx           
       
   - api: API Reference
-    api-name: api
-    paginated: true
     snippets:
       python: fern-projectmanager   
 
