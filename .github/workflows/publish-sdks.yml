@@ -1,4 +1,4 @@
-name: ci
+name: publish-sdks
 
 on: push
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Fern
         run:  npm install -g fern-api
@@ -22,11 +22,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
-      - name: Setup Node.js 
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
 
       - name: Install Fern
         run: npm install -g fern-api
