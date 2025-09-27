@@ -11,8 +11,10 @@ navigation:
         path: ./docs/pages/overview.mdx
       - page: Authentication
         path: ./docs/pages/authentication.mdx
-      - page: Querying with OData
-        path: ./docs/pages/odata.mdx
+      - page: Querying tutorial
+        path: ./docs/pages/query-language.mdx
+      - page: OData Integrations
+        path: ./docs/pages/odata-integrations.mdx
       - page: Work Breakdown Structure
         path: ./docs/pages/workbreakdown.mdx
       - page: Software Development Kits
@@ -31,7 +33,7 @@ navigation:
 navbar-links: 
   - type: secondary
     text: Support
-    url: https://github.com/projectmgr/projectmanager-docs/issues
+    url: https://www.projectmanager.com/contact
   - type: secondary 
     text: Contact sales
     url: https://www.projectmanager.com/support/contact-sales
