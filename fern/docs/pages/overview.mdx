@@ -4,7 +4,16 @@ Your team can get started with the ProjectManager API right away - here's how.
 
 2. Once you have signed up for an account, any users with the `Admin` or `Global Admin` roles within your workspace can [create an API key](https://developer.projectmanager.com/reference/api-keys) within ProjectManager. Remember to save your API key in your company's secure credential storage system!
 
-3. Download the appropriate software development kit for your favorite programming language, or [visit our API page](https://api.projectmanager.com) to look at our Swagger/OpenAPI definitions.
+3. Download the appropriate software development kit for your favorite programming language:
+
+| Language                | Source Code                                                                                  | Package                                                                                                                                                                                   |
+| :---------------------- | :------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![DotNet/C#](https://fern-image-hosting.s3.amazonaws.com/projectmanager/sdk-csharp.svg) | [projectmanager-sdk-csharp](https://github.com/projectmgr/projectmanager-sdk-csharp)         | [![NuGet - Version](https://img.shields.io/nuget/v/ProjectManager.Sdk.svg?style=plastic)](https://www.nuget.org/packages/ProjectManager.Sdk/)                                             |
+| ![Python/Jupyter](https://fern-image-hosting.s3.amazonaws.com/projectmanager/sdk-python.svg)       | [projectmanager-sdk-python](https://github.com/projectmgr/projectmanager-sdk-python)         | [![PyPI - Version](https://img.shields.io/pypi/v/ProjectManagerSdk.svg?style=plastic)](https://pypi.org/project/ProjectManagerSdk/)                                                       |
+| ![TypeScript/JavaScript](https://fern-image-hosting.s3.amazonaws.com/projectmanager/sdk-typescript.svg) | [projectmanager-sdk-typescript](https://github.com/projectmgr/projectmanager-sdk-typescript) | [![NPM - Version](https://img.shields.io/npm/v/projectmanager-sdk?style=plastic)](https://www.npmjs.com/package/projectmanager-sdk)                                                       |
+| ![Java](https://fern-image-hosting.s3.amazonaws.com/projectmanager/sdk-java.svg) | [projectmanager-sdk-java](https://github.com/projectmgr/projectmanager-sdk-java)             | [![Maven Central](https://img.shields.io/maven-central/v/com.projectmanager/projectmanagersdk?style=plastic)](https://central.sonatype.com/artifact/com.projectmanager/projectmanagersdk) |
+
+4. Check out some example programs demonstrating how to use the ProjectManager API:
 
 | Language            | Program                                                                                    | Notes                                    |
 | --------------- | ----------------------------------------------------------------------------------------|---------------------------------------|
@@ -18,13 +27,7 @@ Your team can get started with the ProjectManager API right away - here's how.
 
 All API calls to ProjectManager.com use the URL `https://api.projectmanager.com/` regardless of your workspace's custom URL.  You must use a bearer token to contact the API.
 
-The ProjectManager.com API allows you to synchronize data from other systems to your project files and data. 
-
-<Callout intent="info">
-The following are ideas for integrating with the ProjectManager API.
-</Callout>
-
-<br />
+The ProjectManager.com API allows you to synchronize data from other systems to your project files and data. With the ProjectManager.com API, you can:
 
 - Notify your accounting system when a task is completed, so they can send an invoice to the customer
 - Import data from your internal IT systems into tasks
@@ -44,6 +47,6 @@ If you want to look at some example code, check out our [ProjectManager example 
 
 ## Support 
 
-If you have any concerns or questions just drop us an email to [support@projectmanager.com](mailto:support@projectmanager.com).
+Support for ProjectManager.com and its API is available at https://www.projectmanager.com/support.
 
 We make available information about our company's security policies on [https://trust.projectmanager.com/](https://trust.projectmanager.com/), and you can view the status of our product at [https://status.projectmanager.com/](https://status.projectmanager.com/).

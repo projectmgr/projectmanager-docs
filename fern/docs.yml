@@ -14,8 +14,10 @@ navigation:
         path: ./docs/pages/overview.mdx
       - page: Authentication
         path: ./docs/pages/authentication.mdx
-      - page: Querying with OData
-        path: ./docs/pages/odata.mdx
+      - page: Querying tutorial
+        path: ./docs/pages/query-language.mdx
+      - page: OData Integrations
+        path: ./docs/pages/odata-integrations.mdx
       - page: Work Breakdown Structure
         path: ./docs/pages/workbreakdown.mdx
       - page: Software Development Kits
