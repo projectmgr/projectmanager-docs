@@ -38,7 +38,7 @@ navigation:
 navbar-links: 
   - type: secondary
     text: Support
-    url: https://github.com/projectmgr/projectmanager-docs/issues
+    url: https://www.projectmanager.com/contact
   - type: secondary 
     text: Contact sales
     url: https://www.projectmanager.com/support/contact-sales
