@@ -1,3 +1,52 @@
+# Patch notes for 143.0.162
+
+These patch notes summarize the changes from version 141.1.156.
+
+Added 7 new APIs:
+* NptRecurrency.CreateWeeklyRecurringNpts (POST /api/data/npt/{taskId}/recurring/weekly)
+* NptRecurrency.CreateMonthlyRecurringNpts (POST /api/data/npt/{taskId}/recurring/monthly)
+* NptRecurrency.CreateDailyRecurringNpts (POST /api/data/npt/{taskId}/recurring/daily)
+* NptRecurrency.CreateYearlyRecurringNpts (POST /api/data/npt/{taskId}/recurring/yearly)
+* NptRecurrency.DeleteRecurringNpts (DELETE /api/data/npt/{taskId}/recurring/{option})
+* Task.FetchTheFirstLevelChildTasksFromTheTask (GET /api/data/tasks/{taskId}/subtasks)
+* TaskAssignee.ReturnsTaskAssignees (GET /api/data/tasks/{taskId}/assignees)
+
+Changes to data models:
+* NptCreateDto: Added new field `statusId`
+* NptDetailsDto: Added new field `createDate`
+* NptDetailsDto: Added new field `owner`
+* NptDetailsDto: Added new field `ownerId`
+* NptDetailsDto: Added new field `discussionData`
+* NptDetailsDto: Added new field `fileData`
+* NptDetailsDto: Added new field `recurring`
+* NptDetailsDto: Added new field `recurringParentTaskId`
+* NptDetailsDto: Added new field `recurringSettings`
+* NptDto: Added new field `createDate`
+* NptDto: Added new field `owner`
+* NptDto: Added new field `ownerId`
+* NptUpdateDto: Added new field `plannedDuration`
+* NptUpdateDto: Added new field `plannedEffort`
+* NptUpdateDto: Added new field `actualDuration`
+* NptUpdateDto: Added new field `recurring`
+* ProjectCreateDto: Added new field `weekStartsOnMonday`
+* RecurringTaskChangeSetDetails: Added new field `changeSetId`
+* TaskDetailsDto: Added new field `ownerId`
+* TaskDetailsDto: Added new field `owner`
+* TaskDetailsDto: Added new field `recurring`
+* TaskDetailsDto: Added new field `recurringParentTaskId`
+* TaskDetailsDto: Added new field `recurringSettings`
+* TaskDetailsDto: Added new field `approvalStatus`
+* TaskDetailsDto: Added new field `approvalStatusModifiedBy`
+* TaskDetailsDto: Added new field `approvalStatusModifiedDate`
+* TaskDetailsDto: Added new field `approvalLastReminderDate`
+* TaskDetailsDto: Added new field `discussionData`
+* TaskDetailsDto: Added new field `fileData`
+* TaskDetailsDto: Added new field `successors`
+* TaskDetailsDto: Added new field `predecessors`
+* TaskUpdateDto: Added new field `actualDuration`
+
+
+
 # Patch notes for 141.1.156
 
 These patch notes summarize the changes from version 139.0.157.
@@ -523,115 +572,10 @@ Renamed 2 old APIs:
 * Renamed 'ProjectMembers.RetrieveUserProjectMemberShip' to 'ProjectMembers.RetrieveUserProjectMembership'
 
 Changes to existing APIs:
-* ApiKey.CreateApiKey changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ApiKey.ListApiKeys changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ApiKey.RevokeAllApiKeys changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ApiKey.RevokeAPIKey changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Changeset.RetrieveChangeset changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Changeset.RetrieveCompletedChangeset changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Dashboard.RetrieveDashboardUserSettings changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Dashboard.CreateOrUpdateUserDashboardSettings changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Discussion.RetrieveTaskComments changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Discussion.CreateTaskComments changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* File.DownloadFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* File.DownloadAThumbnailImage changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* File.UpdateFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* HomeFile.UploadHomeFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* HomeFile.UploadHomeFileToFolder changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Integration.RetrieveIntegration changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Integration.EnableIntegration changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Integration.DisableIntegration changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Integration.RetrieveAllIntegrations changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* IntegrationCategory.RetrieveProviderCategories changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* IntegrationProvider.ListProviders changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* IntegrationProvider.ActivateIntegrationProvider changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* IntegrationProvider.UpdateIntegrationProvider changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* IntegrationProvider.DeactivateIntegrationProvider changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* IntegrationProvider.CreateUserIntegrationProviderConnection changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* IntegrationProvider.UpdateUserIntegrationProviderConnection changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* License.RetrieveLicenses changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* License.AddLicense changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Me.RetrieveMe changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Project.QueryProjects changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Project.CreateProject changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Project.RetrieveProject changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Project.UpdateProject changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectChargeCode.RetrieveChargeCodes changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectCustomer.RetrieveProjectCustomers changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectField.RetrieveProjectFields changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectField.CreateProjectField changed the data type of the parameter `x-integration-name` from `(null)` to `string`
 * ProjectField.DeleteProjectField added path parameter `fieldId`
-* ProjectField.DeleteProjectField changed the data type of the parameter `x-integration-name` from `(null)` to `string`
 * ProjectField.DeleteProjectField removed body parameter `body`
 * ProjectField.UpdateProjectFieldValue changed the data type of the parameter `fieldId` from `uuid` to `string`
-* ProjectField.UpdateProjectFieldValue changed the data type of the parameter `x-integration-name` from `(null)` to `string`
 * ProjectField.RetrieveProjectFieldValue changed the data type of the parameter `fieldId` from `uuid` to `string`
-* ProjectField.RetrieveProjectFieldValue changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectField.RetrieveAllProjectFieldValues changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectFile.UploadProjectFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectFile.UploadProjectFileToFolder changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectFolder.RetrieveProjectFolders changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectMembers.RetrieveNewProjectMembers changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectMembers.RetrieveProjectMembers changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectMembers.RetrieveUserProjectMembership changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectMembers.CreateUserProjectMembership changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectMembers.UpdateUserProjectMembership changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectMembers.RemoveUserProjectMembership changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectPriority.RetrieveProjectPriorities changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectStatus.RetrieveProjectStatuses changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectTemplate.RetrieveProjectTemplates changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ProjectTemplate.RetrieveTemplateCategories changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Resource.CreateResource changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Resource.QueryResources changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Resource.UpdateResource changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Resource.RetrieveResource changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ResourceSkill.RetrieveResourceSkills changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ResourceSkill.CreateResourceSkill changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ResourceSkill.UpdateResourceSkill changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ResourceSkill.DeleteResourceSkill changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ResourceTeam.RetrieveResourceTeams changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ResourceTeam.CreateResourceTeam changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ResourceTeam.DeleteResourceTeam changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* ResourceTeam.UpdateResourceTeam changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Tag.QueryTags changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Tag.CreateTag changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Tag.UpdateTag changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.QueryTasks changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.RetrieveTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.UpdateTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.DeleteTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.CreateTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.RetrieveTaskPriorities changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.CreateManyTasks changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.AddParentTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.UpdateParentTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Task.RemoveParentTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskAssignee.ReplaceTaskAssignees changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskAssignee.CreateOrUpdateTaskAssignee changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskAssignee.DeleteTaskAssignees changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskField.RetrieveTaskFields changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskField.CreateTaskField changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskField.DeleteTaskField changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskField.RetrieveAllTaskFieldValues changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskField.RetrieveTaskFieldValue changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskField.UpdateTaskFieldValue changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskFile.UploadTaskFile changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskStatus.RetrieveTaskStatuses changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskStatus.CreateTaskStatus changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskStatus.UpdateTaskStatus changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskStatus.DeleteTaskStatus changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskTag.ReplaceTaskTags changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskTag.AddTaskTagToTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* TaskTag.RemoveTaskTagFromTask changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Teams.RetrieveZipFileForTeamsIntegrations changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Timesheet.CreateTimeEntry changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Timesheet.QueryTimeSheets changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Timesheet.DeleteTimeEntry changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Timesheet.UpdateTimeEntry changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* Timesheet.ReturnsActiveAdminTasksThatAreUsedToReportTime changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* UserRole.RetrieveUserRoles changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* WorkSpace.RetrieveWorkspaces changed the data type of the parameter `x-integration-name` from `(null)` to `string`
-* WorkSpace.InviteToWorkspace changed the data type of the parameter `x-integration-name` from `(null)` to `string`
 
 Changes to data models:
 * ConnectionSchemaDto: Added new field `connected`
