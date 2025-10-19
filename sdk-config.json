@@ -36,5 +36,8 @@
     "VersionNumberRegex": "version\": \"(.*)\"",
     "PatchNotes": {
         "OutputFile": "fern/docs/pages/patchnotes.mdx"
+    },
+    "CopySwagger": {
+        "Target": "fern/openapi/openapi.json"
     }
 }
