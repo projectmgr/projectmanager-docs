@@ -1,22 +1,10 @@
 The ProjectManager REST API uses API keys generated from within the ProjectManager application.
 
-## Contacting the API
-
-The ProjectManager API is available at https://api.projectmanager.com.  This web page shows the current version number of the API and allows you to review the latest Swagger/OpenAPI files.
-
-You can either use OAuth tokens (for interactive applications) or API keys (for unattended applications) to contact the ProjectManager API.  All `Admin` and `Global Admin` level users within your workspace are permitted to create API keys.  Users with more limited roles will not be able to create API keys.
-
-Credentials are sent to the API using the Authorization header as follows:
-
-```bash
-Authorization: Bearer <token>
-```
-
 ## Generating an API key
 
 To create an API key to begin using the ProjectManager API, follow these steps:
 
-1. API keys are tied to workspaces, and are available to admins and global admins only.
+1. API keys are tied to workspaces, and are available to users with `admin` or `global admin` roles only.
 2. Click on your name in the bottom left hand corner, then select "Integrations". 
 3. On the "Integrations" popup, select the "API Keys" tab on the bottom left hand side. 
 4. Select the API section and click "Create API Key". 
@@ -26,31 +14,59 @@ To create an API key to begin using the ProjectManager API, follow these steps:
 
 ## Using the SDK to authenticate
 
-If you use a ProjectManager SDK, provide your token credentials using the `WithBearerToken` method as follows:
+If you use a [ProjectManager SDK](https://developer.projectmanager.com/getting-started/software-development-kits), it's easy to 
+
+1. Download the appropriate software development kit from NuGet, PyPi, NPMJS, or Maven Central.
+2. Choose an application name. This is the name that will appear in audit logs when the API key is used to make changes to your projects.
+3. Specify the API key by calling the "With Bearer Token" method.
+
+Example code for the following programming languages demonstrates how to implement these steps:
 
 <CodeBlocks>
     <CodeBlock title="C#">
     ```csharp
-    return ProjectManagerClient
-        .WithCustomEnvironment(env)
+    var client = ProjectManagerClient
+        .WithEnvironment("production")
+        .WithApplicationName("MyApplicationName")
+        .WithMachineName(Environment.MachineName)
         .WithBearerToken(apiKey);
     ```
     </CodeBlock>
     <CodeBlock title="Python">
     ```python
-    client = ProjectManagerClient()
-    client = client.with_custom_environment(env)
-    client = client.with_bearer_token(api_key)
+    client = ProjectManagerSdk.ProjectManagerClient('production', 'MyApplicationName')
+    client.with_api_key(apikey)
     ```
     </CodeBlock>
     <CodeBlock title="Java">
     ```java
     ProjectManagerClient client = new ProjectManagerClient()
-        .withCustomEnvironment(env)
+        .withApplicationName("MyApplicationName")
+        .withBearerToken(apiKey);
+    ```
+    </CodeBlock>
+    <CodeBlock title="TypeScript">
+    ```java
+    var client = ProjectManagerClient
+        .withEnvironment("production")
+        .withApplicationName("MyApplicationName")
         .withBearerToken(apiKey);
     ```
     </CodeBlock>
 </CodeBlocks>
 
-The value provided to `WithCustomEnvironment` should be `api.projectmanager.com`.
-The value provided to `WithBearerToken` should be the API key you generated.
+The value provided to `WithCustomEnvironment` should be either `production` or `api.projectmanager.com`.  The value provided to `WithBearerToken` should be the API key you generated.
+
+## Contacting the API directly
+
+If you would prefer not to use a software development kit, that's fine! The ProjectManager API is available at https://api.projectmanager.com.  This web page shows the current version number of the API and allows you to review the latest Swagger/OpenAPI files.
+
+You can either use OAuth tokens (for interactive applications) or API keys (for unattended applications) to contact the ProjectManager API.  All `Admin` and `Global Admin` level users within your workspace are permitted to create API keys.  Users with more limited roles will not be able to create API keys.
+
+Credentials are sent to the API using the Authorization header as follows:
+
+```bash
+Authorization: Bearer <token>
+```
+
+You can experiment with the API using the [interactive swagger environment](https://api.projectmanager.com/api/swagger/index.html).  
