@@ -1,3 +1,26 @@
+# Patch notes for 144.0.155
+
+These patch notes summarize the changes from version 143.0.162.
+
+Added 2 new APIs:
+* ProjectChargeCode.CreateProjectChargeCode (POST /api/data/projects/chargecodes)
+* ProjectStatus.CreateProjectStatus (POST /api/data/projects/statuses)
+
+Changes to data models:
+* ProjectChargeCodeDto: Added new field `isActive`
+* ProjectTemplateDto: Added new field `ownerId`
+* ProjectTemplateDto: Added new field `createDate`
+* TimesheetDto: Added new field `approvalStatusId`
+* UserRoleDto: Added new field `description`
+* UserRoleDto: Added new field `isAdmin`
+* UserRoleDto: Added new field `isCustom`
+* UserRoleDto: Added new field `isGlobalAdmin`
+* UserRoleDto: Added new field `isGuest`
+* UserRoleDto: Added new field `isDefault`
+* UserRoleDto: Added new field `permissions`
+
+
+
 # Patch notes for 143.0.162
 
 These patch notes summarize the changes from version 141.1.156.
