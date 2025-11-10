@@ -1,3 +1,33 @@
+# Patch notes for 145.0.219
+
+These patch notes summarize the changes from version 144.0.155.
+
+Added 11 new APIs:
+* NptRecurrency.ValidateRecurringNpts (POST /api/data/npt/{taskId}/recurring/settings/validate)
+* NptRecurrency.UpdateRecurringNpts (PUT /api/data/npt/{taskId}/recurring/settings)
+* ProjectChargeCode.UpdateProjectChargeCode (PUT /api/data/projects/chargecodes/{chargeCodeId})
+* ProjectChargeCode.DeleteProjectChargeCode (DELETE /api/data/projects/chargecodes/{chargeCodeId})
+* ProjectFolder.CreateProjectFolder (POST /api/data/project-folders)
+* ProjectFolder.UpdateProjectFolder (PUT /api/data/project-folders/{projectFolderId})
+* ProjectFolder.DeleteProjectFolder (DELETE /api/data/project-folders/{projectFolderId})
+* ProjectStatus.UpdateProjectStatus (PUT /api/data/projects/statuses/{projectStatusId})
+* ProjectStatus.DeleteProjectStatus (DELETE /api/data/projects/statuses/{projectStatusId})
+* TaskRecurrency.ValidateRecurringTasks (POST /api/data/tasks/{taskId}/recurring/settings/validate)
+* TaskRecurrency.UpdateRecurringTasks (PUT /api/data/tasks/{taskId}/recurring/settings)
+
+Renamed 5 old APIs:
+* Renamed 'Timesheet.QueryTimeSheets' to 'Timesheet.QueryTimeEntries'
+* Renamed 'Timesheet.ReturnsActiveAdminTasksThatAreUsedToReportTime' to 'Timesheet.RetrieveAdministrativeTasks'
+* Renamed 'Timesheet.SubmitResourceTimeSheetForApproval' to 'Timesheet.SubmitTimeSheet'
+* Renamed 'Timesheet.ApproveResourceTimeSheetApprovalRequest' to 'Timesheet.ApproveTimeSheet'
+* Renamed 'Timesheet.RejectResourceTimeSheetApprovalRequest' to 'Timesheet.RejectTimeSheet'
+
+Changes to data models:
+* ProjectDto: Added new field `ownerId`
+* TaskCreateDto: Added new field `index`
+
+
+
 # Patch notes for 144.0.155
 
 These patch notes summarize the changes from version 143.0.162.
