@@ -36,7 +36,9 @@
     "VersionNumberRegex": "version\": \"(.*)\"",
     "PatchNotes": {
         "OutputFile": "fern/docs/pages/patchnotes.mdx",
-        "DatesFile": "dates.json"
+        "DatesFile": "dates.json",
+        "Host": "developer.projectmanager.com",
+        "LinkFormat": "Fern"
     },
     "CopySwagger": {
         "Target": "fern/openapi/openapi.json"
