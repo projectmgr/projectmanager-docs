@@ -1,8 +1,10 @@
-# Patch notes for 145.0.219
+# November, 2025
+
+## Patch notes for 145.0.219
 
 These patch notes summarize the changes from version 144.0.155.
 
-Added 11 new APIs:
+Added 11 new endpoints:
 * NptRecurrency.ValidateRecurringNpts (POST /api/data/npt/{taskId}/recurring/settings/validate)
 * NptRecurrency.UpdateRecurringNpts (PUT /api/data/npt/{taskId}/recurring/settings)
 * ProjectChargeCode.UpdateProjectChargeCode (PUT /api/data/projects/chargecodes/{chargeCodeId})
@@ -15,7 +17,7 @@ Added 11 new APIs:
 * TaskRecurrency.ValidateRecurringTasks (POST /api/data/tasks/{taskId}/recurring/settings/validate)
 * TaskRecurrency.UpdateRecurringTasks (PUT /api/data/tasks/{taskId}/recurring/settings)
 
-Renamed 5 old APIs:
+Renamed 5 endpoints:
 * Renamed 'Timesheet.QueryTimeSheets' to 'Timesheet.QueryTimeEntries'
 * Renamed 'Timesheet.ReturnsActiveAdminTasksThatAreUsedToReportTime' to 'Timesheet.RetrieveAdministrativeTasks'
 * Renamed 'Timesheet.SubmitResourceTimeSheetForApproval' to 'Timesheet.SubmitTimeSheet'
@@ -28,11 +30,13 @@ Changes to data models:
 
 
 
-# Patch notes for 144.0.155
+# October, 2025
+
+## Patch notes for 144.0.155
 
 These patch notes summarize the changes from version 143.0.162.
 
-Added 2 new APIs:
+Added 2 new endpoints:
 * ProjectChargeCode.CreateProjectChargeCode (POST /api/data/projects/chargecodes)
 * ProjectStatus.CreateProjectStatus (POST /api/data/projects/statuses)
 
@@ -51,11 +55,11 @@ Changes to data models:
 
 
 
-# Patch notes for 143.0.162
+## Patch notes for 143.0.162
 
 These patch notes summarize the changes from version 141.1.156.
 
-Added 7 new APIs:
+Added 7 new endpoints:
 * NptRecurrency.CreateWeeklyRecurringNpts (POST /api/data/npt/{taskId}/recurring/weekly)
 * NptRecurrency.CreateMonthlyRecurringNpts (POST /api/data/npt/{taskId}/recurring/monthly)
 * NptRecurrency.CreateDailyRecurringNpts (POST /api/data/npt/{taskId}/recurring/daily)
@@ -100,11 +104,13 @@ Changes to data models:
 
 
 
-# Patch notes for 141.1.156
+# September, 2025
+
+## Patch notes for 141.1.156
 
 These patch notes summarize the changes from version 139.0.157.
 
-Added 6 new APIs:
+Added 6 new endpoints:
 * Project.RestoreProject (PUT /api/data/projects/{projectId}/restore)
 * TaskRecurrency.CreateWeeklyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/weekly)
 * TaskRecurrency.CreateMonthlyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/monthly)
@@ -117,11 +123,13 @@ Changes to data models:
 
 
 
-# Patch notes for 139.0.157
+# August, 2025
+
+## Patch notes for 139.0.157
 
 These patch notes summarize the changes from version 138.1.170.
 
-Added 2 new APIs:
+Added 2 new endpoints:
 * ProjectMembers.RetrieveProjectsTheUserIsAMemberOf (GET /api/data/projects/membership)
 * Resource.GetResourceAvatar (GET /api/data/resources/{resourceId}/avatar)
 
@@ -162,11 +170,11 @@ Changes to data models:
 
 
 
-# Patch notes for 138.1.170
+## Patch notes for 138.1.170
 
 These patch notes summarize the changes from version 137.0.201.
 
-Added 16 new APIs:
+Added 16 new endpoints:
 * NptDiscussion.RetrieveNptComments (GET /api/data/non-project-tasks/{nptId}/comments)
 * NptDiscussion.CreateNptComments (POST /api/data/non-project-tasks/{nptId}/comments)
 * NptDiscussion.LikeAComment (POST /api/data/non-project-tasks/comments/{commentId}/like)
@@ -184,7 +192,7 @@ Added 16 new APIs:
 * TaskFile.GetTaskFiles (GET /api/data/tasks/{taskId}/files)
 * TaskTag.RetrieveTaskTags (GET /api/data/tasks/{taskId}/tags)
 
-Renamed 4 old APIs:
+Renamed 4 endpoints:
 * Renamed 'Discussion.CreateTaskComments' to 'Discussion.CreateTaskComment'
 * Renamed 'Discussion.LikeAComment' to 'Discussion.LikeComment'
 * Renamed 'Discussion.RemovesAThumbsupFromAComment' to 'Discussion.UnlikeComment'
@@ -200,19 +208,21 @@ Changes to data models:
 
 
 
-# Patch notes for 137.0.201
+# July, 2025
+
+## Patch notes for 137.0.201
 
 These patch notes summarize the changes from version 136.0.106.
 
-Added 1 new APIs:
+Added 1 new endpoints:
 * Resource.DeleteResource (DELETE /api/data/resources/{resourceId})
 
-Renamed 1 old APIs:
+Renamed 1 endpoints:
 * Renamed 'Risk.GetRiskList' to 'Risk.QueryRisks'
 
 
 
-# Patch notes for 136.0.106
+## Patch notes for 136.0.106
 
 These patch notes summarize the changes from version 135.0.134.
 
@@ -225,14 +235,16 @@ Changes to data models:
 
 
 
-# Patch notes for 135.0.134
+# June, 2025
+
+## Patch notes for 135.0.134
 
 These patch notes summarize the changes from version 134.0.125.
 
-Added 1 new APIs:
+Added 1 new endpoints:
 * Risk.GetRiskList (GET /api/data/risks)
 
-Changes to existing APIs:
+Changes to existing endpoints:
 * Npt.GetNpt changed the data type of the parameter `nptId` from `uuid` to `string`
 
 Changes to data models:
@@ -241,11 +253,11 @@ Changes to data models:
 
 
 
-# Patch notes for 134.0.125
+## Patch notes for 134.0.125
 
 These patch notes summarize the changes from version 133.1.136.
 
-Added 3 new APIs:
+Added 3 new endpoints:
 * Timesheet.SubmitResourceTimeSheetForApproval (POST /api/data/timesheets/approvals)
 * Timesheet.ApproveResourceTimeSheetApprovalRequest (POST /api/data/timesheets/approvals/approve)
 * Timesheet.RejectResourceTimeSheetApprovalRequest (POST /api/data/timesheets/approvals/reject)
@@ -256,7 +268,9 @@ Changes to data models:
 
 
 
-# Patch notes for 133.1.136
+# May, 2025
+
+## Patch notes for 133.1.136
 
 These patch notes summarize the changes from version 132.1.183.
 
@@ -268,11 +282,11 @@ Changes to data models:
 
 
 
-# Patch notes for 132.1.183
+## Patch notes for 132.1.183
 
 These patch notes summarize the changes from version 131.1.208.
 
-Added 1 new APIs:
+Added 1 new endpoints:
 * ProjectMembers.UpdateAListOfUserProjectMembership (PUT /api/data/projects/{projectId}/members)
 
 Changes to data models:
@@ -280,7 +294,9 @@ Changes to data models:
 
 
 
-# Patch notes for 131.1.208
+# April, 2025
+
+## Patch notes for 131.1.208
 
 These patch notes summarize the changes from version 130.1.162.
 
@@ -295,11 +311,11 @@ Changes to data models:
 
 
 
-# Patch notes for 130.1.162
+## Patch notes for 130.1.162
 
 These patch notes summarize the changes from version 129.0.113.
 
-Added 1 new APIs:
+Added 1 new endpoints:
 * RiskFile.UploadRiskFile (POST /api/data/risks/{riskId}/files)
 
 Changes to data models:
@@ -308,11 +324,13 @@ Changes to data models:
 
 
 
-# Patch notes for 129.0.113
+# March, 2025
+
+## Patch notes for 129.0.113
 
 These patch notes summarize the changes from version 127.0.185.
 
-Added 6 new APIs:
+Added 6 new endpoints:
 * Me.UpdateMyAvatar (POST /api/data/me/avatar)
 * Npt.GetNpt (GET /api/data/non-project-tasks/{nptId})
 * Npt.UpdateNpt (PUT /api/data/non-project-tasks/{nptId})
@@ -320,7 +338,7 @@ Added 6 new APIs:
 * Npt.CreateNpt (POST /api/data/non-project-tasks)
 * NptStatus.GetNptTaskStatuses (GET /api/data/non-project-tasks/statuses)
 
-Renamed 4 old APIs:
+Renamed 4 endpoints:
 * Renamed 'TaskTodo.GetTodosForATask' to 'TaskTodo.GetTodos'
 * Renamed 'TaskTodo.CreateATodoForATask' to 'TaskTodo.CreateTodo'
 * Renamed 'TaskTodo.UpdateATodo' to 'TaskTodo.UpdateTodo'
@@ -333,24 +351,28 @@ Changes to data models:
 * TimesheetTaskDto: Changed the data type of the field `actualStartDate` from `date-time` to `date`
 * TimesheetTaskDto: Changed the data type of the field `actualFinishDate` from `date-time` to `date`
 
-Deprecated 1 old APIs:
+Deprecated 1 old endpoints:
 * Changeset.RetrieveChangesetsByProjectID
 
 
 
-# Patch notes for 127.0.185
+# February, 2025
+
+## Patch notes for 127.0.185
 
 These patch notes summarize the changes from version 125.1.169.
 
 Changes to data models:
 * LicenseDto: Changed the data type of the field `id` from `uuid` to `string`
 
-Deprecated 1 old APIs:
+Deprecated 1 old endpoints:
 * WorkSpace.InviteToWorkspace
 
 
 
-# Patch notes for 125.1.169
+# January, 2025
+
+## Patch notes for 125.1.169
 
 These patch notes summarize the changes from version 122.0.214.
 
@@ -359,22 +381,24 @@ Changes to data models:
 
 
 
-# Patch notes for 122.0.214
+# Updates from 2024
+
+## Patch notes for 122.0.214
 
 These patch notes summarize the changes from version 121.0.4887.
 
-Added 3 new APIs:
+Added 3 new endpoints:
 * ProjectCustomer.CreateProjectCustomer (POST /api/data/projects/customers)
 * ProjectCustomer.UpdateProjectCustomer (PUT /api/data/projects/customers/{customerId})
 * ProjectCustomer.DeleteProjectCustomer (DELETE /api/data/projects/customers/{customerId})
 
 
 
-# Patch notes for 121.0.4887
+## Patch notes for 121.0.4887
 
 These patch notes summarize the changes from version 120.0.4689.
 
-Added 7 new APIs:
+Added 7 new endpoints:
 * Discussion.LikeAComment (POST /api/data/comments/{commentId}/like)
 * Discussion.RemovesAThumbsupFromAComment (DELETE /api/data/comments/{commentId}/like)
 * Discussion.RemoveAComment (DELETE /api/data/comments/{commentId})
@@ -383,7 +407,7 @@ Added 7 new APIs:
 * TaskTodo.UpdateATodo (PUT /api/data/tasks/todos/{todoId})
 * TaskTodo.DeleteATodo (DELETE /api/data/tasks/todos/{todoId})
 
-Changes to existing APIs:
+Changes to existing endpoints:
 * Notification.RetrieveNotifications added query parameter `senderId`
 * Notification.RetrieveNotifications added query parameter `notificationTypes`
 * Notification.RetrieveNotifications added query parameter `asFlatList`
@@ -401,7 +425,7 @@ Changes to data models:
 
 
 
-# Patch notes for 120.0.4689
+## Patch notes for 120.0.4689
 
 These patch notes summarize the changes from version 119.0.4625.
 
@@ -411,18 +435,18 @@ Changes to data models:
 
 
 
-# Patch notes for 119.0.4625
+## Patch notes for 119.0.4625
 
 These patch notes summarize the changes from version 117.0.4438.
 
-Added 5 new APIs:
+Added 5 new endpoints:
 * ProjectVersion.RetrieveProjectVersions (GET /api/data/projects/{projectId}/versions)
 * ProjectVersion.DownloadMSProjectXml (GET /api/data/projects/{projectChangeId}/version/download)
 * ProjectVersion.RestoreProjectVersion (POST /api/data/projects/{projectId}/version/{version}/restore)
 * ProjectVersion.CopyProjectVersion (POST /api/data/projects/{projectId}/version/{version}/copy)
 * Risk.CreateRiskExport (POST /api/data/projects/{projectId}/risks/export)
 
-Renamed 1 old APIs:
+Renamed 1 endpoints:
 * Renamed 'TaskMetadata.GetTasksByProjectIDAndForeignKeyID' to 'TaskMetadata.TaskMetadataSearch'
 
 Changes to data models:
@@ -431,7 +455,7 @@ Changes to data models:
 
 
 
-# Patch notes for 117.0.4438
+## Patch notes for 117.0.4438
 
 These patch notes summarize the changes from version 116.0.4391.
 
@@ -443,11 +467,11 @@ Changes to data models:
 
 
 
-# Patch notes for 116.0.4391
+## Patch notes for 116.0.4391
 
 These patch notes summarize the changes from version 115.0.4330.
 
-Added 1 new APIs:
+Added 1 new endpoints:
 * Resource.ResendInviteEmail (GET /api/data/resources/{resourceId}/resendinvite)
 
 Changes to data models:
@@ -458,7 +482,7 @@ Changes to data models:
 
 
 
-# Patch notes for 115.0.4330
+## Patch notes for 115.0.4330
 
 These patch notes summarize the changes from version 114.0.4169.
 
@@ -478,11 +502,11 @@ Changes to data models:
 
 
 
-# Patch notes for 114.0.4169
+## Patch notes for 114.0.4169
 
 These patch notes summarize the changes from version 112.0.3856.
 
-Added 9 new APIs:
+Added 9 new endpoints:
 * Notification.RetrieveNotifications (GET /api/data/notifications)
 * Notification.NotificationCount (GET /api/data/notifications/count)
 * Notification.UnreadNotificationCount (GET /api/data/notifications/unreadcount)
@@ -505,7 +529,7 @@ Changes to data models:
 
 
 
-# Patch notes for 112.0.3856
+## Patch notes for 112.0.3856
 
 These patch notes summarize the changes from version 110.0.3705.
 
@@ -518,7 +542,7 @@ Changes to data models:
 
 
 
-# Patch notes for 110.0.3705
+## Patch notes for 110.0.3705
 
 These patch notes summarize the changes from version 107.0.3368.
 
@@ -527,7 +551,7 @@ Changes to data models:
 
 
 
-# Patch notes for 107.0.3368
+## Patch notes for 107.0.3368
 
 These patch notes summarize the changes from version 104.0.3086.
 
@@ -541,29 +565,29 @@ Changes to data models:
 * TimesheetTaskDto: Added new field `plannedResourceCost`
 * TimesheetTaskDto: Added new field `plannedEffort`
 
-Deprecated 1 old APIs:
+Deprecated 1 old endpoints:
 * Changeset.RetrieveProjectChangesByProjectID
 
 
 
-# Patch notes for 104.0.3086
+## Patch notes for 104.0.3086
 
 These patch notes summarize the changes from version 103.0.3003.
 
-Added 1 new APIs:
+Added 1 new endpoints:
 * Changeset.RetrieveProjectChangesByProjectID (GET /api/data/projects/{projectId}/changes)
 
-Renamed 2 old APIs:
+Renamed 2 endpoints:
 * Renamed 'Changeset.RetrieveChangeset' to 'Changeset.RetrieveChangesetStatus'
 * Renamed 'Changeset.RetrieveCompletedChangeset' to 'Changeset.RetrieveCompletedChangesetStatus'
 
 
 
-# Patch notes for 103.0.3003
+## Patch notes for 103.0.3003
 
 These patch notes summarize the changes from version 102.0.2886.
 
-Added 2 new APIs:
+Added 2 new endpoints:
 * Changeset.RetrieveChangesetsByProjectID (GET /api/data/projects/{projectId}/changesets)
 * Project.DeleteProject (DELETE /api/data/projects/{projectId})
 
@@ -572,11 +596,11 @@ Changes to data models:
 
 
 
-# Patch notes for 102.0.2886
+## Patch notes for 102.0.2886
 
 These patch notes summarize the changes from version 99.0.2550.
 
-Added 9 new APIs:
+Added 9 new endpoints:
 * File.DeleteFile (DELETE /api/data/files/{fileId})
 * Holiday.QueryResourceHolidays (GET /api/data/holidays/resource)
 * Holiday.QueryCountryHolidays (GET /api/data/holidays/country)
@@ -587,7 +611,7 @@ Added 9 new APIs:
 * TaskMetadata.GetTaskMetadata (GET /api/data/tasks/{taskId}/metadata)
 * TaskMetadata.GetTasksByProjectIDAndForeignKeyID (GET /api/data/projects/{projectId}/tasks/metadata)
 
-Changes to existing APIs:
+Changes to existing endpoints:
 * Project.QueryProjects removed query parameter `$select`
 * Resource.QueryResources removed query parameter `$select`
 * ResourceSkill.RetrieveResourceSkills removed query parameter `$select`
@@ -612,19 +636,19 @@ Changes to data models:
 
 
 
-# Patch notes for 99.0.2550
+## Patch notes for 99.0.2550
 
 These patch notes summarize the changes from version 98.0.2363.
 
-Added 2 new APIs:
+Added 2 new endpoints:
 * TaskField.QueryTaskFields (GET /api/data/projects/tasks/fields)
 * TaskField.QueryTaskFieldValues (GET /api/data/tasks/fields/values)
 
-Renamed 2 old APIs:
+Renamed 2 endpoints:
 * Renamed 'ProjectField.UpdateProjectField' to 'ProjectField.UpdateProjectFieldValue'
 * Renamed 'ProjectMembers.RetrieveUserProjectMemberShip' to 'ProjectMembers.RetrieveUserProjectMembership'
 
-Changes to existing APIs:
+Changes to existing endpoints:
 * ProjectField.DeleteProjectField added path parameter `fieldId`
 * ProjectField.DeleteProjectField removed body parameter `body`
 * ProjectField.UpdateProjectFieldValue changed the data type of the parameter `fieldId` from `uuid` to `string`
@@ -654,15 +678,15 @@ Changes to data models:
 
 
 
-# Patch notes for 98.0.2363
+## Patch notes for 98.0.2363
 
 These patch notes summarize the changes from version 97.0.2178.
 
-Added 2 new APIs:
+Added 2 new endpoints:
 * ProjectField.RetrieveProjectFieldValue (GET /api/data/projects/{projectId}/fields/{fieldId})
 * ProjectField.RetrieveAllProjectFieldValues (GET /api/data/projects/{projectId}/fields)
 
-Changes to existing APIs:
+Changes to existing endpoints:
 * ApiKey.CreateApiKey added header parameter `x-integration-name`
 * ApiKey.ListApiKeys added header parameter `x-integration-name`
 * ApiKey.RevokeAllApiKeys added header parameter `x-integration-name`
@@ -786,17 +810,17 @@ Changes to data models:
 * TaskDto: Added new field `fields`
 * TimesheetDto: Added new field `modifiedDate`
 
-Deprecated 2 old APIs:
+Deprecated 2 old endpoints:
 * Integration.AddIntegrationInstance
 * Integration.RemoveIntegrationInstance
 
 
 
-# Patch notes for 97.0.2178
+## Patch notes for 97.0.2178
 
 These patch notes summarize the changes from version 96.0.2123.
 
-Added 3 new APIs:
+Added 3 new endpoints:
 * Task.AddParentTask (POST /api/data/tasks/{taskId}/parent/{parentTaskId})
 * Task.UpdateParentTask (PUT /api/data/tasks/{taskId}/parent/{parentTaskId})
 * Task.RemoveParentTask (DELETE /api/data/tasks/{taskId}/parent)
