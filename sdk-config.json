@@ -35,7 +35,8 @@
     "VersionNumberUrl": "https://api.projectmanager.com/api/swagger/ProjectManager.com,%20Inc%20API/swagger.json",
     "VersionNumberRegex": "version\": \"(.*)\"",
     "PatchNotes": {
-        "OutputFile": "fern/docs/pages/patchnotes.mdx"
+        "OutputFile": "fern/docs/pages/patchnotes.mdx",
+        "DatesFile": "dates.json"
     },
     "CopySwagger": {
         "Target": "fern/openapi/openapi.json"
