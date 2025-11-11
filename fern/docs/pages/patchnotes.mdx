@@ -5,24 +5,24 @@
 These patch notes summarize the changes from version 144.0.155.
 
 Added 11 new endpoints:
-* NptRecurrency.ValidateRecurringNpts (POST /api/data/npt/{taskId}/recurring/settings/validate)
-* NptRecurrency.UpdateRecurringNpts (PUT /api/data/npt/{taskId}/recurring/settings)
-* ProjectChargeCode.UpdateProjectChargeCode (PUT /api/data/projects/chargecodes/{chargeCodeId})
-* ProjectChargeCode.DeleteProjectChargeCode (DELETE /api/data/projects/chargecodes/{chargeCodeId})
-* ProjectFolder.CreateProjectFolder (POST /api/data/project-folders)
-* ProjectFolder.UpdateProjectFolder (PUT /api/data/project-folders/{projectFolderId})
-* ProjectFolder.DeleteProjectFolder (DELETE /api/data/project-folders/{projectFolderId})
-* ProjectStatus.UpdateProjectStatus (PUT /api/data/projects/statuses/{projectStatusId})
-* ProjectStatus.DeleteProjectStatus (DELETE /api/data/projects/statuses/{projectStatusId})
-* TaskRecurrency.ValidateRecurringTasks (POST /api/data/tasks/{taskId}/recurring/settings/validate)
-* TaskRecurrency.UpdateRecurringTasks (PUT /api/data/tasks/{taskId}/recurring/settings)
+* [NptRecurrency.ValidateRecurringNpts](https://developer.projectmanager.com/api-reference/npt-recurrency/validate-recurring-npts) (`POST /api/data/npt/{taskId}/recurring/settings/validate`)
+* [NptRecurrency.UpdateRecurringNpts](https://developer.projectmanager.com/api-reference/npt-recurrency/update-recurring-npts) (`PUT /api/data/npt/{taskId}/recurring/settings`)
+* [ProjectChargeCode.UpdateProjectChargeCode](https://developer.projectmanager.com/api-reference/project-charge-code/update-project-charge-code) (`PUT /api/data/projects/chargecodes/{chargeCodeId}`)
+* [ProjectChargeCode.DeleteProjectChargeCode](https://developer.projectmanager.com/api-reference/project-charge-code/delete-project-charge-code) (`DELETE /api/data/projects/chargecodes/{chargeCodeId}`)
+* [ProjectFolder.CreateProjectFolder](https://developer.projectmanager.com/api-reference/project-folder/create-project-folder) (`POST /api/data/project-folders`)
+* [ProjectFolder.UpdateProjectFolder](https://developer.projectmanager.com/api-reference/project-folder/update-project-folder) (`PUT /api/data/project-folders/{projectFolderId}`)
+* [ProjectFolder.DeleteProjectFolder](https://developer.projectmanager.com/api-reference/project-folder/delete-project-folder) (`DELETE /api/data/project-folders/{projectFolderId}`)
+* [ProjectStatus.UpdateProjectStatus](https://developer.projectmanager.com/api-reference/project-status/update-project-status) (`PUT /api/data/projects/statuses/{projectStatusId}`)
+* [ProjectStatus.DeleteProjectStatus](https://developer.projectmanager.com/api-reference/project-status/delete-project-status) (`DELETE /api/data/projects/statuses/{projectStatusId}`)
+* [TaskRecurrency.ValidateRecurringTasks](https://developer.projectmanager.com/api-reference/task-recurrency/validate-recurring-tasks) (`POST /api/data/tasks/{taskId}/recurring/settings/validate`)
+* [TaskRecurrency.UpdateRecurringTasks](https://developer.projectmanager.com/api-reference/task-recurrency/update-recurring-tasks) (`PUT /api/data/tasks/{taskId}/recurring/settings`)
 
 Renamed 5 endpoints:
-* Renamed 'Timesheet.QueryTimeSheets' to 'Timesheet.QueryTimeEntries'
-* Renamed 'Timesheet.ReturnsActiveAdminTasksThatAreUsedToReportTime' to 'Timesheet.RetrieveAdministrativeTasks'
-* Renamed 'Timesheet.SubmitResourceTimeSheetForApproval' to 'Timesheet.SubmitTimeSheet'
-* Renamed 'Timesheet.ApproveResourceTimeSheetApprovalRequest' to 'Timesheet.ApproveTimeSheet'
-* Renamed 'Timesheet.RejectResourceTimeSheetApprovalRequest' to 'Timesheet.RejectTimeSheet'
+* Renamed Timesheet.QueryTimeSheets to [Timesheet.QueryTimeEntries](https://developer.projectmanager.com/api-reference/timesheet/query-time-entries)
+* Renamed Timesheet.ReturnsActiveAdminTasksThatAreUsedToReportTime to [Timesheet.RetrieveAdministrativeTasks](https://developer.projectmanager.com/api-reference/timesheet/retrieve-administrative-tasks)
+* Renamed Timesheet.SubmitResourceTimeSheetForApproval to [Timesheet.SubmitTimeSheet](https://developer.projectmanager.com/api-reference/timesheet/submit-time-sheet)
+* Renamed Timesheet.ApproveResourceTimeSheetApprovalRequest to [Timesheet.ApproveTimeSheet](https://developer.projectmanager.com/api-reference/timesheet/approve-time-sheet)
+* Renamed Timesheet.RejectResourceTimeSheetApprovalRequest to [Timesheet.RejectTimeSheet](https://developer.projectmanager.com/api-reference/timesheet/reject-time-sheet)
 
 Changes to data models:
 * ProjectDto: Added new field `ownerId`
@@ -37,8 +37,8 @@ Changes to data models:
 These patch notes summarize the changes from version 143.0.162.
 
 Added 2 new endpoints:
-* ProjectChargeCode.CreateProjectChargeCode (POST /api/data/projects/chargecodes)
-* ProjectStatus.CreateProjectStatus (POST /api/data/projects/statuses)
+* [ProjectChargeCode.CreateProjectChargeCode](https://developer.projectmanager.com/api-reference/project-charge-code/create-project-charge-code) (`POST /api/data/projects/chargecodes`)
+* [ProjectStatus.CreateProjectStatus](https://developer.projectmanager.com/api-reference/project-status/create-project-status) (`POST /api/data/projects/statuses`)
 
 Changes to data models:
 * ProjectChargeCodeDto: Added new field `isActive`
@@ -60,13 +60,13 @@ Changes to data models:
 These patch notes summarize the changes from version 141.1.156.
 
 Added 7 new endpoints:
-* NptRecurrency.CreateWeeklyRecurringNpts (POST /api/data/npt/{taskId}/recurring/weekly)
-* NptRecurrency.CreateMonthlyRecurringNpts (POST /api/data/npt/{taskId}/recurring/monthly)
-* NptRecurrency.CreateDailyRecurringNpts (POST /api/data/npt/{taskId}/recurring/daily)
-* NptRecurrency.CreateYearlyRecurringNpts (POST /api/data/npt/{taskId}/recurring/yearly)
-* NptRecurrency.DeleteRecurringNpts (DELETE /api/data/npt/{taskId}/recurring/{option})
-* Task.FetchTheFirstLevelChildTasksFromTheTask (GET /api/data/tasks/{taskId}/subtasks)
-* TaskAssignee.ReturnsTaskAssignees (GET /api/data/tasks/{taskId}/assignees)
+* [NptRecurrency.CreateWeeklyRecurringNpts](https://developer.projectmanager.com/api-reference/npt-recurrency/create-weekly-recurring-npts) (`POST /api/data/npt/{taskId}/recurring/weekly`)
+* [NptRecurrency.CreateMonthlyRecurringNpts](https://developer.projectmanager.com/api-reference/npt-recurrency/create-monthly-recurring-npts) (`POST /api/data/npt/{taskId}/recurring/monthly`)
+* [NptRecurrency.CreateDailyRecurringNpts](https://developer.projectmanager.com/api-reference/npt-recurrency/create-daily-recurring-npts) (`POST /api/data/npt/{taskId}/recurring/daily`)
+* [NptRecurrency.CreateYearlyRecurringNpts](https://developer.projectmanager.com/api-reference/npt-recurrency/create-yearly-recurring-npts) (`POST /api/data/npt/{taskId}/recurring/yearly`)
+* [NptRecurrency.DeleteRecurringNpts](https://developer.projectmanager.com/api-reference/npt-recurrency/delete-recurring-npts) (`DELETE /api/data/npt/{taskId}/recurring/{option}`)
+* [Task.FetchTheFirstLevelChildTasksFromTheTask](https://developer.projectmanager.com/api-reference/task/fetch-the-first-level-child-tasks-from-the-task) (`GET /api/data/tasks/{taskId}/subtasks`)
+* [TaskAssignee.ReturnsTaskAssignees](https://developer.projectmanager.com/api-reference/task-assignee/returns-task-assignees) (`GET /api/data/tasks/{taskId}/assignees`)
 
 Changes to data models:
 * NptCreateDto: Added new field `statusId`
@@ -111,12 +111,12 @@ Changes to data models:
 These patch notes summarize the changes from version 139.0.157.
 
 Added 6 new endpoints:
-* Project.RestoreProject (PUT /api/data/projects/{projectId}/restore)
-* TaskRecurrency.CreateWeeklyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/weekly)
-* TaskRecurrency.CreateMonthlyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/monthly)
-* TaskRecurrency.CreateDailyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/daily)
-* TaskRecurrency.CreateYearlyRecurringTasks (POST /api/data/tasks/{taskId}/recurring/yearly)
-* TaskRecurrency.DeleteRecurringTasks (DELETE /api/data/tasks/{taskId}/recurring/{option})
+* [Project.RestoreProject](https://developer.projectmanager.com/api-reference/project/restore-project) (`PUT /api/data/projects/{projectId}/restore`)
+* [TaskRecurrency.CreateWeeklyRecurringTasks](https://developer.projectmanager.com/api-reference/task-recurrency/create-weekly-recurring-tasks) (`POST /api/data/tasks/{taskId}/recurring/weekly`)
+* [TaskRecurrency.CreateMonthlyRecurringTasks](https://developer.projectmanager.com/api-reference/task-recurrency/create-monthly-recurring-tasks) (`POST /api/data/tasks/{taskId}/recurring/monthly`)
+* [TaskRecurrency.CreateDailyRecurringTasks](https://developer.projectmanager.com/api-reference/task-recurrency/create-daily-recurring-tasks) (`POST /api/data/tasks/{taskId}/recurring/daily`)
+* [TaskRecurrency.CreateYearlyRecurringTasks](https://developer.projectmanager.com/api-reference/task-recurrency/create-yearly-recurring-tasks) (`POST /api/data/tasks/{taskId}/recurring/yearly`)
+* [TaskRecurrency.DeleteRecurringTasks](https://developer.projectmanager.com/api-reference/task-recurrency/delete-recurring-tasks) (`DELETE /api/data/tasks/{taskId}/recurring/{option}`)
 
 Changes to data models:
 * ProjectCreateDto: Added new field `template`
@@ -130,8 +130,8 @@ Changes to data models:
 These patch notes summarize the changes from version 138.1.170.
 
 Added 2 new endpoints:
-* ProjectMembers.RetrieveProjectsTheUserIsAMemberOf (GET /api/data/projects/membership)
-* Resource.GetResourceAvatar (GET /api/data/resources/{resourceId}/avatar)
+* [ProjectMembers.RetrieveProjectsTheUserIsAMemberOf](https://developer.projectmanager.com/api-reference/project-members/retrieve-projects-the-user-is-a-member-of) (`GET /api/data/projects/membership`)
+* [Resource.GetResourceAvatar](https://developer.projectmanager.com/api-reference/resource/get-resource-avatar) (`GET /api/data/resources/{resourceId}/avatar`)
 
 Changes to data models:
 * NptDetailsDto: Added new field `actualStartDate`
@@ -175,28 +175,28 @@ Changes to data models:
 These patch notes summarize the changes from version 137.0.201.
 
 Added 16 new endpoints:
-* NptDiscussion.RetrieveNptComments (GET /api/data/non-project-tasks/{nptId}/comments)
-* NptDiscussion.CreateNptComments (POST /api/data/non-project-tasks/{nptId}/comments)
-* NptDiscussion.LikeAComment (POST /api/data/non-project-tasks/comments/{commentId}/like)
-* NptDiscussion.RemovesAThumbsupFromAComment (DELETE /api/data/non-project-tasks/comments/{commentId}/like)
-* NptDiscussion.RemoveAComment (DELETE /api/data/non-project-tasks/comments/{commentId})
-* NptFiles.GetNptFiles (GET /api/data/non-project-tasks/{taskId}/files)
-* NptTag.ReplaceTaskTags (POST /api/data/non-project-tasks/{taskId}/tags)
-* NptTag.AddTaskTagToTask (PUT /api/data/non-project-tasks/{taskId}/tags)
-* NptTag.RemoveTaskTagFromTask (DELETE /api/data/non-project-tasks/{taskId}/tags)
-* NptTag.RetrieveTaskTags (GET /api/data/non-project-tasks/{taskId}/tags)
-* NptTodos.GetNptTodos (GET /api/data/non-project-tasks/{nptId}/todos)
-* NptTodos.CreateNptTodo (POST /api/data/non-project-tasks/{nptId}/todos)
-* NptTodos.UpdateANptTodo (PUT /api/data/non-project-tasks/todos/{todoId})
-* NptTodos.RemoveNptTodo (DELETE /api/data/non-project-tasks/todos/{todoId})
-* TaskFile.GetTaskFiles (GET /api/data/tasks/{taskId}/files)
-* TaskTag.RetrieveTaskTags (GET /api/data/tasks/{taskId}/tags)
+* [NptDiscussion.RetrieveNptComments](https://developer.projectmanager.com/api-reference/npt-discussion/retrieve-npt-comments) (`GET /api/data/non-project-tasks/{nptId}/comments`)
+* [NptDiscussion.CreateNptComments](https://developer.projectmanager.com/api-reference/npt-discussion/create-npt-comments) (`POST /api/data/non-project-tasks/{nptId}/comments`)
+* [NptDiscussion.LikeAComment](https://developer.projectmanager.com/api-reference/npt-discussion/like-a-comment) (`POST /api/data/non-project-tasks/comments/{commentId}/like`)
+* [NptDiscussion.RemovesAThumbsupFromAComment](https://developer.projectmanager.com/api-reference/npt-discussion/removes-a-thumbsup-from-a-comment) (`DELETE /api/data/non-project-tasks/comments/{commentId}/like`)
+* [NptDiscussion.RemoveAComment](https://developer.projectmanager.com/api-reference/npt-discussion/remove-a-comment) (`DELETE /api/data/non-project-tasks/comments/{commentId}`)
+* [NptFiles.GetNptFiles](https://developer.projectmanager.com/api-reference/npt-files/get-npt-files) (`GET /api/data/non-project-tasks/{taskId}/files`)
+* [NptTag.ReplaceTaskTags](https://developer.projectmanager.com/api-reference/npt-tag/replace-task-tags) (`POST /api/data/non-project-tasks/{taskId}/tags`)
+* [NptTag.AddTaskTagToTask](https://developer.projectmanager.com/api-reference/npt-tag/add-task-tag-to-task) (`PUT /api/data/non-project-tasks/{taskId}/tags`)
+* [NptTag.RemoveTaskTagFromTask](https://developer.projectmanager.com/api-reference/npt-tag/remove-task-tag-from-task) (`DELETE /api/data/non-project-tasks/{taskId}/tags`)
+* [NptTag.RetrieveTaskTags](https://developer.projectmanager.com/api-reference/npt-tag/retrieve-task-tags) (`GET /api/data/non-project-tasks/{taskId}/tags`)
+* [NptTodos.GetNptTodos](https://developer.projectmanager.com/api-reference/npt-todos/get-npt-todos) (`GET /api/data/non-project-tasks/{nptId}/todos`)
+* [NptTodos.CreateNptTodo](https://developer.projectmanager.com/api-reference/npt-todos/create-npt-todo) (`POST /api/data/non-project-tasks/{nptId}/todos`)
+* [NptTodos.UpdateANptTodo](https://developer.projectmanager.com/api-reference/npt-todos/update-anpt-todo) (`PUT /api/data/non-project-tasks/todos/{todoId}`)
+* [NptTodos.RemoveNptTodo](https://developer.projectmanager.com/api-reference/npt-todos/remove-npt-todo) (`DELETE /api/data/non-project-tasks/todos/{todoId}`)
+* [TaskFile.GetTaskFiles](https://developer.projectmanager.com/api-reference/task-file/get-task-files) (`GET /api/data/tasks/{taskId}/files`)
+* [TaskTag.RetrieveTaskTags](https://developer.projectmanager.com/api-reference/task-tag/retrieve-task-tags) (`GET /api/data/tasks/{taskId}/tags`)
 
 Renamed 4 endpoints:
-* Renamed 'Discussion.CreateTaskComments' to 'Discussion.CreateTaskComment'
-* Renamed 'Discussion.LikeAComment' to 'Discussion.LikeComment'
-* Renamed 'Discussion.RemovesAThumbsupFromAComment' to 'Discussion.UnlikeComment'
-* Renamed 'Discussion.RemoveAComment' to 'Discussion.RemoveComment'
+* Renamed Discussion.CreateTaskComments to [Discussion.CreateTaskComment](https://developer.projectmanager.com/api-reference/discussion/create-task-comment)
+* Renamed Discussion.LikeAComment to [Discussion.LikeComment](https://developer.projectmanager.com/api-reference/discussion/like-comment)
+* Renamed Discussion.RemovesAThumbsupFromAComment to [Discussion.UnlikeComment](https://developer.projectmanager.com/api-reference/discussion/unlike-comment)
+* Renamed Discussion.RemoveAComment to [Discussion.RemoveComment](https://developer.projectmanager.com/api-reference/discussion/remove-comment)
 
 Changes to data models:
 * ProjectManagerDto: Added new field `color`
@@ -215,10 +215,10 @@ Changes to data models:
 These patch notes summarize the changes from version 136.0.106.
 
 Added 1 new endpoints:
-* Resource.DeleteResource (DELETE /api/data/resources/{resourceId})
+* [Resource.DeleteResource](https://developer.projectmanager.com/api-reference/resource/delete-resource) (`DELETE /api/data/resources/{resourceId}`)
 
 Renamed 1 endpoints:
-* Renamed 'Risk.GetRiskList' to 'Risk.QueryRisks'
+* Renamed Risk.GetRiskList to [Risk.QueryRisks](https://developer.projectmanager.com/api-reference/risk/query-risks)
 
 
 
@@ -242,7 +242,7 @@ Changes to data models:
 These patch notes summarize the changes from version 134.0.125.
 
 Added 1 new endpoints:
-* Risk.GetRiskList (GET /api/data/risks)
+* [Risk.GetRiskList](https://developer.projectmanager.com/api-reference/risk/get-risk-list) (`GET /api/data/risks`)
 
 Changes to existing endpoints:
 * Npt.GetNpt changed the data type of the parameter `nptId` from `uuid` to `string`
@@ -258,9 +258,9 @@ Changes to data models:
 These patch notes summarize the changes from version 133.1.136.
 
 Added 3 new endpoints:
-* Timesheet.SubmitResourceTimeSheetForApproval (POST /api/data/timesheets/approvals)
-* Timesheet.ApproveResourceTimeSheetApprovalRequest (POST /api/data/timesheets/approvals/approve)
-* Timesheet.RejectResourceTimeSheetApprovalRequest (POST /api/data/timesheets/approvals/reject)
+* [Timesheet.SubmitResourceTimeSheetForApproval](https://developer.projectmanager.com/api-reference/timesheet/submit-resource-time-sheet-for-approval) (`POST /api/data/timesheets/approvals`)
+* [Timesheet.ApproveResourceTimeSheetApprovalRequest](https://developer.projectmanager.com/api-reference/timesheet/approve-resource-time-sheet-approval-request) (`POST /api/data/timesheets/approvals/approve`)
+* [Timesheet.RejectResourceTimeSheetApprovalRequest](https://developer.projectmanager.com/api-reference/timesheet/reject-resource-time-sheet-approval-request) (`POST /api/data/timesheets/approvals/reject`)
 
 Changes to data models:
 * ProjectCreateDto: Added new field `shortId`
@@ -287,7 +287,7 @@ Changes to data models:
 These patch notes summarize the changes from version 131.1.208.
 
 Added 1 new endpoints:
-* ProjectMembers.UpdateAListOfUserProjectMembership (PUT /api/data/projects/{projectId}/members)
+* [ProjectMembers.UpdateAListOfUserProjectMembership](https://developer.projectmanager.com/api-reference/project-members/update-alist-of-user-project-membership) (`PUT /api/data/projects/{projectId}/members`)
 
 Changes to data models:
 * ProjectUpdateDto: Added new field `notes`
@@ -316,7 +316,7 @@ Changes to data models:
 These patch notes summarize the changes from version 129.0.113.
 
 Added 1 new endpoints:
-* RiskFile.UploadRiskFile (POST /api/data/risks/{riskId}/files)
+* [RiskFile.UploadRiskFile](https://developer.projectmanager.com/api-reference/risk-file/upload-risk-file) (`POST /api/data/risks/{riskId}/files`)
 
 Changes to data models:
 * ProjectCreateDto: Removed field `template`
@@ -331,18 +331,18 @@ Changes to data models:
 These patch notes summarize the changes from version 127.0.185.
 
 Added 6 new endpoints:
-* Me.UpdateMyAvatar (POST /api/data/me/avatar)
-* Npt.GetNpt (GET /api/data/non-project-tasks/{nptId})
-* Npt.UpdateNpt (PUT /api/data/non-project-tasks/{nptId})
-* Npt.RemoveNpt (DELETE /api/data/non-project-tasks/{nptId})
-* Npt.CreateNpt (POST /api/data/non-project-tasks)
-* NptStatus.GetNptTaskStatuses (GET /api/data/non-project-tasks/statuses)
+* [Me.UpdateMyAvatar](https://developer.projectmanager.com/api-reference/me/update-my-avatar) (`POST /api/data/me/avatar`)
+* [Npt.GetNpt](https://developer.projectmanager.com/api-reference/npt/get-npt) (`GET /api/data/non-project-tasks/{nptId}`)
+* [Npt.UpdateNpt](https://developer.projectmanager.com/api-reference/npt/update-npt) (`PUT /api/data/non-project-tasks/{nptId}`)
+* [Npt.RemoveNpt](https://developer.projectmanager.com/api-reference/npt/remove-npt) (`DELETE /api/data/non-project-tasks/{nptId}`)
+* [Npt.CreateNpt](https://developer.projectmanager.com/api-reference/npt/create-npt) (`POST /api/data/non-project-tasks`)
+* [NptStatus.GetNptTaskStatuses](https://developer.projectmanager.com/api-reference/npt-status/get-npt-task-statuses) (`GET /api/data/non-project-tasks/statuses`)
 
 Renamed 4 endpoints:
-* Renamed 'TaskTodo.GetTodosForATask' to 'TaskTodo.GetTodos'
-* Renamed 'TaskTodo.CreateATodoForATask' to 'TaskTodo.CreateTodo'
-* Renamed 'TaskTodo.UpdateATodo' to 'TaskTodo.UpdateTodo'
-* Renamed 'TaskTodo.DeleteATodo' to 'TaskTodo.DeleteTodo'
+* Renamed TaskTodo.GetTodosForATask to [TaskTodo.GetTodos](https://developer.projectmanager.com/api-reference/task-todo/get-todos)
+* Renamed TaskTodo.CreateATodoForATask to [TaskTodo.CreateTodo](https://developer.projectmanager.com/api-reference/task-todo/create-todo)
+* Renamed TaskTodo.UpdateATodo to [TaskTodo.UpdateTodo](https://developer.projectmanager.com/api-reference/task-todo/update-todo)
+* Renamed TaskTodo.DeleteATodo to [TaskTodo.DeleteTodo](https://developer.projectmanager.com/api-reference/task-todo/delete-todo)
 
 Changes to data models:
 * TimesheetDto: Changed the data type of the field `date` from `date-time` to `date`
@@ -388,9 +388,9 @@ Changes to data models:
 These patch notes summarize the changes from version 121.0.4887.
 
 Added 3 new endpoints:
-* ProjectCustomer.CreateProjectCustomer (POST /api/data/projects/customers)
-* ProjectCustomer.UpdateProjectCustomer (PUT /api/data/projects/customers/{customerId})
-* ProjectCustomer.DeleteProjectCustomer (DELETE /api/data/projects/customers/{customerId})
+* [ProjectCustomer.CreateProjectCustomer](https://developer.projectmanager.com/api-reference/project-customer/create-project-customer) (`POST /api/data/projects/customers`)
+* [ProjectCustomer.UpdateProjectCustomer](https://developer.projectmanager.com/api-reference/project-customer/update-project-customer) (`PUT /api/data/projects/customers/{customerId}`)
+* [ProjectCustomer.DeleteProjectCustomer](https://developer.projectmanager.com/api-reference/project-customer/delete-project-customer) (`DELETE /api/data/projects/customers/{customerId}`)
 
 
 
@@ -399,13 +399,13 @@ Added 3 new endpoints:
 These patch notes summarize the changes from version 120.0.4689.
 
 Added 7 new endpoints:
-* Discussion.LikeAComment (POST /api/data/comments/{commentId}/like)
-* Discussion.RemovesAThumbsupFromAComment (DELETE /api/data/comments/{commentId}/like)
-* Discussion.RemoveAComment (DELETE /api/data/comments/{commentId})
-* TaskTodo.GetTodosForATask (GET /api/data/tasks/{taskId}/todos)
-* TaskTodo.CreateATodoForATask (POST /api/data/tasks/{taskId}/todos)
-* TaskTodo.UpdateATodo (PUT /api/data/tasks/todos/{todoId})
-* TaskTodo.DeleteATodo (DELETE /api/data/tasks/todos/{todoId})
+* [Discussion.LikeAComment](https://developer.projectmanager.com/api-reference/discussion/like-a-comment) (`POST /api/data/comments/{commentId}/like`)
+* [Discussion.RemovesAThumbsupFromAComment](https://developer.projectmanager.com/api-reference/discussion/removes-a-thumbsup-from-a-comment) (`DELETE /api/data/comments/{commentId}/like`)
+* [Discussion.RemoveAComment](https://developer.projectmanager.com/api-reference/discussion/remove-a-comment) (`DELETE /api/data/comments/{commentId}`)
+* [TaskTodo.GetTodosForATask](https://developer.projectmanager.com/api-reference/task-todo/get-todos-for-a-task) (`GET /api/data/tasks/{taskId}/todos`)
+* [TaskTodo.CreateATodoForATask](https://developer.projectmanager.com/api-reference/task-todo/create-a-todo-for-a-task) (`POST /api/data/tasks/{taskId}/todos`)
+* [TaskTodo.UpdateATodo](https://developer.projectmanager.com/api-reference/task-todo/update-a-todo) (`PUT /api/data/tasks/todos/{todoId}`)
+* [TaskTodo.DeleteATodo](https://developer.projectmanager.com/api-reference/task-todo/delete-a-todo) (`DELETE /api/data/tasks/todos/{todoId}`)
 
 Changes to existing endpoints:
 * Notification.RetrieveNotifications added query parameter `senderId`
@@ -440,14 +440,14 @@ Changes to data models:
 These patch notes summarize the changes from version 117.0.4438.
 
 Added 5 new endpoints:
-* ProjectVersion.RetrieveProjectVersions (GET /api/data/projects/{projectId}/versions)
-* ProjectVersion.DownloadMSProjectXml (GET /api/data/projects/{projectChangeId}/version/download)
-* ProjectVersion.RestoreProjectVersion (POST /api/data/projects/{projectId}/version/{version}/restore)
-* ProjectVersion.CopyProjectVersion (POST /api/data/projects/{projectId}/version/{version}/copy)
-* Risk.CreateRiskExport (POST /api/data/projects/{projectId}/risks/export)
+* [ProjectVersion.RetrieveProjectVersions](https://developer.projectmanager.com/api-reference/project-version/retrieve-project-versions) (`GET /api/data/projects/{projectId}/versions`)
+* [ProjectVersion.DownloadMSProjectXml](https://developer.projectmanager.com/api-reference/project-version/download-msproject-xml) (`GET /api/data/projects/{projectChangeId}/version/download`)
+* [ProjectVersion.RestoreProjectVersion](https://developer.projectmanager.com/api-reference/project-version/restore-project-version) (`POST /api/data/projects/{projectId}/version/{version}/restore`)
+* [ProjectVersion.CopyProjectVersion](https://developer.projectmanager.com/api-reference/project-version/copy-project-version) (`POST /api/data/projects/{projectId}/version/{version}/copy`)
+* [Risk.CreateRiskExport](https://developer.projectmanager.com/api-reference/risk/create-risk-export) (`POST /api/data/projects/{projectId}/risks/export`)
 
 Renamed 1 endpoints:
-* Renamed 'TaskMetadata.GetTasksByProjectIDAndForeignKeyID' to 'TaskMetadata.TaskMetadataSearch'
+* Renamed TaskMetadata.GetTasksByProjectIDAndForeignKeyID to [TaskMetadata.TaskMetadataSearch](https://developer.projectmanager.com/api-reference/task-metadata/task-metadata-search)
 
 Changes to data models:
 * TaskDto: Added new field `isLocked`
@@ -472,7 +472,7 @@ Changes to data models:
 These patch notes summarize the changes from version 115.0.4330.
 
 Added 1 new endpoints:
-* Resource.ResendInviteEmail (GET /api/data/resources/{resourceId}/resendinvite)
+* [Resource.ResendInviteEmail](https://developer.projectmanager.com/api-reference/resource/resend-invite-email) (`GET /api/data/resources/{resourceId}/resendinvite`)
 
 Changes to data models:
 * TimesheetDto: Added new field `resourceId`
@@ -507,15 +507,15 @@ Changes to data models:
 These patch notes summarize the changes from version 112.0.3856.
 
 Added 9 new endpoints:
-* Notification.RetrieveNotifications (GET /api/data/notifications)
-* Notification.NotificationCount (GET /api/data/notifications/count)
-* Notification.UnreadNotificationCount (GET /api/data/notifications/unreadcount)
-* Notification.DeleteAllNotifications (DELETE /api/data/notifications/deleteall)
-* Notification.MarkNotificationRead (POST /api/data/notifications/{id}/markread)
-* Notification.ReadAllNotifications (POST /api/data/notifications/markallread)
-* Notification.DeleteNotification (DELETE /api/data/notifications/delete/{id})
-* Notification.MarkNotificationUnread (POST /api/data/notifications/{id}/markunread)
-* Resource.CreateManyResources (POST /api/data/resources/bulk)
+* [Notification.RetrieveNotifications](https://developer.projectmanager.com/api-reference/notification/retrieve-notifications) (`GET /api/data/notifications`)
+* [Notification.NotificationCount](https://developer.projectmanager.com/api-reference/notification/notification-count) (`GET /api/data/notifications/count`)
+* [Notification.UnreadNotificationCount](https://developer.projectmanager.com/api-reference/notification/unread-notification-count) (`GET /api/data/notifications/unreadcount`)
+* [Notification.DeleteAllNotifications](https://developer.projectmanager.com/api-reference/notification/delete-all-notifications) (`DELETE /api/data/notifications/deleteall`)
+* [Notification.MarkNotificationRead](https://developer.projectmanager.com/api-reference/notification/mark-notification-read) (`POST /api/data/notifications/{id}/markread`)
+* [Notification.ReadAllNotifications](https://developer.projectmanager.com/api-reference/notification/read-all-notifications) (`POST /api/data/notifications/markallread`)
+* [Notification.DeleteNotification](https://developer.projectmanager.com/api-reference/notification/delete-notification) (`DELETE /api/data/notifications/delete/{id}`)
+* [Notification.MarkNotificationUnread](https://developer.projectmanager.com/api-reference/notification/mark-notification-unread) (`POST /api/data/notifications/{id}/markunread`)
+* [Resource.CreateManyResources](https://developer.projectmanager.com/api-reference/resource/create-many-resources) (`POST /api/data/resources/bulk`)
 
 Changes to data models:
 * ProjectVersionChangeDataDto: Added new field `restoreVersion`
@@ -575,11 +575,11 @@ Deprecated 1 old endpoints:
 These patch notes summarize the changes from version 103.0.3003.
 
 Added 1 new endpoints:
-* Changeset.RetrieveProjectChangesByProjectID (GET /api/data/projects/{projectId}/changes)
+* [Changeset.RetrieveProjectChangesByProjectID](https://developer.projectmanager.com/api-reference/changeset/retrieve-project-changes-by-project-id) (`GET /api/data/projects/{projectId}/changes`)
 
 Renamed 2 endpoints:
-* Renamed 'Changeset.RetrieveChangeset' to 'Changeset.RetrieveChangesetStatus'
-* Renamed 'Changeset.RetrieveCompletedChangeset' to 'Changeset.RetrieveCompletedChangesetStatus'
+* Renamed Changeset.RetrieveChangeset to [Changeset.RetrieveChangesetStatus](https://developer.projectmanager.com/api-reference/changeset/retrieve-changeset-status)
+* Renamed Changeset.RetrieveCompletedChangeset to [Changeset.RetrieveCompletedChangesetStatus](https://developer.projectmanager.com/api-reference/changeset/retrieve-completed-changeset-status)
 
 
 
@@ -588,8 +588,8 @@ Renamed 2 endpoints:
 These patch notes summarize the changes from version 102.0.2886.
 
 Added 2 new endpoints:
-* Changeset.RetrieveChangesetsByProjectID (GET /api/data/projects/{projectId}/changesets)
-* Project.DeleteProject (DELETE /api/data/projects/{projectId})
+* [Changeset.RetrieveChangesetsByProjectID](https://developer.projectmanager.com/api-reference/changeset/retrieve-changesets-by-project-id) (`GET /api/data/projects/{projectId}/changesets`)
+* [Project.DeleteProject](https://developer.projectmanager.com/api-reference/project/delete-project) (`DELETE /api/data/projects/{projectId}`)
 
 Changes to data models:
 * ProjectFileDto: Added new field `folder`
@@ -601,15 +601,15 @@ Changes to data models:
 These patch notes summarize the changes from version 99.0.2550.
 
 Added 9 new endpoints:
-* File.DeleteFile (DELETE /api/data/files/{fileId})
-* Holiday.QueryResourceHolidays (GET /api/data/holidays/resource)
-* Holiday.QueryCountryHolidays (GET /api/data/holidays/country)
-* Holiday.QueryGlobalHolidays (GET /api/data/holidays/global)
-* IntegrationProvider.DisconnectUserIntegrationProviderConnection (DELETE /api/data/integrations/providers/{providerId}/user-connection)
-* NptFiles.UploadFileToNonProjectTasks (POST /api/data/non-project-tasks/{taskId}/files)
-* TaskMetadata.AddMetadata (PUT /api/data/tasks/{taskId}/metadata)
-* TaskMetadata.GetTaskMetadata (GET /api/data/tasks/{taskId}/metadata)
-* TaskMetadata.GetTasksByProjectIDAndForeignKeyID (GET /api/data/projects/{projectId}/tasks/metadata)
+* [File.DeleteFile](https://developer.projectmanager.com/api-reference/file/delete-file) (`DELETE /api/data/files/{fileId}`)
+* [Holiday.QueryResourceHolidays](https://developer.projectmanager.com/api-reference/holiday/query-resource-holidays) (`GET /api/data/holidays/resource`)
+* [Holiday.QueryCountryHolidays](https://developer.projectmanager.com/api-reference/holiday/query-country-holidays) (`GET /api/data/holidays/country`)
+* [Holiday.QueryGlobalHolidays](https://developer.projectmanager.com/api-reference/holiday/query-global-holidays) (`GET /api/data/holidays/global`)
+* [IntegrationProvider.DisconnectUserIntegrationProviderConnection](https://developer.projectmanager.com/api-reference/integration-provider/disconnect-user-integration-provider-connection) (`DELETE /api/data/integrations/providers/{providerId}/user-connection`)
+* [NptFiles.UploadFileToNonProjectTasks](https://developer.projectmanager.com/api-reference/npt-files/upload-file-to-non-project-tasks) (`POST /api/data/non-project-tasks/{taskId}/files`)
+* [TaskMetadata.AddMetadata](https://developer.projectmanager.com/api-reference/task-metadata/add-metadata) (`PUT /api/data/tasks/{taskId}/metadata`)
+* [TaskMetadata.GetTaskMetadata](https://developer.projectmanager.com/api-reference/task-metadata/get-task-metadata) (`GET /api/data/tasks/{taskId}/metadata`)
+* [TaskMetadata.GetTasksByProjectIDAndForeignKeyID](https://developer.projectmanager.com/api-reference/task-metadata/get-tasks-by-project-idand-foreign-key-id) (`GET /api/data/projects/{projectId}/tasks/metadata`)
 
 Changes to existing endpoints:
 * Project.QueryProjects removed query parameter `$select`
@@ -641,12 +641,12 @@ Changes to data models:
 These patch notes summarize the changes from version 98.0.2363.
 
 Added 2 new endpoints:
-* TaskField.QueryTaskFields (GET /api/data/projects/tasks/fields)
-* TaskField.QueryTaskFieldValues (GET /api/data/tasks/fields/values)
+* [TaskField.QueryTaskFields](https://developer.projectmanager.com/api-reference/task-field/query-task-fields) (`GET /api/data/projects/tasks/fields`)
+* [TaskField.QueryTaskFieldValues](https://developer.projectmanager.com/api-reference/task-field/query-task-field-values) (`GET /api/data/tasks/fields/values`)
 
 Renamed 2 endpoints:
-* Renamed 'ProjectField.UpdateProjectField' to 'ProjectField.UpdateProjectFieldValue'
-* Renamed 'ProjectMembers.RetrieveUserProjectMemberShip' to 'ProjectMembers.RetrieveUserProjectMembership'
+* Renamed ProjectField.UpdateProjectField to [ProjectField.UpdateProjectFieldValue](https://developer.projectmanager.com/api-reference/project-field/update-project-field-value)
+* Renamed ProjectMembers.RetrieveUserProjectMemberShip to [ProjectMembers.RetrieveUserProjectMembership](https://developer.projectmanager.com/api-reference/project-members/retrieve-user-project-membership)
 
 Changes to existing endpoints:
 * ProjectField.DeleteProjectField added path parameter `fieldId`
@@ -683,8 +683,8 @@ Changes to data models:
 These patch notes summarize the changes from version 97.0.2178.
 
 Added 2 new endpoints:
-* ProjectField.RetrieveProjectFieldValue (GET /api/data/projects/{projectId}/fields/{fieldId})
-* ProjectField.RetrieveAllProjectFieldValues (GET /api/data/projects/{projectId}/fields)
+* [ProjectField.RetrieveProjectFieldValue](https://developer.projectmanager.com/api-reference/project-field/retrieve-project-field-value) (`GET /api/data/projects/{projectId}/fields/{fieldId}`)
+* [ProjectField.RetrieveAllProjectFieldValues](https://developer.projectmanager.com/api-reference/project-field/retrieve-all-project-field-values) (`GET /api/data/projects/{projectId}/fields`)
 
 Changes to existing endpoints:
 * ApiKey.CreateApiKey added header parameter `x-integration-name`
@@ -821,9 +821,9 @@ Deprecated 2 old endpoints:
 These patch notes summarize the changes from version 96.0.2123.
 
 Added 3 new endpoints:
-* Task.AddParentTask (POST /api/data/tasks/{taskId}/parent/{parentTaskId})
-* Task.UpdateParentTask (PUT /api/data/tasks/{taskId}/parent/{parentTaskId})
-* Task.RemoveParentTask (DELETE /api/data/tasks/{taskId}/parent)
+* [Task.AddParentTask](https://developer.projectmanager.com/api-reference/task/add-parent-task) (`POST /api/data/tasks/{taskId}/parent/{parentTaskId}`)
+* [Task.UpdateParentTask](https://developer.projectmanager.com/api-reference/task/update-parent-task) (`PUT /api/data/tasks/{taskId}/parent/{parentTaskId}`)
+* [Task.RemoveParentTask](https://developer.projectmanager.com/api-reference/task/remove-parent-task) (`DELETE /api/data/tasks/{taskId}/parent`)
 
 Changes to data models:
 * ProjectDto: Added new field `plannedStartDate`
