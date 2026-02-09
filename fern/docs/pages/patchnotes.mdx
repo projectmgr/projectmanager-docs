@@ -1,5 +1,34 @@
 # API Patch Notes
 
+# February, 2026
+
+## Patch notes for 149.0.187
+
+These patch notes summarize the changes from version 148.0.136.
+
+Added 13 new endpoints:
+* [HourlyRate.CreateHourlyRate](https://developer.projectmanager.com/api-reference/hourly-rate/create-hourly-rate)
+* [HourlyRate.GetHourlyRates](https://developer.projectmanager.com/api-reference/hourly-rate/get-hourly-rates)
+* [HourlyRate.UpdateHourlyRate](https://developer.projectmanager.com/api-reference/hourly-rate/update-hourly-rate)
+* [HourlyRate.GetHourlyRate](https://developer.projectmanager.com/api-reference/hourly-rate/get-hourly-rate)
+* [HourlyRate.DeleteHourlyRate](https://developer.projectmanager.com/api-reference/hourly-rate/delete-hourly-rate)
+* [HourlyRate.UpdateHourlyRateValue](https://developer.projectmanager.com/api-reference/hourly-rate/update-hourly-rate-value)
+* [HourlyRatePeriod.GetRatePeriods](https://developer.projectmanager.com/api-reference/hourly-rate-period/get-rate-periods)
+* [HourlyRatePeriod.CreateRatePeriod](https://developer.projectmanager.com/api-reference/hourly-rate-period/create-rate-period)
+* [Risk.GetRisk](https://developer.projectmanager.com/api-reference/risk/get-risk)
+* [Risk.UpdateRisk](https://developer.projectmanager.com/api-reference/risk/update-risk)
+* [Risk.RemoveRisk](https://developer.projectmanager.com/api-reference/risk/remove-risk)
+* [Risk.GetRisksForProject](https://developer.projectmanager.com/api-reference/risk/get-risks-for-project)
+* [Risk.CreateRisk](https://developer.projectmanager.com/api-reference/risk/create-risk)
+
+Changes to data models:
+* MeetingDetailsDto: Added new field `project`
+* MeetingDto: Added new field `project`
+* RiskDto: Changed the data type of the field `assignments` from `AssignmentDto` to `RiskAssignmentDto`
+* RiskDto: Added new field `project`
+
+
+
 # January, 2026
 
 ## Patch notes for 148.0.136
