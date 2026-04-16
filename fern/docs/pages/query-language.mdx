@@ -10,6 +10,24 @@ So let's break this down - what is an OData query? It is a type of query that al
 
 Let's walk through the basics for an OData query.
 
+## Example OData queries for tasks
+
+Let's begin by dMany users want to begin by fetching a specific subset of tasks.  In this case, we'll write a query to fetch a list of tasks that have specific tags.  Our developer wants to retrieve a list of tasks that have been tagged with the `customer-issue` tag.  But, we only want to find tasks from a specific swimlane.  How do we do this?
+
+* To fetch a task that has a specific tag, we need to examine the `tags` collection.
+* To find a tag with a specific name, we use the OData `any` method since any particular task could have lots of tags.
+* We want to look for a tag that has a specific name; in this case, the name is `customer-issue`.
+* So our tag filter is `tags/any(o: o/name eq 'customer-issue')`.
+
+Next, we want to identify the swimlane.  The swimlane is stored in the field `name` within the `status` object, so to query it we use the statement `status/name` followed by a filter such as equals.  We want to look for the swimlane "Waiting".
+
+Combining these two queries together, we get this query:
+
+```
+tags/any(o: o/name eq 'customer-issue') and status/name eq 'Waiting'
+```
+
+
 ## Filtering records using OData
 
 Whenever you want to find a specific record in the ProjectManager system, you can use an OData filter statement to search. Microsoft provides a nice tutorial page on [learning OData filter expressions](https://learn.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris) which goes into more detail, but let's summarize it here.
@@ -61,3 +79,6 @@ This allows you to paginate records easily. If you want to retrieve the top 50 r
 ## Expanding data
 
 Some OData query endpoints allow you to fetch additional data using the `$expand` parameter. The documentation for the API will explain what options are available and how to use them on each endpoint.
+
+## Complex query examples
+
