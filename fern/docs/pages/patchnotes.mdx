@@ -2,6 +2,27 @@
 
 # April, 2026
 
+## Patch notes for 153.2.193
+
+These patch notes summarize the changes from version 152.0.138.
+
+Added 2 new endpoints:
+* [Project.ReopenProjectStatus](https://developer.projectmanager.com/api-reference/project/reopen-project-status)
+* [Tag.DeleteTag](https://developer.projectmanager.com/api-reference/tag/delete-tag)
+
+Changes to data models:
+* ProjectMemberDto: Added new field `projectId`
+* TagUpdateDto: Added new field `name`
+* WorkSpaceUserInfoDto: Added new field `workspaceCulture`
+* WorkSpaceUserInfoDto: Added new field `workspaceCurrencyCulture`
+* WorkSpaceUserInfoDto: Removed field `workSpaceCulture`
+* WorkSpaceUserInfoDto: Removed field `workSpaceCurrencyCulture`
+
+Deprecated 1 old endpoints:
+* Project.RestoreProject
+
+
+
 ## Patch notes for 152.0.138
 
 These patch notes summarize the changes from version 151.0.100.
