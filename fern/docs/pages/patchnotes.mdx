@@ -2,6 +2,42 @@
 
 # April, 2026
 
+## Patch notes for 154.0.181
+
+These patch notes summarize the changes from version 153.2.193.
+
+Added 11 new endpoints:
+* [Meetings.GetMeetings](https://developer.projectmanager.com/api-reference/meetings/get-meetings)
+* [Npt.GetNpts](https://developer.projectmanager.com/api-reference/npt/get-npts)
+* [NptStatus.CreateNptTaskStatus](https://developer.projectmanager.com/api-reference/npt-status/create-npt-task-status)
+* [NptStatus.UpdateNptTaskStatus](https://developer.projectmanager.com/api-reference/npt-status/update-npt-task-status)
+* [NptStatus.DeleteNptTaskStatus](https://developer.projectmanager.com/api-reference/npt-status/delete-npt-task-status)
+* [Risk.CreateProjectRisk](https://developer.projectmanager.com/api-reference/risk/create-project-risk)
+* [Security.ListBusinessRoles](https://developer.projectmanager.com/api-reference/security/list-business-roles)
+* [Security.CreateBusinessRole](https://developer.projectmanager.com/api-reference/security/create-business-role)
+* [Security.UpdateBusinessRole](https://developer.projectmanager.com/api-reference/security/update-business-role)
+* [Security.DeleteBusinessRole](https://developer.projectmanager.com/api-reference/security/delete-business-role)
+* [Security.ResendEmailValidation](https://developer.projectmanager.com/api-reference/security/resend-email-validation)
+
+Changes to existing endpoints:
+* ResourceSkill.UpdateResourceSkill added path parameter `resourceSkillId`
+* ResourceSkill.UpdateResourceSkill removed path parameter `skillId`
+* ResourceTeam.UpdateResourceTeam added path parameter `resourceTeamId`
+* ResourceTeam.UpdateResourceTeam removed path parameter `teamresourceId`
+* TaskStatus.UpdateTaskStatus added path parameter `taskStatusId`
+* TaskStatus.UpdateTaskStatus removed path parameter `projectId`
+* TaskStatus.DeleteTaskStatus removed path parameter `projectId`
+
+Changes to data models:
+* TaskDetailsDto: Changed the data type of the field `fieldValues` from `TaskFieldValueDto` to `SimpleTaskFieldValueDto`
+* TaskDto: Changed the data type of the field `fieldValues` from `TaskFieldValueDto` to `SimpleTaskFieldValueDto`
+* TaskStatusUpdateDto: Removed field `id`
+
+Deprecated 1 old endpoints:
+* Risk.CreateRisk
+
+
+
 ## Patch notes for 153.2.193
 
 These patch notes summarize the changes from version 152.0.138.
