@@ -1,5 +1,35 @@
 # API Patch Notes
 
+# June, 2026
+
+## Patch notes for 2026.157.126
+
+These patch notes summarize the changes from version 2026.156.162.
+
+Added 2 new endpoints:
+* [Integration.UpdateIntegrationMetadata](https://developer.projectmanager.com/api-reference/integration/update-integration-metadata)
+* [WorkSpace.UpdateSettingsForTheCurrentWorkspace](https://developer.projectmanager.com/api-reference/work-space/update-settings-for-the-current-workspace)
+
+Renamed 1 endpoints:
+* Renamed WorkSpace.RetrieveWorkspaces to [WorkSpace.RetrieveTheCurrentWorkspace](https://developer.projectmanager.com/api-reference/work-space/retrieve-the-current-workspace)
+
+Changes to existing endpoints:
+* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Breaking change: TaskStatus.UpdateTaskStatus path changed from `/api/data/tasks/statuses/{taskStatusId}` to `/api/data/projects/{projectId}/tasks/statuses`
+* TaskStatus.UpdateTaskStatus added path parameter `projectId`
+* TaskStatus.UpdateTaskStatus removed path parameter `taskStatusId`
+* Breaking change: TaskStatus.DeleteTaskStatus path changed from `/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}` to `/api/data/tasks/statuses/{taskStatusId}`
+* TaskStatus.DeleteTaskStatus removed path parameter `projectId`
+
+Changes to data models:
+* IntegrationDto: Added new field `metadata`
+* IntegrationProviderDto: Added new field `unauthorized`
+* TaskDetailsDto: Added new field `baseline`
+* WorkSpaceDto: Added new field `settings`
+
+
+
 # May, 2026
 
 ## Patch notes for 2026.156.162
