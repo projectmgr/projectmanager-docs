@@ -1,5 +1,39 @@
 # API Patch Notes
 
+# July, 2026
+
+## Patch notes for 2026.158.269
+
+These patch notes summarize the changes from version 2026.156.162.
+
+Added 2 new endpoints:
+* [Resource.BulkUpdateResources](https://developer.projectmanager.com/api-reference/resource/bulk-update-resources)
+* [WorkSpace.UpdateCurrentWorkspaceSettings](https://developer.projectmanager.com/api-reference/work-space/update-current-workspace-settings)
+
+Renamed 2 endpoints:
+* Renamed ProjectMembers.UpdateUserProjectMembership to [ProjectMembers.CreateOrUpdateUserProjectMembership](https://developer.projectmanager.com/api-reference/project-members/create-or-update-user-project-membership)
+* Renamed WorkSpace.RetrieveWorkspaces to [WorkSpace.RetrieveCurrentWorkspace](https://developer.projectmanager.com/api-reference/work-space/retrieve-current-workspace)
+
+Changes to existing endpoints:
+* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Breaking change: TaskStatus.UpdateTaskStatus path changed from `/api/data/tasks/statuses/{taskStatusId}` to `/api/data/projects/{projectId}/tasks/statuses`
+* TaskStatus.UpdateTaskStatus added path parameter `projectId`
+* TaskStatus.UpdateTaskStatus removed path parameter `taskStatusId`
+* Breaking change: TaskStatus.DeleteTaskStatus path changed from `/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}` to `/api/data/tasks/statuses/{taskStatusId}`
+* TaskStatus.DeleteTaskStatus removed path parameter `projectId`
+
+Changes to data models:
+* IntegrationProviderDto: Added new field `unauthorized`
+* ResourceDto: Added new field `roleId`
+* TaskDetailsDto: Added new field `baseline`
+* UserRolePermissionsDto: Added new field `useMcp`
+* WorkSpaceDto: Added new field `settings`
+* WorkSpacePermissionsDto: Added new field `changeOwnEmail`
+* WorkSpacePermissionsDto: Added new field `useMcp`
+
+
+
 # May, 2026
 
 ## Patch notes for 2026.156.162
