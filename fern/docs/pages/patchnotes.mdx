@@ -1,5 +1,57 @@
 # API Patch Notes
 
+# August, 2026
+
+## Patch notes for 2026.160.203
+
+These patch notes summarize the changes from version 2026.156.162.
+
+Added 5 new endpoints:
+* [Project.CreateProjectExport](https://developer.projectmanager.com/api-reference/project/create-project-export)
+* [Resource.BulkUpdateResources](https://developer.projectmanager.com/api-reference/resource/bulk-update-resources)
+* [ResourceTeam.GetResourceTeam](https://developer.projectmanager.com/api-reference/resource-team/get-resource-team)
+* [TaskStatus.MoveTasksToATaskStatus](https://developer.projectmanager.com/api-reference/task-status/move-tasks-to-a-task-status)
+* [WorkSpace.UpdateCurrentWorkspaceSettings](https://developer.projectmanager.com/api-reference/work-space/update-current-workspace-settings)
+
+Renamed 10 endpoints:
+* Renamed Meetings.CreateWeeklyRecurringMeetings to [MeetingRecurrency.CreateWeeklyRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/create-weekly-recurring-meetings)
+* Renamed Meetings.CreateMonthlyRecurringMeetings to [MeetingRecurrency.CreateMonthlyRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/create-monthly-recurring-meetings)
+* Renamed Meetings.CreateDailyRecurringMeetings to [MeetingRecurrency.CreateDailyRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/create-daily-recurring-meetings)
+* Renamed Meetings.CreateYearlyRecurringMeetings to [MeetingRecurrency.CreateYearlyRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/create-yearly-recurring-meetings)
+* Renamed Meetings.DeleteRecurringMeetings to [MeetingRecurrency.DeleteRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/delete-recurring-meetings)
+* Renamed Meetings.ValidateRecurringMeetingSettings to [MeetingRecurrency.ValidateRecurringMeetingSettings](https://developer.projectmanager.com/api-reference/meeting-recurrency/validate-recurring-meeting-settings)
+* Renamed Meetings.UpdateRecurringMeetingSettings to [MeetingRecurrency.UpdateRecurringMeetingSettings](https://developer.projectmanager.com/api-reference/meeting-recurrency/update-recurring-meeting-settings)
+* Renamed ProjectMembers.UpdateUserProjectMembership to [ProjectMembers.CreateOrUpdateUserProjectMembership](https://developer.projectmanager.com/api-reference/project-members/create-or-update-user-project-membership)
+* Renamed ResourceTeam.RetrieveResourceTeams to [ResourceTeam.QueryResourceTeams](https://developer.projectmanager.com/api-reference/resource-team/query-resource-teams)
+* Renamed WorkSpace.RetrieveWorkspaces to [WorkSpace.RetrieveCurrentWorkspace](https://developer.projectmanager.com/api-reference/work-space/retrieve-current-workspace)
+
+Changes to existing endpoints:
+* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Breaking change: TaskStatus.UpdateTaskStatus path changed from `/api/data/tasks/statuses/{taskStatusId}` to `/api/data/projects/{projectId}/tasks/statuses`
+* TaskStatus.UpdateTaskStatus added path parameter `projectId`
+* TaskStatus.UpdateTaskStatus removed path parameter `taskStatusId`
+* Breaking change: TaskStatus.DeleteTaskStatus path changed from `/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}` to `/api/data/tasks/statuses/{taskStatusId}`
+* TaskStatus.DeleteTaskStatus removed path parameter `projectId`
+
+Changes to data models:
+* IntegrationProviderDto: Added new field `unauthorized`
+* RecurringTaskChangeSetDetails: Added new field `recurrences`
+* ResourceDto: Added new field `roleId`
+* TaskDetailsDto: Added new field `baseline`
+* UserRolePermissionsDto: Added new field `useMcp`
+* WorkSpaceDto: Added new field `accountOwnerId`
+* WorkSpaceDto: Added new field `status`
+* WorkSpaceDto: Added new field `isActive`
+* WorkSpaceDto: Added new field `isReseller`
+* WorkSpaceDto: Added new field `licenses`
+* WorkSpaceDto: Added new field `settings`
+* WorkSpacePermissionsDto: Added new field `changeOwnEmail`
+* WorkSpacePermissionsDto: Added new field `useMcp`
+* WorkSpaceUserInfoDto: Added new field `isSocial`
+
+
+
 # May, 2026
 
 ## Patch notes for 2026.156.162
