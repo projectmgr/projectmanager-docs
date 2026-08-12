@@ -1,5 +1,22 @@
 # API Patch Notes
 
+# June, 2026
+
+## Patch notes for 2026.156.163
+
+These patch notes summarize the changes from version 2026.156.162.
+
+Changes to existing endpoints:
+* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Breaking change: TaskStatus.UpdateTaskStatus path changed from `/api/data/tasks/statuses/{taskStatusId}` to `/api/data/projects/{projectId}/tasks/statuses`
+* TaskStatus.UpdateTaskStatus added path parameter `projectId`
+* TaskStatus.UpdateTaskStatus removed path parameter `taskStatusId`
+* Breaking change: TaskStatus.DeleteTaskStatus path changed from `/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}` to `/api/data/tasks/statuses/{taskStatusId}`
+* TaskStatus.DeleteTaskStatus removed path parameter `projectId`
+
+
+
 # May, 2026
 
 ## Patch notes for 2026.156.162
