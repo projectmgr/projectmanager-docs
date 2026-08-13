@@ -1,0 +1,18 @@
+The ProjectManager.com API enforces rate limits on usage using the [HTTP 429 "Too Many Requests"](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429) response code.  If your API call receives an HTTP 429 `TooManyRequests` response, you will need to adjust your API calls to slow down your requests.
+
+## How should my code handle a 429 TooManyRequests response?
+
+If your program makes an API call to the ProjectManager.com API and receives an HTTP 429 `TooManyRequests` response code, you must slow down your API calls.
+
+We request that you use a 'gradual-backoff' strategy with three attempts:
+* The first time you receive an HTTP 429 error, your code should delay for 1000 milliseconds (one second) and try again.
+* If you receive a second HTTP 429 error when you retry, your code should delay for 5000 milliseconds (five seconds) and try a third time.
+* If you receive a third HTTP 429 error code on the third attempt, you should report failure and investigate why other processes are continuing to make excessive requests.  
+
+If your code needs to continue to make attempts and is unable to handle failure on the third attempt, we request that you add a delay of 10,000 milliseconds (10 seconds) between any subsequent retries.
+
+## When will my requests be rate limited?
+
+ProjectManager.com tracks API usage by customer and enforces limits which are necessary to ensure the stability and performance of the ProjectManager.com platform.  
+
+Because these limits are continuously monitored by operations team members, the exact mechanism for determining when rate limiting is necessary is subject to change and is not guaranteed.  This means that we cannot publish exact guidance on when you will encounter a rate limit.

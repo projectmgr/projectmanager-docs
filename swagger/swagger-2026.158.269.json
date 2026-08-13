@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "2026.160.203"
+    "version": "2026.158.269"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -1033,215 +1033,6 @@
           }
         },
         "deprecated": true
-      }
-    },
-    "/api/data/holidays": {
-      "get": {
-        "tags": [
-          "Holidays"
-        ],
-        "summary": "Lists holiday definitions for the current workspace.",
-        "description": "Returns a summary per holiday, ordered by name.",
-        "parameters": [
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HolidayListItemDtoListAstroResult"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Holidays"
-        ],
-        "summary": "Creates a holiday. Omit ResourceIds and CountryId for global scope; set one list for people or country scope.",
-        "description": "Persists the definition in one transaction. One occurrence is stored for each day from DateFrom through DateTo\r\n(inclusive), each as a full calendar day off. Omit CountryId and ResourceIds for a workspace-wide holiday; set one list\r\nfor people or country scope. Each CountryId is an ISO 3166-1 alpha-2 string (for example NZ). The inclusive range is capped\r\n(see server validation) to limit payload size.",
-        "parameters": [
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Name, date range, and optional country or resource targeting.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/HolidayCreateDto"
-                  }
-                ],
-                "description": "Request body for creating a holiday. One occurrence per calendar day from DateFrom through DateTo (inclusive).\r\nOmit both lists for a global holiday; set ResourceIds for people scope; set CountryId for country scope (ISO 3166-1 alpha-2)."
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HolidayDetailDtoListAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/data/holidays/{id}": {
-      "get": {
-        "tags": [
-          "Holidays"
-        ],
-        "summary": "Gets a single holiday definition.",
-        "description": "Returns HTTP 404 if the holiday does not exist or is not in the workspace.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Public identifier of the holiday (GUID).",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HolidayDetailDtoAstroResult"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Holidays"
-        ],
-        "summary": "Updates a holiday display name.",
-        "description": "Only the name can be changed. Dates, occurrences, and country or resource scope are set at create time and are not modified by this endpoint.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Public identifier of the holiday to update (GUID).",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The new display name.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/HolidayUpdateDto"
-                  }
-                ],
-                "description": "Request body for updating a holiday. Only the reason can be changed."
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HolidayDetailDtoAstroResult"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Holidays"
-        ],
-        "summary": "Deletes a holiday definition and its occurrences and assignments (cascade in the database).",
-        "description": "Removes the definition and all child occurrence and assignment rows. Returns HTTP 404 if the definition does not exist or is not in the workspace.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Public identifier of the holiday to delete (GUID).",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AstroResult"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/data/home/files": {
@@ -2304,392 +2095,6 @@
         }
       }
     },
-    "/api/data/meetings/{meetingId}/recurring/weekly": {
-      "post": {
-        "tags": [
-          "MeetingRecurrency"
-        ],
-        "summary": "Create Weekly Recurring Meetings",
-        "description": "Changes an existing Meeting into a Recurring Meeting, so that it will recur regularly given the specified\r\nrules.\r\n            \r\nA Recurring Meeting is one that occurs on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly. To create a Recurring Meeting, you must first create a regular Meeting with the necessary information,\r\nthen call one of the Create Recurring Meeting APIs. To remove an instance of a Recurring Meeting, call Delete\r\nRecurring Meeting and specify one or more instances of the Recurring Meeting.",
-        "parameters": [
-          {
-            "name": "meetingId",
-            "in": "path",
-            "description": "The unique identifier of the Meeting",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The weekly recurring settings",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/WeeklyRecurringSettingsDto"
-                  }
-                ],
-                "description": "Settings for Weeky Recurring Tasks"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/data/meetings/{meetingId}/recurring/monthly": {
-      "post": {
-        "tags": [
-          "MeetingRecurrency"
-        ],
-        "summary": "Create Monthly Recurring Meetings",
-        "description": "Changes an existing Meeting into a Recurring Meeting, so that it will recur regularly given the specified\r\nrules.\r\n            \r\nA Recurring Meeting is one that occurs on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly. To create a Recurring Meeting, you must first create a regular Meeting with the necessary information,\r\nthen call one of the Create Recurring Meeting APIs. To remove an instance of a Recurring Meeting, call Delete\r\nRecurring Meeting and specify one or more instances of the Recurring Meeting.",
-        "parameters": [
-          {
-            "name": "meetingId",
-            "in": "path",
-            "description": "The unique identifier of the Meeting",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The monthly recurring settings",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/MonthlyRecurringSettingsDto"
-                  }
-                ],
-                "description": "Settings for Monthly Recurring Tasks"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/data/meetings/{meetingId}/recurring/daily": {
-      "post": {
-        "tags": [
-          "MeetingRecurrency"
-        ],
-        "summary": "Create Daily Recurring Meetings",
-        "description": "Changes an existing Meeting into a Recurring Meeting, so that it will recur regularly given the specified\r\nrules.\r\n            \r\nA Recurring Meeting is one that occurs on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly. To create a Recurring Meeting, you must first create a regular Meeting with the necessary information,\r\nthen call one of the Create Recurring Meeting APIs. To remove an instance of a Recurring Meeting, call Delete\r\nRecurring Meeting and specify one or more instances of the Recurring Meeting.",
-        "parameters": [
-          {
-            "name": "meetingId",
-            "in": "path",
-            "description": "The unique identifier of the Meeting",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The daily recurring settings",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/DailyRecurringSettingsDto"
-                  }
-                ],
-                "description": "Settings for Daily Recurring Tasks"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/data/meetings/{meetingId}/recurring/yearly": {
-      "post": {
-        "tags": [
-          "MeetingRecurrency"
-        ],
-        "summary": "Create Yearly Recurring Meetings",
-        "description": "Changes an existing Meeting into a Recurring Meeting, so that it will recur regularly given the specified\r\nrules.\r\n            \r\nA Recurring Meeting is one that occurs on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly. To create a Recurring Meeting, you must first create a regular Meeting with the necessary information,\r\nthen call one of the Create Recurring Meeting APIs. To remove an instance of a Recurring Meeting, call Delete\r\nRecurring Meeting and specify one or more instances of the Recurring Meeting.",
-        "parameters": [
-          {
-            "name": "meetingId",
-            "in": "path",
-            "description": "The unique identifier of the Meeting",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The yearly recurring settings",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/YearlyRecurringSettingsDto"
-                  }
-                ],
-                "description": "Settings for Yearly Recurring Tasks"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/data/meetings/{meetingId}/recurring/{option}": {
-      "delete": {
-        "tags": [
-          "MeetingRecurrency"
-        ],
-        "summary": "Delete Recurring Meetings",
-        "description": "Removes one or more instances of a Recurring Meeting based on the `option` you specify: `this` means\r\nto remove a single instance, `all` means to remove all instances, or `future` means to remove all future\r\ninstances of the Recurring Meeting.\r\n            \r\nA Recurring Meeting is one that occurs on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly. To create a Recurring Meeting, you must first create a regular Meeting with the necessary information,\r\nthen call one of the Create Recurring Meeting APIs. To remove an instance of a Recurring Meeting, call Delete\r\nRecurring Meeting and specify one or more instances of the Recurring Meeting.",
-        "parameters": [
-          {
-            "name": "meetingId",
-            "in": "path",
-            "description": "The unique identifier of the Recurring Meeting",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "option",
-            "in": "path",
-            "description": "The options for the deletion",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeletedTasksDtoAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/data/meetings/{meetingId}/recurring/settings/validate": {
-      "post": {
-        "tags": [
-          "MeetingRecurrency"
-        ],
-        "summary": "Validate Recurring Meeting settings",
-        "description": "Reviews potential updates to a Recurring Meeting and report back on the list of changes that would\r\noccur if this Recurring Meeting was updated with these settings.\r\n            \r\nWhen making changes to a Recurring Meeting, you may want to investigate the consequences of your changes first\r\nbefore finalizing the changes. You can use the Validate Recurring Meetings API to examine these changes. When\r\nyou are happy with the changes, call Update Recurring Meetings to complete them.\r\n            \r\nA Recurring Meeting is one that occurs on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly. To create a Recurring Meeting, you must first create a regular Meeting with the necessary information,\r\nthen call one of the Create Recurring Meeting APIs. To remove an instance of a Recurring Meeting, call Delete\r\nRecurring Meeting and specify one or more instances of the Recurring Meeting.",
-        "parameters": [
-          {
-            "name": "meetingId",
-            "in": "path",
-            "description": "The unique identifier of the Meeting",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The new settings",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RecurringTaskSettingsDto"
-                  }
-                ],
-                "description": "Recurring settings for a task"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecurringTaskValidationResultDtoAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/data/meetings/{meetingId}/recurring/settings": {
-      "put": {
-        "tags": [
-          "MeetingRecurrency"
-        ],
-        "summary": "Update Recurring Meeting settings",
-        "description": "Updates the settings for a Recurring Meeting and regenerates occurrences of the Recurring Meeting\r\nfrom the new rules.\r\n            \r\nWhen making changes to a Recurring Meeting, you may want to investigate the consequences of your changes first\r\nbefore finalizing the changes. You can use the Validate Recurring Meetings API to examine these changes. When\r\nyou are happy with the changes, call Update Recurring Meetings to complete them.\r\n            \r\nA Recurring Meeting is one that occurs on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly. To create a Recurring Meeting, you must first create a regular Meeting with the necessary information,\r\nthen call one of the Create Recurring Meeting APIs. To remove an instance of a Recurring Meeting, call Delete\r\nRecurring Meeting and specify one or more instances of the Recurring Meeting.",
-        "parameters": [
-          {
-            "name": "meetingId",
-            "in": "path",
-            "description": "The unique identifier of the Meeting",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The new settings",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RecurringTaskSettingsDto"
-                  }
-                ],
-                "description": "Recurring settings for a task"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/data/meetings": {
       "get": {
         "tags": [
@@ -2755,7 +2160,7 @@
                     "$ref": "#/components/schemas/MeetingCreateDto"
                   }
                 ],
-                "description": "A Meeting is a lightweight calendar event that may or may not belong to a project.\r\nIt is only visible to the person who created it and the users assigned to it."
+                "description": "A Meeting is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nMeeting's are a lightweight version of a project task."
               }
             }
           }
@@ -2781,8 +2186,7 @@
                       "message": "Input Validation Failed",
                       "validationErrors": {
                         "name": [
-                          "'name' must not be empty.",
-                          "The specified condition was not met for 'name'."
+                          "'name' must not be empty."
                         ],
                         "assignees": [
                           "No default error message has been specified"
@@ -2872,7 +2276,7 @@
                     "$ref": "#/components/schemas/MeetingUpdateDto"
                   }
                 ],
-                "description": "A Meeting is a lightweight calendar event that may or may not belong to a project.\r\nIt is only visible to the person who created it and the users assigned to it."
+                "description": "A Meeting is a task that does not belong to the project or is part of a project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nMeeting's are a lightweight version of a project task."
               }
             }
           }
@@ -2897,9 +2301,6 @@
                     "error": {
                       "message": "Input Validation Failed",
                       "validationErrors": {
-                        "name": [
-                          "The specified condition was not met for 'name'."
-                        ],
                         "assignees": [
                           "No default error message has been specified"
                         ]
@@ -2945,6 +2346,392 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/meetings/{meetingId}/recurring/weekly": {
+      "post": {
+        "tags": [
+          "Meetings"
+        ],
+        "summary": "Create Weekly Recurring Meetings",
+        "description": "Changes an existing Non-Project Task into a Recurring Task, so that it will recur regularly given the specified\r\nrules.\r\n            \r\nA Recurring Task is one that must be completed on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly.  To create a Recurring Task, you must first create a regular Task with the necessary information,\r\nthen call one of the Create Recurring Task APIs.  To remove an instance of a Recurring Task, call Delete\r\nRecurring Task and specify one or more instances of the Recurring Task.",
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "path",
+            "description": "The unique identifier of the Meeting",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The weekly recurring settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WeeklyRecurringSettingsDto"
+                  }
+                ],
+                "description": "Settings for Weeky Recurring Tasks"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/meetings/{meetingId}/recurring/monthly": {
+      "post": {
+        "tags": [
+          "Meetings"
+        ],
+        "summary": "Create Monthly Recurring Meetings",
+        "description": "Changes an existing Non-Project Task into a Recurring Task, so that it will recur regularly given the specified\r\nrules.\r\n            \r\nA Recurring Task is one that must be completed on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly.  To create a Recurring Task, you must first create a regular Task with the necessary information,\r\nthen call one of the Create Recurring Task APIs.  To remove an instance of a Recurring Task, call Delete\r\nRecurring Task and specify one or more instances of the Recurring Task.",
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "path",
+            "description": "The unique identifier of the Meeting",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The monthly recurring settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MonthlyRecurringSettingsDto"
+                  }
+                ],
+                "description": "Settings for Monthly Recurring Tasks"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/meetings/{meetingId}/recurring/daily": {
+      "post": {
+        "tags": [
+          "Meetings"
+        ],
+        "summary": "Create Daily Recurring Meetings",
+        "description": "Changes an existing Non-Project Task into a Recurring Task, so that it will recur regularly given the specified\r\nrules.\r\n            \r\nA Recurring Task is one that must be completed on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly.  To create a Recurring Task, you must first create a regular Task with the necessary information,\r\nthen call one of the Create Recurring Task APIs.  To remove an instance of a Recurring Task, call Delete\r\nRecurring Task and specify one or more instances of the Recurring Task.",
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "path",
+            "description": "The unique identifier of the Meeting",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The daily recurring settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/DailyRecurringSettingsDto"
+                  }
+                ],
+                "description": "Settings for Daily Recurring Tasks"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/meetings/{meetingId}/recurring/yearly": {
+      "post": {
+        "tags": [
+          "Meetings"
+        ],
+        "summary": "Create Yearly Recurring Meetings",
+        "description": "Changes an existing Non-Project Task into a Recurring Task, so that it will recur regularly given the specified\r\nrules.\r\n            \r\nA Recurring Task is one that must be completed on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly.  To create a Recurring Task, you must first create a regular Task with the necessary information,\r\nthen call one of the Create Recurring Task APIs.  To remove an instance of a Recurring Task, call Delete\r\nRecurring Task and specify one or more instances of the Recurring Task.",
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "path",
+            "description": "The unique identifier of the Meeting",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The yearly recurring settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/YearlyRecurringSettingsDto"
+                  }
+                ],
+                "description": "Settings for Yearly Recurring Tasks"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/meetings/{meetingId}/recurring/{option}": {
+      "delete": {
+        "tags": [
+          "Meetings"
+        ],
+        "summary": "Delete Recurring Meetings",
+        "description": "Removes one or more instances of a Recurring Non-Project Task based on the `option` you specify: `this` means\r\nto remove a single instance, `all` means to remove all instances, or `future` means to remove all future\r\ninstances of the Recurring Task.\r\n            \r\nA Recurring Task is one that must be completed on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly.  To create a Recurring Task, you must first create a regular Task with the necessary information,\r\nthen call one of the Create Recurring Task APIs.  To remove an instance of a Recurring Task, call Delete\r\nRecurring Task and specify one or more instances of the Recurring Task.",
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "path",
+            "description": "The unique identifier of the Recurring Meeting",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "option",
+            "in": "path",
+            "description": "The options for the deletion",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedTasksDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/meetings/{meetingId}/recurring/settings/validate": {
+      "post": {
+        "tags": [
+          "Meetings"
+        ],
+        "summary": "Validate Recurring Meeting settings",
+        "description": "Reviews potential updates to a Recurring Non-Project Task and report back on the list of changes that would\r\noccur if this Recurring Non-Project Task was updated with these settings.\r\n            \r\nWhen making changes to a Recurring Npt, you may want to investigate the consequences of your changes first\r\nbefore finalizing the changes.  You can use the Validate Recurring Npts API to examine these changes.  When\r\nyou are happy with the changes, call Update Recurring Npts to complete them.\r\n            \r\nA Recurring Task is one that must be completed on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly.  To create a Recurring Task, you must first create a regular Task with the necessary information,\r\nthen call one of the Create Recurring Task APIs.  To remove an instance of a Recurring Task, call Delete\r\nRecurring Task and specify one or more instances of the Recurring Task.",
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "path",
+            "description": "The unique identifier of the Meeting",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The new settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecurringTaskSettingsDto"
+                  }
+                ],
+                "description": "Recurring settings for a task"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecurringTaskValidationResultDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/meetings/{meetingId}/recurring/settings": {
+      "put": {
+        "tags": [
+          "Meetings"
+        ],
+        "summary": "Update Recurring Meeting settings",
+        "description": "Updates the settings for a Recurring Non-Project Task and re-generates occurrences of the Recurring Non-Project\r\nTask from the new rules.\r\n            \r\nWhen making changes to a Recurring Npt, you may want to investigate the consequences of your changes first\r\nbefore finalizing the changes.  You can use the Validate Recurring Npts API to examine these changes.  When\r\nyou are happy with the changes, call Update Recurring Npts to complete them.\r\n            \r\nA Recurring Task is one that must be completed on a specific regular frequency, such as Daily, Weekly, Monthly,\r\nor Yearly.  To create a Recurring Task, you must first create a regular Task with the necessary information,\r\nthen call one of the Create Recurring Task APIs.  To remove an instance of a Recurring Task, call Delete\r\nRecurring Task and specify one or more instances of the Recurring Task.",
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "path",
+            "description": "The unique identifier of the Meeting",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The new settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RecurringTaskSettingsDto"
+                  }
+                ],
+                "description": "Recurring settings for a task"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecurringTaskChangeSetDetailsAstroResult"
                 }
               }
             }
@@ -3737,8 +3524,7 @@
                       "message": "Input Validation Failed",
                       "validationErrors": {
                         "name": [
-                          "'name' must not be empty.",
-                          "The specified condition was not met for 'name'."
+                          "'name' must not be empty."
                         ],
                         "assignees": [
                           "No default error message has been specified"
@@ -3853,9 +3639,6 @@
                     "error": {
                       "message": "Input Validation Failed",
                       "validationErrors": {
-                        "name": [
-                          "The specified condition was not met for 'name'."
-                        ],
                         "assignees": [
                           "No default error message has been specified"
                         ]
@@ -5666,52 +5449,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProjectReopenStatusDtoAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/data/projects/export": {
-      "post": {
-        "tags": [
-          "Project"
-        ],
-        "summary": "Create Project Export",
-        "description": "Initiates a new Export action for Projects.\r\n            \r\nReturns the identifier of this Projects Export.",
-        "parameters": [
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The settings to use for this export action",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/ProjectExportSettingsDto"
-                  }
-                ],
-                "description": "Export settings for Projects export"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExportDtoAstroResult"
                 }
               }
             }
@@ -8492,146 +8229,12 @@
         }
       }
     },
-    "/api/data/resources/teams/{resourceTeamId}": {
-      "get": {
-        "tags": [
-          "ResourceTeam"
-        ],
-        "summary": "Get Resource Team",
-        "description": "Retrieves a single ResourceTeam object by its unique identifier\r\n            \r\nA ResourceTeam is a grouping of Resources that allows you to keep track of assignments\r\nin a manner consistent with your business needs.  You can assign Resources to be members\r\nof zero, one, or many ResourceTeams.",
-        "parameters": [
-          {
-            "name": "resourceTeamId",
-            "in": "path",
-            "description": "The unique identifier of the ResourceTeam to retrieve",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceTeamDtoAstroResult"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "ResourceTeam"
-        ],
-        "summary": "Delete Resource Team",
-        "description": "Deletes a resource team by its unique identifier.\r\n            \r\nA ResourceTeam is a grouping of Resources that allows you to keep track of assignments\r\nin a manner consistent with your business needs.  You can assign Resources to be members\r\nof zero, one, or many ResourceTeams.",
-        "parameters": [
-          {
-            "name": "resourceTeamId",
-            "in": "path",
-            "description": "The unique ID of the team to be removed",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AstroResult"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "ResourceTeam"
-        ],
-        "summary": "Update Resource Team",
-        "description": "Update a Resource Team.\r\n            \r\nA ResourceTeam is a grouping of Resources that allows you to keep track of assignments\r\nin a manner consistent with your business needs.  You can assign Resources to be members\r\nof zero, one, or many ResourceTeams.",
-        "parameters": [
-          {
-            "name": "resourceTeamId",
-            "in": "path",
-            "description": "The id of the resource team",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The name of the team to Update.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/UpdateResourceTeamDto"
-                  }
-                ],
-                "description": "A resource can update a team."
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceTeamDtoAstroResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/data/resources/teams": {
       "get": {
         "tags": [
           "ResourceTeam"
         ],
-        "summary": "Query Resource Teams",
+        "summary": "Retrieve Resource Teams",
         "description": "Retrieves all ResourceTeams defined within your Workspace that match an [OData formatted query](https://www.odata.org/).\r\n            \r\nA ResourceTeam is a grouping of Resources that allows you to keep track of assignments\r\nin a manner consistent with your business needs.  You can assign Resources to be members\r\nof zero, one, or many ResourceTeams.",
         "parameters": [
           {
@@ -8701,7 +8304,7 @@
           "ResourceTeam"
         ],
         "summary": "Create Resource Team",
-        "description": "Create a Resource Team within your workspace\r\n            \r\nA ResourceTeam is a grouping of Resources that allows you to keep track of assignments\r\nin a manner consistent with your business needs.  You can assign Resources to be members\r\nof zero, one, or many ResourceTeams.",
+        "description": "Create a Resource Team.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -8713,7 +8316,7 @@
           }
         ],
         "requestBody": {
-          "description": "The name of the ResourceTeam to create",
+          "description": "The name of the team to create.",
           "content": {
             "application/json": {
               "schema": {
@@ -8723,6 +8326,101 @@
                   }
                 ],
                 "description": "A resource can be allocated a team."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceTeamDtoAstroResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data/resources/teams/{resourceTeamId}": {
+      "delete": {
+        "tags": [
+          "ResourceTeam"
+        ],
+        "summary": "Delete Resource Team",
+        "description": "The endpoint is used to delete a resource team. Users assigned to this team will no longer be assigned thereafter.",
+        "parameters": [
+          {
+            "name": "resourceTeamId",
+            "in": "path",
+            "description": "The Id of the team to be removed.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstroResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ResourceTeam"
+        ],
+        "summary": "Update Resource Team",
+        "description": "Update a Resource Team.",
+        "parameters": [
+          {
+            "name": "resourceTeamId",
+            "in": "path",
+            "description": "The id of the resource team",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-integration-name",
+            "in": "header",
+            "description": "The name of the calling system passed along as a header parameter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The name of the team to Update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdateResourceTeamDto"
+                  }
+                ],
+                "description": "A resource can update a team."
               }
             }
           }
@@ -8913,9 +8611,6 @@
                       "message": "Input Validation Failed",
                       "validationErrors": {
                         "assignees": [
-                          "No default error message has been specified"
-                        ],
-                        "tagIds": [
                           "No default error message has been specified"
                         ],
                         "impact": [
@@ -12292,81 +11987,6 @@
         "deprecated": true
       }
     },
-    "/api/data/tasks/statuses/{taskStatusId}/tasks": {
-      "post": {
-        "tags": [
-          "TaskStatus"
-        ],
-        "summary": "Move Tasks to a TaskStatus",
-        "description": "Moves one or more Tasks into the specified TaskStatus.  If a Position is specified for a Task,\r\nit will be placed at that position within the target TaskStatus.  If no Position is specified,\r\nthe Task will be placed at the end of the list within the target TaskStatus.",
-        "parameters": [
-          {
-            "name": "taskStatusId",
-            "in": "path",
-            "description": "The unique identifier of the TaskStatus to move the Tasks into",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "x-integration-name",
-            "in": "header",
-            "description": "The name of the calling system passed along as a header parameter",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The Tasks to move and the position each should occupy within the target TaskStatus",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/TaskStatusMoveDto"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TaskStatusMoveResultDtoListAstroResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": {
-                    "error": {
-                      "message": "Input Validation Failed",
-                      "validationErrors": {
-                        "-": [
-                          "'-' must not be empty.",
-                          "The specified condition was not met for '-'.",
-                          "No default error message has been specified"
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/data/tasks/{taskId}/tags": {
       "post": {
         "tags": [
@@ -14676,283 +14296,6 @@
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
-      "HolidayCreateDto": {
-        "type": "object",
-        "properties": {
-          "reason": {
-            "type": "string",
-            "description": "Reason or label for the holiday (for example, public holiday name or company shutdown)."
-          },
-          "dateFrom": {
-            "type": "string",
-            "description": "First calendar day of the holiday (inclusive).",
-            "format": "date"
-          },
-          "dateTo": {
-            "type": "string",
-            "description": "Last calendar day of the holiday (inclusive). Must be on or after DateFrom.",
-            "format": "date"
-          },
-          "resourceIds": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "description": "Resources this holiday applies to (people scope). Mutually exclusive with CountryId.",
-            "nullable": true
-          },
-          "countryId": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "ISO 3166-1 alpha-2 country identifiers this holiday applies to (country scope). Mutually exclusive with ResourceIds.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Request body for creating a holiday. One occurrence per calendar day from DateFrom through DateTo (inclusive).\r\nOmit both lists for a global holiday; set ResourceIds for people scope; set CountryId for country scope (ISO 3166-1 alpha-2)."
-      },
-      "HolidayDetailDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The public identifier of the holiday.",
-            "format": "uuid"
-          },
-          "reason": {
-            "type": "string",
-            "description": "Reason or label for the holiday."
-          },
-          "type": {
-            "type": "string",
-            "description": "Holiday scope: global, people, or country."
-          },
-          "dateFrom": {
-            "type": "string",
-            "description": "Start of the holiday date span (metadata).",
-            "format": "date",
-            "nullable": true
-          },
-          "dateTo": {
-            "type": "string",
-            "description": "End of the holiday date span (metadata).",
-            "format": "date",
-            "nullable": true
-          },
-          "countryId": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "ISO 3166-1 alpha-2 country identifiers when Type is country; otherwise empty."
-          },
-          "resources": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HolidayResourceDto"
-            },
-            "description": "Affected resources. For country and global holidays, all active non-guest resources in scope; for people holidays, the assigned resource(s)."
-          }
-        },
-        "additionalProperties": false,
-        "description": "A holiday returned when fetching by id or after create or update."
-      },
-      "HolidayDetailDtoAstroResult": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AstroError"
-              }
-            ],
-            "description": "If the API call failed, this will contain information about the error that occurred.",
-            "nullable": true
-          },
-          "success": {
-            "type": "boolean",
-            "description": "True if the API call succeeded; false otherwise.",
-            "readOnly": true
-          },
-          "hasError": {
-            "type": "boolean",
-            "description": "True if the API call failed.",
-            "readOnly": true
-          },
-          "statusCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpStatusCode"
-              }
-            ],
-            "description": "The HTTP code of the response."
-          },
-          "data": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HolidayDetailDto"
-              }
-            ],
-            "description": "A holiday returned when fetching by id or after create or update."
-          }
-        },
-        "additionalProperties": false,
-        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
-      },
-      "HolidayDetailDtoListAstroResult": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AstroError"
-              }
-            ],
-            "description": "If the API call failed, this will contain information about the error that occurred.",
-            "nullable": true
-          },
-          "success": {
-            "type": "boolean",
-            "description": "True if the API call succeeded; false otherwise.",
-            "readOnly": true
-          },
-          "hasError": {
-            "type": "boolean",
-            "description": "True if the API call failed.",
-            "readOnly": true
-          },
-          "statusCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpStatusCode"
-              }
-            ],
-            "description": "The HTTP code of the response."
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HolidayDetailDto"
-            },
-            "description": "If the API call succeeded, this will contain the results."
-          }
-        },
-        "additionalProperties": false,
-        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
-      },
-      "HolidayListItemDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The public identifier of the holiday.",
-            "format": "uuid"
-          },
-          "reason": {
-            "type": "string",
-            "description": "Reason or label for the holiday."
-          },
-          "type": {
-            "type": "string",
-            "description": "Holiday scope: global, people, or country."
-          },
-          "dateFrom": {
-            "type": "string",
-            "description": "Start of the holiday date span (metadata).",
-            "format": "date",
-            "nullable": true
-          },
-          "dateTo": {
-            "type": "string",
-            "description": "End of the holiday date span (metadata).",
-            "format": "date",
-            "nullable": true
-          },
-          "countryId": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "ISO 3166-1 alpha-2 country identifiers when Type is country; otherwise empty."
-          },
-          "resources": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HolidayResourceDto"
-            },
-            "description": "Affected resources. For country and global holidays, all active non-guest resources in scope; for people holidays, the assigned resource(s)."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Summary information for a holiday, as returned from the list endpoint."
-      },
-      "HolidayListItemDtoListAstroResult": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AstroError"
-              }
-            ],
-            "description": "If the API call failed, this will contain information about the error that occurred.",
-            "nullable": true
-          },
-          "success": {
-            "type": "boolean",
-            "description": "True if the API call succeeded; false otherwise.",
-            "readOnly": true
-          },
-          "hasError": {
-            "type": "boolean",
-            "description": "True if the API call failed.",
-            "readOnly": true
-          },
-          "statusCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpStatusCode"
-              }
-            ],
-            "description": "The HTTP code of the response."
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HolidayListItemDto"
-            },
-            "description": "If the API call succeeded, this will contain the results."
-          }
-        },
-        "additionalProperties": false,
-        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
-      },
-      "HolidayResourceDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The resource identifier.",
-            "format": "uuid"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A resource affected by a holiday. Additional fields may be added later."
-      },
-      "HolidayUpdateDto": {
-        "type": "object",
-        "properties": {
-          "reason": {
-            "type": "string",
-            "description": "Updated reason or label for the holiday."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Request body for updating a holiday. Only the reason can be changed."
-      },
       "HourlyRateCreateDto": {
         "type": "object",
         "properties": {
@@ -16246,16 +15589,16 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The common name of this Meeting."
+            "description": "The common name of this Task."
           },
           "description": {
             "type": "string",
-            "description": "This field contains the Meeting's description.",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.\r\n            \r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Board or List view, click on a task to open the task panel, then edit the \"Description\" field.",
             "nullable": true
           },
           "startDate": {
             "type": "string",
-            "description": "The planned start date/time for this Meeting, in UTC.\r\nTime must be on a 15-minute boundary (0, 15, 30, or 45 minutes).\r\nClients should convert to local time only when displaying to the user.",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format.  For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.\r\n time needs to be in 15-minute increments, valid values are 0, 15, 30, 45",
             "format": "date-time"
           },
           "durationMinutes": {
@@ -16270,7 +15613,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "Specify a list of resources to assign to this Meeting",
+            "description": "Specify a list of resources to assign to this NPT",
             "nullable": true
           },
           "priority": {
@@ -16287,7 +15630,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "A Meeting is a lightweight calendar event that may or may not belong to a project.\r\nIt is only visible to the person who created it and the users assigned to it."
+        "description": "A Meeting is a task that does not belong to the project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nMeeting's are a lightweight version of a project task."
       },
       "MeetingDetailsDto": {
         "type": "object",
@@ -16299,40 +15642,40 @@
           },
           "name": {
             "type": "string",
-            "description": "The common name of this Meeting."
+            "description": "The common name of this Task."
           },
           "description": {
             "type": "string",
-            "description": "This field contains the Meeting's description.",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.\r\n            \r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Board or List view, click on a task to open the task panel, then edit the \"Description\" field.",
             "nullable": true
           },
           "plannedStartDate": {
             "type": "string",
-            "description": "The planned start date/time for this Meeting, in UTC.\r\nClients should convert to local time only when displaying to the user.",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
             "format": "date-time",
             "nullable": true
           },
           "plannedFinishDate": {
             "type": "string",
-            "description": "The planned finish date/time for this Meeting, in UTC.\r\nClients should convert to local time only when displaying to the user.",
+            "description": "The date when work on this Task is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
             "format": "date-time",
             "nullable": true
           },
           "plannedDuration": {
             "type": "integer",
-            "description": "The planned duration (in minutes) for this Meeting.",
+            "description": "The planned duration (in minutes) for this Task.",
             "format": "int32",
             "nullable": true
           },
           "plannedEffort": {
             "type": "integer",
-            "description": "The planned effort (in minutes) for this Meeting.",
+            "description": "The planned effort (in minutes) for this Task.",
             "format": "int32",
             "nullable": true
           },
           "priorityId": {
             "type": "integer",
-            "description": "Return the priority of a Meeting",
+            "description": "Return the priority of a task",
             "format": "int32",
             "nullable": true
           },
@@ -16345,7 +15688,7 @@
           },
           "shortId": {
             "type": "string",
-            "description": "A short ID that can be used to refer to this Meeting. This short ID is\r\nguaranteed to be unique within your Workspace.",
+            "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace.",
             "nullable": true
           },
           "tags": {
@@ -16353,7 +15696,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskTagDto"
             },
-            "description": "The tags that apply to this Meeting.",
+            "description": "The TaskTags that apply to this Task.",
             "nullable": true
           },
           "todos": {
@@ -16361,7 +15704,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskTodoDto"
             },
-            "description": "A list of todo items for this Meeting.",
+            "description": "A list of TaskTodo items, which are sub-tasks within this Task.",
             "nullable": true
           },
           "createDate": {
@@ -16375,12 +15718,12 @@
                 "$ref": "#/components/schemas/TaskOwnerDto"
               }
             ],
-            "description": "The owner of this Meeting.",
+            "description": "The owner of this Task.",
             "nullable": true
           },
           "ownerId": {
             "type": "string",
-            "description": "The ownerId of this Meeting.",
+            "description": "The ownerId of this Task.",
             "format": "uuid",
             "nullable": true
           },
@@ -16399,7 +15742,7 @@
                 "$ref": "#/components/schemas/DiscussionDataDto"
               }
             ],
-            "description": "Discussion data - number of comments, last read time",
+            "description": "Task file data - number of comments, last read time",
             "nullable": true
           },
           "fileData": {
@@ -16408,7 +15751,7 @@
                 "$ref": "#/components/schemas/FileDataDto"
               }
             ],
-            "description": "File data - number of files, last read time",
+            "description": "Task file data - number of files, last read time",
             "nullable": true
           },
           "recurring": {
@@ -16433,7 +15776,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "A Meeting is a lightweight calendar event that may or may not belong to a project.\r\nIt is only visible to the person who created it and the users assigned to it."
+        "description": "A Meeting is a task that either does not belong to a project or is part of a project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nMeetings are a lightweight version of a project task."
       },
       "MeetingDetailsDtoAstroResult": {
         "type": "object",
@@ -16471,7 +15814,7 @@
                 "$ref": "#/components/schemas/MeetingDetailsDto"
               }
             ],
-            "description": "A Meeting is a lightweight calendar event that may or may not belong to a project.\r\nIt is only visible to the person who created it and the users assigned to it."
+            "description": "A Meeting is a task that either does not belong to a project or is part of a project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nMeetings are a lightweight version of a project task."
           }
         },
         "additionalProperties": false,
@@ -16487,40 +15830,40 @@
           },
           "name": {
             "type": "string",
-            "description": "The common name of this Meeting."
+            "description": "The common name of this Task."
           },
           "description": {
             "type": "string",
-            "description": "This field contains the Meeting's description.",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.\r\n            \r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Board or List view, click on a task to open the task panel, then edit the \"Description\" field.",
             "nullable": true
           },
           "plannedStartDate": {
             "type": "string",
-            "description": "The planned start date/time for this Meeting, in UTC.\r\nClients should convert to local time only when displaying to the user.",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
             "format": "date-time",
             "nullable": true
           },
           "plannedFinishDate": {
             "type": "string",
-            "description": "The planned finish date/time for this Meeting, in UTC.\r\nClients should convert to local time only when displaying to the user.",
+            "description": "The date when work on this Task is expected to complete.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
             "format": "date-time",
             "nullable": true
           },
           "plannedDuration": {
             "type": "integer",
-            "description": "The planned duration (in minutes) for this Meeting.",
+            "description": "The planned duration (in minutes) for this Task.",
             "format": "int32",
             "nullable": true
           },
           "plannedEffort": {
             "type": "integer",
-            "description": "The planned effort (in minutes) for this Meeting.",
+            "description": "The planned effort (in minutes) for this Task.",
             "format": "int32",
             "nullable": true
           },
           "priorityId": {
             "type": "integer",
-            "description": "Return the priority of a Meeting",
+            "description": "Return the priority of a task",
             "format": "int32",
             "nullable": true
           },
@@ -16533,7 +15876,7 @@
           },
           "shortId": {
             "type": "string",
-            "description": "A short ID that can be used to refer to this Meeting. This short ID is\r\nguaranteed to be unique within your Workspace.",
+            "description": "A short ID that can be used to refer to this Task.  This short ID is\r\nguaranteed to be unique within your Workspace.",
             "nullable": true
           },
           "tags": {
@@ -16541,7 +15884,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskTagDto"
             },
-            "description": "The tags that apply to this Meeting.",
+            "description": "The TaskTags that apply to this Task.",
             "nullable": true
           },
           "todos": {
@@ -16549,7 +15892,7 @@
             "items": {
               "$ref": "#/components/schemas/TaskTodoDto"
             },
-            "description": "A list of todo items for this Meeting.",
+            "description": "A list of TaskTodo items, which are sub-tasks within this Task.",
             "nullable": true
           },
           "createDate": {
@@ -16563,12 +15906,12 @@
                 "$ref": "#/components/schemas/TaskOwnerDto"
               }
             ],
-            "description": "The owner of this Meeting.",
+            "description": "The owner of this Task.",
             "nullable": true
           },
           "ownerId": {
             "type": "string",
-            "description": "The ownerId of this Meeting.",
+            "description": "The ownerId of this Task.",
             "format": "uuid",
             "nullable": true
           },
@@ -16583,7 +15926,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "A Meeting is a lightweight calendar event that may or may not belong to a project.\r\nIt is only visible to the person who created it and the users assigned to it."
+        "description": "A Meeting is a task that does not belong to the project or is part of a project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nMeeting's are a lightweight version of a project task."
       },
       "MeetingDtoAstroResult": {
         "type": "object",
@@ -16621,7 +15964,7 @@
                 "$ref": "#/components/schemas/MeetingDto"
               }
             ],
-            "description": "A Meeting is a lightweight calendar event that may or may not belong to a project.\r\nIt is only visible to the person who created it and the users assigned to it."
+            "description": "A Meeting is a task that does not belong to the project or is part of a project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nMeeting's are a lightweight version of a project task."
           }
         },
         "additionalProperties": false,
@@ -16838,23 +16181,23 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The common name of this Meeting.",
+            "description": "The common name of this Task.",
             "nullable": true
           },
           "description": {
             "type": "string",
-            "description": "This field contains the Meeting's description.",
+            "description": "This field contains the task's \"Note\" or \"Description\", which is a description of the work to be done to complete the task.\r\n            \r\nWithin the ProjectManager application, you can use this field as follows:\r\n* When in the Board or List view, click on a task to open the task panel, then edit the \"Description\" field.",
             "nullable": true
           },
           "priorityId": {
             "type": "integer",
-            "description": "Return the priority of a Meeting",
+            "description": "Return the priority of a task",
             "format": "int32",
             "nullable": true
           },
           "plannedStartDate": {
             "type": "string",
-            "description": "The planned start date/time for this Meeting, in UTC.\r\nTime must be on a 15-minute boundary (0, 15, 30, or 45 minutes).\r\nClients should convert to local time only when displaying to the user.",
+            "description": "The date when work on this Task is planned to begin.\r\n            \r\nThis value contains only the date in year-month-day format. For display, this\r\ndate will always be shown as this same year-month-day regardless of time zone.",
             "format": "date-time",
             "nullable": true
           },
@@ -16875,7 +16218,7 @@
           },
           "recurring": {
             "type": "boolean",
-            "description": "Indicates whether this Meeting participates in a recurring series.\r\ntrue if the Meeting is part of a recurrence (series parent when is, or a child otherwise);\r\nfalse if it is a standalone Meeting.\r\nWhen saved as false during an update, the service layer detaches the Meeting\r\nfrom its series, which clears parent/child relationships including\r\nand recurringSettings.",
+            "description": "Indicates whether this task participates in a recurring series.\r\ntrue if the task is part of a recurrence (series parent when is, or a child otherwise);\r\nfalse if it is a standalone task.\r\nWhen saved as false during an update, the service layer detaches the task\r\nfrom its series, which clears parent/child relationships including\r\nand recurringSettings.",
             "nullable": true
           },
           "moveToProject": {
@@ -16889,7 +16232,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "A Meeting is a lightweight calendar event that may or may not belong to a project.\r\nIt is only visible to the person who created it and the users assigned to it."
+        "description": "A Meeting is a task that does not belong to the project or is part of a project. It is only visible to the person who created it, and the users assigned to it.\r\n            \r\nMeeting's are a lightweight version of a project task."
       },
       "MonthlyRecurringSettingsDto": {
         "type": "object",
@@ -19125,100 +18468,6 @@
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
       },
-      "ProjectExportFilterDto": {
-        "type": "object",
-        "properties": {
-          "groupId": {
-            "type": "string",
-            "description": "Specify the project group filter for the export",
-            "format": "uuid",
-            "nullable": true
-          },
-          "favoritesOnly": {
-            "type": "boolean",
-            "description": "Specify whether to include only favorite projects in the export"
-          },
-          "status": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Specify the status filter for the export",
-            "nullable": true
-          },
-          "manager": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Specify the project manager filter for the export",
-            "nullable": true
-          },
-          "customer": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Specify the project customer filter for the export",
-            "nullable": true
-          },
-          "chargeCode": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Specify the project charge code filter for the export",
-            "nullable": true
-          },
-          "priority": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Specify the priority filter for the export",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Filter settings for Projects export"
-      },
-      "ProjectExportSettingsDto": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Format to export to, currently csv and excel are supported"
-          },
-          "includeClosed": {
-            "type": "boolean",
-            "description": "Include closed projects to export"
-          },
-          "columns": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "boolean"
-            },
-            "description": "The list of column names to export"
-          },
-          "filters": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ProjectExportFilterDto"
-              }
-            ],
-            "description": "Export filters"
-          },
-          "order": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Order of columns to export"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Export settings for Projects export"
-      },
       "ProjectFieldCreateDto": {
         "required": [
           "name",
@@ -20711,28 +19960,6 @@
         "additionalProperties": false,
         "description": "Indicate which days of the week are considered working days for this project.\r\nThis value can be set when the project is created but may not be updated afterwards."
       },
-      "RecurrenceDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique identifier of the created recurrence instance",
-            "format": "uuid"
-          },
-          "startDate": {
-            "type": "string",
-            "description": "The occurrence start (UTC). For Meetings this carries the meeting time.",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "description": "The occurrence finish (UTC)",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A single recurrence instance created by a recurring Task, NPT, or Meeting action"
-      },
       "RecurringTaskChangeSetDetails": {
         "type": "object",
         "properties": {
@@ -20749,13 +19976,6 @@
             "description": "The ChangeSet Id",
             "format": "uuid",
             "nullable": true
-          },
-          "recurrences": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RecurrenceDto"
-            },
-            "description": "The recurrence instances created by this action"
           }
         },
         "additionalProperties": false,
@@ -23593,7 +22813,7 @@
             "minLength": 1,
             "pattern": "^(approved|denied|pending)$",
             "type": "string",
-            "description": "The approval status to apply to the Task.\r\nMust be one of: approved, denied, or pending."
+            "description": "The approval status to apply to the Task.\r\nMust be one of: Approved, Denied, or Pending."
           }
         },
         "additionalProperties": false,
@@ -25241,96 +24461,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TaskStatusDto"
-            },
-            "description": "If the API call succeeded, this will contain the results."
-          }
-        },
-        "additionalProperties": false,
-        "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
-      },
-      "TaskStatusMoveDto": {
-        "required": [
-          "taskId"
-        ],
-        "type": "object",
-        "properties": {
-          "taskId": {
-            "type": "string",
-            "description": "The unique identifier of the Task to move.",
-            "format": "uuid"
-          },
-          "position": {
-            "minimum": 0,
-            "type": "integer",
-            "description": "The zero-based position the Task should occupy within the target TaskStatus.  When not\r\nspecified, the Task is moved to the end of the TaskStatus.",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "A request to move a single Task into a TaskStatus.  The Task is placed at the specified\r\nPosition within the target TaskStatus, or at the end when no Position is given.  When the\r\nTask is already in the target TaskStatus, only its position changes."
-      },
-      "TaskStatusMoveResultDto": {
-        "type": "object",
-        "properties": {
-          "taskId": {
-            "type": "string",
-            "description": "The unique identifier of the Task that was moved.",
-            "format": "uuid"
-          },
-          "success": {
-            "type": "boolean",
-            "description": "Whether the move was accepted for this Task."
-          },
-          "message": {
-            "type": "string",
-            "description": "The reason the move was rejected, when Success is false.",
-            "nullable": true
-          },
-          "changeSetId": {
-            "type": "string",
-            "description": "When the Task belongs to a Project, the move is applied asynchronously as a Changeset\r\nand this contains its unique identifier.  You can use RetrieveChangeset to check the\r\nprogress of the move.  This is null when the move was applied immediately.",
-            "format": "uuid",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The result of moving a single Task into a TaskStatus.  One result is returned per\r\nrequested Task move, in the same order as the request."
-      },
-      "TaskStatusMoveResultDtoListAstroResult": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AstroError"
-              }
-            ],
-            "description": "If the API call failed, this will contain information about the error that occurred.",
-            "nullable": true
-          },
-          "success": {
-            "type": "boolean",
-            "description": "True if the API call succeeded; false otherwise.",
-            "readOnly": true
-          },
-          "hasError": {
-            "type": "boolean",
-            "description": "True if the API call failed.",
-            "readOnly": true
-          },
-          "statusCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/HttpStatusCode"
-              }
-            ],
-            "description": "The HTTP code of the response."
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TaskStatusMoveResultDto"
             },
             "description": "If the API call succeeded, this will contain the results."
           }
@@ -27077,16 +26207,10 @@
           },
           "customerId": {
             "type": "string",
-            "description": "This value is marked obsolete as it is no longer used.  Use `AccountOwnerId` instead.",
+            "description": "This value is marked obsolete as it is no longer used.",
             "format": "uuid",
             "nullable": true,
             "deprecated": true
-          },
-          "accountOwnerId": {
-            "type": "string",
-            "description": "The unique identifier of the user that is the account owner of this Workspace.",
-            "format": "uuid",
-            "nullable": true
           },
           "isOwner": {
             "type": "boolean",
@@ -27123,26 +26247,6 @@
           "isPaid": {
             "type": "boolean",
             "description": "True if this Workspace has an active subscription; false if this is a free trial."
-          },
-          "status": {
-            "type": "string",
-            "description": "The account status of this Workspace (for example `Active`, `Trial`, `Cancelled`)."
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": "True if this Workspace is currently active or in trial and can be used."
-          },
-          "isReseller": {
-            "type": "boolean",
-            "description": "True if this Workspace is provisioned through a reseller (for example, Acumatica)."
-          },
-          "licenses": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WorkspaceLicensesDto"
-              }
-            ],
-            "description": "A summary of the paid user licenses for this Workspace."
           },
           "settings": {
             "allOf": [
@@ -27453,10 +26557,6 @@
               "$ref": "#/components/schemas/EntitlementDto"
             },
             "description": "The entitlements active for this Workspace. Each entry is either a boolean switch or a\r\nnumeric limit."
-          },
-          "isSocial": {
-            "type": "boolean",
-            "description": "True if the user signed in via a social provider (Google, Apple, or Microsoft)."
           }
         },
         "additionalProperties": false,
@@ -27503,33 +26603,6 @@
         },
         "additionalProperties": false,
         "description": "An API result that contains different values depending on whether the API call succeeded or failed.\r\nIf the API call succeeded, the `Success` value will be true and you can use the `Data` element.\r\nIf the API call failed, `Success` will be false and the `Error` value will be non-null."
-      },
-      "WorkspaceLicensesDto": {
-        "type": "object",
-        "properties": {
-          "purchased": {
-            "type": "integer",
-            "description": "The number of paid user licenses purchased for this workspace.",
-            "format": "int32"
-          },
-          "used": {
-            "type": "integer",
-            "description": "The number of paid user licenses currently in use by active (non-guest) users.",
-            "format": "int32"
-          },
-          "guestUsed": {
-            "type": "integer",
-            "description": "The number of active guest users in this workspace.",
-            "format": "int32"
-          },
-          "remaining": {
-            "type": "integer",
-            "description": "The number of purchased licenses still available. This can be negative when the workspace\r\nhas more active users than purchased licenses.",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A summary of the paid user licenses for the workspace the current user is logged on to."
       },
       "WorkspaceSettingsDto": {
         "type": "object",

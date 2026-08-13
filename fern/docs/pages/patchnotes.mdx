@@ -1,19 +1,95 @@
 # API Patch Notes
 
+# August, 2026
+
+## Patch notes for 2026.160.203
+
+These patch notes summarize the changes from version 2026.159.210.
+
+Added 3 new endpoints:
+* [Project.CreateProjectExport](https://developer.projectmanager.com/api-reference/project/create-project-export)
+* [ResourceTeam.GetResourceTeam](https://developer.projectmanager.com/api-reference/resource-team/get-resource-team)
+* [TaskStatus.MoveTasksToATaskStatus](https://developer.projectmanager.com/api-reference/task-status/move-tasks-to-a-task-status)
+
+Renamed 8 endpoints:
+* Renamed Meetings.CreateWeeklyRecurringMeetings to [MeetingRecurrency.CreateWeeklyRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/create-weekly-recurring-meetings)
+* Renamed Meetings.CreateMonthlyRecurringMeetings to [MeetingRecurrency.CreateMonthlyRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/create-monthly-recurring-meetings)
+* Renamed Meetings.CreateDailyRecurringMeetings to [MeetingRecurrency.CreateDailyRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/create-daily-recurring-meetings)
+* Renamed Meetings.CreateYearlyRecurringMeetings to [MeetingRecurrency.CreateYearlyRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/create-yearly-recurring-meetings)
+* Renamed Meetings.DeleteRecurringMeetings to [MeetingRecurrency.DeleteRecurringMeetings](https://developer.projectmanager.com/api-reference/meeting-recurrency/delete-recurring-meetings)
+* Renamed Meetings.ValidateRecurringMeetingSettings to [MeetingRecurrency.ValidateRecurringMeetingSettings](https://developer.projectmanager.com/api-reference/meeting-recurrency/validate-recurring-meeting-settings)
+* Renamed Meetings.UpdateRecurringMeetingSettings to [MeetingRecurrency.UpdateRecurringMeetingSettings](https://developer.projectmanager.com/api-reference/meeting-recurrency/update-recurring-meeting-settings)
+* Renamed ResourceTeam.RetrieveResourceTeams to [ResourceTeam.QueryResourceTeams](https://developer.projectmanager.com/api-reference/resource-team/query-resource-teams)
+
+Changes to data models:
+* RecurringTaskChangeSetDetails: Added new field `recurrences`
+
+
+
+# July, 2026
+
+## Patch notes for 2026.159.210
+
+These patch notes summarize the changes from version 2026.158.269.
+
+Changes to data models:
+* WorkSpaceDto: Added new field `accountOwnerId`
+* WorkSpaceDto: Added new field `status`
+* WorkSpaceDto: Added new field `isActive`
+* WorkSpaceDto: Added new field `isReseller`
+* WorkSpaceDto: Added new field `licenses`
+* WorkSpaceUserInfoDto: Added new field `isSocial`
+
+
+
 # June, 2026
 
-## Patch notes for 2026.156.163
+## Patch notes for 2026.158.269
+
+These patch notes summarize the changes from version 2026.157.126.
+
+Added 1 new endpoints:
+* [Resource.BulkUpdateResources](https://developer.projectmanager.com/api-reference/resource/bulk-update-resources)
+
+Renamed 3 endpoints:
+* Renamed ProjectMembers.UpdateUserProjectMembership to [ProjectMembers.CreateOrUpdateUserProjectMembership](https://developer.projectmanager.com/api-reference/project-members/create-or-update-user-project-membership)
+* Renamed WorkSpace.RetrieveTheCurrentWorkspace to [WorkSpace.RetrieveCurrentWorkspace](https://developer.projectmanager.com/api-reference/work-space/retrieve-current-workspace)
+* Renamed WorkSpace.UpdateSettingsForTheCurrentWorkspace to [WorkSpace.UpdateCurrentWorkspaceSettings](https://developer.projectmanager.com/api-reference/work-space/update-current-workspace-settings)
+
+Changes to data models:
+* IntegrationDto: Removed field `metadata`
+* ResourceDto: Added new field `roleId`
+* UserRolePermissionsDto: Added new field `useMcp`
+* WorkSpacePermissionsDto: Added new field `changeOwnEmail`
+* WorkSpacePermissionsDto: Added new field `useMcp`
+
+Deprecated 2 old endpoints:
+* ProjectMembers.UpdateAListOfUserProjectMembership
+* ProjectMembers.CreateUserProjectMembership
+
+
+
+## Patch notes for 2026.157.126
 
 These patch notes summarize the changes from version 2026.156.162.
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskStatus.UpdateTaskStatus path changed from `/api/data/tasks/statuses/{taskStatusId}` to `/api/data/projects/{projectId}/tasks/statuses`
-* TaskStatus.UpdateTaskStatus added path parameter `projectId`
-* TaskStatus.UpdateTaskStatus removed path parameter `taskStatusId`
-* Breaking change: TaskStatus.DeleteTaskStatus path changed from `/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}` to `/api/data/tasks/statuses/{taskStatusId}`
-* TaskStatus.DeleteTaskStatus removed path parameter `projectId`
+Added 2 new endpoints:
+* [Integration.UpdateIntegrationMetadata](https://developer.projectmanager.com/api-reference/integration/update-integration-metadata)
+* [WorkSpace.UpdateSettingsForTheCurrentWorkspace](https://developer.projectmanager.com/api-reference/work-space/update-settings-for-the-current-workspace)
+
+Renamed 1 endpoints:
+* Renamed WorkSpace.RetrieveWorkspaces to [WorkSpace.RetrieveTheCurrentWorkspace](https://developer.projectmanager.com/api-reference/work-space/retrieve-the-current-workspace)
+
+Changes to data models:
+* IntegrationDto: Added new field `metadata`
+* IntegrationProviderDto: Added new field `unauthorized`
+* TaskDetailsDto: Added new field `baseline`
+* WorkSpaceDto: Added new field `settings`
+
+Deprecated 3 old endpoints:
+* Holiday.QueryResourceHolidays
+* Holiday.QueryCountryHolidays
+* Holiday.QueryGlobalHolidays
 
 
 
@@ -46,12 +122,10 @@ Changes to existing endpoints:
 * ResourceTeam.UpdateResourceTeam changed the parameter name `{teamresourceId}` to `{resourceTeamId}`
 * ResourceTeam.UpdateResourceTeam added path parameter `resourceTeamId`
 * ResourceTeam.UpdateResourceTeam removed path parameter `teamresourceId`
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}/values` to `/api/data/tasks/{taskId}/fields/{fieldId}`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}/values` to `/api/data/tasks/{taskId}/fields/{fieldId}`
-* Breaking change: TaskStatus.UpdateTaskStatus path changed from `/api/data/projects/{projectId}/tasks/statuses` to `/api/data/tasks/statuses/{taskStatusId}`
+* Deprecated and replaced: The previous version of TaskStatus.UpdateTaskStatus was deprecated and replaced with a new method.
 * TaskStatus.UpdateTaskStatus added path parameter `taskStatusId`
 * TaskStatus.UpdateTaskStatus removed path parameter `projectId`
-* Breaking change: TaskStatus.DeleteTaskStatus path changed from `/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}` to `/api/data/tasks/statuses/{taskStatusId}`
+* Deprecated and replaced: The previous version of TaskStatus.DeleteTaskStatus was deprecated and replaced with a new method.
 * TaskStatus.DeleteTaskStatus removed path parameter `projectId`
 
 Changes to data models:
@@ -71,9 +145,10 @@ Changes to data models:
 * TaskUpdateDto: Added new field `moveToProject`
 * WorkSpaceUserInfoDto: Added new field `entitlements`
 
-Deprecated 2 old endpoints:
-* Dashboard.RetrieveDashboardUserSettings
-* Dashboard.CreateOrUpdateUserDashboardSettings
+Deprecated 3 old endpoints:
+* Risk.CreateRisk
+* TaskStatus.UpdateTaskStatus
+* TaskStatus.DeleteTaskStatus
 
 
 
@@ -94,9 +169,6 @@ Changes to data models:
 * WorkSpaceUserInfoDto: Added new field `workspaceCurrencyCulture`
 * WorkSpaceUserInfoDto: Removed field `workSpaceCulture`
 * WorkSpaceUserInfoDto: Removed field `workSpaceCurrencyCulture`
-
-Deprecated 1 old endpoints:
-* Project.RestoreProject
 
 
 
@@ -138,9 +210,6 @@ Changes to data models:
 * WorkSpaceUserInfoDto: Added new field `workSpaceCurrencyCulture`
 * WorkSpaceUserInfoDto: Added new field `userCulture`
 * WorkSpaceUserInfoDto: Added new field `userCurrencyCulture`
-
-Deprecated 1 old endpoints:
-* HourlyRate.UpdateHourlyRate
 
 
 
@@ -221,8 +290,6 @@ Changes to data models:
 
 
 
-# Updates from 2025
-
 ## Patch notes for 145.0.219
 
 These patch notes summarize the changes from version 144.0.155.
@@ -252,8 +319,6 @@ Changes to data models:
 * TaskCreateDto: Added new field `index`
 
 
-
-# Updates from 2025
 
 ## Patch notes for 144.0.155
 
@@ -327,8 +392,6 @@ Changes to data models:
 
 
 
-# Updates from 2025
-
 ## Patch notes for 141.1.156
 
 These patch notes summarize the changes from version 139.0.157.
@@ -345,8 +408,6 @@ Changes to data models:
 * ProjectCreateDto: Added new field `template`
 
 
-
-# Updates from 2025
 
 ## Patch notes for 139.0.157
 
@@ -431,8 +492,6 @@ Changes to data models:
 
 
 
-# Updates from 2025
-
 ## Patch notes for 137.0.201
 
 These patch notes summarize the changes from version 136.0.106.
@@ -457,8 +516,6 @@ Changes to data models:
 * TimesheetUpdateRequestDto: Added new field `documentIds`
 
 
-
-# Updates from 2025
 
 ## Patch notes for 135.0.134
 
@@ -491,8 +548,6 @@ Changes to data models:
 
 
 
-# Updates from 2025
-
 ## Patch notes for 133.1.136
 
 These patch notes summarize the changes from version 132.1.183.
@@ -517,8 +572,6 @@ Changes to data models:
 
 
 
-# Updates from 2025
-
 ## Patch notes for 131.1.208
 
 These patch notes summarize the changes from version 130.1.162.
@@ -541,17 +594,11 @@ These patch notes summarize the changes from version 129.0.113.
 Added 1 new endpoints:
 * [RiskFile.UploadRiskFile](https://developer.projectmanager.com/api-reference/risk-file/upload-risk-file)
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * ProjectCreateDto: Removed field `template`
 * ProjectUpdateDto: Added new field `template`
 
 
-
-# Updates from 2025
 
 ## Patch notes for 129.0.113
 
@@ -571,10 +618,6 @@ Renamed 4 endpoints:
 * Renamed TaskTodo.UpdateATodo to [TaskTodo.UpdateTodo](https://developer.projectmanager.com/api-reference/task-todo/update-todo)
 * Renamed TaskTodo.DeleteATodo to [TaskTodo.DeleteTodo](https://developer.projectmanager.com/api-reference/task-todo/delete-todo)
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * TimesheetDto: Changed the data type of the field `date` from `date-time` to `date`
 * TimesheetTaskDto: Changed the data type of the field `plannedStartDate` from `date-time` to `date`
@@ -582,43 +625,27 @@ Changes to data models:
 * TimesheetTaskDto: Changed the data type of the field `actualStartDate` from `date-time` to `date`
 * TimesheetTaskDto: Changed the data type of the field `actualFinishDate` from `date-time` to `date`
 
-Deprecated 1 old endpoints:
-* Changeset.RetrieveChangesetsByProjectID
 
-
-
-# Updates from 2025
 
 ## Patch notes for 127.0.185
 
 These patch notes summarize the changes from version 125.1.169.
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * LicenseDto: Changed the data type of the field `id` from `uuid` to `string`
 
-Deprecated 1 old endpoints:
-* WorkSpace.InviteToWorkspace
 
-
-
-# Updates from 2025
 
 ## Patch notes for 125.1.169
 
 These patch notes summarize the changes from version 122.0.214.
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * WorkSpaceUserInfoDto: Added new field `permissions`
 
 
+
+# Updates from 2024
 
 ## Patch notes for 122.0.214
 
@@ -628,10 +655,6 @@ Added 3 new endpoints:
 * [ProjectCustomer.CreateProjectCustomer](https://developer.projectmanager.com/api-reference/project-customer/create-project-customer)
 * [ProjectCustomer.UpdateProjectCustomer](https://developer.projectmanager.com/api-reference/project-customer/update-project-customer)
 * [ProjectCustomer.DeleteProjectCustomer](https://developer.projectmanager.com/api-reference/project-customer/delete-project-customer)
-
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
 
 
 
@@ -652,8 +675,6 @@ Changes to existing endpoints:
 * Notification.RetrieveNotifications added query parameter `senderId`
 * Notification.RetrieveNotifications added query parameter `notificationTypes`
 * Notification.RetrieveNotifications added query parameter `asFlatList`
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
 
 Changes to data models:
 * ResourceDto: Added new field `countryName`
@@ -671,10 +692,6 @@ Changes to data models:
 ## Patch notes for 120.0.4689
 
 These patch notes summarize the changes from version 119.0.4625.
-
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
 
 Changes to data models:
 * ResourceDto: Added new field `initials`
@@ -696,10 +713,6 @@ Added 5 new endpoints:
 Renamed 1 endpoints:
 * Renamed TaskMetadata.GetTasksByProjectIDAndForeignKeyID to [TaskMetadata.TaskMetadataSearch](https://developer.projectmanager.com/api-reference/task-metadata/task-metadata-search)
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * TaskDto: Added new field `isLocked`
 * TaskDto: Added new field `isMilestone`
@@ -709,10 +722,6 @@ Changes to data models:
 ## Patch notes for 117.0.4438
 
 These patch notes summarize the changes from version 116.0.4391.
-
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
 
 Changes to data models:
 * ResourceCreateDto: Added new field `colorName`
@@ -729,10 +738,6 @@ These patch notes summarize the changes from version 115.0.4330.
 Added 1 new endpoints:
 * [Resource.ResendInviteEmail](https://developer.projectmanager.com/api-reference/resource/resend-invite-email)
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * TimesheetDto: Added new field `resourceId`
 * TimesheetDto: Added new field `taskId`
@@ -744,10 +749,6 @@ Changes to data models:
 ## Patch notes for 115.0.4330
 
 These patch notes summarize the changes from version 114.0.4169.
-
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
 
 Changes to data models:
 * NotificationDto: Added new field `id`
@@ -780,10 +781,6 @@ Added 9 new endpoints:
 * [Notification.MarkNotificationUnread](https://developer.projectmanager.com/api-reference/notification/mark-notification-unread)
 * [Resource.CreateManyResources](https://developer.projectmanager.com/api-reference/resource/create-many-resources)
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * ProjectVersionChangeDataDto: Added new field `restoreVersion`
 * ResourceDto: Added new field `createdDate`
@@ -800,10 +797,6 @@ Changes to data models:
 
 These patch notes summarize the changes from version 110.0.3705.
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * AstroError: Added new field `validationErrors`
 * IntegrationDto: Added new field `noAdminPermission`
@@ -817,10 +810,6 @@ Changes to data models:
 
 These patch notes summarize the changes from version 107.0.3368.
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-
 Changes to data models:
 * CountryHolidayDto: Added new field `countryName`
 
@@ -829,10 +818,6 @@ Changes to data models:
 ## Patch notes for 107.0.3368
 
 These patch notes summarize the changes from version 104.0.3086.
-
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
 
 Changes to data models:
 * TaskDto: Added new field `actualEffort`
@@ -843,9 +828,6 @@ Changes to data models:
 * TimesheetTaskDto: Added new field `actualEffort`
 * TimesheetTaskDto: Added new field `plannedResourceCost`
 * TimesheetTaskDto: Added new field `plannedEffort`
-
-Deprecated 1 old endpoints:
-* Changeset.RetrieveProjectChangesByProjectID
 
 
 
@@ -860,9 +842,8 @@ Renamed 2 endpoints:
 * Renamed Changeset.RetrieveChangeset to [Changeset.RetrieveChangesetStatus](https://developer.projectmanager.com/api-reference/changeset/retrieve-changeset-status)
 * Renamed Changeset.RetrieveCompletedChangeset to [Changeset.RetrieveCompletedChangesetStatus](https://developer.projectmanager.com/api-reference/changeset/retrieve-completed-changeset-status)
 
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+Deprecated 1 old endpoints:
+* Changeset.RetrieveChangesetsByProjectID
 
 
 
@@ -873,10 +854,6 @@ These patch notes summarize the changes from version 102.0.2886.
 Added 2 new endpoints:
 * [Changeset.RetrieveChangesetsByProjectID](https://developer.projectmanager.com/api-reference/changeset/retrieve-changesets-by-project-id)
 * [Project.DeleteProject](https://developer.projectmanager.com/api-reference/project/delete-project)
-
-Changes to existing endpoints:
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
 
 Changes to data models:
 * ProjectFileDto: Added new field `folder`
@@ -907,8 +884,6 @@ Changes to existing endpoints:
 * Task.QueryTasks removed query parameter `$select`
 * TaskField.QueryTaskFields removed query parameter `$select`
 * TaskField.QueryTaskFieldValues removed query parameter `$select`
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
 * Timesheet.QueryTimeSheets removed query parameter `$select`
 
 Changes to data models:
@@ -922,6 +897,10 @@ Changes to data models:
 * TaskFieldValueDto: Added new field `name`
 * TaskFieldValueDto: Added new field `type`
 * TimesheetDto: Added new field `files`
+
+Deprecated 2 old endpoints:
+* Discussion.RetrieveTaskComments
+* Discussion.CreateTaskComments
 
 
 
@@ -943,8 +922,8 @@ Changes to existing endpoints:
 * ProjectField.DeleteProjectField removed body parameter `body`
 * ProjectField.UpdateProjectFieldValue changed the data type of the parameter `fieldId` from `uuid` to `string`
 * ProjectField.RetrieveProjectFieldValue changed the data type of the parameter `fieldId` from `uuid` to `string`
-* Breaking change: TaskField.RetrieveTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
-* Breaking change: TaskField.UpdateTaskFieldValue path changed from `/api/data/tasks/{taskId}/fields/{fieldId}` to `/api/data/tasks/{taskId}/fields/{fieldId}/values`
+* Deprecated and replaced: The previous version of TaskField.RetrieveTaskFieldValue was deprecated and replaced with a new method.
+* Deprecated and replaced: The previous version of TaskField.UpdateTaskFieldValue was deprecated and replaced with a new method.
 
 Changes to data models:
 * ConnectionSchemaDto: Added new field `connected`
@@ -1101,10 +1080,6 @@ Changes to data models:
 * TaskDetailsDto: Added new field `fields`
 * TaskDto: Added new field `fields`
 * TimesheetDto: Added new field `modifiedDate`
-
-Deprecated 2 old endpoints:
-* Integration.AddIntegrationInstance
-* Integration.RemoveIntegrationInstance
 
 
 
