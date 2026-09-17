@@ -1,6 +1,19 @@
-When you use the ProjectManager API, you can search for your information using the query language [OData](https://www.odata.org/). All data types within ProjectManager can be retrieved using OData queries.
+When you use the ProjectManager API to search for information via one of our Query APIs, you can filter, paginate, and sort your results.  Depending on the API you use, you may encounter one of two different query languages: [OData](https://www.odata.org/) and [Gridify](https://alirezanet.github.io/Gridify/guide/filtering).
 
-So let's break this down - what is an OData query? It is a type of query that allows you to:
+## OData Query APIs
+
+The following APIs use the OData query pattern:
+* [QueryProjects](https://developer.projectmanager.com/api-reference/project/query-projects)
+* [QueryResources](https://developer.projectmanager.com/api-reference/resource/query-resources)
+* [QueryResourceTeams](https://developer.projectmanager.com/api-reference/resource-team/query-resource-teams)
+* [QueryRisks](https://developer.projectmanager.com/api-reference/risk/query-risks)
+* [QueryTags](https://developer.projectmanager.com/api-reference/tag/query-tags)
+* [QueryTasks](https://developer.projectmanager.com/api-reference/task/query-tasks)
+* [QueryTaskFields](https://developer.projectmanager.com/api-reference/task-field/query-task-fields)
+* [QueryTaskFieldValues](https://developer.projectmanager.com/api-reference/task-field/query-task-field-values)
+* [QueryTimeEntries](https://developer.projectmanager.com/api-reference/timesheet/query-time-entries)
+
+The [OData Query Language](https://www.odata.org/) allows you to fetch information with precise queries.  An OData query is a type of request that allows you to:
 
 - **Filter** records based on criteria you specify in the `$filter` parameter.
 - **Paginate** your results using `$top` and `$skip`.
@@ -10,18 +23,19 @@ So let's break this down - what is an OData query? It is a type of query that al
 
 Let's walk through the basics for an OData query.
 
-## Example OData queries for tasks
+### A simple OData query example for tasks
 
-Let's begin by dMany users want to begin by fetching a specific subset of tasks.  In this case, we'll write a query to fetch a list of tasks that have specific tags.  Our developer wants to retrieve a list of tasks that have been tagged with the `customer-issue` tag.  But, we only want to find tasks from a specific swimlane.  How do we do this?
+Let's begin by fetching a specific subset of tasks.  In this case, we'll write a query to fetch a list of tasks that have been given the `customer-issue` tag.  But, we only want to find tasks from a specific swimlane.  How do we do this?
 
 * To fetch a task that has a specific tag, we need to examine the `tags` collection.
-* To find a tag with a specific name, we use the OData `any` method since any particular task could have lots of tags.
-* We want to look for a tag that has a specific name; in this case, the name is `customer-issue`.
+* To find a task possessing a tag, we use the OData `any` method - this means "find tasks where any one of the tags matches this criteria."
+* The tag criteria we want to use is its `name`.
+* The criteria value we are searching for is `customer-issue`.
 * So our tag filter is `tags/any(o: o/name eq 'customer-issue')`.
 
 Next, we want to identify the swimlane.  The swimlane is stored in the field `name` within the `status` object, so to query it we use the statement `status/name` followed by a filter such as equals.  We want to look for the swimlane "Waiting".
 
-Combining these two queries together, we get this query:
+Combining these two queries together, we get this `$filter`:
 
 ```
 tags/any(o: o/name eq 'customer-issue') and status/name eq 'Waiting'
@@ -30,7 +44,7 @@ tags/any(o: o/name eq 'customer-issue') and status/name eq 'Waiting'
 
 ## Filtering records using OData
 
-Whenever you want to find a specific record in the ProjectManager system, you can use an OData filter statement to search. Microsoft provides a nice tutorial page on [learning OData filter expressions](https://learn.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris) which goes into more detail, but let's summarize it here.
+The OData specification includes lots of complex features which you may wish to use to enhance your queries. Microsoft provides a nice tutorial page on [learning OData filter expressions](https://learn.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris) which goes into more detail, but let's summarize it here.
 
 - Search for projects with a specific where a field value matches using an `$filter={field-name} eq {value}` statement, like `$filter=shortCode eq MyNewProject`
 - Search for tasks more recent than a specific time using an `$filter={field-name} gt {date}` statement, like `$filter=createDate gt 2023-03-01`
@@ -80,5 +94,9 @@ This allows you to paginate records easily. If you want to retrieve the top 50 r
 
 Some OData query endpoints allow you to fetch additional data using the `$expand` parameter. The documentation for the API will explain what options are available and how to use them on each endpoint.
 
-## Complex query examples
+# Gridify Query APIs
+
+The following APIs use the Gridify query pattern:
+* [QueryResourceWorkload](https://developer.projectmanager.com/api-reference/workload/query-resource-workload)
+
 
