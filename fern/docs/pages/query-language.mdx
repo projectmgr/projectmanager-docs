@@ -42,7 +42,7 @@ tags/any(o: o/name eq 'customer-issue') and status/name eq 'Waiting'
 ```
 
 
-## Filtering records using OData
+### Filtering records using OData
 
 The OData specification includes lots of complex features which you may wish to use to enhance your queries. Microsoft provides a nice tutorial page on [learning OData filter expressions](https://learn.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris) which goes into more detail, but let's summarize it here.
 
@@ -50,7 +50,7 @@ The OData specification includes lots of complex features which you may wish to 
 - Search for tasks more recent than a specific time using an `$filter={field-name} gt {date}` statement, like `$filter=createDate gt 2023-03-01`
 - Search for a resource with a comment in its "notes" field using an `$filter=contains({field-name}, '{substring}')` statement, like `$filter=contains(notes, 'test')`.
 
-## Comparators and Functions within OData filtering 
+### Comparators and Functions within OData filtering 
 
 | Name                 | Example                          |
 |----------------------|----------------------------------|
@@ -78,7 +78,7 @@ When specifying values in your query, keep in mind these things:
 - GUID values are written without single quotes as if they are numbers, for example `projectId eq 8aff412f-f072-479a-837e-eb0d96c6904a`
 - Date values are always written in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format, also known as YYYY-MM-DD. For example, `createDate gt 2023-01-01`
 
-## Pagination using OData
+### Pagination using OData
 
 The standard for OData pagination uses the concept of **top** and **skip**. Here's how it works.
 
@@ -90,13 +90,66 @@ The standard for OData pagination uses the concept of **top** and **skip**. Here
 
 This allows you to paginate records easily. If you want to retrieve the top 50 records in a table, you specify `$top=50`. To retrieve the second page of results, specify `$skip=50` and `$top=50`.
 
-## Expanding data
+### Expanding data
 
 Some OData query endpoints allow you to fetch additional data using the `$expand` parameter. The documentation for the API will explain what options are available and how to use them on each endpoint.
 
-# Gridify Query APIs
+## Gridify Query APIs
 
 The following APIs use the Gridify query pattern:
 * [QueryResourceWorkload](https://developer.projectmanager.com/api-reference/workload/query-resource-workload)
 
+The [Gridify Query Language](https://alirezanet.github.io/Gridify/guide/filtering) allows complex queries in a simple format that is easy to use.  When using Gridify query APIs, you can:
 
+- **Filter** records based on criteria you specify in the `filter` parameter.
+- **Sort** your query results using the `sort` parameter.
+- **Paginate** your results using `page` and `pageSize`.  In Gridify, pages are numbered starting with 1.  PageSize must always be a number between 1 and 1000 (default 1000).
+- **Fetch** additional data using `include`.
+
+Let's walk through the basics for a Gridify query.
+
+### A simple Gridify query for resource workload
+
+For this example, we will imagine that we want to retrieve information about a resource's expected workload for the month of July 2026.  To do this, we must first go through a few steps:
+* Find the unique identifier of the Resource by calling `QueryResources` to retrieve the record for the Resource.  The unique identifier is the `id` field on the record.
+* Examine the API in question to see the list of fields that can be used for filtering.  For the `QueryResourceWorkload` API, we can filter based on the fields `task.plannedStartDate`, `task.plannedFinishDate`, `task.projectId`, and `task.name`.  
+* We want to search for tasks planned to start after July 1, 2026, so we'll use planned start date and the greater-than symbol, >.
+* Therefore, our `filter` parameter is: `task.plannedStartDate>2026-07-01`
+* We will choose to sort by a task's name.  Our `sort` parameter will be: `task.name`
+* We want to retrieve information about the task in addition to the workload allocation for the task. Our `include` parameter will be `task`.
+* This API is paginated by default. We will start by fetching page one, then continue until we receive an empty result set.  Therefore our `page` parameter will be `1`.
+
+Finally, once we construct the query, we must URL encode the parameters.  This is necessary to ensure that the greater-than symbol, >, is correctly received by the API.  The complete query is:
+
+```
+https://stagingapi.pmcom.io/api/data/workload/resources/<GUID>?filter=task.plannedStartDate%3E2026-07-01&sort=task.name&include=task&page=1
+```
+
+This first page of data may or may not be a complete set of results.  If you receive less than a full page of results, you should increment the `page` number and repeat the query until you receive an empty result.
+
+### Comparators and Functions within Gridify filtering 
+
+| Name                 | Example                          |
+|----------------------|----------------------------------|
+| Equals               | `{field} = {value}`              |
+| Greater Than         | `{field} > {value}`              |
+| Greater Than Or Equal| `{field} >= {value}`             |
+| Less Than            | `{field} < {value}`              |
+| Less Than Or Equal   | `{field} <= {value}`             |
+| Not Equal            | `{field} != {value}`             |
+| Contains             | `{field} =* {value}`             |
+| Not Contains         | `{field} !* {value}`             |
+| Starts With          | `{field} ^ {value}`              |
+| Not Starts With      | `{field} !^ {value}`             |
+| Ends With            | `{field} $ {value}`              |
+| Not Ends With        | `{field} !$ {value}`             |
+
+Using logical operators we can create complex queries.
+
+| Name        | Operator | Usage example                                  |
+|-------------|----------|------------------------------------------------|
+| AND         | `,`      | `FirstName = Value, LastName = Value2`         |
+| OR          | `.`      | `FirstName=Value|LastName=Value2`              |
+| Parenthesis | `()`     | `(FirstName=*Jo,Age<30)|(FirstName!=Hn,Age>30) |
+
+For a full breakdown of Gridify querying, see [filtering](https://alirezanet.github.io/Gridify/guide/filtering).
