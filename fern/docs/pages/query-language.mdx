@@ -1,6 +1,19 @@
-When you use the ProjectManager API, you can search for your information using the query language [OData](https://www.odata.org/). All data types within ProjectManager can be retrieved using OData queries.
+When you use the ProjectManager API to search for information via one of our Query APIs, you can filter, paginate, and sort your results.  Depending on the API you use, you may encounter one of two different query languages: [OData](https://www.odata.org/) and [Gridify](https://alirezanet.github.io/Gridify/guide/filtering).
 
-So let's break this down - what is an OData query? It is a type of query that allows you to:
+## OData Query APIs
+
+The following APIs use the OData query pattern:
+* [QueryProjects](https://developer.projectmanager.com/api-reference/project/query-projects)
+* [QueryResources](https://developer.projectmanager.com/api-reference/resource/query-resources)
+* [QueryResourceTeams](https://developer.projectmanager.com/api-reference/resource-team/query-resource-teams)
+* [QueryRisks](https://developer.projectmanager.com/api-reference/risk/query-risks)
+* [QueryTags](https://developer.projectmanager.com/api-reference/tag/query-tags)
+* [QueryTasks](https://developer.projectmanager.com/api-reference/task/query-tasks)
+* [QueryTaskFields](https://developer.projectmanager.com/api-reference/task-field/query-task-fields)
+* [QueryTaskFieldValues](https://developer.projectmanager.com/api-reference/task-field/query-task-field-values)
+* [QueryTimeEntries](https://developer.projectmanager.com/api-reference/timesheet/query-time-entries)
+
+The [OData Query Language](https://www.odata.org/) allows you to fetch information with precise queries.  An OData query is a type of request that allows you to:
 
 - **Filter** records based on criteria you specify in the `$filter` parameter.
 - **Paginate** your results using `$top` and `$skip`.
@@ -10,33 +23,34 @@ So let's break this down - what is an OData query? It is a type of query that al
 
 Let's walk through the basics for an OData query.
 
-## Example OData queries for tasks
+### A simple OData query example for tasks
 
-Let's begin by dMany users want to begin by fetching a specific subset of tasks.  In this case, we'll write a query to fetch a list of tasks that have specific tags.  Our developer wants to retrieve a list of tasks that have been tagged with the `customer-issue` tag.  But, we only want to find tasks from a specific swimlane.  How do we do this?
+Let's begin by fetching a specific subset of tasks.  In this case, we'll write a query to fetch a list of tasks that have been given the `customer-issue` tag.  But, we only want to find tasks from a specific swimlane.  How do we do this?
 
 * To fetch a task that has a specific tag, we need to examine the `tags` collection.
-* To find a tag with a specific name, we use the OData `any` method since any particular task could have lots of tags.
-* We want to look for a tag that has a specific name; in this case, the name is `customer-issue`.
+* To find a task possessing a tag, we use the OData `any` method - this means "find tasks where any one of the tags matches this criteria."
+* The tag criteria we want to use is its `name`.
+* The criteria value we are searching for is `customer-issue`.
 * So our tag filter is `tags/any(o: o/name eq 'customer-issue')`.
 
 Next, we want to identify the swimlane.  The swimlane is stored in the field `name` within the `status` object, so to query it we use the statement `status/name` followed by a filter such as equals.  We want to look for the swimlane "Waiting".
 
-Combining these two queries together, we get this query:
+Combining these two queries together, we get this `$filter`:
 
 ```
 tags/any(o: o/name eq 'customer-issue') and status/name eq 'Waiting'
 ```
 
 
-## Filtering records using OData
+### Filtering records using OData
 
-Whenever you want to find a specific record in the ProjectManager system, you can use an OData filter statement to search. Microsoft provides a nice tutorial page on [learning OData filter expressions](https://learn.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris) which goes into more detail, but let's summarize it here.
+The OData specification includes lots of complex features which you may wish to use to enhance your queries. Microsoft provides a nice tutorial page on [learning OData filter expressions](https://learn.microsoft.com/en-us/dynamics-nav/using-filter-expressions-in-odata-uris) which goes into more detail, but let's summarize it here.
 
 - Search for projects with a specific where a field value matches using an `$filter={field-name} eq {value}` statement, like `$filter=shortCode eq MyNewProject`
 - Search for tasks more recent than a specific time using an `$filter={field-name} gt {date}` statement, like `$filter=createDate gt 2023-03-01`
 - Search for a resource with a comment in its "notes" field using an `$filter=contains({field-name}, '{substring}')` statement, like `$filter=contains(notes, 'test')`.
 
-## Comparators and Functions within OData filtering 
+### Comparators and Functions within OData filtering 
 
 | Name                 | Example                          |
 |----------------------|----------------------------------|
@@ -64,7 +78,7 @@ When specifying values in your query, keep in mind these things:
 - GUID values are written without single quotes as if they are numbers, for example `projectId eq 8aff412f-f072-479a-837e-eb0d96c6904a`
 - Date values are always written in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format, also known as YYYY-MM-DD. For example, `createDate gt 2023-01-01`
 
-## Pagination using OData
+### Pagination using OData
 
 The standard for OData pagination uses the concept of **top** and **skip**. Here's how it works.
 
@@ -76,9 +90,66 @@ The standard for OData pagination uses the concept of **top** and **skip**. Here
 
 This allows you to paginate records easily. If you want to retrieve the top 50 records in a table, you specify `$top=50`. To retrieve the second page of results, specify `$skip=50` and `$top=50`.
 
-## Expanding data
+### Expanding data
 
 Some OData query endpoints allow you to fetch additional data using the `$expand` parameter. The documentation for the API will explain what options are available and how to use them on each endpoint.
 
-## Complex query examples
+## Gridify Query APIs
 
+The following APIs use the Gridify query pattern:
+* [QueryResourceWorkload](https://developer.projectmanager.com/api-reference/workload/query-resource-workload)
+
+The [Gridify Query Language](https://alirezanet.github.io/Gridify/guide/filtering) allows complex queries in a simple format that is easy to use.  When using Gridify query APIs, you can:
+
+- **Filter** records based on criteria you specify in the `filter` parameter.
+- **Sort** your query results using the `sort` parameter.
+- **Paginate** your results using `page` and `pageSize`.  In Gridify, pages are numbered starting with 1.  PageSize must always be a number between 1 and 1000 (default 1000).
+- **Fetch** additional data using `include`.
+
+Let's walk through the basics for a Gridify query.
+
+### A simple Gridify query for resource workload
+
+For this example, we will imagine that we want to retrieve information about a resource's expected workload for the month of July 2026.  To do this, we must first go through a few steps:
+* Find the unique identifier of the Resource by calling `QueryResources` to retrieve the record for the Resource.  The unique identifier is the `id` field on the record.
+* Examine the API in question to see the list of fields that can be used for filtering.  For the `QueryResourceWorkload` API, we can filter based on the fields `task.plannedStartDate`, `task.plannedFinishDate`, `task.projectId`, and `task.name`.  
+* We want to search for tasks planned to start after July 1, 2026, so we'll use planned start date and the greater-than symbol, >.
+* Therefore, our `filter` parameter is: `task.plannedStartDate>2026-07-01`
+* We will choose to sort by a task's name.  Our `sort` parameter will be: `task.name`
+* We want to retrieve information about the task in addition to the workload allocation for the task. Our `include` parameter will be `task`.
+* This API is paginated by default. We will start by fetching page one, then continue until we receive an empty result set.  Therefore our `page` parameter will be `1`.
+
+Finally, once we construct the query, we must URL encode the parameters.  This is necessary to ensure that the greater-than symbol, >, is correctly received by the API.  The complete query is:
+
+```
+https://stagingapi.pmcom.io/api/data/workload/resources/<GUID>?filter=task.plannedStartDate%3E2026-07-01&sort=task.name&include=task&page=1
+```
+
+This first page of data may or may not be a complete set of results.  If you receive less than a full page of results, you should increment the `page` number and repeat the query until you receive an empty result.
+
+### Comparators and Functions within Gridify filtering 
+
+| Name                 | Example                          |
+|----------------------|----------------------------------|
+| Equals               | `{field} = {value}`              |
+| Greater Than         | `{field} > {value}`              |
+| Greater Than Or Equal| `{field} >= {value}`             |
+| Less Than            | `{field} < {value}`              |
+| Less Than Or Equal   | `{field} <= {value}`             |
+| Not Equal            | `{field} != {value}`             |
+| Contains             | `{field} =* {value}`             |
+| Not Contains         | `{field} !* {value}`             |
+| Starts With          | `{field} ^ {value}`              |
+| Not Starts With      | `{field} !^ {value}`             |
+| Ends With            | `{field} $ {value}`              |
+| Not Ends With        | `{field} !$ {value}`             |
+
+Using logical operators we can create complex queries.
+
+| Name        | Operator | Usage example                                  |
+|-------------|----------|------------------------------------------------|
+| AND         | `,`      | `FirstName = Value, LastName = Value2`         |
+| OR          | `.`      | `FirstName=Value|LastName=Value2`              |
+| Parenthesis | `()`     | `(FirstName=*Jo,Age<30)|(FirstName!=Hn,Age>30) |
+
+For a full breakdown of Gridify querying, see [filtering](https://alirezanet.github.io/Gridify/guide/filtering).
