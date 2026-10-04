@@ -66,7 +66,7 @@ The OData specification includes lots of complex features which you may wish to 
 
 You can combine multiple comparisons using parenthesis and `AND` / `OR` clauses.  Some examples:
 
-* Find all tasks within a project that are complete: `(projectId eq 8aff412f-f072-479a-837e-eb0d96c6904a AND percentComplete eq 100)`
+* Find all tasks within a project that are complete: `(projectId eq 05153555-da68-49ea-b095-b3ed3b67e766 AND percentComplete eq 100)`
 * Find all tasks with the word 'wash' in their name that have not yet been started: `(contains(name, 'wash') AND percentComplete eq 0)`
 
 ### Filtering tips
@@ -122,7 +122,7 @@ For this example, we will imagine that we want to retrieve information about a r
 Finally, once we construct the query, we must URL encode the parameters.  This is necessary to ensure that the greater-than symbol, >, is correctly received by the API.  The complete query is:
 
 ```
-https://stagingapi.pmcom.io/api/data/workload/resources/<GUID>?filter=task.plannedStartDate%3E2026-07-01&sort=task.name&include=task&page=1
+https://api.projectmanager.com/api/data/workload/resources/<GUID>?filter=task.plannedStartDate%3E2026-07-01&sort=task.name&include=task&page=1
 ```
 
 This first page of data may or may not be a complete set of results.  If you receive less than a full page of results, you should increment the `page` number and repeat the query until you receive an empty result.
