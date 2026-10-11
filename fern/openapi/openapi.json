@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "2026.163.296"
+    "version": "2026.163.309"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -16341,6 +16341,14 @@
           "createInWorkato": {
             "type": "boolean",
             "description": "Flag whether user/workspace needs to be setup in Workato"
+          },
+          "includeCosts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "For Acumatica/MYOB: which cost types Receive Costs includes (Planned, Committed, Actual).\r\nNull for other providers. Used so the UI can unlock Planned Cost when it is not synced.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
