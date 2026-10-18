@@ -1,5 +1,47 @@
 # API Patch Notes
 
+# October, 2026
+
+## Patch notes for 2026.164.201
+
+These patch notes summarize the changes from version 2026.163.296.
+
+Added 13 new endpoints:
+* [Country.ListCountries](https://developer.projectmanager.com/api-reference/country/list-countries)
+* [Country.GetStates](https://developer.projectmanager.com/api-reference/country/get-states)
+* [Holidays.ListHolidays](https://developer.projectmanager.com/api-reference/holidays/list-holidays)
+* [Holidays.CreateHolidays](https://developer.projectmanager.com/api-reference/holidays/create-holidays)
+* [Holidays.RetrieveHoliday](https://developer.projectmanager.com/api-reference/holidays/retrieve-holiday)
+* [Holidays.UpdateHolidayName](https://developer.projectmanager.com/api-reference/holidays/update-holiday-name)
+* [Holidays.DeleteHoliday](https://developer.projectmanager.com/api-reference/holidays/delete-holiday)
+* [Npt.GetNptTime](https://developer.projectmanager.com/api-reference/npt/get-npt-time)
+* [ProjectField.UpdateProjectFieldDefinition](https://developer.projectmanager.com/api-reference/project-field/update-project-field-definition)
+* [ProjectField.UpdateProjectFieldOptions](https://developer.projectmanager.com/api-reference/project-field/update-project-field-options)
+* [ProjectMembers.AddTeamToProject](https://developer.projectmanager.com/api-reference/project-members/add-team-to-project)
+* [Task.UpdateApprovalStatus](https://developer.projectmanager.com/api-reference/task/update-approval-status)
+* [Task.RetrieveTaskTimeAllocations](https://developer.projectmanager.com/api-reference/task/retrieve-task-time-allocations)
+
+Renamed 12 endpoints:
+* Renamed Changeset.RetrieveChangesetStatus to [Changeset.RetrieveChangeset](https://developer.projectmanager.com/api-reference/changeset/retrieve-changeset)
+* Renamed Changeset.RetrieveCompletedChangesetStatus to [Changeset.RetrieveCompletedChangeset](https://developer.projectmanager.com/api-reference/changeset/retrieve-completed-changeset)
+* Renamed File.DownloadAThumbnailImage to [File.DownloadThumbnailImage](https://developer.projectmanager.com/api-reference/file/download-thumbnail-image)
+* Renamed NptDiscussion.LikeAComment to [NptDiscussion.LikeNptComment](https://developer.projectmanager.com/api-reference/npt-discussion/like-npt-comment)
+* Renamed NptDiscussion.RemovesAThumbsupFromAComment to [NptDiscussion.UnlikeNptComment](https://developer.projectmanager.com/api-reference/npt-discussion/unlike-npt-comment)
+* Renamed NptDiscussion.RemoveAComment to [NptDiscussion.RemoveComment](https://developer.projectmanager.com/api-reference/npt-discussion/remove-comment)
+* Renamed NptFiles.UploadFileToNonProjectTasks to [NptFiles.UploadNptFile](https://developer.projectmanager.com/api-reference/npt-files/upload-npt-file)
+* Renamed ProjectMembers.RetrieveProjectsTheUserIsAMemberOf to [ProjectMembers.RetrieveProjectsByUser](https://developer.projectmanager.com/api-reference/project-members/retrieve-projects-by-user)
+* Renamed ProjectMembers.CreateOrUpdateUserProjectMembership to [ProjectMembers.CreateOrUpdateProjectMembership](https://developer.projectmanager.com/api-reference/project-members/create-or-update-project-membership)
+* Renamed Task.FetchTheFirstLevelChildTasksFromTheTask to [Task.RetrieveFirstLevelChildTasks](https://developer.projectmanager.com/api-reference/task/retrieve-first-level-child-tasks)
+* Renamed Task.MarkTaskAsReadForTheCurrentUser to [Task.MarkTaskRead](https://developer.projectmanager.com/api-reference/task/mark-task-read)
+* Renamed Teams.RetrieveZipFileForTeamsIntegrations to [Teams.RetrieveIntegrationBundle](https://developer.projectmanager.com/api-reference/teams/retrieve-integration-bundle)
+
+Changes to data models:
+* IntegrationProviderDto: Added new field `includeCosts`
+* IntegrationProviderDto: Added new field `timeSyncDirection`
+* TimesheetAdminTypeDto: Added new field `providerShortId`
+
+
+
 # September, 2026
 
 ## Patch notes for 2026.163.296
