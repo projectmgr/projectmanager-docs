@@ -8,7 +8,7 @@
       "url": "https://www.projectmanager.com/contact",
       "email": "support@projectmanager.com"
     },
-    "version": "2026.163.296"
+    "version": "2026.164.237"
   },
   "paths": {
     "/api/data/api-keys": {
@@ -163,7 +163,7 @@
         "tags": [
           "Changeset"
         ],
-        "summary": "Retrieve Changeset status",
+        "summary": "Retrieve Changeset",
         "description": "Retrieve a Changeset by its unique ID.\r\n            \r\nA Changeset is an individual edit that has been made to a project.  Since multiple users can\r\nedit a project at the same time, individual Changesets are applied in a sequential fashion. If\r\na Changeset causes a conflict or cannot be applied, it will be rejected.  You can examine a\r\nChangeset to determine its conflict resolution status.\r\n            \r\nWhen checking the status of a Changeset, you can call either RetrieveChangeset or\r\nRetrieveCompletedChangeset.  Using RetrieveChangeset will give you the immediate status of the\r\nChangeset.  Using RetrieveCompletedChangeset will delay the response until the Changeset has\r\nfinished processing.",
         "parameters": [
           {
@@ -204,8 +204,8 @@
         "tags": [
           "Changeset"
         ],
-        "summary": "Retrieve Completed Changeset status",
-        "description": "Retrieve a Changeset by its unique ID. This endpoint waits for the Changeset to complete its\r\nprocessing prior to returning a result.\r\n            \r\nA Changeset is an individual edit that has been made to a project.  Since multiple users can\r\nedit a project at the same time, individual Changesets are applied in a sequential fashion. If\r\na Changeset causes a conflict or cannot be applied, it will be rejected.  You can examine a\r\nChangeset to determine its conflict resolution status.\r\n            \r\nWhen checking the status of a Changeset, you can call either RetrieveChangeset or\r\nRetrieveCompletedChangeset.  Using RetrieveChangeset will give you the immediate status of the\r\nChangeset.  Using RetrieveCompletedChangeset will delay the response until the Changeset has\r\nfinished processing.\r\n            \r\nAlthough most Changesets complete instantly, some Changesets may need additional time to\r\ncomplete.  If the Changeset cannot be processed within a reasonable length of time, this API\r\ncall may fail.  If this API fails, it will return a status error indicating the Changeset is\r\nstill being processed.",
+        "summary": "Retrieve Completed Changeset",
+        "description": "Retrieve a Changeset by its unique ID. This endpoint waits for the Changeset to complete its\r\nprocessing prior to returning a result.\r\n            \r\nA Changeset is an individual edit that has been made to a project.  Since multiple users can\r\nedit a project at the same time, individual Changesets are applied in a sequential fashion. If\r\na Changeset causes a conflict or cannot be applied, it will be rejected.  You can examine a\r\nChangeset to determine its conflict resolution status.\r\n            \r\nWhen checking the status of a Changeset, you can call either `RetrieveChangeset` or\r\n`RetrieveCompletedChangeset`.  Using RetrieveChangeset will give you the immediate status of the\r\nChangeset.  Using RetrieveCompletedChangeset will delay the response until the Changeset has\r\nfinished processing.\r\n            \r\nAlthough most Changesets complete instantly, some Changesets may need additional time to\r\ncomplete.  If the Changeset cannot be processed within a reasonable length of time, this API\r\ncall may fail.  If this API fails, it will return a status error indicating the Changeset is\r\nstill being processed.",
         "parameters": [
           {
             "name": "changeSetId",
@@ -245,8 +245,8 @@
         "tags": [
           "Country"
         ],
-        "summary": "Retrieves a list of all countries.",
-        "description": "This method returns a list of all countries available in the system.\r\n\r\nEach country includes its unique identifier (ISO2 code) and name.",
+        "summary": "List Countries",
+        "description": "This method returns a list of all countries defined by [ISO3166](https://www.iso.org/iso-3166-country-codes.html).\r\n            \r\nEach country includes its unique identifier (ISO3166-2 code) and name.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -276,13 +276,13 @@
         "tags": [
           "Country"
         ],
-        "summary": "Retrieves a list of states for a given country ISO code.",
-        "description": "This method returns a list of all states for the specified country.\r\n\r\nEach state includes its unique identifier, state code, and name.",
+        "summary": "Get States",
+        "description": "This method returns a list of all states for the specified country as defined by [ISO3166](https://www.iso.org/iso-3166-country-codes.html).\r\nNote that many countries may have administrative regions although not all countries require administrative\r\nregions to be used when specifying an address.\r\n            \r\nEach state includes its unique identifier, state code, and name.",
         "parameters": [
           {
             "name": "isoCode",
             "in": "path",
-            "description": "The ISO code of the country.",
+            "description": "The ISO-3166-2 code of the country",
             "required": true,
             "schema": {
               "type": "string"
@@ -679,7 +679,7 @@
         "tags": [
           "File"
         ],
-        "summary": "Download a Thumbnail Image",
+        "summary": "Download Thumbnail Image",
         "description": "Downloads a thumbnail image associated with a document that was previously uploaded to ProjectManager.com.\r\n            \r\nProjectManager allows you to store files linked to various elements within your Workspace,\r\nsuch as Projects, Tasks, or your Home. Files are organized based on their storage location.\r\n            \r\nWhen uploading a file, please allow some time for the file to undergo processing and verification.\r\nProjectManager may reject file uploads containing issues such as malware. Once a file has\r\ncompleted the upload process, you can retrieve its associated thumbnail using the DownloadThumbnail API.\r\n            \r\nIf successful, this API returns the file contents as an octet-stream (raw bytes).  If an error\r\noccurs, you will receive a JSON result with error information.",
         "parameters": [
           {
@@ -1040,8 +1040,8 @@
         "tags": [
           "Holidays"
         ],
-        "summary": "Lists holiday definitions for the current workspace.",
-        "description": "Returns a summary per holiday, ordered by name.",
+        "summary": "List Holidays",
+        "description": "Returns all Holidays defined in the current workspace, sorted by name.\r\n            \r\nThis \"list\" API returns basic information about Holidays and may be restricted to partial information. To\r\nreceive all information about a specific Holiday, use RetrieveHoliday.\r\n            \r\nA Holiday is a defined date when one or more Resources are not available for work.  Holidays may be defined by\r\nWorkspace, by Country, or by Resource. A Workspace Holiday means that no Resources in the Workspace are working for\r\nthat date. A Country Holiday means that no Resources in the Workspace located within the country are working for\r\nthat date.  A Resource Holiday means that the specified Resource is not working on that date.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -1069,8 +1069,8 @@
         "tags": [
           "Holidays"
         ],
-        "summary": "Creates a holiday. Omit ResourceIds and CountryId for global scope; set one list for people or country scope.",
-        "description": "Persists the definition in one transaction. One occurrence is stored for each day from DateFrom through DateTo\r\n(inclusive), each as a full calendar day off. Omit CountryId and ResourceIds for a workspace-wide holiday; set one list\r\nfor people or country scope. Each CountryId is an ISO 3166-1 alpha-2 string (for example NZ). The inclusive range is capped\r\n(see server validation) to limit payload size.",
+        "summary": "Create Holidays",
+        "description": "Creates one or more Holiday for a Resource, a Country, or the entire Workspace.\r\n            \r\nA Holiday can be created based on multiple crtieria, including a date range, a list of Resource identifiers, and\r\na list of countries.  You may use one or more of these criteria when calling CreateHolidays, and the API will\r\nexpand your criteria into individual Holiday records for each combination of criteria.\r\n            \r\nA Holiday is a defined date when one or more Resources are not available for work.  Holidays may be defined by\r\nWorkspace, by Country, or by Resource. A Workspace Holiday means that no Resources in the Workspace are working for\r\nthat date. A Country Holiday means that no Resources in the Workspace located within the country are working for\r\nthat date.  A Resource Holiday means that the specified Resource is not working on that date.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -1082,7 +1082,7 @@
           }
         ],
         "requestBody": {
-          "description": "Name, date range, and optional country or resource targeting.",
+          "description": "The information about the Holiday to create",
           "content": {
             "application/json": {
               "schema": {
@@ -1115,13 +1115,13 @@
         "tags": [
           "Holidays"
         ],
-        "summary": "Gets a single holiday definition.",
-        "description": "Returns HTTP 404 if the holiday does not exist or is not in the workspace.",
+        "summary": "Retrieve Holiday",
+        "description": "Retrieve all detail about a single Holiday defined by its unique identifier.\r\n            \r\nA Holiday is a defined date when one or more Resources are not available for work.  Holidays may be defined by\r\nWorkspace, by Country, or by Resource. A Workspace Holiday means that no Resources in the Workspace are working for\r\nthat date. A Country Holiday means that no Resources in the Workspace located within the country are working for\r\nthat date.  A Resource Holiday means that the specified Resource is not working on that date.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Public identifier of the holiday (GUID).",
+            "description": "Unique identifier of the holiday",
             "required": true,
             "schema": {
               "type": "string",
@@ -1154,13 +1154,13 @@
         "tags": [
           "Holidays"
         ],
-        "summary": "Updates a holiday display name.",
-        "description": "Only the name can be changed. Dates, occurrences, and country or resource scope are set at create time and are not modified by this endpoint.",
+        "summary": "Update Holiday Name",
+        "description": "Update the name of a Holiday based on the information provided.\r\n            \r\nThe Holiday record has a \"name\" or \"reason\" that can be used to identify the name of the Holiday.  When a\r\nHoliday is specific to an individual person, it may have a reason identifying why the resource is taking\r\npaid time off.  You can update this name or reason, but you cannot change the other values for a Holiday.  To\r\nchange a Holiday's date, resource ID, or country, you must delete the Holiday and create a new one.\r\n            \r\nA Holiday is a defined date when one or more Resources are not available for work.  Holidays may be defined by\r\nWorkspace, by Country, or by Resource. A Workspace Holiday means that no Resources in the Workspace are working for\r\nthat date. A Country Holiday means that no Resources in the Workspace located within the country are working for\r\nthat date.  A Resource Holiday means that the specified Resource is not working on that date.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Public identifier of the holiday to update (GUID).",
+            "description": "Unique identifier of the holiday",
             "required": true,
             "schema": {
               "type": "string",
@@ -1177,7 +1177,7 @@
           }
         ],
         "requestBody": {
-          "description": "The new display name.",
+          "description": "Information to be updated for the Holiday",
           "content": {
             "application/json": {
               "schema": {
@@ -1208,13 +1208,13 @@
         "tags": [
           "Holidays"
         ],
-        "summary": "Deletes a holiday definition and its occurrences and assignments (cascade in the database).",
-        "description": "Removes the definition and all child occurrence and assignment rows. Succeeds if the holiday has already been deleted.",
+        "summary": "Delete Holiday",
+        "description": "Removes the Holiday identified by its unique identifier.\r\n            \r\nSome information about a Holiday cannot be updated once the Holiday is created.  If you want to change the name\r\nor reason for a Holiday, you can use `UpdateHoliday`.  To change other information, you should delete the old\r\nHoliday and create a new one with the correct information.\r\n            \r\nA Holiday is a defined date when one or more Resources are not available for work.  Holidays may be defined by\r\nWorkspace, by Country, or by Resource. A Workspace Holiday means that no Resources in the Workspace are working for\r\nthat date. A Country Holiday means that no Resources in the Workspace located within the country are working for\r\nthat date.  A Resource Holiday means that the specified Resource is not working on that date.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Public identifier of the holiday to delete (GUID).",
+            "description": "Unique identifier of the holiday",
             "required": true,
             "schema": {
               "type": "string",
@@ -3690,7 +3690,7 @@
           "Npt"
         ],
         "summary": "Create Npt",
-        "description": "Creates a new Non-Project Task (NPT) for the current user. If you specify an assignee for this NPT, that user will be assigned to this task. \r\nIf you do not specify an assignee, the NPT will be automatically assigned to you. \r\n \r\nA Non-Project Task (NPT) is an individual element of work that is outside of a project. \r\nMany people use NPTs to track personal work or general administrative work.  NPTs have nearly\r\nall the same features as other tasks, but since they are not part of a project, they can\r\nbe tracked separately by individuals.",
+        "description": "Creates a new Non-Project Task (NPT) for the current user. If you specify an assignee for this NPT, that user will be assigned to this task.\r\nIf you do not specify an assignee, the NPT will be automatically assigned to you.\r\n            \r\nA Non-Project Task (NPT) is an individual element of work that is outside of a project.\r\nMany people use NPTs to track personal work or general administrative work.  NPTs have nearly\r\nall the same features as other tasks, but since they are not part of a project, they can\r\nbe tracked separately by individuals.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -3759,7 +3759,7 @@
           "Npt"
         ],
         "summary": "Get Npt",
-        "description": "Retrieve a Non-Project Task (NPT) by its unique identifier or by its short ID.  \r\nAn NPT has both a unique identifier, which is a GUID, and a short ID, which is a small text label that is unique only within your Workspace. \r\n\r\nA Non-Project Task (NPT) is an individual element of work that is outside of a project. \r\nMany people use NPTs to track personal work or general administrative work.  NPTs have nearly\r\nall the same features as other tasks, but since they are not part of a project, they can\r\nbe tracked separately by individuals.",
+        "description": "Retrieve a Non-Project Task (NPT) by its unique identifier or by its short ID.\r\nAn NPT has both a unique identifier, which is a GUID, and a short ID, which is a small text label that is unique only within your Workspace.\r\n            \r\nA Non-Project Task (NPT) is an individual element of work that is outside of a project.\r\nMany people use NPTs to track personal work or general administrative work.  NPTs have nearly\r\nall the same features as other tasks, but since they are not part of a project, they can\r\nbe tracked separately by individuals.",
         "parameters": [
           {
             "name": "nptId",
@@ -3797,7 +3797,7 @@
           "Npt"
         ],
         "summary": "Update Npt",
-        "description": "Updates a Non-Project Task (NPT) by its unique identifier, which is a GUID.  \r\n\r\nA Non-Project Task (NPT) is an individual element of work that is outside of a project. \r\nMany people use NPTs to track personal work or general administrative work.  NPTs have nearly\r\nall the same features as other tasks, but since they are not part of a project, they can\r\nbe tracked separately by individuals.",
+        "description": "Updates a Non-Project Task (NPT) by its unique identifier, which is a GUID.\r\n            \r\nA Non-Project Task (NPT) is an individual element of work that is outside of a project.\r\nMany people use NPTs to track personal work or general administrative work.  NPTs have nearly\r\nall the same features as other tasks, but since they are not part of a project, they can\r\nbe tracked separately by individuals.",
         "parameters": [
           {
             "name": "nptId",
@@ -3873,7 +3873,7 @@
           "Npt"
         ],
         "summary": "Remove Npt",
-        "description": "Removes a Non-Project Task (NPT) by its unique identifier, which is a GUID.  \r\n \r\nA Non-Project Task (NPT) is an individual element of work that is outside of a project. \r\nMany people use NPTs to track personal work or general administrative work.  NPTs have nearly\r\nall the same features as other tasks, but since they are not part of a project, they can\r\nbe tracked separately by individuals.",
+        "description": "Removes a Non-Project Task (NPT) by its unique identifier, which is a GUID.\r\n            \r\nA Non-Project Task (NPT) is an individual element of work that is outside of a project.\r\nMany people use NPTs to track personal work or general administrative work.  NPTs have nearly\r\nall the same features as other tasks, but since they are not part of a project, they can\r\nbe tracked separately by individuals.",
         "parameters": [
           {
             "name": "nptId",
@@ -3913,8 +3913,8 @@
         "tags": [
           "Npt"
         ],
-        "summary": "Planned allocations and actual timesheet minutes for a non-project task, grouped by resource.",
-        "description": "Returns a summary of planned allocations and logged timesheet minutes for the specified NPT,\r\ngrouped by resource. Use this when the client needs time rollups without loading individual\r\ntimesheet entries. The root `totalActualMinutes` is at least the task's stored actual work\r\n(minutes) and the merged timesheet total. `hasTimeEntries` is true only when merged timesheet\r\nrows exist, not when actual work was set without timesheets (e.g. import).",
+        "summary": "Get Npt Time",
+        "description": "Retrieve allocations and actual timesheet minutes for a non-project task, grouped by resource.\r\n            \r\nReturns a summary of planned allocations and logged timesheet minutes for the specified NPT,\r\ngrouped by resource. Use this when the client needs time rollups without loading individual\r\ntimesheet entries. The root `totalActualMinutes` is at least the task's stored actual work\r\n(minutes) and the merged timesheet total. `hasTimeEntries` is true only when merged timesheet\r\nrows exist, not when actual work was set without timesheets (e.g. import).",
         "parameters": [
           {
             "name": "nptId",
@@ -4049,8 +4049,8 @@
         "tags": [
           "NptDiscussion"
         ],
-        "summary": "Like a comment",
-        "description": "Puts a thumbsup on a comment",
+        "summary": "Like Npt Comment",
+        "description": "Puts a thumbsup on a comment on a non-project task.\r\n            \r\nComments may have reactions, specifically thumbsup reactions, associated with them.  You can add a thumbs-up to\r\na comment by calling this API.  You can remove the thumbs-up by calling UnlikeNptComment",
         "parameters": [
           {
             "name": "commentId",
@@ -4088,7 +4088,7 @@
         "tags": [
           "NptDiscussion"
         ],
-        "summary": "Removes a thumbsup from a comment",
+        "summary": "Unlike Npt Comment",
         "description": "Unlike a comment that was previously liked",
         "parameters": [
           {
@@ -4129,7 +4129,7 @@
         "tags": [
           "NptDiscussion"
         ],
-        "summary": "Remove a comment",
+        "summary": "Remove Comment",
         "description": "Removes a comment by it's id",
         "parameters": [
           {
@@ -4170,7 +4170,7 @@
         "tags": [
           "NptFiles"
         ],
-        "summary": "Upload File To Non Project Tasks",
+        "summary": "Upload Npt File",
         "description": "Uploads a file to a non-project task.\r\n            \r\nProjectManager allows you to store Files connected to other elements of your Workspace\r\nsuch as a Project, a Task, or Home.  Files are maintained separately based on the location\r\nwhere the file was stored.\r\n            \r\nWhen you upload a File, please allow a few moments for the File to be processed and verified.\r\nProjectManager may reject File uploads that contain problems such as malware. Once a File has\r\ncompleted the upload the process, you may retrieve it using the DownloadFile API.\r\n            \r\nThis API returns a JSON response indicating success or failure.",
         "parameters": [
           {
@@ -4230,7 +4230,7 @@
           "NptFiles"
         ],
         "summary": "Get Npt Files",
-        "description": "retrieves Npt files",
+        "description": "ProjectManager allows you to store Files connected to other elements of your Workspace\r\nsuch as a Project, a Task, or Home.  Files are maintained separately based on the location\r\nwhere the file was stored.\r\n            \r\nWhen you upload a File, please allow a few moments for the File to be processed and verified.\r\nProjectManager may reject File uploads that contain problems such as malware. Once a File has\r\ncompleted the upload the process, you may retrieve it using the DownloadFile API.    ///",
         "parameters": [
           {
             "name": "taskId",
@@ -6247,7 +6247,7 @@
         "tags": [
           "ProjectField"
         ],
-        "summary": "Update Project Field Definition (e.g. rename)",
+        "summary": "Update ProjectField Definition",
         "description": "Updates the definition of a ProjectField within your Workspace, such as renaming the field.\r\nThis changes the field metadata for the entire Workspace, not the value stored for any project.\r\nTo change a field's value for a specific project, use UpdateProjectFieldValue instead.\r\n            \r\nA ProjectField is a custom field defined within your Workspace.  You can define ProjectFields\r\nfor any integration purpose that is important to your business.  Each ProjectField has a data\r\ntype as well as options in how it is handled.  ProjectFields can be edited for each Project\r\nwithin your Workspace.",
         "parameters": [
           {
@@ -6415,7 +6415,7 @@
         "tags": [
           "ProjectField"
         ],
-        "summary": "Update Project Field Options (for dropdown types)",
+        "summary": "Update ProjectField Options",
         "description": "Updates the list of options for a ProjectField of type Dropdown. This changes the field\r\ndefinition for the entire Workspace (the choices available when editing any project),\r\nnot the value stored for any specific project. To change a field's value for a project,\r\nuse UpdateProjectFieldValue instead.\r\n            \r\nA ProjectField is a custom field defined within your Workspace.  You can define ProjectFields\r\nfor any integration purpose that is important to your business.  Each ProjectField has a data\r\ntype as well as options in how it is handled.  ProjectFields can be edited for each Project\r\nwithin your Workspace.",
         "parameters": [
           {
@@ -6842,8 +6842,8 @@
         "tags": [
           "ProjectMembers"
         ],
-        "summary": "Retrieve Projects the user is a member of",
-        "description": "Returns a list of project permissions the user is a member of",
+        "summary": "Retrieve Projects By User",
+        "description": "Returns a list of projects where the currently authenticated user is a member.\r\n            \r\nThe information returned by this API indicates the project's ID and the current user's role.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -6921,7 +6921,7 @@
         "tags": [
           "ProjectMembers"
         ],
-        "summary": "Update A List Of User Project Membership",
+        "summary": "Bulk Update Project Membership",
         "description": "Updates the project access for a current member of a specified project\r\nby giving the users a new project security role.\r\n            \r\nA project member is a user who has access to a specific project.\r\nProject members are assigned a project security role, which controls the level of access they have to\r\nthe project.\r\nPossible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
@@ -7092,7 +7092,7 @@
         "tags": [
           "ProjectMembers"
         ],
-        "summary": "Create Or Update User Project Membership",
+        "summary": "Create Or Update Project Membership",
         "description": "Creates or updates (upserts) a user's membership in a specified project. If the user is not yet a member they\r\nare added; if they are already a member their project security role is replaced.\r\n            \r\nThe role is optional. When the role is omitted for a new member, a default role is applied based on the user's\r\nworkspace access: users who can edit all projects become a Manager, guest users become a Guest, and everyone\r\nelse becomes an Editor. When the role is omitted for a user who is already a member, their current role is left\r\nunchanged.\r\n            \r\nA project member is a user who has access to a specific project. Project members are assigned a project security role, which controls the level of access they have to\r\nthe project. Possible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
@@ -7207,8 +7207,8 @@
         "tags": [
           "ProjectMembers"
         ],
-        "summary": "Add all active people on a business team to a project.",
-        "description": "Resolves the team to its member resources, grants project access to each user who is not already a member,\r\nand leaves existing members unchanged. Access levels follow the same rules as creating or updating\r\nindividual project membership (workspace role constraints, guest vs licensed user, global admin, etc.).\r\n            \r\nA project member is a user who has access to a specific project.\r\nProject members are assigned a project security role, which controls the level of access they have to\r\nthe project.\r\nPossible project security roles include manage, edit, collaborate, creator, and guest.",
+        "summary": "Add Team To Project",
+        "description": "Adds all active people on a business team to a project.\r\n            \r\nResolves the team to its member resources, grants project access to each user who is not already a member,\r\nand leaves existing members unchanged. Access levels follow the same rules as creating or updating\r\nindividual project membership (workspace role constraints, guest vs licensed user, global admin, etc.).\r\n            \r\nA project member is a user who has access to a specific project.\r\nProject members are assigned a project security role, which controls the level of access they have to\r\nthe project.\r\nPossible project security roles include manage, edit, collaborate, creator, and guest.",
         "parameters": [
           {
             "name": "projectId",
@@ -10074,8 +10074,8 @@
         "tags": [
           "Task"
         ],
-        "summary": "Fetch the first level child tasks from the task",
-        "description": "Fetch the first level child tasks from the task",
+        "summary": "Retrieve First Level Child Tasks",
+        "description": "Fetch the first level child tasks from the task.",
         "parameters": [
           {
             "name": "taskId",
@@ -10397,7 +10397,7 @@
         "tags": [
           "Task"
         ],
-        "summary": "Update the approval status of a Task.",
+        "summary": "Update Approval Status",
         "description": "Sets the approval status of an existing Task to either `Approved` or `Denied`.\r\n            \r\nApproval status is only supported for project Tasks. Non-project tasks (NPTs) and\r\nnon-task task types do not support approval and will return a validation error.\r\n            \r\nThis operation is processed as a Changeset to ensure sequential application and\r\nconcurrency safety.",
         "parameters": [
           {
@@ -10453,8 +10453,8 @@
         "tags": [
           "Task"
         ],
-        "summary": "Mark task as read for the current user",
-        "description": "Updates the task user read record (last viewed) for the authenticated user. Use this\r\nwhen the UI only needs to mark file/discussion read state\r\nwithout loading full task details.",
+        "summary": "Mark Task Read",
+        "description": "Marks the specified Task as having been 'read' by the current user.\r\n            \r\nUpdates the task user read record (last viewed) for the authenticated user. Use this\r\nwhen the UI only needs to mark file/discussion read state\r\nwithout loading full task details.",
         "parameters": [
           {
             "name": "taskId",
@@ -10494,7 +10494,7 @@
         "tags": [
           "Task"
         ],
-        "summary": "Planned allocations and actual timesheet minutes for a task, grouped by resource.",
+        "summary": "Retrieve Task Time Allocations",
         "description": "Returns a summary of planned allocations and logged timesheet minutes for the specified task,\r\ngrouped by resource. Use this when the client needs time rollups without loading individual\r\ntimesheet entries.",
         "parameters": [
           {
@@ -12877,7 +12877,7 @@
           "TaskTodo"
         ],
         "summary": "Update Todo",
-        "description": "Update a todo for a task",
+        "description": "Update a todo for a task. Collaborators can only mark a todo complete or incomplete.",
         "parameters": [
           {
             "name": "todoId",
@@ -12971,8 +12971,8 @@
         "tags": [
           "Teams"
         ],
-        "summary": "Retrieve zip file for Teams Integrations",
-        "description": "Retrieves zip file for teams integrations.\r\n            \r\nThe Teams API is intended for use by ProjectManager and its business development partners.  Please\r\ncontact ProjectManager's sales team to request use of this API.",
+        "summary": "Retrieve Integration Bundle",
+        "description": "Retrieves the integration's bundle (a zip file) for teams integrations.\r\n            \r\nThe Teams API is intended for use by ProjectManager and its business development partners.  Please\r\ncontact ProjectManager's sales team to request use of this API.",
         "parameters": [
           {
             "name": "x-integration-name",
@@ -16341,6 +16341,19 @@
           "createInWorkato": {
             "type": "boolean",
             "description": "Flag whether user/workspace needs to be setup in Workato"
+          },
+          "includeCosts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "For Acumatica/MYOB: which cost types Receive Costs includes (Planned, Committed, Actual).\r\nNull for other providers. Used so the UI can unlock Planned Cost when it is not synced.",
+            "nullable": true
+          },
+          "timeSyncDirection": {
+            "type": "string",
+            "description": "For Acumatica/MYOB: whether Sync Time Entries sends time (Send) or receives it (Receive).\r\nNull for other providers. Used so the UI can make time read-only when it is received.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -26602,6 +26615,11 @@
           "name": {
             "type": "string",
             "description": "admin task name"
+          },
+          "providerShortId": {
+            "type": "string",
+            "description": "The integration that created this admin task for its non-project time, such as acumatica",
+            "nullable": true
           }
         },
         "additionalProperties": false,
